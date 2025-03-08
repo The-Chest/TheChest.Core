@@ -6,7 +6,7 @@ namespace TheChest.Core.Slots
     /// Generic Slot with with <see cref="ISlot{T}"/> implementation
     /// </summary>
     /// <typeparam name="T">The item the slot accepts</typeparam>
-    public class Slot<T> : ISlot<T?>
+    public class Slot<T> : ISlot<T>
     {
         public virtual T? Content { get; protected set; }
 
