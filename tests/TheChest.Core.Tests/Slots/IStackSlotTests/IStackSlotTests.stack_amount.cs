@@ -7,7 +7,7 @@
         {
             var maxAmount = random.Next(10,20);
             Assert.That(
-                () => this.slotFactory.WithItem(this.itemFactory.CreateItem(), maxAmount + 1, maxAmount),
+                () => this.slotFactory.WithItem(this.itemFactory.CreateDefault(), maxAmount + 1, maxAmount),
                 Throws.InnerException
                     .With.TypeOf<ArgumentOutOfRangeException>()
                     .And.Message.StartsWith("The item amount cannot be bigger than max amount")

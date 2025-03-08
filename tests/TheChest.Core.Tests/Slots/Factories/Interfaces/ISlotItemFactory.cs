@@ -1,8 +1,8 @@
 ﻿namespace TheChest.Core.Tests.Slots.Factories.Interfaces
 {
     /// <summary>
-    /// Generic <see cref="ISlot{T}"/> item creation.
-    /// There is nothing special about this interface 
+    /// Generic item creation.
+    /// There is nothing special about this interface. 
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface ISlotItemFactory<T>
@@ -11,12 +11,23 @@
         /// Creates an item
         /// </summary>
         /// <returns>Any <see cref="T"/> instance</returns>
-        T CreateItem();
+        T CreateDefault();
         /// <summary>
-        /// Creates an amount of item
+        /// Creates an item with every property set to a random value
+        /// </summary>
+        /// <returns>Any <see cref="T"/> instance</returns>
+        T CreateRandom();
+        /// <summary>
+        /// Creates an array of items using <see cref="CreateDefault"/>
         /// </summary>
         /// <param name="amount">Size of the returned array of items</param>
-        /// <returns>Any <see cref="T"/> Array instance</returns>
-        T[] CreateItems(int amount);
+        /// <returns>An <see cref="T[]"/> with size <paramref name="amount"/></returns>
+        T[] CreateMany(int amount);
+        /// <summary>
+        /// Creates an array of items using <see cref="CreateRandom"/>
+        /// </summary>
+        /// <param name="amount">Size of the returned array of items</param>
+        /// <returns>An <see cref="T[]"/> with size <paramref name="amount"/></returns>
+        T[] CreateManyRandom(int amount);
     }
 }
