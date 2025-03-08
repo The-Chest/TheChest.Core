@@ -7,7 +7,7 @@ namespace TheChest.Core.Tests.Containers.Factories
     public class ContainerFactory<T, Y> : IContainerFactory<Y>
         where T : Container<Y>
     {
-        private readonly ISlotFactory<Y> slotFactory;
+        protected readonly ISlotFactory<Y> slotFactory;
 
         public ContainerFactory(ISlotFactory<Y> slotFactory)
         {
@@ -52,7 +52,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return slotType;
         }
 
-        public IContainer<Y> EmptyContainer(int size = 20)
+        public virtual IContainer<Y> EmptyContainer(int size = 20)
         {
             var containerType = GetContainerType();
             var slotType = GetSlotTypeFromConstructor();
@@ -70,7 +70,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return (IContainer<Y>)container!;
         }
 
-        public IContainer<Y> FullContainer(int size, Y item)
+        public virtual IContainer<Y> FullContainer(int size, Y item)
         {
             var containerType = GetContainerType();
             var slotType = GetSlotTypeFromConstructor();
@@ -86,7 +86,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return (IContainer<Y>)container!;
         }
 
-        public IContainer<Y> ShuffledItemContainer(int size, Y item)
+        public virtual IContainer<Y> ShuffledItemContainer(int size, Y item)
         {
             if (item is null)
             {
@@ -119,7 +119,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return (IContainer<Y>)container!;
         }
 
-        private static void ShuffleItems(Array items)
+        protected static void ShuffleItems(Array items)
         {
             var rng = new Random();
             int n = items.Length;
@@ -135,7 +135,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             }
         }
 
-        public IContainer<Y> ShuffledItemsContainer(int size, params Y[] items)
+        public virtual IContainer<Y> ShuffledItemsContainer(int size, params Y[] items)
         {
             if (items.Length > size)
             {

@@ -12,7 +12,7 @@
         [Test]
         public void IsEmpty_CurentItemNotNull_ReturnsFalse()
         {
-            var item = this.itemFactory.CreateItem();
+            var item = this.itemFactory.CreateDefault();
             var slot = this.slotFactory.FullSlot(item);
             Assert.That(slot.IsEmpty, Is.False);
         }
@@ -20,7 +20,7 @@
         [Test]
         public void IsEmpty_SlotIsFull_ReturnsFalse()
         {
-            var item = this.itemFactory.CreateItem();
+            var item = this.itemFactory.CreateDefault();
             var slot = this.slotFactory.FullSlot(item);
 
             Assert.That(slot.IsEmpty, Is.False);

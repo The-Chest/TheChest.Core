@@ -2,7 +2,7 @@
 {
     public abstract partial class IStackContainerTests<T>
     {
-        private Random random;
+        protected Random random;
         protected readonly IStackContainerFactory<T> containerFactory;
         protected readonly ISlotItemFactory<T> itemFactory;
 

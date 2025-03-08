@@ -5,14 +5,14 @@ namespace TheChest.Core.Tests.Slots.Factories
 {
     public class StackSlotFactory<T, Y> : IStackSlotFactory<Y> where T : StackSlot<Y>
     {
-        public IStackSlot<Y> EmptySlot()
+        public virtual IStackSlot<Y> EmptySlot()
         {
             var type = typeof(T);
             var slot = Activator.CreateInstance(type, Array.Empty<Y>(), 1);
             return (IStackSlot<Y>)slot!;
         }
 
-        public IStackSlot<Y> FullSlot(Y item)
+        public virtual IStackSlot<Y> FullSlot(Y item)
         {
             var type = typeof(T);
 
@@ -24,7 +24,7 @@ namespace TheChest.Core.Tests.Slots.Factories
             return (IStackSlot<Y>)slot!;
         }
 
-        public IStackSlot<Y> WithItem(Y item, int amount = 1, int maxAmount = 10)
+        public virtual IStackSlot<Y> WithItem(Y item, int amount = 1, int maxAmount = 10)
         {
             var type = typeof(T);
             var items = new Y[amount];

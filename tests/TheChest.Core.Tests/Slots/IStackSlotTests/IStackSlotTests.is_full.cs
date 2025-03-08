@@ -15,7 +15,7 @@
         {
             var maxStack = random.Next(5,20);
 
-            var slot = this.slotFactory.WithItem(this.itemFactory.CreateItem(), maxStack / 2, maxStack);
+            var slot = this.slotFactory.WithItem(this.itemFactory.CreateDefault(), maxStack / 2, maxStack);
 
             Assert.That(slot.IsFull, Is.False);
         }
@@ -34,7 +34,7 @@
         {
             var maxStack = random.Next(5, 20);
 
-            var slot = this.slotFactory.WithItem(this.itemFactory.CreateItem(), maxStack, maxStack);
+            var slot = this.slotFactory.WithItem(this.itemFactory.CreateDefault(), maxStack, maxStack);
 
             Assert.That(slot.IsFull, Is.True);
         }

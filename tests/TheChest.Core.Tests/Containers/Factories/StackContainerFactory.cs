@@ -7,7 +7,7 @@ namespace TheChest.Core.Tests.Containers.Factories
     public class StackContainerFactory<T, Y> : IStackContainerFactory<Y>
         where T : StackContainer<Y>
     {
-        private readonly IStackSlotFactory<Y> slotFactory;
+        protected readonly IStackSlotFactory<Y> slotFactory;
 
         public StackContainerFactory(IStackSlotFactory<Y> slotFactory)
         {
@@ -52,7 +52,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return slotType;
         }
 
-        public IStackContainer<Y> EmptyContainer(int size = 20)
+        public virtual IStackContainer<Y> EmptyContainer(int size = 20)
         {
             var containerType = GetContainerType();
             var slotType = GetSlotTypeFromConstructor();
@@ -70,7 +70,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return (IStackContainer<Y>)container!;
         }
 
-        public IStackContainer<Y> FullContainer(int size, int stackSize, Y item = default)
+        public virtual IStackContainer<Y> FullContainer(int size, int stackSize, Y item = default)
         {
             var containerType = GetContainerType();
             var slotType = GetSlotTypeFromConstructor();
@@ -88,7 +88,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return (IStackContainer<Y>)container!;
         }
 
-        private static void ShuffleItems(Array items)
+        protected static void ShuffleItems(Array items)
         {
             var rng = new Random();
             int n = items.Length;
@@ -104,7 +104,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             }
         }
 
-        public IStackContainer<Y> ShuffledItemsContainer(int size, int stackSize, params Y[] items)
+        public virtual IStackContainer<Y> ShuffledItemsContainer(int size, int stackSize, params Y[] items)
         {
             if (items.Length > size)
             {
