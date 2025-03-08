@@ -4,7 +4,7 @@
     /// Generic Container Slot with item stack
     /// </summary>
     /// <typeparam name="T">Item the Slot Accept</typeparam>
-    public interface IStackSlot<T> : ISlot<ICollection<T>>
+    public interface IStackSlot<T> : ISlot<T[]>
     {
         /// <summary>
         /// Defines the amount of items this slot is holding
