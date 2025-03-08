@@ -17,7 +17,7 @@
             var randomStackSize = random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
             var container = this.containerFactory.ShuffledItemsContainer(
                 randomSize, randomStackSize,
-                this.itemFactory.CreateItems(randomSize - 1)
+                this.itemFactory.CreateMany(randomSize - 1)
             ); 
 
 			Assert.That(container.IsFull, Is.False);
@@ -30,7 +30,7 @@
             var randomStackSize = random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
             var container = this.containerFactory.ShuffledItemsContainer(
                 randomSize, randomStackSize,
-                this.itemFactory.CreateItems(randomSize - 1)
+                this.itemFactory.CreateMany(randomSize - 1)
             );
 
             Assert.That(container.IsFull, Is.False);
@@ -43,7 +43,7 @@
             var randomStackSize = random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
             var container = this.containerFactory.ShuffledItemsContainer(
                 randomSize, randomStackSize,
-                this.itemFactory.CreateItem()
+                this.itemFactory.CreateDefault()
             );
 
             Assert.That(container.IsFull, Is.False);
@@ -57,7 +57,7 @@
             var randomStackSize = random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
             var container = this.containerFactory.ShuffledItemsContainer(
                 randomSize, randomStackSize,
-                this.itemFactory.CreateItem()
+                this.itemFactory.CreateDefault()
             );
 
             Assert.That(container.IsFull, Is.False);
@@ -69,7 +69,7 @@
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var randomStackSize = random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
 
-            var container = this.containerFactory.FullContainer(randomSize, randomStackSize, this.itemFactory.CreateItem());
+            var container = this.containerFactory.FullContainer(randomSize, randomStackSize, this.itemFactory.CreateDefault());
 
             Assert.That(container.IsFull, Is.True);
 		}

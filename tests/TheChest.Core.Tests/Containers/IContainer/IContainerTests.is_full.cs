@@ -16,7 +16,7 @@
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var container = this.containerFactory.ShuffledItemsContainer(
                 randomSize, 
-                this.itemFactory.CreateItems(randomSize - 1)
+                this.itemFactory.CreateMany(randomSize - 1)
             );
 
             Assert.That(container.IsFull, Is.False);
@@ -28,7 +28,7 @@
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var container = this.containerFactory.ShuffledItemContainer(
                 randomSize,
-                this.itemFactory.CreateItem()
+                this.itemFactory.CreateDefault()
             );
 
             Assert.That(container.IsFull, Is.False);
@@ -40,7 +40,7 @@
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var container = this.containerFactory.FullContainer(
                 randomSize,
-                this.itemFactory.CreateItem()
+                this.itemFactory.CreateDefault()
             );
 
             Assert.That(container.IsFull, Is.True);
