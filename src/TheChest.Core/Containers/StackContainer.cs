@@ -9,9 +9,9 @@ namespace TheChest.Core.Containers
     /// <typeparam name="T">An item type</typeparam>
     public class StackContainer<T> : IStackContainer<T>
     {
-        public IStackSlot<T>[] Slots { get; protected set; }
+        public virtual IStackSlot<T>[] Slots { get; protected set; }
 
-        public IStackSlot<T> this[int index] => Slots[index];
+        public virtual IStackSlot<T> this[int index] => Slots[index];
 
         public virtual bool IsFull => Slots.All(x => x.IsFull);
 
