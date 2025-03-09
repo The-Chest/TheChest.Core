@@ -1,9 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	
+	<PropertyGroup Label="Package">
+		<Title>The Chest Core</Title>
+		<VersionPrefix>0.4.0</VersionPrefix>
+		<Authors>The Chest</Authors>
+		<RepositoryUrl>https://github.com/The-Chest/TheChest.Core</RepositoryUrl>
+	</PropertyGroup>
+	
+	<PropertyGroup Label="Compiler">
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 </Project>
