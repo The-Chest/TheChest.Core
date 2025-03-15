@@ -19,5 +19,18 @@
             this.Name = "";
             this.Description = "";
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null) return false;
+            if (obj is not Item) return false;
+            var item = obj as Item;
+            return item?.Id == this.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Name, Description);
+        }
     }
 }
