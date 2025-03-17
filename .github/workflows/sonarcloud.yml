@@ -29,8 +29,12 @@ jobs:
         run: dotnet restore 
         shell: bash
 
-      - name: Dotnet restore tools
-        run: dotnet tool restore 
+      - name: Install SonarQube Cloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        shell: powershell
+        run: |
+          New-Item -Path .\.sonar\scanner -ItemType Directory
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner 
         
       - name: Set up JDK 17
         uses: actions/setup-java@v3
