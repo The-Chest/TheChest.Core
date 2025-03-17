@@ -51,8 +51,9 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar-scanner    
 
       - name: Update SonarQube Cloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: bash
-        run: dotnet tool update --global dotnet-sonarscanner 
+        run: dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
 
       - name: Begin Coverage Report
         run: 
