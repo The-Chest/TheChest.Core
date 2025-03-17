@@ -2,11 +2,21 @@ name: SonarCloud analysis
 
 on:
   push:
-    branches: [ "master" ]
+    branches: 
+      - 'master'
+      - 'src/*' 
+      - 'src/**'
+      - 'test/*' 
+      - 'tests/**'
   pull_request:
     types: [opened, synchronize, reopened]
-    branches: [ "master" ]
-  workflow_dispatch:
+    branches: 
+      - 'master'
+    paths:
+      - 'src/*' 
+      - 'src/**'
+      - 'test/*' 
+      - 'tests/**'
 
 permissions:
   pull-requests: read
@@ -65,7 +75,8 @@ jobs:
           /o:"the-chest" 
           /d:sonar.token="${{ secrets.SONAR_TOKEN }}" 
           /d:sonar.host.url="https://sonarcloud.io" 
-          /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" 
+          /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml"
+          /d:sonar.scanner.scanAll=false
       
       - name: Build Project
         run: dotnet build 
