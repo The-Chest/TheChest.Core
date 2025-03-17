@@ -28,11 +28,6 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore 
         shell: bash
-
-      - name: Install SonarQube Cloud scanner
-        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-        shell: bash
-        run: dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner 
         
       - name: Set up JDK 17
         uses: actions/setup-java@v3
@@ -54,6 +49,11 @@ jobs:
           path: .\.sonar\scanner
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner    
+
+      - name: Install SonarQube Cloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        shell: bash
+        run: dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner 
 
       - name: Begin Coverage Report
         run: 
