@@ -1,0 +1,80 @@
+name: SonarCloud analysis
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [ "master" ]
+  workflow_dispatch:
+
+permissions:
+  pull-requests: read
+
+jobs:
+  Analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+      
+      - name: Restore dependencies
+        run: dotnet restore 
+        shell: bash
+
+      - name: Dotnet restore tools
+        run: dotnet tool restore 
+        
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'zulu' # Alternative distribution options are available.
+
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~\sonar\cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+        
+      - name: Cache SonarCloud scanner
+        id: cache-sonar-scanner
+        uses: actions/cache@v1
+        with:
+          path: .\.sonar\scanner
+          key: ${{ runner.os }}-sonar-scanner
+          restore-keys: ${{ runner.os }}-sonar-scanner    
+
+      - name: Begin Coverage Report
+        run: 
+          dotnet tool run dotnet-sonarscanner begin 
+          /k:"The-Chest_TheChest.Core" 
+          /o:"the-chest" 
+          /d:sonar.token="${{ secrets.SONAR_TOKEN }}" 
+          /d:sonar.host.url="https://sonarcloud.io" 
+          /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" 
+      
+      - name: Build Project
+        run: dotnet build 
+          --configuration Release 
+          --no-restore
+
+      - name: Run Coverage Report
+        continue-on-error: true 
+        run: dotnet test 
+          --collect:"XPlat Code Coverage;Format=opencover" 
+          --results-directory TestResults/ 
+          --configuration Release 
+
+      - name: Send Coverage Report
+        run: 
+          dotnet tool run dotnet-sonarscanner end 
+          /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
