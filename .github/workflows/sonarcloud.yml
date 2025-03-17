@@ -52,7 +52,7 @@ jobs:
 
       - name: Update SonarQube Cloud scanner
         shell: bash
-        run: dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --create-manifest-if-needed
+        run: dotnet tool update --global dotnet-sonarscanner 
 
       - name: Begin Coverage Report
         run: 
