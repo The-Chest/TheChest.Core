@@ -50,15 +50,9 @@ jobs:
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner    
 
-      - name: Install SonarQube Cloud scanner
-        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-        shell: bash
-        run: dotnet tool install dotnet-sonarscanner --tool-path .\.sonar\scanner 
-
       - name: Update SonarQube Cloud scanner
-        if: steps.cache-sonar-scanner.outputs.cache-hit == 'true'
         shell: bash
-        run: dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner 
+        run: dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --create-manifest-if-needed
 
       - name: Begin Coverage Report
         run: 
