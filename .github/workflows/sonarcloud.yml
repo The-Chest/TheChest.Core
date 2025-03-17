@@ -55,6 +55,9 @@ jobs:
         shell: bash
         run: dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
 
+      - name: Dotnet restore tools
+        run: dotnet tool restore 
+        
       - name: Begin Coverage Report
         run: 
           dotnet tool run dotnet-sonarscanner begin 
