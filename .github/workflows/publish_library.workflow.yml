@@ -4,10 +4,8 @@ on:
   push:
     #branches:
     #  - "master"
-    # tags:        
-    #  - "**"
-    paths:
-      - 'src/TheChest.Core/TheChest.Core.csproj' 
+     tags:        
+      - "**"
 
 jobs:
   build:
