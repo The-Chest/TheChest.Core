@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - "master"
+      
     tags:        
       - "**"
     paths:
@@ -26,7 +27,7 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.6.2
       with:
-        name: $GITHUB_REF_NAME
+        name: ${{ inputs.version }}
         path: 'src/TheChest.Core/bin/Release'
         retention-days: 90
 
