@@ -1,12 +1,11 @@
 name: Publish library  
 
 on:
-  workflow_dispatch:
   push:
     #branches:
     #  - "master"
-    tags:        
-      - "**"
+    # tags:        
+    #  - "**"
     paths:
       - 'src/TheChest.Core/TheChest.Core.csproj' 
 
