@@ -1,0 +1,33 @@
+name: Publish library  
+
+on:
+  workflow_dispatch:
+  push:
+    #branches:
+    #  - "master"
+    tags:        
+      - "**"
+    paths:
+      - 'src/TheChest.Core/TheChest.Core.csproj' 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.6.2
+      with:
+        name: ${{ inputs.version }}
+        path: 'src/TheChest.Core/bin/Release'
+        retention-days: 90
+
+          

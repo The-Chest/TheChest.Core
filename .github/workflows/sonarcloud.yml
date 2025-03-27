@@ -2,11 +2,21 @@ name: SonarCloud analysis
 
 on:
   push:
-    branches: [ "master" ]
+    branches: 
+      - 'master'
+      - 'src/*' 
+      - 'src/**'
+      - 'test/*' 
+      - 'tests/**'
   pull_request:
     types: [opened, synchronize, reopened]
-    branches: [ "master" ]
-  workflow_dispatch:
+    branches: 
+      - 'master'
+    paths:
+      - 'src/*' 
+      - 'src/**'
+      - 'test/*' 
+      - 'tests/**'
 
 permissions:
   pull-requests: read
@@ -51,9 +61,13 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar-scanner    
 
       - name: Update SonarQube Cloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: bash
-        run: dotnet tool update --global dotnet-sonarscanner 
+        run: dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
 
+      - name: Dotnet restore tools
+        run: dotnet tool restore 
+        
       - name: Begin Coverage Report
         run: 
           dotnet tool run dotnet-sonarscanner begin 
@@ -61,7 +75,8 @@ jobs:
           /o:"the-chest" 
           /d:sonar.token="${{ secrets.SONAR_TOKEN }}" 
           /d:sonar.host.url="https://sonarcloud.io" 
-          /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" 
+          /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml"
+          /d:sonar.scanner.scanAll=false
       
       - name: Build Project
         run: dotnet build 
