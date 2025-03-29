@@ -5,7 +5,9 @@ on:
     #branches:
     #  - "master"
      tags:        
-      - "**"
+      - "v[0-9]+.[0-9]+.[0-9]+"
+env:
+  VERSION: ${{ github.ref_name }}
 
 jobs:
   build:
@@ -19,12 +21,16 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build --no-restore --configuration Release /p:Version=${VERSION}
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.6.2
       with:
-        name: ${{ github.ref_name }}
+        name: $VERSION
         path: 'src/TheChest.Core/bin/Release'
         retention-days: 90
+    - name: Pack
+      run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
+    - name: Push
+      run: dotnet nuget push NuGet.Workflow.${VERSION}.nupkg --source https://nuget.pkg.github.com/acraven/index.json --api-key ${GITHUB_TOKEN}
 
           
