@@ -5,7 +5,7 @@ on:
     #branches:
     #  - "master"
      tags:        
-      - "v**.**.**"
+      - "**"
 env:
   VERSION: ${{ github.ref_name }}
 
