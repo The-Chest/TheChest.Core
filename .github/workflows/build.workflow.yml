@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - "**"
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,4 +22,4 @@ jobs:
       with:
         name: ${{ github.ref_name }}
         path: 'src/TheChest.Core/bin/Release'
-        retention-days: 90
+        retention-days: 14
