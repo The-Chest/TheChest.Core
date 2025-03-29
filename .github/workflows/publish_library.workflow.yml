@@ -28,6 +28,8 @@ jobs:
         name: $VERSION
         path: 'src/TheChest.Core/bin/Release'
         retention-days: 90
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Pack
       run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
     - name: Push
