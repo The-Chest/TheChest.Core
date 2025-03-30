@@ -29,10 +29,10 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.6.2
       with:
-        name: ${{ github.ref_name }}
+        name: v${{ VERSION }}
         path: 'src/TheChest.Core/bin/Release'
         retention-days: 14
     - name: Push library
-      run: dotnet nuget push NuGet.Workflow.${VERSION}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key ${GITHUB_TOKEN}
+      run: dotnet nuget push NuGet.TheChest.Core.${VERSION}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key ${GITHUB_TOKEN}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
