@@ -7,7 +7,7 @@ on:
      tags:        
       - "**"
 env:
-  VERSION: ${GITHUB_REF_NAME#v}
+  VERSION: ${{GITHUB_REF_NAME#v}}
 jobs:
   build:
     runs-on: ubuntu-latest
