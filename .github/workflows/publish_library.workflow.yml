@@ -25,8 +25,6 @@ jobs:
       run: dotnet restore
     - name: Build project
       run: dotnet build --no-restore --configuration Release
-    - name: Pack library
-      run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.6.2
       with:
@@ -51,5 +49,7 @@ jobs:
         uses: actions/download-artifact@v4.2.1
         with:
           name: ${VERSION}
+      - name: Pack library
+        run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
       - name: Push library
         run: dotnet nuget push TheChest.Core.${VERSION}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key "${{secrets.NUGET_APIKEY}}"
