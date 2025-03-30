@@ -6,9 +6,6 @@ on:
     #  - "master"
      tags:        
       - "**"
-env:
-  VERSION: ${{ github.ref_name }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,13 +15,24 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 6.0.x
+    - name: Write release version
+      run: |
+        VERSION=${GITHUB_REF_NAME#v}
+        echo Version: $VERSION
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
+    - name: Build project
       run: dotnet build --no-restore --configuration Release
-    - name: Pack
+    - name: Pack library
       run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
-    - name: Push
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.6.2
+      with:
+        name: ${{ github.ref_name }}
+        path: 'src/TheChest.Core/bin/Release'
+        retention-days: 14
+    - name: Push library
       run: dotnet nuget push NuGet.Workflow.${VERSION}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key ${GITHUB_TOKEN}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
