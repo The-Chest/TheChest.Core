@@ -6,9 +6,6 @@ on:
     #  - "master"
      tags:        
       - "**"
-defaults:
- run:
-  working-directory: ./src
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,9 +21,9 @@ jobs:
         echo Version: $VERSION
         echo "VERSION=$VERSION" >> $GITHUB_ENV
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore src/TheChest.Core
     - name: Build project
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build src/TheChest.Core --no-restore --configuration Release
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.6.2
       with:
