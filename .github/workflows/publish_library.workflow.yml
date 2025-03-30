@@ -33,6 +33,6 @@ jobs:
         path: 'src/TheChest.Core/bin/Release'
         retention-days: 14
     - name: Push library
-      run: dotnet nuget push TheChest.Core.${VERSION}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key "${secrets.NUGET_APIKEY}"
+      run: dotnet nuget push TheChest.Core.${VERSION}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key "${{secrets.NUGET_APIKEY}}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
