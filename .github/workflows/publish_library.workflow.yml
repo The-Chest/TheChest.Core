@@ -29,7 +29,7 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.6.2
       with:
-        name: ${{ GITHUB_REF_NAME }}
+        name: '${GITHUB_REF_NAME}'
         path: 'src/TheChest.Core/bin/Release'
         retention-days: 14
     - name: Push library
