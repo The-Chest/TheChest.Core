@@ -49,6 +49,6 @@ jobs:
         with:
           name: $VERSION
       - name: Pack library
-        run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
+        run: dotnet pack src/TheChest.Core --configuration Release /p:Version=${VERSION} --no-build --output .
       - name: Push library
         run: dotnet nuget push TheChest.Core.${VERSION}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key "${{secrets.NUGET_APIKEY}}"
