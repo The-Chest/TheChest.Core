@@ -49,6 +49,8 @@ jobs:
         with:
           name: ${GITHUB_REF_NAME}
           path: 'src/TheChest.Core/bin/Release'
+      - name: Restore dependencies
+        run: dotnet restore src/TheChest.Core
       - name: Pack library
         run: dotnet pack src/TheChest.Core --configuration Release /p:Version=${VERSION} --no-build --output .
       - name: Push library
