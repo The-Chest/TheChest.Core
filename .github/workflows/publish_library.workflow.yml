@@ -24,7 +24,31 @@ jobs:
       run: dotnet restore src/TheChest.Core
     - name: Build project
       run: dotnet build src/TheChest.Core --no-restore --configuration Release
-    - name: Pack library
-      run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
-    - name: Push library
-      run: dotnet nuget push TheChest.Core.${VERSION}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key "${{secrets.NUGET_APIKEY}}"
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.6.2
+      with:
+        name: ${VERSION}
+        path: 'src/TheChest.Core/bin/Release'
+        retention-days: 14
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 6.0.x
+      - name: Write release version
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          echo Version: $VERSION
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v4.2.1
+        with:
+          name: ${VERSION}
+      - name: Pack library
+        run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
+      - name: Push library
+        run: dotnet nuget push TheChest.Core.${VERSION}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key "${{secrets.NUGET_APIKEY}}"
