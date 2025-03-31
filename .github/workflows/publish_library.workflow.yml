@@ -27,7 +27,7 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.6.2
       with:
-        name: ${{ GITHUB_REF_NAME }}
+        name: ${GITHUB_REF_NAME}
         path: 'src/TheChest.Core/bin/Release'
         retention-days: 14
   publish:
@@ -47,7 +47,7 @@ jobs:
       - name: Download a Build Artifact
         uses: actions/download-artifact@v4.2.1
         with:
-          name: ${{ GITHUB_REF_NAME }}
+          name: ${GITHUB_REF_NAME}
           path: 'src/TheChest.Core/bin/Release'
       - name: Pack library
         run: dotnet pack src/TheChest.Core --configuration Release /p:Version=${VERSION} --no-build --output .
