@@ -2,7 +2,7 @@
 	
 	<PropertyGroup Label="Package">
 		<Title>The Chest Core</Title>
-		<VersionPrefix>0.4.0</VersionPrefix>
+		<VersionPrefix>0.5.0</VersionPrefix>
 		<Authors>The Chest</Authors>
 		<RepositoryUrl>https://github.com/The-Chest/TheChest.Core</RepositoryUrl>
 	</PropertyGroup>
