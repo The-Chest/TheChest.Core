@@ -27,7 +27,7 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.6.2
       with:
-        name: ${VERSION}
+        name: $VERSION
         path: 'src/TheChest.Core/bin/Release'
         retention-days: 14
   publish:
@@ -47,7 +47,7 @@ jobs:
       - name: Download a Build Artifact
         uses: actions/download-artifact@v4.2.1
         with:
-          name: ${VERSION}
+          name: $VERSION
       - name: Pack library
         run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
       - name: Push library
