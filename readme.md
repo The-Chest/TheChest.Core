@@ -50,7 +50,6 @@ public class MyContainer : Container<int>
 			return 10;
 		}
 	}
-
 }
 ```
 
@@ -58,6 +57,3 @@ public class MyContainer : Container<int>
 ```csharp
 
 ```
-
-## Future improvements
-
