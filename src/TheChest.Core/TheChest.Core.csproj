@@ -2,7 +2,7 @@
 	
 	<PropertyGroup Label="Package">
 		<Title>The Chest Core</Title>
-		<VersionPrefix>0.5.0</VersionPrefix>
+		<Description>Provides generic collections to container management systems.</Description>
 		<Authors>The Chest</Authors>
 		<RepositoryUrl>https://github.com/The-Chest/TheChest.Core</RepositoryUrl>
 	</PropertyGroup>
@@ -11,5 +11,5 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-	</PropertyGroup>
+	</PropertyGroup>	
 </Project>
