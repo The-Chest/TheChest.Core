@@ -9,7 +9,7 @@ config:
     hideEmptyMembersBox: true
 ---
 classDiagram
-direction TB
+direction BT
 	namespace TheChest.Core.Containers.Interfaces {
         class IContainer~T~ {
 	        +ISlot~T~[] Slots
@@ -28,8 +28,6 @@ direction TB
 	}
 	namespace TheChest.Core.Containers {
         class Container~T~ {
-        }
-        class StackContainer~T~ {
         }
 	}
 	namespace TheChest.Core.Slots {
