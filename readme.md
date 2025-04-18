@@ -25,12 +25,8 @@ Alternatively, you can download the DLL file and reference it directly in your p
 
 ### Usage
 
-#### Using existing classes
-The library provides ready-to-use implementations such as `Container<T>` and `Slot<T>`. These can be used directly or extended to add custom behavior.
-
-#### Creating a new Container extending the Container class
-
-You can create a custom container by extending the `Container<T>` class. For example:
+#### Extending the classes
+The library provides ready-to-use implementations such as `Container<T>` and `Slot<T>`. These can be used directly or extended to add custom behavior. For example:
 
 ```csharp
 using TheChest.Core.Containers;
@@ -53,9 +49,26 @@ public class MyContainer : Container<int>
 }
 ```
 
-#### Creating a new Container implementing the IContainer interface
+----------
 
-If you need more control, you can implement the `IContainer<T>` interface directly. For example:
+```csharp
+using TheChest.Core.Slots;
+
+public class CustomSlot : Slot<string>
+{
+    public CustomSlot(string item) : base(item)
+    {
+    }
+
+    public override bool IsEmpty => Content == null;
+
+    public override bool IsFull => Content != null;
+}
+```
+
+#### Implementing interfaces
+
+If you need more control, you can implement the interfaces directly. For example:
 
 ```csharp
 using TheChest.Core.Containers.Interfaces;
@@ -78,6 +91,26 @@ public class MyContainer : IContainer<int>
         if (slots.Length != 10)
             throw new System.ArgumentException("Invalid container size");
         Slots = slots ?? throw new ArgumentNullException(nameof(slots));
+    }
+}
+```
+
+----------
+
+```csharp
+using TheChest.Core.Slots.Interfaces;
+
+public class CustomSlot : ISlot<int>
+{
+    public int? Content { get; private set; }
+
+    public bool IsEmpty => Content == 0;
+
+    public bool IsFull => Content != 0;
+
+    public CustomSlot(int item)
+    {
+        Content = item;
     }
 }
 ```
