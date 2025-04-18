@@ -114,3 +114,8 @@ public class CustomSlot : ISlot<int>
     }
 }
 ```
+
+## Future Plans
+
+The plans for future versions of The Chest Core are in this [GitHub Project Board](https://github.com/orgs/The-Chest/projects/16/views/2), with insights into upcoming features, improvements, and release timelines.
+
