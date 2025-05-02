@@ -15,7 +15,7 @@
         {
             var container = this.containerFactory.EmptyContainer();
 
-            Assert.That(container.Size, Is.EqualTo(container.Slots.Length));
+            Assert.That(container.Size, Is.EqualTo(container.Slots.Count));
         }
     }
 }
