@@ -9,7 +9,7 @@
             var container = this.containerFactory.FullContainer(randomSize, this.itemFactory.CreateDefault());
 
             var randomIndex = random.Next(0, randomSize - 1);
-            Assert.That(container[randomIndex], Is.EqualTo(container.Slots[randomIndex]));
+            Assert.That(container[randomIndex], Is.EqualTo(container.Slots.ToArray()[randomIndex]));
         }
 
         [TestCase(-1)]

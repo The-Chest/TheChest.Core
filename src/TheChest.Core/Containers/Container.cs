@@ -9,15 +9,15 @@ namespace TheChest.Core.Containers
     /// <typeparam name="T">An item type</typeparam>
     public class Container<T> : IContainer<T>
     {
-        public virtual ISlot<T>[] Slots
+        public virtual IReadOnlyCollection<ISlot<T>> Slots
         {
             get;
             protected set;
         }
 
-        public virtual ISlot<T> this[int index] => Slots[index];
+        public virtual ISlot<T> this[int index] => Slots.ToArray()[index];
 
-        public virtual int Size => Slots.Length;
+        public virtual int Size => Slots.Count;
 
         public virtual bool IsFull => Slots.All(x => x.IsFull);
 

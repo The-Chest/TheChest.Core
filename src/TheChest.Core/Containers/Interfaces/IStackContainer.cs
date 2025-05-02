@@ -18,7 +18,7 @@ namespace TheChest.Core.Containers.Interfaces
         /// <summary>
         /// Slots in the Container
         /// </summary>
-        IStackSlot<T>[] Slots { get; }
+        IReadOnlyCollection<IStackSlot<T>> Slots { get; }
 
         /// <summary>
         /// Size of the current Container
