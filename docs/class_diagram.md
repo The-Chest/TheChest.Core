@@ -18,7 +18,7 @@ classDiagram
 direction BT
 	namespace TheChest.Core.Containers.Interfaces {
         class IContainer~T~ {
-	        +ISlot~T~[] Slots
+	        +IReadOnlyCollection~ISlot~T~~ Slots
 	        +ISlot~T~ this[int index]
 	        +int Size
 	        +bool IsEmpty
@@ -64,7 +64,7 @@ classDiagram
 direction BT
 	namespace TheChest.Core.Containers.Interfaces {
 		class IStackContainer~T~ {
-	        +IStackSlot~T~[] Slots
+	        +IReadOnlyCollection~IStackSlot~T~~ Slots
 	        +IStackSlot~T~ this[int index]
 	        +int Size
 	        +bool IsEmpty
