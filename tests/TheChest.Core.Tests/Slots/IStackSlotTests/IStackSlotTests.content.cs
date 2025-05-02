@@ -10,7 +10,7 @@
 
             var slot = this.slotFactory.WithItem(this.itemFactory.CreateDefault(), amount, maxStack);
 
-            Assert.That(slot.Content, Has.Length.EqualTo(amount));
+            Assert.That(slot.Content, Has.Count.EqualTo(amount));
         }
     }
 }

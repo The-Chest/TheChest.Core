@@ -55,7 +55,7 @@ namespace TheChest.Core.Slots
         public virtual bool IsEmpty => StackAmount == 0;
 
         protected readonly ICollection<T> content;
-        public virtual T[] Content => content.ToArray();
+        public virtual IReadOnlyCollection<T> Content => content.ToArray();
 
         /// <summary>
         /// Creates a basic Stack Slot with an amount and max amount

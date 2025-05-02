@@ -13,7 +13,7 @@ namespace TheChest.Core.Slots
         private const string AMOUNT_BIGGER_THAN_MAXAMOUNT = "The item amount cannot be bigger than max amount";
 
         protected readonly T[] content;
-        public virtual T[] Content
+        public virtual IReadOnlyCollection<T> Content
         {
             get
             {
