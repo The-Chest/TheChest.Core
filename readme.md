@@ -76,9 +76,10 @@ using TheChest.Core.Slots.Interfaces;
 
 public class MyContainer : IContainer<int>
 {
-    public ISlot<int>[] Slots { get; }
+    private readonly ISlot<int>[] slots; 
+    public IReadOnlyCollection<ISlot<int>> Slots { get; }
 
-    public ISlot<int> this[int index] => this.Slots[index];
+    public ISlot<int> this[int index] => this.slots.ToArray()[index];
 
     public int Size { get; }
 
