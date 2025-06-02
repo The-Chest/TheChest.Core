@@ -1,6 +1,6 @@
 ﻿namespace TheChest.Core.Tests.Containers
 {
-    public abstract partial class IStackContainerTests<T>
+    public partial class IStackContainerTests<T>
     {
         [Test]
         public void Size_NoInitialValue_SetsSizeToTwenty()
