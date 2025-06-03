@@ -51,7 +51,7 @@ namespace TheChest.Core.Tests.Containers
         }
 
         [Test]
-        public void ContainsAmount_AmountEqualThanSearchedAmount_ReturnsFalse()
+        public void ContainsAmount_AmountEqualThanSearchedAmount_ReturnsTrue()
         {
             var items = this.itemFactory.CreateManyRandom(5).ToList();
             items.AddRange(this.itemFactory.CreateMany(5));
@@ -62,7 +62,7 @@ namespace TheChest.Core.Tests.Containers
         }
 
         [Test]
-        public void ContainsAmount_AmountBiggerThanSearchedAmount_ReturnsFalse()
+        public void ContainsAmount_AmountBiggerThanSearchedAmount_ReturnsTrue()
         {
             var item = this.itemFactory.CreateRandom();
             var items = this.itemFactory.CreateMany(9)
