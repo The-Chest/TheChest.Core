@@ -2,13 +2,13 @@
 
 namespace TheChest.Core.Tests.Containers
 {
-    public abstract partial class IStackContainerTests<T>
+    public partial class IStackContainerTests<T>
     {
         [Test]
         public void Contains_NullItem_ThrowsArgumentNullException()
         {
             var container = this.containerFactory.EmptyContainer();
-            Assert.Throws<ArgumentNullException>(() => container.Contains(default));
+            Assert.That(() => container.Contains(default!), Throws.ArgumentNullException);
         }
 
         [Test]

@@ -2,7 +2,7 @@
 
 namespace TheChest.Core.Tests.Containers
 {
-    public abstract partial class IContainerTests<T>
+    public partial class IContainerTests<T>
     {
         [Test]
         public void Contains_NullItem_ThrowsArgumentNullException()
