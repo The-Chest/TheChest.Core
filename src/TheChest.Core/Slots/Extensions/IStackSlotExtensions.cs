@@ -5,20 +5,24 @@ namespace TheChest.Core.Slots.Extensions
     public static class IStackSlotExtensions
     {
         /// <summary>
-        /// Checks if the slot contains the item.
+        /// Checks if the slot contains an amount of the item.
         /// </summary>
         /// <typeparam name="T">Type of item to be checked inside the slot</typeparam>
         /// <param name="item">Item to be checked</param>
-        /// <returns>Returns true if <paramref name="item"/> is contained inside <see cref="ISlot{T}.Content"/></returns>
+        /// <param name="amount">Minimum amount of <paramref name="item"/> expected</param>
+        /// <returns>Returns true if <paramref name="item"/> is contained inside <see cref="IStackSlot{T}.Content"/></returns>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
-        public static bool Contains<T>(this IStackSlot<T> slot, T item)
+        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
+        public static bool Contains<T>(this IStackSlot<T> slot, T item, int amount = 1)
         {
             item = item ?? throw new ArgumentNullException(nameof(item));
+            if (amount <= 0)
+                throw new ArgumentOutOfRangeException(nameof(amount));
 
             if (slot.IsEmpty)
                 return false;
 
-            return slot.Content!.Contains(item);
+            return slot.Content!.Contains(item) && slot.StackAmount >= amount;
         }
     }
 }
