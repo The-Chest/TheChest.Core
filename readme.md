@@ -11,13 +11,9 @@ The library revolves around the concepts of `Container` and `Slot`. A `Container
 ### Installation
 
 #### NuGet
-To install the library via NuGet, you need to add a NuGet package origin reference to the following URL:
-```
-https://nuget.pkg.github.com/The-Chest/index.json
-```
-After adding the reference, use the following command to install the package:
+To install the library via Nuget, you can use the following command:
 ```bash
-nuget install TheChest.Core
+dotnet add package TheChest.Core
 ```
 
 #### DLL
