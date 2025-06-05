@@ -53,5 +53,7 @@ jobs:
         run: dotnet restore src/TheChest.Core
       - name: Pack library
         run: dotnet pack src/TheChest.Core --configuration Release /p:Version=${VERSION} --no-build --output .
-      - name: Push library
-        run: dotnet nuget push TheChest.Core.${VERSION}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key "${{secrets.NUGET_APIKEY}}"
+      - name: Push library to Github Packages
+        run: dotnet nuget push TheChest.Core.${VERSION}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key "${{secrets.GITHUB_NUGET_APIKEY}}"
+      - name: Push library to Nuget
+        run: dotnet nuget push TheChest.Core.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key "${{secrets.NUGET_APIKEY}}"
