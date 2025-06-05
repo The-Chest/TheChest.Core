@@ -5,11 +5,20 @@
 		<Description>Provides generic collections to container management systems.</Description>
 		<Authors>The Chest</Authors>
 		<RepositoryUrl>https://github.com/The-Chest/TheChest.Core</RepositoryUrl>
+		<PackageProjectUrl>https://www.nuget.org/packages/TheChest.Core/</PackageProjectUrl>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
 	</PropertyGroup>
 	
 	<PropertyGroup Label="Compiler">
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-	</PropertyGroup>	
+	</PropertyGroup>
+	
+	<ItemGroup Label="Package">
+	  <None Include="..\..\readme.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>	
 </Project>
