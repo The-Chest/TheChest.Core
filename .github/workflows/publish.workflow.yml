@@ -52,16 +52,16 @@ jobs:
       - name: Pack library
         run: dotnet pack src/TheChest.Core --configuration Release /p:Version=${VERSION} --no-build --output .
       - name: Upload release attachment
-        uses: actions/github-script@v4
+        uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
             const release = await github.repos.getReleaseByTag({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              `v${process.env.VERSION}`
+              "v{{ env.VERSION }}"
             });
-            const fileName = `TheChest.Core.${process.env.VERSION}.nupkg`;
+            const fileName = `TheChest.Core.{{ env.VERSION }}.nupkg`;
             // Upload the release asset
             await github.repos.uploadReleaseAsset({
               owner: context.repo.owner,
