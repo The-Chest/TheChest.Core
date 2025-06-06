@@ -55,3 +55,23 @@ jobs:
         run: dotnet nuget push TheChest.Core.${VERSION}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key "${{secrets.GH_NUGET_APIKEY}}"
       - name: Push library to Nuget
         run: dotnet nuget push TheChest.Core.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key "${{secrets.NUGET_APIKEY}}"
+      - name: Upload release attachment
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const fs = require('fs');
+            const tag = context.ref.replace("refs/tags/", "");
+            const release = await github.repos.getReleaseByTag({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag
+            });
+            const version = tag.replace("v", "");
+            const fileName = `TheChest.Core.${version}.nupkg`;
+            await github.repos.uploadReleaseAsset({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: release.data.id,
+              name: fileName,
+              data: await fs.readFileSync(`./${fileName}`)
+            });
