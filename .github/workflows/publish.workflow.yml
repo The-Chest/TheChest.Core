@@ -54,7 +54,6 @@ jobs:
       - name: Upload release attachment
         uses: actions/github-script@v4
         with:
-          path: 'src/TheChest.Core'
           script: |
             const fs = require('fs');
             const tag = context.ref.replace("refs/tags/", "");
@@ -63,7 +62,8 @@ jobs:
               repo: context.repo.repo,
               tag
             });
-            const fileName = `./TheChest.Core.${tag}.nupkg`;
+            const version = tag.replace("v", "");
+            const fileName = `./TheChest.Core.${version}.nupkg`;
             // Upload the release asset
             await github.repos.uploadReleaseAsset({
               owner: context.repo.owner,
