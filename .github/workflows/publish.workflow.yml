@@ -62,7 +62,7 @@ jobs:
               repo: context.repo.repo,
               tag
             });
-            const fileName = `TheChest.Core.${tag}.nupkg`;
+            const fileName = `./TheChest.Core.${tag}.nupkg`;
             // Upload the release asset
             await github.repos.uploadReleaseAsset({
               owner: context.repo.owner,
