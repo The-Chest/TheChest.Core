@@ -59,9 +59,9 @@ jobs:
             const release = await github.repos.getReleaseByTag({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              "v{{ env.VERSION }}"
+              'v{{ env.VERSION }}'
             });
-            const fileName = `TheChest.Core.{{ env.VERSION }}.nupkg`;
+            const fileName = 'TheChest.Core.{{ env.VERSION }}.nupkg';
             // Upload the release asset
             await github.repos.uploadReleaseAsset({
               owner: context.repo.owner,
