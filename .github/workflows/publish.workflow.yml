@@ -54,6 +54,7 @@ jobs:
       - name: Upload release attachment
         uses: actions/github-script@v4
         with:
+          path: 'src/TheChest.Core'
           script: |
             const fs = require('fs');
             const tag = context.ref.replace("refs/tags/", "");
