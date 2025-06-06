@@ -56,12 +56,13 @@ jobs:
         with:
           script: |
             const fs = require('fs');
+            const tag = context.ref.replace("refs/tags/", "");
             const release = await github.repos.getReleaseByTag({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              'v{{ env.VERSION }}'
+              tag
             });
-            const fileName = 'TheChest.Core.{{ env.VERSION }}.nupkg';
+            const fileName = `TheChest.Core.${tag}.nupkg`;
             // Upload the release asset
             await github.repos.uploadReleaseAsset({
               owner: context.repo.owner,
