@@ -61,7 +61,7 @@ jobs:
               repo: context.repo.repo,
               `v${process.env.VERSION}`
             });
-            const fileName = `TheChest.Core.${VERSION}.nupkg`;
+            const fileName = `TheChest.Core.${process.env.VERSION}.nupkg`;
             // Upload the release asset
             await github.repos.uploadReleaseAsset({
               owner: context.repo.owner,
