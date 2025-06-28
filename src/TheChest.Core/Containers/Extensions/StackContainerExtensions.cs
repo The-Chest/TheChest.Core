@@ -3,12 +3,16 @@ using TheChest.Core.Slots.Extensions;
 
 namespace TheChest.Core.Containers.Extensions
 {
+    /// <summary>
+    /// Extensions for <see cref="IStackContainer{T}"/>
+    /// </summary>
     public static class StackContainerExtensions
     {
         /// <summary>
         /// Checks if the container contains an item.
         /// </summary>
         /// <typeparam name="T">Type of item to be checked inside the container</typeparam>
+        /// <param name="container"></param>
         /// <param name="item">Item to be checked</param>
         /// <returns>Returns true when the container contains an <paramref name="item"/> in any of its slots</returns>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
@@ -29,6 +33,7 @@ namespace TheChest.Core.Containers.Extensions
         /// Checks if the container contains an amount of <paramref name="item"/>.
         /// </summary>
         /// <typeparam name="T">Type of item to be checked inside the container</typeparam>
+        /// <param name="container"></param>
         /// <param name="item">Item to be checked</param>
         /// <param name="amount">The minimun amount of <paramref name="item"/> expected</param>
         /// <returns>Returns true when the container contains an <paramref name="amount"/> of <paramref name="item"/> in any of its slots</returns>
