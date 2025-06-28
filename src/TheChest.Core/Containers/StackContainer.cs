@@ -14,14 +14,19 @@ namespace TheChest.Core.Containers
         /// </summary>
         protected IStackSlot<T>[] slots;
 
+        /// <inheritdoc/>
         public virtual IReadOnlyCollection<IStackSlot<T>> Slots => Array.AsReadOnly(this.slots);
 
+        /// <inheritdoc/>
         public virtual IStackSlot<T> this[int index] => this.slots[index];
 
+        /// <inheritdoc/>
         public virtual bool IsFull => this.slots.All(x => x.IsFull);
 
+        /// <inheritdoc/>
         public virtual bool IsEmpty => this.slots.All(x => x.IsEmpty);
 
+        /// <inheritdoc/>
         public virtual int Size => this.slots.Length;
 
         /// <summary>
