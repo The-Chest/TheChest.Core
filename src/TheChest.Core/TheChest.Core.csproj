@@ -7,12 +7,15 @@
 		<RepositoryUrl>https://github.com/The-Chest/TheChest.Core</RepositoryUrl>
 		<PackageProjectUrl>https://www.nuget.org/packages/TheChest.Core/</PackageProjectUrl>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
+	  	<IncludeSymbols>True</IncludeSymbols>
 	</PropertyGroup>
 	
 	<PropertyGroup Label="Compiler">
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<DebugType>embedded</DebugType>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 	
 	<ItemGroup Label="Package">
