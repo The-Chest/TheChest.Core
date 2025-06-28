@@ -8,10 +8,13 @@ namespace TheChest.Core.Slots
     /// <typeparam name="T">The item the slot accepts</typeparam>
     public class Slot<T> : ISlot<T>
     {
+        /// <inheritdoc/>
         public virtual T? Content { get; protected set; }
 
+        /// <inheritdoc/>
         public virtual bool IsFull => !IsEmpty;
 
+        /// <inheritdoc/>
         public virtual bool IsEmpty => Content == null;
 
         /// <summary>

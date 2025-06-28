@@ -12,7 +12,12 @@ namespace TheChest.Core.Slots
         private const string MAXAMOUNT_SMALLER_THAN_ZERO = "The max amount property cannot be smaller than zero";
         private const string AMOUNT_BIGGER_THAN_MAXAMOUNT = "The item amount cannot be bigger than max amount";
 
+        /// <summary>
+        /// The current amount of items inside the slot
+        /// </summary>
         protected int stackAmount;
+
+        /// <inheritdoc/>
         public virtual int StackAmount
         {
             get
@@ -31,7 +36,12 @@ namespace TheChest.Core.Slots
             }
         }
 
+        /// <summary>
+        /// The maximum amount of items that this slot can hold
+        /// </summary>
         protected int maxStackAmount;
+
+        /// <inheritdoc/>
         public virtual int MaxStackAmount
         {
             get
@@ -50,11 +60,18 @@ namespace TheChest.Core.Slots
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool IsFull => StackAmount == MaxStackAmount;
 
+        /// <inheritdoc/>
         public virtual bool IsEmpty => StackAmount == 0;
 
+        /// <summary>
+        /// The content inside the slot
+        /// </summary>
         protected readonly ICollection<T> content;
+
+        /// <inheritdoc/>
         public virtual IReadOnlyCollection<T> Content => content.ToArray();
 
         /// <summary>
