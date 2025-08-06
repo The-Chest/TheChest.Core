@@ -1,4 +1,5 @@
-﻿using TheChest.Core.Slots.Interfaces;
+﻿using System;
+using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots.Extensions
 {

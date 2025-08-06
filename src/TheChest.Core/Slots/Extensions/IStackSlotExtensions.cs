@@ -1,4 +1,6 @@
-﻿using TheChest.Core.Slots.Interfaces;
+﻿using System;
+using System.Linq;
+using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots.Extensions
 {
@@ -26,7 +28,7 @@ namespace TheChest.Core.Slots.Extensions
             if (slot.IsEmpty)
                 return false;
 
-            return slot.Content!.Contains(item) && slot.StackAmount >= amount;
+            return slot.Content!.AsEnumerable().Contains(item) && slot.StackAmount >= amount;
         }
     }
 }

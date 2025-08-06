@@ -9,7 +9,7 @@ namespace TheChest.Core.Slots
     public class Slot<T> : ISlot<T>
     {
         /// <inheritdoc/>
-        public virtual T? Content { get; protected set; }
+        public virtual T Content { get; protected set; }
 
         /// <inheritdoc/>
         public virtual bool IsFull => !IsEmpty;
@@ -21,7 +21,7 @@ namespace TheChest.Core.Slots
         /// Creates a basic slot with an item
         /// </summary>
         /// <param name="currentItem">item that belongs to this slot (null if empty)</param>
-        public Slot(T? currentItem = default)
+        public Slot(T currentItem = default)
         {
             Content = currentItem;
         }

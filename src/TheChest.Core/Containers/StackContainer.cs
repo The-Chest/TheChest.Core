@@ -1,4 +1,7 @@
-﻿using TheChest.Core.Containers.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using TheChest.Core.Containers.Interfaces;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Containers

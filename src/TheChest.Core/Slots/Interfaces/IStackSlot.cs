@@ -1,4 +1,6 @@
-﻿namespace TheChest.Core.Slots.Interfaces
+﻿using System.Collections.Generic;
+
+namespace TheChest.Core.Slots.Interfaces
 {
     /// <summary>
     /// Generic Container Slot with item stack
