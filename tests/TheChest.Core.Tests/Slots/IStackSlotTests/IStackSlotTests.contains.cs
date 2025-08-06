@@ -69,7 +69,7 @@ namespace TheChest.Core.Tests.Slots
             var slot = this.slotFactory.WithItem(item, amount);
 
             var paramItem = this.itemFactory.CreateDefault();
-            var paramAmount = this.random.Next(11, 10);
+            var paramAmount = this.random.Next(11, 20);
 
             Assert.That(slot.Contains(paramItem, paramAmount), Is.False);
         }
@@ -91,13 +91,13 @@ namespace TheChest.Core.Tests.Slots
         public void ContainsAmount_AmountBiggerThanSearchedAmount_ReturnsTrue()
         {
             var item = this.itemFactory.CreateDefault();
-            var amount = this.random.Next(1, 10);
-            var slot = this.slotFactory.WithItem(item, amount);
+            var amount = this.random.Next(11, 20);
+            var slot = this.slotFactory.WithItem(item, amount, 20);
 
             var paramItem = this.itemFactory.CreateDefault();
-            var paramAmount = this.random.Next(11, 10);
+            var paramAmount = this.random.Next(1, 10);
 
-            Assert.That(slot.Contains(paramItem, paramAmount), Is.False);
+            Assert.That(slot.Contains(paramItem, paramAmount), Is.True);
         }
     }
 }
