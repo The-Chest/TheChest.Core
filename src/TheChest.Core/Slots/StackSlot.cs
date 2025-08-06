@@ -24,12 +24,12 @@ namespace TheChest.Core.Slots
         {
             get
             {
-                return this.content.Where(x => x != null).ToArray();
+                return this.content.Where(x => !EqualityComparer<T>.Default.Equals(x, default!)).ToArray();
             }
         }
 
         /// <inheritdoc/>
-        public virtual int StackAmount => this.content.Count(x => x != null);
+        public virtual int StackAmount => this.content.Count(x => !EqualityComparer<T>.Default.Equals(x, default!));
 
         /// <summary>
         /// The maximum amount of items that this slot can hold
