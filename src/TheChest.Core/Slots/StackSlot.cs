@@ -1,4 +1,7 @@
-﻿using TheChest.Core.Slots.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots
 {
@@ -21,12 +24,12 @@ namespace TheChest.Core.Slots
         {
             get
             {
-                return this.content.Where(x => x is not null).ToArray();
+                return this.content.Where(x => x != null).ToArray();
             }
         }
 
         /// <inheritdoc/>
-        public virtual int StackAmount => this.content.Count(x => x is not null);
+        public virtual int StackAmount => this.content.Count(x => x != null);
 
         /// <summary>
         /// The maximum amount of items that this slot can hold

@@ -1,4 +1,7 @@
-﻿using TheChest.Core.Slots.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots
 {
