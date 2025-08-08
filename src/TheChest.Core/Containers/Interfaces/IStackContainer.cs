@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TheChest.Core.Slots.Interfaces;
+﻿using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Containers.Interfaces
 {
@@ -15,11 +14,6 @@ namespace TheChest.Core.Containers.Interfaces
         /// <param name="index">Index of a slot<para>It needs to be smaller than <see cref="IStackContainer{T}.Size"/></para></param>
         /// <returns>An item from <see cref="IStackSlot{T}"/></returns>
         IStackSlot<T> this[int index] { get; }
-
-        /// <summary>
-        /// Slots in the Container
-        /// </summary>
-        IReadOnlyCollection<IStackSlot<T>> Slots { get; }
 
         /// <summary>
         /// Size of the current Container
