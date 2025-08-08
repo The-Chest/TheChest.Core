@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using TheChest.Core.Containers.Interfaces;
 using TheChest.Core.Slots.Interfaces;
@@ -16,9 +15,6 @@ namespace TheChest.Core.Containers
         /// Slots in the Container
         /// </summary>
         protected ISlot<T>[] slots;
-
-        /// <inheritdoc/>
-        public virtual IReadOnlyCollection<ISlot<T>> Slots => Array.AsReadOnly(this.slots);
 
         /// <inheritdoc/>
         public virtual ISlot<T> this[int index] => this.slots[index];
