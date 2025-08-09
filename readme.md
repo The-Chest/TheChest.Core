@@ -73,7 +73,6 @@ using TheChest.Core.Slots.Interfaces;
 public class MyContainer : IContainer<int>
 {
     private readonly ISlot<int>[] slots; 
-    public IReadOnlyCollection<ISlot<int>> Slots { get; }
 
     public ISlot<int> this[int index] => this.slots.ToArray()[index];
 
@@ -87,7 +86,7 @@ public class MyContainer : IContainer<int>
     {
         if (slots.Length != 10)
             throw new System.ArgumentException("Invalid container size");
-        Slots = slots ?? throw new ArgumentNullException(nameof(slots));
+        this.slots = slots ?? throw new ArgumentNullException(nameof(slots));
     }
 }
 ```
