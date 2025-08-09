@@ -56,10 +56,10 @@ namespace TheChest.Core.Slots
                 if (value < 0)
                     throw new ArgumentOutOfRangeException(nameof(value), MAXAMOUNT_SMALLER_THAN_ZERO);
 
-                if (value < stackAmount)
+                if (value < this.stackAmount)
                     throw new ArgumentOutOfRangeException(nameof(value), AMOUNT_BIGGER_THAN_MAXAMOUNT);
 
-                maxStackAmount = value;
+                this.maxStackAmount = value;
             }
         }
 
@@ -86,18 +86,13 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public LazyStackSlot(T currentItem, int amount = 1, int maxStackAmount = 1)
         {
-            if (currentItem == null)
+            if (EqualityComparer<T>.Default.Equals(currentItem, default!))
                 amount = 0;
-
-            if (amount < 0)
-                throw new ArgumentOutOfRangeException(nameof(amount), AMOUNT_SMALLER_THAN_ZERO);
-            if (amount > maxStackAmount)
-                throw new ArgumentOutOfRangeException(nameof(amount), AMOUNT_BIGGER_THAN_MAXAMOUNT);
 
             this.content = Enumerable.Repeat(currentItem, amount).ToArray();
 
-            this.maxStackAmount = maxStackAmount;
-            this.stackAmount = amount;
+            this.MaxStackAmount = maxStackAmount;
+            this.StackAmount = amount;
         }
     }
 }
