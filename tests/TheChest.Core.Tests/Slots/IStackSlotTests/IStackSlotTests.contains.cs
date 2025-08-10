@@ -15,7 +15,10 @@
         {
             var item = this.itemFactory.CreateDefault();
             var slot = this.slotFactory.EmptySlot();
-            Assert.That(() => slot.Contains(item, amount), Throws.TypeOf<ArgumentOutOfRangeException>().And.Message.Contains("amount"));
+            Assert.That(
+                () => slot.Contains(item, amount), 
+                Throws.TypeOf<ArgumentOutOfRangeException>().And.Message.Contains("amount")
+             );
         }
 
         [Test]
