@@ -6,7 +6,7 @@ namespace TheChest.Core.Containers.Interfaces
     /// Interface with the basics of a container with <see cref="IStackSlot{T}"/> features
     /// </summary>
     /// <typeparam name="T">An item type</typeparam>
-    public interface IStackContainer<T>
+    public interface IStackContainer<in T>
     {
         /// <summary>
         /// Gets an item from <see cref="IStackSlot{T}"/>
