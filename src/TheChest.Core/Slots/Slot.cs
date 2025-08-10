@@ -13,7 +13,7 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// The content of the slot
         /// </summary>
-        protected T content;
+        protected readonly T content;
 
         /// <inheritdoc/>
         public virtual bool IsFull => !IsEmpty;

@@ -19,23 +19,13 @@ namespace TheChest.Core.Slots
         /// The content inside the slot
         /// </summary>
         protected readonly T[] content;
-        /// <inheritdoc/>
-        public virtual IReadOnlyCollection<T> Content
-        {
-            get
-            {
-                return this.content.Where(x => !EqualityComparer<T>.Default.Equals(x, default!)).ToArray();
-            }
-        }
-
-        /// <inheritdoc/>
-        public virtual int StackAmount => this.content.Count(x => !EqualityComparer<T>.Default.Equals(x, default!));
-
         /// <summary>
         /// The maximum amount of items that this slot can hold
         /// </summary>
         protected int maxStackAmount;
 
+        /// <inheritdoc/>
+        public virtual int StackAmount => this.content.Count(x => !EqualityComparer<T>.Default.Equals(x, default!));
         /// <inheritdoc/>
         public virtual int MaxStackAmount
         {
@@ -57,7 +47,6 @@ namespace TheChest.Core.Slots
 
         /// <inheritdoc/>
         public virtual bool IsFull => this.StackAmount == maxStackAmount;
-
         /// <inheritdoc/>
         public virtual bool IsEmpty => this.StackAmount == 0;
 
@@ -93,6 +82,49 @@ namespace TheChest.Core.Slots
             Array.Resize(ref items, maxStackAmount);
             this.content = items;
             this.maxStackAmount = maxStackAmount;
+        }
+
+        /// <inheritdoc/>
+        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
+        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
+        [Obsolete("Use Contains(T item) or Contains(params T[] items) instead")]
+        public bool Contains(T item, int amount)
+        {
+            item = item ?? throw new ArgumentNullException(nameof(item));
+            if (amount <= 0)
+                throw new ArgumentOutOfRangeException(nameof(amount));
+
+            if (this.IsEmpty)
+                return false;
+
+            return this.content.Contains(item) && this.StackAmount >= amount;
+        }
+
+        /// <inheritdoc/>
+        public bool Contains(params T[] items)
+        {
+            if(items.Length == 0 || this.IsEmpty)
+                return false;
+
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (!this.content.Contains(items[i]))
+                    return false;
+            }
+
+            return true;
+        }
+
+        /// <inheritdoc/>
+        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
+        public bool Contains(T item)
+        {
+            item = item ?? throw new ArgumentNullException(nameof(item));
+
+            if (this.IsEmpty)
+                return false;
+
+            return this.content.Contains(item);
         }
     }
 }
