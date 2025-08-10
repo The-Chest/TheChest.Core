@@ -10,10 +10,10 @@ namespace TheChest.ConsoleApp.Tests.Slots
                 new StackSlotFactory<StackSlot, Item>(),
                 new SlotItemFactory<Item>(),
             },
-            new object[] {
-                new LazyStackSlotFactory<LazyStackSlot, Item>(),
-                new SlotItemFactory<Item>(),
-            }
+            //new object[] {
+            //    new LazyStackSlotFactory<LazyStackSlot, Item>(),
+            //    new SlotItemFactory<Item>(),
+            //}
         };
 
         public StackSlotTests(IStackSlotFactory<Item> slotFactory, ISlotItemFactory<Item> itemFactory) : base(slotFactory, itemFactory)

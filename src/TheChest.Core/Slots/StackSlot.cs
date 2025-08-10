@@ -101,6 +101,7 @@ namespace TheChest.Core.Slots
         }
 
         /// <inheritdoc/>
+        /// <exception cref="ArgumentNullException">When <paramref name="items"/> contain any null value</exception>
         public bool Contains(params T[] items)
         {
             if(items.Length == 0 || this.IsEmpty)
@@ -108,7 +109,11 @@ namespace TheChest.Core.Slots
 
             for (int i = 0; i < items.Length; i++)
             {
-                if (!this.content.Contains(items[i]))
+                var item = items[i];
+                if (EqualityComparer<T>.Default.Equals(item, default!))
+                    throw new ArgumentNullException(nameof(items), "Items cannot contain null values");
+
+                if (!this.content.Contains(item))
                     return false;
             }
 
