@@ -102,7 +102,7 @@ namespace TheChest.Core.Slots
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="items"/> contain any null value</exception>
-        public bool Contains(params T[] items)
+        public bool Contains(T[] items)
         {
             if(items.Length == 0 || this.IsEmpty)
                 return false;
@@ -124,6 +124,7 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
         public bool Contains(T item)
         {
+            //TODO: this method is not being called due Contains(params T[] items) being used
             item = item ?? throw new ArgumentNullException(nameof(item));
 
             if (this.IsEmpty)

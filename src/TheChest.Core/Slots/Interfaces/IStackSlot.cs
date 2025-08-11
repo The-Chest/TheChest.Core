@@ -32,6 +32,6 @@
         /// </summary>
         /// <param name="items">items to be checked inside the slot</param>
         /// <returns>true if the slot contains all <paramref name="items"/></returns>
-        bool Contains(params T[] items);
+        bool Contains(T[] items);
     }
 }

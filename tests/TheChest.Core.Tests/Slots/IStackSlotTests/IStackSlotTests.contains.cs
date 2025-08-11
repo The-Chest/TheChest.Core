@@ -6,7 +6,7 @@
         public void Contains_NullItem_ThrowsArgumentNullException()
         {
             var slot = this.slotFactory.EmptySlot();
-            Assert.That(() => slot.Contains(default!, 1), Throws.ArgumentNullException);
+            Assert.That(() => slot.Contains(default(T)!), Throws.ArgumentNullException);
         }
 
         [Test]
