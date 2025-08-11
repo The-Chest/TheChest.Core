@@ -14,7 +14,7 @@ namespace TheChest.Core.Containers
         /// <summary>
         /// Slots in the Container
         /// </summary>
-        protected IStackSlot<T>[] slots;
+        protected readonly IStackSlot<T>[] slots;
 
         /// <inheritdoc/>
         public virtual IStackSlot<T> this[int index] => this.slots[index];

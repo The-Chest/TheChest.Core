@@ -1,6 +1,4 @@
-﻿using TheChest.Core.Slots.Extensions;
-
-namespace TheChest.Core.Tests.Slots
+﻿namespace TheChest.Core.Tests.Slots
 {
     public abstract partial class ISlotTests<T>
     {

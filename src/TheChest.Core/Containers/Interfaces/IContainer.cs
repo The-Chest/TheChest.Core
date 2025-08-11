@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TheChest.Core.Slots.Interfaces;
+﻿using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Containers.Interfaces
 {
@@ -7,7 +6,7 @@ namespace TheChest.Core.Containers.Interfaces
     /// Interface with the basics of a container
     /// </summary>
     /// <typeparam name="T">An item type</typeparam>
-    public interface IContainer<out T>
+    public interface IContainer<in T>
     {
         /// <summary>
         /// Size of the current Container
@@ -25,10 +24,10 @@ namespace TheChest.Core.Containers.Interfaces
         bool IsEmpty { get; }
 
         /// <summary>
-        /// Gets an item from <see cref="ISlot{T}"/>
+        /// Gets an <see cref="ISlot{T}"/> from the Container
         /// </summary>
-        /// <param name="index">Index of a slot<para>It needs to be smaller than <see cref="IContainer{T}.Size"/></para></param>
-        /// <returns>An item from <see cref="ISlot{T}"/></returns>
+        /// <param name="index">Index of a slot</param>
+        /// <returns>An <see cref="ISlot{T}"/> from inside the container</returns>
         ISlot<T> this[int index] { get; }
     }
 }
