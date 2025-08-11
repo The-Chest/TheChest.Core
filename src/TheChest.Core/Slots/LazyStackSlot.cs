@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots
@@ -99,16 +100,32 @@ namespace TheChest.Core.Slots
             return item.Equals(this.content) && amount <= this.StackAmount;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Checks if the slot contains one of any specified items.
+        /// </summary>
+        /// <param name="items">items to be checked inside the slot</param>
+        /// <returns>true if the slot contains all <paramref name="items"/></returns>
         [Obsolete("Use Contains(T item) or Contains(T item, int amount) instead")]
         public bool Contains(params T[] items)
         {
-            if (items.Length == 0 || items.Length > 1)
+            if (items.Length == 0)
                 return false;
             if (this.IsEmpty)
                 return false;
+            if (items.Contains(default))
+                throw new ArgumentNullException(nameof(items), "Items cannot contain null");
 
-            return this.content!.Equals(items[0]);
+            for (int i = 0; i < items.Length; i++)
+            {
+                var item = items[i];
+                if (EqualityComparer<T>.Default.Equals(item, default!))
+                    throw new ArgumentNullException(nameof(items), "Items cannot contain null values");
+
+                if (this.content!.Equals(item) && i > 0)
+                    return true;
+            }
+
+            return false;
         }
 
         /// <inheritdoc/>
