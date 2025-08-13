@@ -86,18 +86,14 @@ namespace TheChest.Core.Slots
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
-        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
-        [Obsolete("Use Contains(T item) or Contains(params T[] items) instead")]
-        public bool Contains(T item, int amount)
+        public bool Contains(T item)
         {
             item = item ?? throw new ArgumentNullException(nameof(item));
-            if (amount <= 0)
-                throw new ArgumentOutOfRangeException(nameof(amount));
 
             if (this.IsEmpty)
                 return false;
 
-            return this.content.Contains(item) && this.StackAmount >= amount;
+            return this.content.Contains(item);
         }
 
         /// <inheritdoc/>
@@ -118,18 +114,6 @@ namespace TheChest.Core.Slots
             }
 
             return true;
-        }
-
-        /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
-        public bool Contains(T item)
-        {
-            item = item ?? throw new ArgumentNullException(nameof(item));
-
-            if (this.IsEmpty)
-                return false;
-
-            return this.content.Contains(item);
         }
     }
 }
