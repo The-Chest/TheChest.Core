@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots
@@ -9,7 +8,7 @@ namespace TheChest.Core.Slots
     /// Slot with with <see cref="IStackSlot{T}"/> implementation which have only one item repeatedly 
     /// </summary>
     /// <typeparam name="T">The item the slot accepts</typeparam>
-    public class LazyStackSlot<T> : IStackSlot<T>
+    public class LazyStackSlot<T> : ILazyStackSlot<T>
     {
         /// <summary>
         /// The content inside the slot
@@ -98,6 +97,17 @@ namespace TheChest.Core.Slots
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
+        public bool Contains(T item)
+        {
+            item = item ?? throw new ArgumentNullException(nameof(item));
+            if (this.IsEmpty)
+                return false;
+
+            return item.Equals(this.content);
+        }
+
+        /// <inheritdoc/>
+        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
         public bool Contains(T item, int amount)
         {
             item = item ?? 
@@ -109,45 +119,6 @@ namespace TheChest.Core.Slots
                 return false;
             return item.Equals(this.content) && 
                 amount <= this.Amount;
-        }
-
-        /// <summary>
-        /// Checks if the slot contains one of any specified items.
-        /// </summary>
-        /// <param name="items">items to be checked inside the slot</param>
-        /// <returns>true if the slot contains all <paramref name="items"/></returns>
-        [Obsolete("Use Contains(T item) or Contains(T item, int amount) instead")]
-        public bool Contains(params T[] items)
-        {
-            if (items.Length == 0)
-                return false;
-            if (this.IsEmpty)
-                return false;
-            if (items.Contains(default))
-                throw new ArgumentNullException(nameof(items), "Items cannot contain null");
-
-            for (int i = 0; i < items.Length; i++)
-            {
-                var item = items[i];
-                if (EqualityComparer<T>.Default.Equals(item, default!))
-                    throw new ArgumentNullException(nameof(items), "Items cannot contain null values");
-
-                if (this.content!.Equals(item) && i > 0)
-                    return true;
-            }
-
-            return false;
-        }
-
-        /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
-        public bool Contains(T item)
-        {
-            item = item ?? throw new ArgumentNullException(nameof(item));
-            if (this.IsEmpty)
-                return false;
-
-            return item.Equals(this.content);
         }
     }
 }
