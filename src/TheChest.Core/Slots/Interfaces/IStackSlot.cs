@@ -17,17 +17,6 @@
         int MaxAmount { get; }
 
         /// <summary>
-        /// Checks if the slot contains the specified item with a specific amount.
-        /// </summary>
-        /// <remarks>
-        /// This method might be moved to an extension method or a different interface in the future. It looks like something only for <see cref="LazyStackSlot{T}"/>
-        /// </remarks>
-        /// <param name="item">Item to be checked</param>
-        /// <param name="amount">Amount of the item to be checked</param>
-        /// <returns>True if the slot contains the the minimun amount of <paramref name="amount"/> of the <paramref name="item"/></returns>
-        bool Contains(T item, int amount);
-
-        /// <summary>
         /// Checks if the slot contains the specified items.
         /// </summary>
         /// <param name="items">items to be checked inside the slot</param>
