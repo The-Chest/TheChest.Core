@@ -18,7 +18,7 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// The content inside the slot
         /// </summary>
-        protected readonly T content;
+        protected T content;
         /// <summary>
         /// The current amount of items inside the slot
         /// </summary>
