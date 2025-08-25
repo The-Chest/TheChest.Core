@@ -19,16 +19,16 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// The current amount of items inside the slot
         /// </summary>
-        protected int stackAmount;
+        protected int amount;
         /// <inheritdoc/>
-        public virtual int StackAmount
+        public virtual int Amount
         {
             get
             {
                 if(this.content is null || this.content.Length == 0)
-                    return stackAmount;
+                    return amount;
 
-                return this.content.Count(x => !EqualityComparer<T>.Default.Equals(x, default!));
+                return this.content.Count(item => !(item is null));
             }
             protected set
             {
@@ -38,26 +38,26 @@ namespace TheChest.Core.Slots
                         message: "The item amount property cannot be smaller than zero"
                     );
 
-                if (value > MaxStackAmount)
+                if (value > MaxAmount)
                     throw new ArgumentOutOfRangeException(
                         paramName: nameof(value),
                         message: "The item amount cannot be bigger than max amount"
                     );
 
-                stackAmount = value;
+                amount = value;
             }
         }
 
         /// <summary>
         /// The maximum amount of items that this slot can hold
         /// </summary>
-        protected int maxStackAmount;
+        protected int maxAmount;
         /// <inheritdoc/>
-        public virtual int MaxStackAmount
+        public virtual int MaxAmount
         {
             get
             {
-                return maxStackAmount;
+                return maxAmount;
             }
             protected set
             {
@@ -67,32 +67,32 @@ namespace TheChest.Core.Slots
                         message: "The max amount property cannot be smaller than zero"
                     );
 
-                if (value < StackAmount)
+                if (value < Amount)
                     throw new ArgumentOutOfRangeException(
                         paramName: nameof(value),
                         message: "The item amount cannot be bigger than max amount"
                     );
 
-                maxStackAmount = value;
+                maxAmount = value;
             }
         }
 
         /// <inheritdoc/>
-        public virtual bool IsFull => this.StackAmount == this.MaxStackAmount;
+        public virtual bool IsFull => this.Amount == this.MaxAmount;
         /// <inheritdoc/>
-        public virtual bool IsEmpty => this.StackAmount == 0;
+        public virtual bool IsEmpty => this.Amount == 0;
 
         /// <summary>
         /// Creates a basic <see cref="StackSlot{T}"/> with the max size defined by the array
         /// </summary>
-        /// <param name="items">The amount of items to be added to the created slot and also sets the <see cref="IStackSlot{T}.MaxStackAmount"/></param>
+        /// <param name="items">The amount of items to be added to the created slot and also sets the <see cref="IStackSlot{T}.MaxAmount"/></param>
         /// <exception cref="ArgumentNullException"></exception>
         public StackSlot(T[] items)
         {
             this.content = items ?? 
                 throw new ArgumentNullException(nameof(items));
-            this.MaxStackAmount = items.Length;
-            this.StackAmount = items.Count(item => !(item is null));
+            this.MaxAmount = items.Length;
+            this.Amount = items.Count(item => !(item is null));
         }
 
         /// <summary>
@@ -109,8 +109,8 @@ namespace TheChest.Core.Slots
 
             Array.Resize(ref items, maxStackAmount);
             this.content = items;
-            this.MaxStackAmount = maxStackAmount;
-            this.StackAmount = items.Count(item => !(item is null));
+            this.MaxAmount = maxStackAmount;
+            this.Amount = items.Count(item => !(item is null));
         }
 
         /// <inheritdoc/>
@@ -126,7 +126,7 @@ namespace TheChest.Core.Slots
             if (this.IsEmpty)
                 return false;
 
-            return this.content.Contains(item) && this.StackAmount >= amount;
+            return this.content.Contains(item) && this.Amount >= amount;
         }
 
         /// <inheritdoc/>

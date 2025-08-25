@@ -9,12 +9,12 @@
         /// <summary>
         /// Defines the amount of items this slot is holding
         /// </summary>
-        int StackAmount { get; }
+        int Amount { get; }
 
         /// <summary>
         /// Defines the max amount of item that this slot can contain
         /// </summary>
-        int MaxStackAmount { get; }
+        int MaxAmount { get; }
 
         /// <summary>
         /// Checks if the slot contains the specified item with a specific amount.
