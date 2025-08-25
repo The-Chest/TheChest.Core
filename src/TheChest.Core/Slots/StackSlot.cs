@@ -11,21 +11,47 @@ namespace TheChest.Core.Slots
     /// <typeparam name="T">The item collection inside the slot accepts</typeparam>
     public class StackSlot<T> : IStackSlot<T>
     {
-        private const string ITEMAMOUNT_BIGGER_THAN_MAXAMOUNT = "The item amount cannot be bigger than max amount";
-        private const string MAXAMOUNT_SMALLER_THAN_ZERO = "The max amount property cannot be smaller than zero";
-        private const string AMOUNT_BIGGER_THAN_MAXAMOUNT = "The item amount cannot be bigger than max amount";
-
         /// <summary>
         /// The content inside the slot
         /// </summary>
         protected T[] content;
+
+        /// <summary>
+        /// The current amount of items inside the slot
+        /// </summary>
+        protected int stackAmount;
+        /// <inheritdoc/>
+        public virtual int StackAmount
+        {
+            get
+            {
+                if(this.content is null || this.content.Length == 0)
+                    return stackAmount;
+
+                return this.content.Count(x => !EqualityComparer<T>.Default.Equals(x, default!));
+            }
+            protected set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException(
+                        paramName: nameof(value), 
+                        message: "The item amount property cannot be smaller than zero"
+                    );
+
+                if (value > MaxStackAmount)
+                    throw new ArgumentOutOfRangeException(
+                        paramName: nameof(value),
+                        message: "The item amount cannot be bigger than max amount"
+                    );
+
+                stackAmount = value;
+            }
+        }
+
         /// <summary>
         /// The maximum amount of items that this slot can hold
         /// </summary>
         protected int maxStackAmount;
-
-        /// <inheritdoc/>
-        public virtual int StackAmount => this.content.Count(x => !EqualityComparer<T>.Default.Equals(x, default!));
         /// <inheritdoc/>
         public virtual int MaxStackAmount
         {
@@ -36,17 +62,23 @@ namespace TheChest.Core.Slots
             protected set
             {
                 if (value < 0)
-                    throw new ArgumentOutOfRangeException(nameof(value), MAXAMOUNT_SMALLER_THAN_ZERO);
+                    throw new ArgumentOutOfRangeException(
+                        paramName: nameof(value),
+                        message: "The max amount property cannot be smaller than zero"
+                    );
 
                 if (value < StackAmount)
-                    throw new ArgumentOutOfRangeException(nameof(value), AMOUNT_BIGGER_THAN_MAXAMOUNT);
+                    throw new ArgumentOutOfRangeException(
+                        paramName: nameof(value),
+                        message: "The item amount cannot be bigger than max amount"
+                    );
 
                 maxStackAmount = value;
             }
         }
 
         /// <inheritdoc/>
-        public virtual bool IsFull => this.StackAmount == maxStackAmount;
+        public virtual bool IsFull => this.StackAmount == this.MaxStackAmount;
         /// <inheritdoc/>
         public virtual bool IsEmpty => this.StackAmount == 0;
 
@@ -57,11 +89,9 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentNullException"></exception>
         public StackSlot(T[] items)
         {
-            if (items == null)
-                throw new ArgumentNullException(nameof(items));
-
-            this.maxStackAmount = items.Length;
-            this.content = items;
+            this.content = items ?? throw new ArgumentNullException(nameof(items));
+            this.StackAmount = items.Count(x => !EqualityComparer<T>.Default.Equals(x, default!));
+            this.MaxStackAmount = items.Length;
         }
 
         /// <summary>
@@ -76,11 +106,9 @@ namespace TheChest.Core.Slots
             if (items == null)
                 throw new ArgumentNullException(nameof(items));
 
-            if (items.Length > maxStackAmount)
-                throw new ArgumentOutOfRangeException(nameof(items), ITEMAMOUNT_BIGGER_THAN_MAXAMOUNT);
-
             Array.Resize(ref items, maxStackAmount);
             this.content = items;
+            this.StackAmount = items.Count(x => !EqualityComparer<T>.Default.Equals(x, default!));
             this.maxStackAmount = maxStackAmount;
         }
 
