@@ -89,9 +89,10 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentNullException"></exception>
         public StackSlot(T[] items)
         {
-            this.content = items ?? throw new ArgumentNullException(nameof(items));
-            this.StackAmount = items.Count(x => !EqualityComparer<T>.Default.Equals(x, default!));
+            this.content = items ?? 
+                throw new ArgumentNullException(nameof(items));
             this.MaxStackAmount = items.Length;
+            this.StackAmount = items.Count(item => !(item is null));
         }
 
         /// <summary>
@@ -103,13 +104,13 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public StackSlot(T[] items, int maxStackAmount)
         {
-            if (items == null)
+            if (items is null)
                 throw new ArgumentNullException(nameof(items));
 
             Array.Resize(ref items, maxStackAmount);
             this.content = items;
-            this.StackAmount = items.Count(x => !EqualityComparer<T>.Default.Equals(x, default!));
-            this.maxStackAmount = maxStackAmount;
+            this.MaxStackAmount = maxStackAmount;
+            this.StackAmount = items.Count(item => !(item is null));
         }
 
         /// <inheritdoc/>
