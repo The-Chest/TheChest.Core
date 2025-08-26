@@ -51,7 +51,7 @@ namespace TheChest.Core.Containers.Extensions
                 var slot = container[i];
                 if (slot.Contains(item))
                 {
-                    amountFound += slot.StackAmount;
+                    amountFound += slot.Amount;
                     if (amountFound >= amount)
                         return true;
                 }
