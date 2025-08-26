@@ -1,3 +1,28 @@
+# v0.10.0
+
+## What's Added
+* Protected field `amount` that is initialized as a result of checking which contents from the `items` parameter are not `null`
+
+## What's Changed
+* The API properties `StackAmount` and `MaxStackAmount` from `IStackSlot<T>` now do not have the `Stack` part of it
+* `Amount` returns the value from `amount` and cannot be bigger than `MaxAmount` or less than zero
+* `StackSlot<T>.IsFull` now checks for `Amount` and `MaxAmount` properties instead of the protected fields 
+
+## Known issues
+* [#87](https://github.com/The-Chest/TheChest.Core/issues/87) - `LazyStackSlot` structure needs some adjustments
+* [#100](https://github.com/The-Chest/TheChest.Core/issues/100) - Interfaces and implementations are sharing the same test scenarios
+
+# v0.9.1
+
+## What's Fixed
+* `readonly` removed from the field `content` in Slot, StackSlot and LazyStackSlot classes
+
+## Known issues
+* [#20](https://github.com/The-Chest/TheChest.Core/issues/20) - `StackSlot` constructor with no validation
+* [#87](https://github.com/The-Chest/TheChest.Core/issues/87) - `LazyStackSlot` structure needs some adjustments
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.9.0...v0.9.1
+
 # v0.9.0
 
 ## What's Added
