@@ -3,7 +3,15 @@
     public partial class IStackSlotTests<T>
     {
         [Test]
-        public void ContainsItems_EmptyParams_Return()
+        public void ContainsItems_EmptyParams_ReturnsFalse()
+        {
+            var slot = this.slotFactory.FullSlot(this.itemFactory.CreateDefault());
+            var result = slot.Contains(Array.Empty<T>());
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public void ContainsItems_EmptySlot_ReturnsFalse()
         {
             var slot = this.slotFactory.EmptySlot();
             var result = slot.Contains(Array.Empty<T>());
@@ -36,7 +44,7 @@
         }
 
         [Test]
-        public void ContainsItems_ContainingNoItems_ReturnsFalse()
+        public void ContainsItems_ContainingNoItemsFromParams_ReturnsFalse()
         {
             var slot = this.slotFactory.FullSlot(this.itemFactory.CreateDefault());
             var items = new T[2]
