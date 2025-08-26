@@ -15,6 +15,15 @@
         }
 
         [Test]
+        public void ContainsAmount_EmptySlot_ReturnsFalse()
+        {
+            var item = this.itemFactory.CreateDefault();
+            var slot = this.slotFactory.EmptySlot();
+            var result = slot.Contains(item, 1);
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
         public void ContainsAmount_MaxStackAmountSmallerThanSearchedAmount_ReturnsFalse()
         {
             var item = this.itemFactory.CreateDefault();

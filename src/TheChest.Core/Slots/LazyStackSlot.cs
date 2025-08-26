@@ -11,10 +11,6 @@ namespace TheChest.Core.Slots
     /// <typeparam name="T">The item the slot accepts</typeparam>
     public class LazyStackSlot<T> : IStackSlot<T>
     {
-        private const string AMOUNT_SMALLER_THAN_ZERO = "The amount property cannot be smaller than zero";
-        private const string MAXAMOUNT_SMALLER_THAN_ZERO = "The max amount property cannot be smaller than zero";
-        private const string AMOUNT_BIGGER_THAN_MAXAMOUNT = "The item amount cannot be bigger than max amount";
-
         /// <summary>
         /// The content inside the slot
         /// </summary>
@@ -22,82 +18,97 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// The current amount of items inside the slot
         /// </summary>
-        protected int stackAmount;
+        protected int amount;
         /// <summary>
         /// The maximum amount of items that this slot can hold
         /// </summary>
-        protected int maxStackAmount;
+        protected int maxAmount;
 
         /// <inheritdoc/>
-        public virtual int StackAmount
+        public virtual int Amount
         {
             get
             {
-                return stackAmount;
+                return amount;
             }
             protected set
             {
                 if (value < 0)
-                    throw new ArgumentOutOfRangeException(nameof(value), AMOUNT_SMALLER_THAN_ZERO);
+                    throw new ArgumentOutOfRangeException(
+                        nameof(value),
+                        "The amount property cannot be smaller than zero"
+                    );
 
-                if (value > maxStackAmount)
-                    throw new ArgumentOutOfRangeException(nameof(value), AMOUNT_BIGGER_THAN_MAXAMOUNT);
+                if (value > this.maxAmount)
+                    throw new ArgumentOutOfRangeException(
+                        nameof(value),
+                        "The item amount cannot be bigger than max amount"
 
-                stackAmount = value;
+                    );
+
+                this.amount = value;
             }
         }
         /// <inheritdoc/>
-        public virtual int MaxStackAmount
+        public virtual int MaxAmount
         {
             get
             {
-                return maxStackAmount;
+                return maxAmount;
             }
             protected set
             {
                 if (value < 0)
-                    throw new ArgumentOutOfRangeException(nameof(value), MAXAMOUNT_SMALLER_THAN_ZERO);
+                    throw new ArgumentOutOfRangeException(
+                        nameof(value),
+                        "The max amount property cannot be smaller than zero"
+                    );
 
-                if (value < this.stackAmount)
-                    throw new ArgumentOutOfRangeException(nameof(value), AMOUNT_BIGGER_THAN_MAXAMOUNT);
+                if (value < this.amount)
+                    throw new ArgumentOutOfRangeException(
+                        nameof(value),
+                        "The item amount cannot be bigger than max amount"
+                    );
 
-                this.maxStackAmount = value;
+                this.maxAmount = value;
             }
         }
 
         /// <inheritdoc/>
-        public virtual bool IsFull => StackAmount == MaxStackAmount;
+        public virtual bool IsFull => this.Amount == this.MaxAmount;
         /// <inheritdoc/>
-        public virtual bool IsEmpty => StackAmount == 0;
+        public virtual bool IsEmpty => this.Amount == 0;
 
         /// <summary>
         /// Creates a basic Stack Slot with an amount and max amount
         /// </summary>
         /// <param name="currentItem">The current item to be added</param>
         /// <param name="amount">The amount of <paramref name="currentItem"/> to be added</param>
-        /// <param name="maxStackAmount">The maximum permited amount of <paramref name="currentItem"/> to be added</param>
+        /// <param name="maxAmount">The maximum permited amount of <paramref name="currentItem"/> to be added</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public LazyStackSlot(T currentItem = default!, int amount = 1, int maxStackAmount = 1)
+        public LazyStackSlot(T currentItem = default!, int amount = 1, int maxAmount = 1)
         {
-            if (EqualityComparer<T>.Default.Equals(currentItem, default!))
+            if (currentItem is null)
                 amount = 0;
 
             this.content = currentItem;
-            this.MaxStackAmount = maxStackAmount;
-            this.StackAmount = amount;
+            this.MaxAmount = maxAmount;
+            this.Amount = amount;
         }
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
         public bool Contains(T item, int amount)
         {
-            item = item ?? throw new ArgumentNullException(nameof(item));
+            item = item ?? 
+                throw new ArgumentNullException(nameof(item));
             if (amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(amount));
 
             if (this.IsEmpty)
                 return false;
-            return item.Equals(this.content) && amount <= this.StackAmount;
+            return item.Equals(this.content) && 
+                amount <= this.Amount;
         }
 
         /// <summary>

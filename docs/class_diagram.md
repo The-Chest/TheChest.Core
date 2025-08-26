@@ -26,7 +26,6 @@ direction BT
 	}
 	namespace TheChest.Core.Slots.Interfaces {
         class ISlot~T~ {
-	        +T? Content
 	        +bool IsEmpty
 	        +bool IsFull
         }
@@ -71,18 +70,21 @@ direction BT
 	}
 	namespace TheChest.Core.Slots.Interfaces {
         class ISlot~T~ {
-	        +T? Content
 	        +bool IsEmpty
 	        +bool IsFull
         }
         class IStackSlot~T~ {
             +int StackAmount
-            +int MaxStackSize
+            +int MaxStackAmount
         }
 	}
 	namespace TheChest.Core.Containers {
 		class StackContainer~T~ {
         }
+		class StackSlot~T~{
+			-int stackAmount
+			-int maxStackAmount
+		}
 	}
 
 	<<interface>> IStackContainer
@@ -90,5 +92,6 @@ direction BT
 
     StackContainer --|> IStackContainer : implements
     IStackSlot --|> ISlot : implements
+    StackSlot --|> IStackSlot : implements
     IStackSlot --* IStackContainer
 ```
