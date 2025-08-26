@@ -25,10 +25,7 @@ namespace TheChest.Core.Slots
         {
             get
             {
-                if(this.content is null || this.content.Length == 0)
-                    return amount;
-
-                return this.content.Count(item => !(item is null));
+                return amount;
             }
             protected set
             {
