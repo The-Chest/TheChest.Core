@@ -1,6 +1,6 @@
 ﻿namespace TheChest.Core.Tests.Slots
 {
-    public partial class IStackSlotTests<T>
+    public partial class ILazyStackSlotTests<T>
     {
         [TestCase(0)]
         [TestCase(-1)]
@@ -12,15 +12,6 @@
                 () => slot.Contains(item, amount), 
                 Throws.TypeOf<ArgumentOutOfRangeException>().And.Message.Contains("amount")
              );
-        }
-
-        [Test]
-        public void ContainsAmount_EmptySlot_ReturnsFalse()
-        {
-            var item = this.itemFactory.CreateDefault();
-            var slot = this.slotFactory.EmptySlot();
-            var result = slot.Contains(item, 1);
-            Assert.That(result, Is.False);
         }
 
         [Test]

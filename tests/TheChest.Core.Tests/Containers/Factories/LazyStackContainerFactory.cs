@@ -1,24 +1,23 @@
-﻿using TheChest.Core.Containers;
-using TheChest.Core.Containers.Interfaces;
+﻿using TheChest.Core.Containers.Interfaces;
 using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Tests.Containers.Extensions;
 
 namespace TheChest.Core.Tests.Containers.Factories
 {
-    public class StackContainerFactory<Container, Item> : IStackContainerFactory<Item>
-        where Container : StackContainer<Item>
+    public class LazyStackContainerFactory<Container, Item> : ILazyStackContainerFactory<Item>
+        where Container : ILazyStackContainer<Item>
     {
-        protected readonly IStackSlotFactory<Item> slotFactory;
+        protected readonly ILazyStackSlotFactory<Item> slotFactory;
 
-        public StackContainerFactory(IStackSlotFactory<Item> slotFactory)
+        public LazyStackContainerFactory(ILazyStackSlotFactory<Item> slotFactory)
         {
             this.slotFactory = slotFactory;
         }
 
-        public virtual IStackContainer<Item> EmptyContainer(int size = 20)
+        public virtual ILazyStackContainer<Item> EmptyContainer(int size = 20)
         {
-            var containerType = typeof(Container).GetContainerType(typeof(IStackContainer<Item>));
-            var slotType = containerType.GetSlotTypeByConstructor<IStackSlot<Item>>();
+            var containerType = typeof(Container).GetContainerType(typeof(ILazyStackContainer<Item>));
+            var slotType = containerType.GetSlotTypeByConstructor<ILazyStackSlot<Item>>();
 
             var slots = slotType
                 .CreateSlots(
@@ -31,13 +30,13 @@ namespace TheChest.Core.Tests.Containers.Factories
                 type: containerType,
                 args: new object[1] { slots }
             );
-            return (IStackContainer<Item>)container!;
+            return (ILazyStackContainer<Item>)container!;
         }
 
-        public virtual IStackContainer<Item> FullContainer(int size, int stackSize, Item item = default!)
+        public virtual ILazyStackContainer<Item> FullContainer(int size, int stackSize, Item item = default!)
         {
-            var containerType = typeof(Container).GetContainerType(typeof(IStackContainer<Item>));
-            var slotType = containerType.GetSlotTypeByConstructor<IStackSlot<Item>>();
+            var containerType = typeof(Container).GetContainerType(typeof(ILazyStackContainer<Item>));
+            var slotType = containerType.GetSlotTypeByConstructor<ILazyStackSlot<Item>>();
 
             var slots = slotType
                 .CreateSlots(
@@ -50,16 +49,16 @@ namespace TheChest.Core.Tests.Containers.Factories
                 args: new object[1] { slots }
             );
 
-            return (IStackContainer<Item>)container!;
+            return (ILazyStackContainer<Item>)container!;
         }
 
-        public virtual IStackContainer<Item> ShuffledItemsContainer(int size, int stackSize, params Item[] items)
+        public virtual ILazyStackContainer<Item> ShuffledItemsContainer(int size, int stackSize, params Item[] items)
         {
             if (items.Length > size)
                 throw new ArgumentException($"Item amount ({items.Length}) cannot be bigger than the container size ({size})");
-            
-            var containerType = typeof(Container).GetContainerType(typeof(IStackContainer<Item>));
-            var slotType = containerType.GetSlotTypeByConstructor<IStackSlot<Item>>();
+
+            var containerType = typeof(Container).GetContainerType(typeof(ILazyStackContainer<Item>));
+            var slotType = containerType.GetSlotTypeByConstructor<ILazyStackSlot<Item>>();
 
             var slots = slotType
                 .CreateSlots(
@@ -76,7 +75,7 @@ namespace TheChest.Core.Tests.Containers.Factories
                 args: new object[1] { slots }
             );
 
-            return (IStackContainer<Item>)container!;
+            return (ILazyStackContainer<Item>)container!;
         }
     }
 }

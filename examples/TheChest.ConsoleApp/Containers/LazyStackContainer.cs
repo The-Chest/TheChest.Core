@@ -2,7 +2,7 @@
 
 namespace TheChest.ConsoleApp.Containers
 {
-    public class LazyStackContainer : StackContainer<Item>
+    public class LazyStackContainer : LazyStackContainer<Item>
     {
         public LazyStackContainer(LazyStackSlot[] slots) : base(slots)
         {

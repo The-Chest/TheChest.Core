@@ -95,3 +95,51 @@ direction BT
     StackSlot --|> IStackSlot : implements
     IStackSlot --* IStackContainer
 ```
+
+## ILazyStackContainer Diagram
+The `ILazyStackContainer` diagram represents a generic container interface that supports lazy loading of stackable slots, allowing multiple items from the same type to be stored in a single slot.
+```mermaid
+---
+config:
+  theme: mc
+  look: classic
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+direction BT
+	namespace TheChest.Core.Containers.Interfaces {
+		class ILazyStackContainer~T~ {
+	        +ILazyStackSlot~T~ this[int index]
+	        +int Size
+	        +bool IsEmpty
+	        +bool IsFull
+        }
+	}
+	namespace TheChest.Core.Slots.Interfaces {
+        class ISlot~T~ {
+	        +bool IsEmpty
+	        +bool IsFull
+        }
+        class ILazyStackSlot~T~ {
+			+int Amount
+            +int MaxAmount
+        }
+	}
+	namespace TheChest.Core.Containers {
+		class LazyStackContainer~T~ {
+			-ILazyStackSlot~T~[] slots
+			+ILazyStackSlot~T~ this[int index]
+			+int Size
+			+bool IsEmpty
+			+bool IsFull
+        }
+	}
+
+	<<interface>> ILazyStackContainer
+    <<interface>> ILazyStackSlot
+
+    StackContainer --|> ILazyStackContainer : implements
+    ILazyStackSlot --|> ISlot : implements
+    ILazyStackSlot --* ILazyStackContainer
+```

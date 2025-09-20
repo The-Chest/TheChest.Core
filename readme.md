@@ -56,9 +56,9 @@ public class CustomSlot : Slot<string>
     {
     }
 
-    public override bool IsEmpty => Content == null;
+    public override bool IsEmpty => this.content == null;
 
-    public override bool IsFull => Content != null;
+    public override bool IsFull => this.content != null;
 }
 ```
 
@@ -98,15 +98,15 @@ using TheChest.Core.Slots.Interfaces;
 
 public class CustomSlot : ISlot<int>
 {
-    public int? Content { get; private set; }
+    protected int? content;
 
-    public bool IsEmpty => Content == 0;
+    public bool IsEmpty => content == 0;
 
-    public bool IsFull => Content != 0;
+    public bool IsFull => content != 0;
 
-    public CustomSlot(int item)
+    public CustomSlot(int? item)
     {
-        Content = item;
+        content = item;
     }
 }
 ```
@@ -114,4 +114,3 @@ public class CustomSlot : ISlot<int>
 ## Future Plans
 
 The plans for future versions of The Chest Core are in this [GitHub Project Board](https://github.com/orgs/The-Chest/projects/16/views/2), with insights into upcoming features, improvements, and release timelines.
-
