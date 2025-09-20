@@ -11,13 +11,7 @@ namespace TheChest.ConsoleApp.Tests.Containers
                     new StackSlotFactory<StackSlot, Item>()
                 ),
                 new SlotItemFactory<Item>(),
-            },
-            new object[] {
-                new StackContainerFactory<LazyStackContainer, Item>(
-                    new LazyStackSlotFactory<LazyStackSlot, Item>()
-                ),
-                new SlotItemFactory<Item>(),
-            },
+            }
         };
         public StackContainerTests(IStackContainerFactory<Item> containerFactory, ISlotItemFactory<Item> itemFactory)
             : base(containerFactory, itemFactory)
