@@ -2,7 +2,7 @@
 	
 	<PropertyGroup Label="Package">
 		<Title>The Chest Core</Title>
-		<Description>Provides generic collections to container management systems.</Description>
+		<Description>Lightweight library providing flexible container and slot classes for managing collections and inventory-like structures.</Description>
 		<Authors>The Chest</Authors>
 		<RepositoryUrl>https://github.com/The-Chest/TheChest.Core</RepositoryUrl>
 		<PackageProjectUrl>https://www.nuget.org/packages/TheChest.Core/</PackageProjectUrl>
