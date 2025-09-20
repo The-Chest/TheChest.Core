@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
+using System.Xml.Linq;
 using TheChest.Core.Containers.Interfaces;
 using TheChest.Core.Slots.Interfaces;
 
@@ -36,6 +38,44 @@ namespace TheChest.Core.Containers
         public Container(ISlot<T>[] slots)
         {
             this.slots = slots ?? throw new ArgumentNullException(nameof(slots));
+        }
+
+        /// <inheritdoc/>
+        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
+        public virtual bool Contains(T item)
+        {
+            item = item ?? throw new ArgumentNullException(nameof(item));
+
+            for (var i = 0; i < this.slots.Length; i++)
+            {
+                if (this.slots[i].Contains(item))
+                    return true;
+            }
+
+            return false;
+        }
+
+        /// <inheritdoc/>
+        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
+        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
+        public virtual bool Contains(T item, int amount)
+        {
+            item = item ?? throw new ArgumentNullException(nameof(item));
+            if (amount <= 0)
+                throw new ArgumentOutOfRangeException(nameof(amount));
+
+            var amountFound = 0;
+            for (var i = 0; i < this.slots.Length; i++)
+            {
+                if (this.slots[i].Contains(item))
+                {
+                    amountFound++;
+                    if (amountFound >= amount)
+                        return true;
+                }
+            }
+
+            return false;
         }
     }
 }
