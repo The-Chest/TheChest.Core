@@ -1,10 +1,12 @@
-﻿using TheChest.Core.Containers.Interfaces;
+﻿using System.Reflection;
+using TheChest.Core.Containers.Interfaces;
+using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Tests.Containers.Extensions
 {
     internal static class TypeExtensions
     {
-        public static Type GetContainerType(this Type containerType, Type interfaceType)
+        internal static Type GetContainerType(this Type containerType, Type interfaceType)
         {
             if (!interfaceType.IsInterface)
                 throw new ArgumentException(
@@ -19,15 +21,39 @@ namespace TheChest.Core.Tests.Containers.Extensions
             return containerType;
         }
 
-        internal static Type GetContainerType<Container, Item>()
+        internal static Type GetSlotTypeByConstructor<TSlotInterface>(
+            this Type containerType,
+            string slotParameterName = "slots"
+        )
         {
-            var containerType = typeof(Container);
-            if (!typeof(IStackContainer<Item>).IsAssignableFrom(containerType))
+            var constructor = containerType.GetConstructors()
+                    .FirstOrDefault(ctor =>
+                    {
+                        var parameters = ctor.GetParameters();
+                        var slotParamType = parameters.Length > 0 ? parameters[0].ParameterType : null;
+                            if (slotParamType is null)
+                                return false;
+                        return
+                            parameters.Length == 1 &&
+                            slotParamType.IsArray &&
+                            typeof(TSlotInterface).IsAssignableFrom(slotParamType.GetElementType());
+                    })
+                    ?? throw new ArgumentException($"Container type '{containerType.FullName}' does not have a suitable constructor.");
+
+            var slotParameter = constructor.GetParameters().FirstOrDefault(x => x.Name == slotParameterName)
+                ?? throw new ArgumentException(
+                    $"Container type '{containerType.FullName}' does not have a constructor with {typeof(TSlotInterface).Name}[]."
+                );
+
+            var slotType = slotParameter.ParameterType.GetElementType();
+            if (!typeof(TSlotInterface).IsAssignableFrom(slotType))
             {
-                throw new ArgumentException($"Type '{containerType.FullName}' does not implement IStackContainer<{typeof(Item).Name}>.");
+                throw new ArgumentException(
+                    $"Type '{slotType?.FullName}' does not implement {typeof(TSlotInterface).FullName}."
+                );
             }
 
-            return containerType;
+            return slotType!;
         }
     }
 }

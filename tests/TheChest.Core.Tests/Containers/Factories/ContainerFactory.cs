@@ -16,37 +16,10 @@ namespace TheChest.Core.Tests.Containers.Factories
             this.slotFactory = slotFactory;
         }
 
-        private static Type GetSlotTypeFromConstructor()
-        {
-            var containerType = typeof(Container).GetContainerType(typeof(IContainer<Item>));
-
-            var constructor = containerType.GetConstructors()
-                    .FirstOrDefault(ctor =>
-                    {
-                        var parameters = ctor.GetParameters();
-                        return
-                            parameters.Length == 1 &&
-                            parameters[0].ParameterType.IsArray &&
-                            typeof(ISlot<Item>).IsAssignableFrom(parameters[0].ParameterType.GetElementType());
-                    })
-                    ?? throw new ArgumentException($"Container type '{containerType.FullName}' does not have a suitable constructor.");
-
-            var slotParameter = constructor.GetParameters().FirstOrDefault(x => x.Name == "slots")
-                ?? throw new ArgumentException($"Container type '{containerType.FullName}' does not have a constructor with ISlot<{typeof(Item).Name}>[].");
-
-            var slotType = slotParameter.ParameterType.GetElementType();
-            if (!typeof(ISlot<Item>).IsAssignableFrom(slotType))
-            {
-                throw new ArgumentException($"Type '{slotType!.FullName}' does not implement ISlot<{typeof(Item).Name}>.");
-            }
-
-            return slotType;
-        }
-
         public virtual IContainer<Item> EmptyContainer(int size = 20)
         {
             var containerType = typeof(Container).GetContainerType(typeof(IContainer<Item>));
-            var slotType = GetSlotTypeFromConstructor();
+            var slotType = containerType.GetSlotTypeByConstructor<ISlot<Item>>();
 
             Array slots = Array.CreateInstance(slotType, size);
             for (int i = 0; i < size; i++)
@@ -64,7 +37,7 @@ namespace TheChest.Core.Tests.Containers.Factories
         public virtual IContainer<Item> FullContainer(int size, Item item)
         {
             var containerType = typeof(Container).GetContainerType(typeof(IContainer<Item>));
-            var slotType = GetSlotTypeFromConstructor();
+            var slotType = containerType.GetSlotTypeByConstructor<ISlot<Item>>();
 
             Array slots = Array.CreateInstance(slotType, size);
             for (int i = 0; i < size; i++)
@@ -83,7 +56,7 @@ namespace TheChest.Core.Tests.Containers.Factories
                 throw new ArgumentException("Item cannot be null");
 
             var containerType = typeof(Container).GetContainerType(typeof(IContainer<Item>));
-            var slotType = GetSlotTypeFromConstructor();
+            var slotType = containerType.GetSlotTypeByConstructor<ISlot<Item>>();
 
             Array slots = Array.CreateInstance(slotType, size);
             var randomIndex = new Random().Next(0, size - 1);
@@ -113,7 +86,7 @@ namespace TheChest.Core.Tests.Containers.Factories
                 throw new ArgumentException($"Item amount ({items.Length}) cannot be bigger than the container size ({size})");
 
             var containerType = typeof(Container).GetContainerType(typeof(IContainer<Item>));
-            var slotType = GetSlotTypeFromConstructor();
+            var slotType = containerType.GetSlotTypeByConstructor<ISlot<Item>>();
 
             Array slots = Array.CreateInstance(slotType, size);
             for (int i = 0; i < size; i++)
