@@ -74,9 +74,9 @@ namespace TheChest.Core.Slots
         }
 
         /// <inheritdoc/>
-        public virtual bool IsFull => this.Amount == this.MaxAmount;
+        public virtual bool IsFull => this.Amount == this.MaxAmount && !(this.content is null);
         /// <inheritdoc/>
-        public virtual bool IsEmpty => this.Amount == 0;
+        public virtual bool IsEmpty => this.Amount == 0 || this.content is null;
 
         /// <summary>
         /// Creates a basic Stack Slot with an amount and max amount

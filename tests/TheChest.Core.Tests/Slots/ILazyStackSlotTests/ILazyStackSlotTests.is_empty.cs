@@ -11,12 +11,12 @@
         }
 
         [Test]
-        public void IsEmpty_WithContent_ReturnsTrue()
+        public void IsEmpty_WithContent_ReturnsFalse()
         {
             var item = this.itemFactory.CreateDefault();
             var slot = this.slotFactory.WithItem(item, 1, 10);
 
-            Assert.That(slot.IsEmpty, Is.True);
+            Assert.That(slot.IsEmpty, Is.False);
         }
 
         [Test]

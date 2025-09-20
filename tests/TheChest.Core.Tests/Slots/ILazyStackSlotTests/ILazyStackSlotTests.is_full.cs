@@ -22,7 +22,7 @@
         {
             var slot = this.slotFactory.WithItem(default!, 10, 10);
 
-            Assert.That(slot.IsEmpty, Is.False);
+            Assert.That(slot.IsFull, Is.False);
         }
 
         [Test]
@@ -31,7 +31,7 @@
             var item = this.itemFactory.CreateDefault();
             var slot = this.slotFactory.WithItem(item, 5, 10);
 
-            Assert.That(slot.IsEmpty, Is.False);
+            Assert.That(slot.IsFull, Is.False);
         }
     }
 }
