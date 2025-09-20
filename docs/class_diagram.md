@@ -22,20 +22,34 @@ direction BT
 	        +int Size
 	        +bool IsEmpty
 	        +bool IsFull
+	        +bool Contains(T item)
+			+bool Contains(T item, int amount)
         }
 	}
 	namespace TheChest.Core.Slots.Interfaces {
         class ISlot~T~ {
 	        +bool IsEmpty
 	        +bool IsFull
+	        +bool Contains(T item)
         }
 	}
 	namespace TheChest.Core.Containers {
         class Container~T~ {
+			-ISlot~T~[] slots
+			+ISlot~T~ this[int index]
+	        +int Size
+	        +bool IsEmpty
+	        +bool IsFull
+	        +bool Contains(T item)
+			+bool Contains(T item, int amount)
         }
 	}
 	namespace TheChest.Core.Slots {
         class Slot~T~ {
+			-T content
+			+bool IsEmpty
+			+bool IsFull
+			+bool Contains(T item)
         }
 	}
 
@@ -66,24 +80,42 @@ direction BT
 	        +int Size
 	        +bool IsEmpty
 	        +bool IsFull
+	        +bool Contains(T item)
+			+bool Contains(T item, int amount)
         }
 	}
 	namespace TheChest.Core.Slots.Interfaces {
         class ISlot~T~ {
 	        +bool IsEmpty
 	        +bool IsFull
+	        +bool Contains(T item)
         }
         class IStackSlot~T~ {
-            +int StackAmount
-            +int MaxStackAmount
+            +int Amount
+            +int MaxAmount
+	        +bool Contains(T[] items)
         }
 	}
 	namespace TheChest.Core.Containers {
 		class StackContainer~T~ {
+			-IStackSlot~T~[] slots
+			+IStackSlot~T~ this[int index]
+	        +int Size
+	        +bool IsEmpty
+	        +bool IsFull
+	        +bool Contains(T item)
+			+bool Contains(T item, int amount)
         }
 		class StackSlot~T~{
-			-int stackAmount
-			-int maxStackAmount
+			-T content
+			-int amount            
+			+int Amount
+            +int MaxAmount
+			-int maxAmount
+	        +bool IsEmpty
+	        +bool IsFull
+	        +bool Contains(T item)
+	        +bool Contains(T[] items)
 		}
 	}
 
@@ -139,7 +171,7 @@ direction BT
 	<<interface>> ILazyStackContainer
     <<interface>> ILazyStackSlot
 
-    StackContainer --|> ILazyStackContainer : implements
+    LazyStackContainer --|> ILazyStackContainer : implements
     ILazyStackSlot --|> ISlot : implements
     ILazyStackSlot --* ILazyStackContainer
 ```
