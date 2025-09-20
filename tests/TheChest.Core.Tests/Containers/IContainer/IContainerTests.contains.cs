@@ -1,6 +1,4 @@
-﻿using TheChest.Core.Containers.Extensions;
-
-namespace TheChest.Core.Tests.Containers
+﻿namespace TheChest.Core.Tests.Containers
 {
     public partial class IContainerTests<T>
     {
@@ -8,7 +6,7 @@ namespace TheChest.Core.Tests.Containers
         public void Contains_NullItem_ThrowsArgumentNullException()
         {
             var container = this.containerFactory.EmptyContainer();
-            Assert.Throws<ArgumentNullException>(() => container.Contains(default));
+            Assert.Throws<ArgumentNullException>(() => container.Contains(default!));
         }
 
         [Test]
