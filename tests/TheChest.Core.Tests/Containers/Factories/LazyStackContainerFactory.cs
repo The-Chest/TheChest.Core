@@ -7,9 +7,9 @@ namespace TheChest.Core.Tests.Containers.Factories
     public class LazyStackContainerFactory<Container, Item> : ILazyStackContainerFactory<Item>
         where Container : ILazyStackContainer<Item>
     {
-        protected readonly IStackSlotFactory<Item> slotFactory;
+        protected readonly ILazyStackSlotFactory<Item> slotFactory;
 
-        public LazyStackContainerFactory(IStackSlotFactory<Item> slotFactory)
+        public LazyStackContainerFactory(ILazyStackSlotFactory<Item> slotFactory)
         {
             this.slotFactory = slotFactory;
         }
