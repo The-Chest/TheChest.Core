@@ -100,6 +100,7 @@ namespace TheChest.Core.Slots
         public bool Contains(T item)
         {
             item = item ?? throw new ArgumentNullException(nameof(item));
+            
             if (this.IsEmpty)
                 return false;
 
