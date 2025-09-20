@@ -2,7 +2,6 @@
 using TheChest.Core.Containers.Interfaces;
 using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Tests.Containers.Extensions;
-using TheChest.Core.Tests.Extensions;
 
 namespace TheChest.Core.Tests.Containers.Factories
 {
@@ -21,11 +20,12 @@ namespace TheChest.Core.Tests.Containers.Factories
             var containerType = typeof(Container).GetContainerType(typeof(IContainer<Item>));
             var slotType = containerType.GetSlotTypeByConstructor<ISlot<Item>>();
 
-            Array slots = Array.CreateInstance(slotType, size);
-            for (int i = 0; i < size; i++)
-            {
-                slots.SetValue(slotFactory.EmptySlot(), i);
-            }
+            var slots = slotType
+                .CreateSlots(
+                    size: size,
+                    slotFactory: _ => slotFactory.EmptySlot(),
+                    shuffle: true
+                );
 
             var container = Activator.CreateInstance(
                 type: containerType,
@@ -39,13 +39,16 @@ namespace TheChest.Core.Tests.Containers.Factories
             var containerType = typeof(Container).GetContainerType(typeof(IContainer<Item>));
             var slotType = containerType.GetSlotTypeByConstructor<ISlot<Item>>();
 
-            Array slots = Array.CreateInstance(slotType, size);
-            for (int i = 0; i < size; i++)
-            {
-                slots.SetValue(slotFactory.FullSlot(item), i);
-            }
-
-            var container = Activator.CreateInstance(containerType, slots);
+            var slots = slotType
+                .CreateSlots(
+                    size: size,
+                    slotFactory: _ => slotFactory.FullSlot(item),
+                    shuffle: true
+                );
+            var container = Activator.CreateInstance(
+                type: containerType,
+                args: new object[1] { slots }
+            );
 
             return (IContainer<Item>)container!;
         }
@@ -58,24 +61,21 @@ namespace TheChest.Core.Tests.Containers.Factories
             var containerType = typeof(Container).GetContainerType(typeof(IContainer<Item>));
             var slotType = containerType.GetSlotTypeByConstructor<ISlot<Item>>();
 
-            Array slots = Array.CreateInstance(slotType, size);
             var randomIndex = new Random().Next(0, size - 1);
-            for (int i = 0; i < size; i++)
-            {
-                ISlot<Item> slot;
-                if (i == randomIndex)
-                {
-                    slot = slotFactory.FullSlot(item);
-                }
-                else
-                {
-                    slot = slotFactory.EmptySlot();
-                }
+            var slots = slotType
+                .CreateSlots(
+                    size: size,
+                    slotFactory: 
+                        i => i == randomIndex
+                            ? slotFactory.FullSlot(item)
+                            : slotFactory.EmptySlot(),
+                    shuffle: true
+                );
 
-                slots.SetValue(slot, i);
-            }
-
-            var container = Activator.CreateInstance(containerType, slots);
+            var container = Activator.CreateInstance(
+                type: containerType,
+                args: new object[1] { slots }
+            );
 
             return (IContainer<Item>)container!;
         }
@@ -88,24 +88,20 @@ namespace TheChest.Core.Tests.Containers.Factories
             var containerType = typeof(Container).GetContainerType(typeof(IContainer<Item>));
             var slotType = containerType.GetSlotTypeByConstructor<ISlot<Item>>();
 
-            Array slots = Array.CreateInstance(slotType, size);
-            for (int i = 0; i < size; i++)
-            {
-                ISlot<Item> slot;
-                if (i < items.Length)
-                {
-                    slot = slotFactory.FullSlot(items[i]);
-                }
-                else
-                {
-                    slot = slotFactory.EmptySlot();
-                }
+            var slots = slotType
+                .CreateSlots(
+                    size: size,
+                    slotFactory:
+                        i => i < items.Length
+                            ? slotFactory.FullSlot(items[i])
+                            : slotFactory.EmptySlot(),
+                    shuffle: true
+                );
 
-                slots.SetValue(slot, i);
-            }
-            slots.Shuffle();
-
-            var container = Activator.CreateInstance(containerType, slots);
+            var container = Activator.CreateInstance(
+                type: containerType,
+                args: new object[1] { slots }
+            );
 
             return (IContainer<Item>)container!;
         }

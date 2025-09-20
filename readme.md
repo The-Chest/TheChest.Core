@@ -56,9 +56,9 @@ public class CustomSlot : Slot<string>
     {
     }
 
-    public override bool IsEmpty => Content == null;
+    public override bool IsEmpty => this.content == null;
 
-    public override bool IsFull => Content != null;
+    public override bool IsFull => this.content != null;
 }
 ```
 
