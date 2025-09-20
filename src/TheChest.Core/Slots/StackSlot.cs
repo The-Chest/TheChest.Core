@@ -112,9 +112,10 @@ namespace TheChest.Core.Slots
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
-        public bool Contains(T item)
+        public virtual bool Contains(T item)
         {
-            item = item ?? throw new ArgumentNullException(nameof(item));
+            if(item is null)
+                throw new ArgumentNullException(nameof(item));
 
             if (this.IsEmpty)
                 return false;
@@ -124,7 +125,7 @@ namespace TheChest.Core.Slots
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="items"/> contain any null value</exception>
-        public bool Contains(T[] items)
+        public virtual bool Contains(T[] items)
         {
             if(items.Length == 0 || this.IsEmpty)
                 return false;

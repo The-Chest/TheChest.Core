@@ -87,20 +87,22 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public LazyStackSlot(T currentItem = default!, int amount = 1, int maxAmount = 1)
         {
-            if (currentItem is null)
-                amount = 0;
-
             this.content = currentItem;
             this.MaxAmount = maxAmount;
-            this.Amount = amount;
+
+            if (currentItem is null)
+                this.Amount = 0;
+            else
+                this.Amount = amount;
         }
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
-        public bool Contains(T item)
+        public virtual bool Contains(T item)
         {
-            item = item ?? throw new ArgumentNullException(nameof(item));
-            
+            if (item is null)
+                throw new ArgumentNullException(nameof(item));
+
             if (this.IsEmpty)
                 return false;
 
@@ -109,9 +111,9 @@ namespace TheChest.Core.Slots
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
-        public bool Contains(T item, int amount)
+        public virtual bool Contains(T item, int amount)
         {
-            item = item ?? 
+            if (item is null)
                 throw new ArgumentNullException(nameof(item));
             if (amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(amount));
