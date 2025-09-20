@@ -44,7 +44,8 @@ namespace TheChest.Core.Containers
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
         public virtual bool Contains(T item)
         {
-            item = item ?? throw new ArgumentNullException(nameof(item));
+            if (item is null)
+                throw new ArgumentNullException(nameof(item));
 
             for (var i = 0; i < this.slots.Length; i++)
             {
@@ -60,7 +61,8 @@ namespace TheChest.Core.Containers
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
         public virtual bool Contains(T item, int amount)
         {
-            item = item ?? throw new ArgumentNullException(nameof(item));
+            if (item is null)
+                throw new ArgumentNullException(nameof(item));
             if (amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(amount));
 

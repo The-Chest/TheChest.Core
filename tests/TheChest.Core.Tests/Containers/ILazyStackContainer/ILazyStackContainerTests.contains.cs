@@ -1,6 +1,4 @@
-﻿using TheChest.Core.Containers.Extensions;
-
-namespace TheChest.Core.Tests.Containers
+﻿namespace TheChest.Core.Tests.Containers
 {
     public partial class ILazyStackContainerTests<T>
     {
