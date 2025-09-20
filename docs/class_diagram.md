@@ -108,4 +108,38 @@ config:
 ---
 classDiagram
 direction BT
+	namespace TheChest.Core.Containers.Interfaces {
+		class ILazyStackContainer~T~ {
+	        +ILazyStackSlot~T~ this[int index]
+	        +int Size
+	        +bool IsEmpty
+	        +bool IsFull
+        }
+	}
+	namespace TheChest.Core.Slots.Interfaces {
+        class ISlot~T~ {
+	        +bool IsEmpty
+	        +bool IsFull
+        }
+        class ILazyStackSlot~T~ {
+			+int Amount
+            +int MaxAmount
+        }
+	}
+	namespace TheChest.Core.Containers {
+		class LazyStackContainer~T~ {
+			-ILazyStackSlot~T~[] slots
+			+ILazyStackSlot~T~ this[int index]
+			+int Size
+			+bool IsEmpty
+			+bool IsFull
+        }
+	}
+
+	<<interface>> ILazyStackContainer
+    <<interface>> ILazyStackSlot
+
+    StackContainer --|> ILazyStackContainer : implements
+    ILazyStackSlot --|> ISlot : implements
+    ILazyStackSlot --* ILazyStackContainer
 ```
