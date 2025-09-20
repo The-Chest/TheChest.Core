@@ -37,5 +37,45 @@ namespace TheChest.Core.Containers
         {
             this.slots = slots ?? throw new ArgumentNullException(nameof(slots));
         }
+
+        /// <inheritdoc/>
+        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
+        public bool Contains(T item)
+        {
+            if (item is null)
+                throw new ArgumentNullException(nameof(item));
+
+            for (var i = 0; i < this.slots.Length; i++)
+            {
+                if (this.slots[i].Contains(item))
+                    return true;
+            }
+
+            return false;
+        }
+
+        /// <inheritdoc/>
+        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
+        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
+        public bool Contains(T item, int amount)
+        {
+            if (item is null)
+                throw new ArgumentNullException(nameof(item));
+            if (amount <= 0)
+                throw new ArgumentOutOfRangeException(nameof(amount));
+
+            var amountFound = 0;
+            for (var i = 0; i < this.slots.Length; i++)
+            {
+                if (this.slots[i].Contains(item))
+                {
+                    amountFound++;
+                    if (amountFound >= amount)
+                        return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
