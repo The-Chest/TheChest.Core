@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using TheChest.Core.Containers.Interfaces;
-using TheChest.Core.Slots.Interfaces;
+using TheChest.Core.Generics.Stack.Lazy;
 
-namespace TheChest.Core.Containers
+namespace TheChest.Core.Stack.Lazy
 {
     /// <summary>
     /// Generic container with <see cref="ILazyStackContainer{T}"/> implementation
@@ -27,13 +26,13 @@ namespace TheChest.Core.Containers
         }
 
         /// <inheritdoc/>
-        public ILazyStackSlot<T> this[int index] => this.slots[index];
+        public ILazyStackSlot<T> this[int index] => slots[index];
         /// <inheritdoc/>
-        public virtual int Size => this.slots.Length;
+        public virtual int Size => slots.Length;
         /// <inheritdoc/>
-        public virtual bool IsFull => this.slots.All(x => x.IsFull);
+        public virtual bool IsFull => slots.All(x => x.IsFull);
         /// <inheritdoc/>
-        public virtual bool IsEmpty => this.slots.All(x => x.IsEmpty);
+        public virtual bool IsEmpty => slots.All(x => x.IsEmpty);
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
@@ -42,9 +41,9 @@ namespace TheChest.Core.Containers
             if (item is null)
                 throw new ArgumentNullException(nameof(item));
 
-            for (var i = 0; i < this.slots.Length; i++)
+            for (var i = 0; i < slots.Length; i++)
             {
-                if (this.slots[i].Contains(item))
+                if (slots[i].Contains(item))
                     return true;
             }
 
@@ -62,9 +61,9 @@ namespace TheChest.Core.Containers
                 throw new ArgumentOutOfRangeException(nameof(amount));
 
             var amountFound = 0;
-            for (var i = 0; i < this.slots.Length; i++)
+            for (var i = 0; i < slots.Length; i++)
             {
-                var slot = this.slots[i];
+                var slot = slots[i];
                 if (slot.Contains(item))
                 {
                     amountFound += slot.Amount;

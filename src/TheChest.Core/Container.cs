@@ -1,11 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Linq;
-using System.Xml.Linq;
-using TheChest.Core.Containers.Interfaces;
-using TheChest.Core.Slots.Interfaces;
+using TheChest.Core.Generics;
 
-namespace TheChest.Core.Containers
+namespace TheChest.Core
 {
     /// <summary>
     /// Generic container with <see cref="IContainer{T}"/> implementation
@@ -19,16 +16,16 @@ namespace TheChest.Core.Containers
         protected readonly ISlot<T>[] slots;
 
         /// <inheritdoc/>
-        public virtual ISlot<T> this[int index] => this.slots[index];
+        public virtual ISlot<T> this[int index] => slots[index];
 
         /// <inheritdoc/>
-        public virtual int Size => this.slots.Length;
+        public virtual int Size => slots.Length;
 
         /// <inheritdoc/>
-        public virtual bool IsFull => this.slots.All(x => x.IsFull);
+        public virtual bool IsFull => slots.All(x => x.IsFull);
 
         /// <inheritdoc/>
-        public virtual bool IsEmpty => this.slots.All(x => x.IsEmpty);
+        public virtual bool IsEmpty => slots.All(x => x.IsEmpty);
 
         /// <summary>
         /// Creates a Container with <see cref="ISlot{T}"/> implementation
@@ -47,9 +44,9 @@ namespace TheChest.Core.Containers
             if (item is null)
                 throw new ArgumentNullException(nameof(item));
 
-            for (var i = 0; i < this.slots.Length; i++)
+            for (var i = 0; i < slots.Length; i++)
             {
-                if (this.slots[i].Contains(item))
+                if (slots[i].Contains(item))
                     return true;
             }
 
@@ -67,9 +64,9 @@ namespace TheChest.Core.Containers
                 throw new ArgumentOutOfRangeException(nameof(amount));
 
             var amountFound = 0;
-            for (var i = 0; i < this.slots.Length; i++)
+            for (var i = 0; i < slots.Length; i++)
             {
-                if (this.slots[i].Contains(item))
+                if (slots[i].Contains(item))
                 {
                     amountFound++;
                     if (amountFound >= amount)

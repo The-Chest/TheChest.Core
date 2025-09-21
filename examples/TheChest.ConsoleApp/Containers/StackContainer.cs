@@ -1,4 +1,4 @@
-﻿using TheChest.Core.Containers;
+﻿using TheChest.Core.Stack;
 
 namespace TheChest.ConsoleApp.Containers
 {

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using TheChest.Core.Slots.Interfaces;
+using TheChest.Core.Generics.Stack;
+using TheChest.Core.Generics.Stack.Lazy;
 
-namespace TheChest.Core.Slots
+namespace TheChest.Core.Stack.Lazy
 {
     /// <summary>
     /// Slot with with <see cref="IStackSlot{T}"/> implementation which have only one item repeatedly 
@@ -38,14 +39,14 @@ namespace TheChest.Core.Slots
                         "The amount property cannot be smaller than zero"
                     );
 
-                if (value > this.maxAmount)
+                if (value > maxAmount)
                     throw new ArgumentOutOfRangeException(
                         nameof(value),
                         "The item amount cannot be bigger than max amount"
 
                     );
 
-                this.amount = value;
+                amount = value;
             }
         }
         /// <inheritdoc/>
@@ -63,20 +64,20 @@ namespace TheChest.Core.Slots
                         "The max amount property cannot be smaller than zero"
                     );
 
-                if (value < this.amount)
+                if (value < amount)
                     throw new ArgumentOutOfRangeException(
                         nameof(value),
                         "The item amount cannot be bigger than max amount"
                     );
 
-                this.maxAmount = value;
+                maxAmount = value;
             }
         }
 
         /// <inheritdoc/>
-        public virtual bool IsFull => this.Amount == this.MaxAmount && !(this.content is null);
+        public virtual bool IsFull => Amount == MaxAmount && !(content is null);
         /// <inheritdoc/>
-        public virtual bool IsEmpty => this.Amount == 0 || this.content is null;
+        public virtual bool IsEmpty => Amount == 0 || content is null;
 
         /// <summary>
         /// Creates a basic Stack Slot with an amount and max amount
@@ -87,13 +88,13 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public LazyStackSlot(T currentItem = default!, int amount = 1, int maxAmount = 1)
         {
-            this.content = currentItem;
-            this.MaxAmount = maxAmount;
+            content = currentItem;
+            MaxAmount = maxAmount;
 
             if (currentItem is null)
-                this.Amount = 0;
+                Amount = 0;
             else
-                this.Amount = amount;
+                Amount = amount;
         }
 
         /// <inheritdoc/>
@@ -103,10 +104,10 @@ namespace TheChest.Core.Slots
             if (item is null)
                 throw new ArgumentNullException(nameof(item));
 
-            if (this.IsEmpty)
+            if (IsEmpty)
                 return false;
 
-            return item.Equals(this.content);
+            return item.Equals(content);
         }
 
         /// <inheritdoc/>
@@ -118,10 +119,10 @@ namespace TheChest.Core.Slots
             if (amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(amount));
 
-            if (this.IsEmpty)
+            if (IsEmpty)
                 return false;
-            return item.Equals(this.content) && 
-                amount <= this.Amount;
+            return item.Equals(content) && 
+                amount <= Amount;
         }
     }
 }

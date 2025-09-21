@@ -1,4 +1,4 @@
-﻿using TheChest.Core.Slots;
+﻿using TheChest.Core;
 
 namespace TheChest.ConsoleApp.Containers
 {

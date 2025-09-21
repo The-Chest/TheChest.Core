@@ -1,5 +1,5 @@
-﻿using TheChest.Core.Slots;
-using TheChest.Core.Slots.Interfaces;
+﻿using TheChest.Core.Generics.Stack.Lazy;
+using TheChest.Core.Stack.Lazy;
 
 namespace TheChest.Core.Tests.Slots.Factories
 {

@@ -1,6 +1,4 @@
-﻿using TheChest.Core.Containers;
-using TheChest.Core.Containers.Interfaces;
-using TheChest.Core.Slots.Interfaces;
+﻿using TheChest.Core.Generics;
 using TheChest.Core.Tests.Containers.Extensions;
 
 namespace TheChest.Core.Tests.Containers.Factories

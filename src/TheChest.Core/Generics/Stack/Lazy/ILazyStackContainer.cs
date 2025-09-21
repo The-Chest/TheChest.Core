@@ -1,12 +1,10 @@
-﻿using TheChest.Core.Slots.Interfaces;
-
-namespace TheChest.Core.Containers.Interfaces
+﻿namespace TheChest.Core.Generics.Stack.Lazy
 {
     /// <summary>
     /// Interface with the basics of a container
     /// </summary>
     /// <typeparam name="T">An item type</typeparam>
-    public interface IContainer<in T>
+    public interface ILazyStackContainer<in T>
     {
         /// <summary>
         /// Size of the current Container
@@ -20,16 +18,16 @@ namespace TheChest.Core.Containers.Interfaces
         /// Verify if the container is empty
         /// </summary>
         bool IsEmpty { get; }
-
         /// <summary>
-        /// Gets an <see cref="ISlot{T}"/> from the Container
+        /// Gets an <see cref="ILazyStackSlot{T}"/> from the Container
         /// </summary>
         /// <param name="index">Index of a slot</param>
-        /// <returns>An <see cref="ISlot{T}"/> from inside the container</returns>
-        ISlot<T> this[int index] { get; }
-        
+        /// <returns>An <see cref="ILazyStackSlot{T}"/> from inside the container</returns>
+        [System.Obsolete("This indexer is obsolete and will be removed in future versions.")]
+        ILazyStackSlot<T> this[int index] { get; }
+
         /// <summary>
-        /// Checks if the container contains an <paramref name="item"/>.
+        /// Checks if the container contains an item.
         /// </summary>
         /// <param name="item">Item to be checked</param>
         /// <returns>Returns true when the container contains an <paramref name="item"/> in any of its slots</returns>

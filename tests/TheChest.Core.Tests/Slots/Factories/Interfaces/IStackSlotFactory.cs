@@ -1,4 +1,4 @@
-﻿using TheChest.Core.Slots.Interfaces;
+﻿using TheChest.Core.Generics.Stack;
 
 namespace TheChest.Core.Tests.Slots.Factories.Interfaces
 {

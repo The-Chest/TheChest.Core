@@ -1,6 +1,4 @@
-﻿using TheChest.Core.Slots.Interfaces;
-
-namespace TheChest.Core.Containers.Interfaces
+﻿namespace TheChest.Core.Generics.Stack
 {
     /// <summary>
     /// Interface with the basics of a container with <see cref="IStackSlot{T}"/> features
@@ -28,6 +26,7 @@ namespace TheChest.Core.Containers.Interfaces
         /// </summary>
         /// <param name="index">Index of a slot<para>It needs to be smaller than <see cref="IStackContainer{T}.Size"/></para></param>
         /// <returns>An item from <see cref="IStackSlot{T}"/></returns>
+        [System.Obsolete("This indexer is obsolete and will be removed in future versions.")]
         IStackSlot<T> this[int index] { get; }
         /// <summary>
         /// Checks if the container contains an item.

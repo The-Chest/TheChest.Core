@@ -1,4 +1,4 @@
-﻿namespace TheChest.Core.Slots.Interfaces
+﻿namespace TheChest.Core.Generics
 {
     /// <summary>
     /// Interface only with properties for a basic Slot

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using TheChest.Core.Slots.Interfaces;
+using TheChest.Core.Generics;
 
-namespace TheChest.Core.Slots
+namespace TheChest.Core
 {
     /// <summary>
     /// Generic Slot with with <see cref="ISlot{T}"/> implementation
@@ -37,10 +37,10 @@ namespace TheChest.Core.Slots
             if (item is null)
                 throw new ArgumentNullException(nameof(item));
 
-            if (this.IsEmpty)
+            if (IsEmpty)
                 return false;
 
-            return this.content!.Equals(item);
+            return content!.Equals(item);
         }
     }
 }

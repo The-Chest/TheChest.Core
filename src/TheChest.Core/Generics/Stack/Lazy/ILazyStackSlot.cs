@@ -1,4 +1,4 @@
-﻿namespace TheChest.Core.Slots.Interfaces
+﻿namespace TheChest.Core.Generics.Stack.Lazy
 {
     /// <summary>
     /// Generic Container Slot with item stack that supports lazy checking

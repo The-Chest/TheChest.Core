@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TheChest.Core.Slots.Interfaces;
+using TheChest.Core.Generics.Stack;
 
-namespace TheChest.Core.Slots
+namespace TheChest.Core.Stack
 {
     /// <summary>
     /// Slot with with <see cref="IStackSlot{T}"/> implementation with a collection of items
@@ -75,9 +75,9 @@ namespace TheChest.Core.Slots
         }
 
         /// <inheritdoc/>
-        public virtual bool IsFull => this.Amount == this.MaxAmount;
+        public virtual bool IsFull => Amount == MaxAmount;
         /// <inheritdoc/>
-        public virtual bool IsEmpty => this.Amount == 0;
+        public virtual bool IsEmpty => Amount == 0;
 
         /// <summary>
         /// Creates a basic <see cref="StackSlot{T}"/> with the max size defined by the array
@@ -86,10 +86,10 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentNullException"></exception>
         public StackSlot(T[] items)
         {
-            this.content = items ?? 
+            content = items ?? 
                 throw new ArgumentNullException(nameof(items));
-            this.MaxAmount = items.Length;
-            this.Amount = items.Count(item => !(item is null));
+            MaxAmount = items.Length;
+            Amount = items.Count(item => !(item is null));
         }
 
         /// <summary>
@@ -105,9 +105,9 @@ namespace TheChest.Core.Slots
                 throw new ArgumentNullException(nameof(items));
 
             Array.Resize(ref items, maxStackAmount);
-            this.content = items;
-            this.MaxAmount = maxStackAmount;
-            this.Amount = items.Count(item => !(item is null));
+            content = items;
+            MaxAmount = maxStackAmount;
+            Amount = items.Count(item => !(item is null));
         }
 
         /// <inheritdoc/>
@@ -117,17 +117,17 @@ namespace TheChest.Core.Slots
             if(item is null)
                 throw new ArgumentNullException(nameof(item));
 
-            if (this.IsEmpty)
+            if (IsEmpty)
                 return false;
 
-            return this.content.Contains(item) && this.Amount >= amount;
+            return content.Contains(item) && Amount >= amount;
         }
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="items"/> contain any null value</exception>
         public virtual bool Contains(T[] items)
         {
-            if(items.Length == 0 || this.IsEmpty)
+            if(items.Length == 0 || IsEmpty)
                 return false;
 
             for (int i = 0; i < items.Length; i++)
@@ -136,7 +136,7 @@ namespace TheChest.Core.Slots
                 if (EqualityComparer<T>.Default.Equals(item, default!))
                     throw new ArgumentNullException(nameof(items), "Items cannot contain null values");
 
-                if (!this.content.Contains(item))
+                if (!content.Contains(item))
                     return false;
             }
 
