@@ -1,9 +1,5 @@
-﻿using System.Reflection;
-using TheChest.Core.Containers.Interfaces;
-using TheChest.Core.Slots.Interfaces;
+﻿using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Tests.Extensions;
-using TheChest.Core.Tests.Slots.Factories;
-using TheChest.Core.Tests.Slots.Factories.Interfaces;
 
 namespace TheChest.Core.Tests.Containers.Extensions
 {
