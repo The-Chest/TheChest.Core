@@ -1,7 +1,14 @@
 ﻿using TheChest.Core.Slots.Interfaces;
 
-namespace TheChest.Core.Tests.Slots.Factories.Interfaces
+namespace TheChest.Core.Tests.Slots.Interfaces.Factories
 {
+    /// <summary>
+    /// Defines a factory for creating instances of <see cref="ILazyStackSlot{T}"/>.
+    /// </summary>
+    /// <remarks>
+    /// This interface provides methods to create stack slots with varying initial states, such as empty, partially filled, or fully filled.
+    /// </remarks>
+    /// <typeparam name="T">The type of item that the stack slot will hold.</typeparam>
     public interface ILazyStackSlotFactory<T>
     {
         /// <summary>
