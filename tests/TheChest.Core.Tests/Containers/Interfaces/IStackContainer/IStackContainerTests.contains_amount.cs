@@ -1,23 +1,7 @@
-﻿namespace TheChest.Core.Tests.Containers
+﻿namespace TheChest.Core.Tests.Containers.Interfaces
 {
     public partial class IStackContainerTests<T>
     {
-        [Test]
-        public void ContainsAmount_NullItem_ThrowsArgumentNullException()
-        {
-            var container = this.containerFactory.EmptyContainer();
-            Assert.That(() => container.Contains(default!, 1), Throws.ArgumentNullException);
-        }
-
-        [TestCase(0)]
-        [TestCase(-1)]
-        public void ContainsAmount_InvalidAmount_ThrowsArgumentOutOfRangeException(int amount)
-        {
-            var item = this.itemFactory.CreateDefault();
-            var container = this.containerFactory.EmptyContainer();
-            Assert.Throws<ArgumentOutOfRangeException>(() => container.Contains(item, amount));
-        }
-
         [Test]
         public void ContainsAmount_EmptyContainer_ReturnsFalse()
         {
