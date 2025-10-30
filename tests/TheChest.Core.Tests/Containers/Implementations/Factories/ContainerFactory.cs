@@ -4,7 +4,7 @@ using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Tests.Containers.Extensions;
 using TheChest.Core.Tests.Containers.Interfaces.Factories;
 
-namespace TheChest.Core.Tests.Containers.Factories
+namespace TheChest.Core.Tests.Containers.Implementations.Factories
 {
     public class ContainerFactory<Container, Item> : IContainerFactory<Item>
         where Container : Container<Item>

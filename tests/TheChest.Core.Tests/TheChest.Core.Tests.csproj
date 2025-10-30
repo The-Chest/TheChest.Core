@@ -21,8 +21,4 @@
     <ProjectReference Include="..\..\src\TheChest.Core\TheChest.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Containers\Factories\Interfaces\" />
-  </ItemGroup>
-
 </Project>
