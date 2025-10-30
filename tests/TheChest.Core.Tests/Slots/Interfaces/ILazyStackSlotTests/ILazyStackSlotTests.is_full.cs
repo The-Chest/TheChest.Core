@@ -1,6 +1,6 @@
 ﻿namespace TheChest.Core.Tests.Slots.Interfaces
 {
-    public abstract partial class ILazyStackSlotTests<T>
+    public partial class ILazyStackSlotTests<T>
     {
         [Test]
         public void IsFull_NoContent_ReturnsFalse()
