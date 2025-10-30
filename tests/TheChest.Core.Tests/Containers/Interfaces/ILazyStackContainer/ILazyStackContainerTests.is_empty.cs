@@ -1,4 +1,4 @@
-﻿namespace TheChest.Core.Tests.Containers
+﻿namespace TheChest.Core.Tests.Containers.Interfaces
 {
     public partial class ILazyStackContainerTests<T>
     {
@@ -15,7 +15,11 @@
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var randomStackSize = random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
 
-            var container = this.containerFactory.ShuffledItemsContainer(randomSize, randomStackSize, this.itemFactory.CreateDefault());
+            var container = this.containerFactory.ShuffledItemsContainer(
+                randomSize, 
+                randomStackSize, 
+                this.itemFactory.CreateDefault()
+            );
             Assert.That(container.IsEmpty, Is.False);
         }
 
@@ -25,7 +29,11 @@
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var randomStackSize = random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
 
-            var container = this.containerFactory.FullContainer(randomSize, randomStackSize, this.itemFactory.CreateDefault());
+            var container = this.containerFactory.FullContainer(
+                randomSize, 
+                randomStackSize, 
+                this.itemFactory.CreateDefault()
+            );
 
             Assert.That(container.IsEmpty, Is.False);
         }

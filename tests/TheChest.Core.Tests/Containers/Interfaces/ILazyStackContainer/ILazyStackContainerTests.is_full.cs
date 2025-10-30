@@ -1,4 +1,4 @@
-﻿namespace TheChest.Core.Tests.Containers
+﻿namespace TheChest.Core.Tests.Containers.Interfaces
 {
     public partial class ILazyStackContainerTests<T>
     {
@@ -16,7 +16,8 @@
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var randomStackSize = random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
             var container = this.containerFactory.ShuffledItemsContainer(
-                randomSize, randomStackSize,
+                randomSize, 
+                randomStackSize,
                 this.itemFactory.CreateMany(randomSize - 1)
             ); 
 
@@ -24,13 +25,14 @@
 		}
 
         [Test]
-        public void IsFull_OneSlotAlmostFull_ReturnsFalse()
+        public void IsFull_OneSlotFull_ReturnsFalse()
         {
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var randomStackSize = random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
             var container = this.containerFactory.ShuffledItemsContainer(
-                randomSize, randomStackSize,
-                this.itemFactory.CreateMany(randomSize - 1)
+                randomSize, 
+                randomStackSize,
+                this.itemFactory.CreateMany(1)
             );
 
             Assert.That(container.IsFull, Is.False);
@@ -42,7 +44,8 @@
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var randomStackSize = random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
             var container = this.containerFactory.ShuffledItemsContainer(
-                randomSize, randomStackSize,
+                randomSize, 
+                randomStackSize,
                 this.itemFactory.CreateDefault()
             );
 
@@ -50,26 +53,16 @@
 		}
 
         [Test]
-        [Obsolete("This test is the same as 'IsFull_OneFullSlot_ReturnsFalse', fix it")]
-        public void IsFull_AllSlotsAlmostFull_ReturnsFalse()
-        {
-            var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
-            var randomStackSize = random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
-            var container = this.containerFactory.ShuffledItemsContainer(
-                randomSize, randomStackSize,
-                this.itemFactory.CreateDefault()
-            );
-
-            Assert.That(container.IsFull, Is.False);
-        }
-
-        [Test]
 		public void IsFull_AllSlotsFull_ReturnsTrue()
 		{
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var randomStackSize = random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
 
-            var container = this.containerFactory.FullContainer(randomSize, randomStackSize, this.itemFactory.CreateDefault());
+            var container = this.containerFactory.FullContainer(
+                randomSize, 
+                randomStackSize, 
+                this.itemFactory.CreateDefault()
+            );
 
             Assert.That(container.IsFull, Is.True);
 		}
