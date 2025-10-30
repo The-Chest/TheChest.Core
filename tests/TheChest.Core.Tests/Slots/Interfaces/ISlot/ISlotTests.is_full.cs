@@ -1,4 +1,4 @@
-﻿namespace TheChest.Core.Tests.Slots
+﻿namespace TheChest.Core.Tests.Slots.Interfaces
 {
     public abstract partial class ISlotTests<T>
     {
