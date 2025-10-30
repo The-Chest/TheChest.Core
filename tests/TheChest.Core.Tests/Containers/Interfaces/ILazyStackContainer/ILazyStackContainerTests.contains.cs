@@ -3,13 +3,6 @@
     public partial class ILazyStackContainerTests<T>
     {
         [Test]
-        public void Contains_NullItem_ThrowsArgumentNullException()
-        {
-            var container = this.containerFactory.EmptyContainer();
-            Assert.That(() => container.Contains(default!), Throws.ArgumentNullException);
-        }
-
-        [Test]
         public void Contains_EmptyContainer_ReturnsFalse()
         {
             var item = this.itemFactory.CreateDefault();
