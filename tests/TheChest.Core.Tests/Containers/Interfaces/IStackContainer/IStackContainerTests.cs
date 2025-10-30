@@ -1,4 +1,5 @@
 ﻿using TheChest.Core.Tests.Containers.Interfaces.Factories;
+using TheChest.Core.Tests.Items.Interfaces;
 
 namespace TheChest.Core.Tests.Containers.Interfaces
 {
@@ -6,7 +7,7 @@ namespace TheChest.Core.Tests.Containers.Interfaces
     {
         protected Random random;
         protected readonly IStackContainerFactory<T> containerFactory;
-        protected readonly ISlotItemFactory<T> itemFactory;
+        protected readonly IItemFactory<T> itemFactory;
 
         protected const int MIN_SIZE_TEST = 10;
         protected const int MAX_SIZE_TEST = 20;
@@ -14,7 +15,7 @@ namespace TheChest.Core.Tests.Containers.Interfaces
         protected const int MIN_STACK_SIZE_TEST = 10;
         protected const int MAX_STACK_SIZE_TEST = 20;
 
-        protected IStackContainerTests(IStackContainerFactory<T> containerFactory, ISlotItemFactory<T> itemFactory)
+        protected IStackContainerTests(IStackContainerFactory<T> containerFactory, IItemFactory<T> itemFactory)
         {
             this.containerFactory = containerFactory;
             this.itemFactory = itemFactory;

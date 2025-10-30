@@ -1,27 +1,31 @@
 ﻿using System.Reflection;
+using TheChest.Core.Tests.Items.Interfaces;
 
-namespace TheChest.Core.Tests.Slots.Factories
+namespace TheChest.Core.Tests.Items
 {
-    public class SlotItemFactory<T> : ISlotItemFactory<T>
+    public class ItemFactory<T> : IItemFactory<T>
     {
         public T CreateDefault()
         {
             var type = typeof(T);
-            var instance = Activator.CreateInstance(type);
+            var instance = 
+                Activator.CreateInstance(type) ??
+                throw new InvalidOperationException($"Could not create instance of type {type.FullName}");
+
             return (T)instance;
         }
 
         public T CreateRandom()
         {
             var type = typeof(T);
-            var instance = (T)Activator.CreateInstance(type);
+            var instance = Activator.CreateInstance(type) ??
+                throw new InvalidOperationException($"Could not create instance of type {type.FullName}");
 
-            //TODO: extract this logic to another class for other types of values
             var fields = instance.GetType().GetFields(BindingFlags.NonPublic |BindingFlags.Instance);
             foreach (var field in fields) { 
                 field.SetValue(instance, Guid.NewGuid().ToString());
             }
-            return instance;
+            return (T)instance;
         }
 
         public T[] CreateMany(int amount)

@@ -1,11 +1,11 @@
-﻿namespace TheChest.Core.Tests.Slots.Factories.Interfaces
+﻿namespace TheChest.Core.Tests.Items.Interfaces
 {
     /// <summary>
     /// Generic item creation.
     /// There is nothing special about this interface. 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface ISlotItemFactory<T>
+    public interface IItemFactory<T>
     {
         /// <summary>
         /// Creates an item

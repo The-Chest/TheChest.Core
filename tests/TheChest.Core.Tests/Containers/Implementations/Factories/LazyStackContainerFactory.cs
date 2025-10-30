@@ -2,6 +2,7 @@
 using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Tests.Containers.Extensions;
 using TheChest.Core.Tests.Containers.Interfaces.Factories;
+using TheChest.Core.Tests.Slots.Interfaces.Factories;
 
 namespace TheChest.Core.Tests.Containers.Implementations.Factories
 {
