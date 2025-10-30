@@ -1,5 +1,4 @@
 ﻿using TheChest.Core.Slots.Interfaces;
-using TheChest.Core.Tests.Extensions;
 
 namespace TheChest.Core.Tests.Containers.Extensions
 {
