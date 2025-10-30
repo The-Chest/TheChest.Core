@@ -1,9 +1,11 @@
 ﻿using TheChest.Core.Slots;
 using TheChest.Core.Slots.Interfaces;
+using TheChest.Core.Tests.Slots.Interfaces.Factories;
 
-namespace TheChest.Core.Tests.Slots.Factories
+namespace TheChest.Core.Tests.Slots.Implementations.Factories
 {
-    public class LazyStackSlotFactory<T, Y> : ILazyStackSlotFactory<Y> where T : LazyStackSlot<Y>
+    public class LazyStackSlotFactory<T, Y> : ILazyStackSlotFactory<Y> 
+        where T : LazyStackSlot<Y>
     {
         public ILazyStackSlot<Y> EmptySlot()
         {

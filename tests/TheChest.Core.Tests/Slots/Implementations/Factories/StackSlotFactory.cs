@@ -1,9 +1,11 @@
 ﻿using TheChest.Core.Slots;
 using TheChest.Core.Slots.Interfaces;
+using TheChest.Core.Tests.Slots.Interfaces.Factories;
 
-namespace TheChest.Core.Tests.Slots.Factories
+namespace TheChest.Core.Tests.Slots.Implementations.Factories
 {
-    public class StackSlotFactory<T, Y> : IStackSlotFactory<Y> where T : StackSlot<Y>
+    public class StackSlotFactory<T, Y> : IStackSlotFactory<Y> 
+        where T : StackSlot<Y>
     {
         public virtual IStackSlot<Y> EmptySlot()
         {
