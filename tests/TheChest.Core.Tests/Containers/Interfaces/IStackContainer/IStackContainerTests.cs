@@ -1,4 +1,6 @@
-﻿namespace TheChest.Core.Tests.Containers.Interfaces
+﻿using TheChest.Core.Tests.Containers.Interfaces.Factories;
+
+namespace TheChest.Core.Tests.Containers.Interfaces
 {
     public abstract partial class IStackContainerTests<T>
     {
