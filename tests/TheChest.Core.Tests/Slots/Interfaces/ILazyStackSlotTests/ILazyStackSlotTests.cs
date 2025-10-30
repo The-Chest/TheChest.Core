@@ -1,14 +1,17 @@
-﻿namespace TheChest.Core.Tests.Slots
+﻿using TheChest.Core.Tests.Items.Interfaces;
+using TheChest.Core.Tests.Slots.Interfaces.Factories;
+
+namespace TheChest.Core.Tests.Slots.Interfaces
 {
     public abstract partial class ILazyStackSlotTests<T>
     {
         protected readonly ILazyStackSlotFactory<T> slotFactory;
-        protected readonly ISlotItemFactory<T> itemFactory;
+        protected readonly IItemFactory<T> itemFactory;
         protected Random random;
 
         protected ILazyStackSlotTests(
             ILazyStackSlotFactory<T> slotFactory, 
-            ISlotItemFactory<T> itemFactory
+            IItemFactory<T> itemFactory
         )
         {
             this.slotFactory = slotFactory;

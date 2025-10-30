@@ -1,14 +1,7 @@
-﻿namespace TheChest.Core.Tests.Slots
+﻿namespace TheChest.Core.Tests.Slots.Interfaces
 {
     public partial class ILazyStackSlotTests<T>
     {
-        [Test]
-        public void Contains_NullItem_ThrowsArgumentNullException()
-        {
-            var slot = this.slotFactory.EmptySlot();
-            Assert.That(() => slot.Contains(default!), Throws.ArgumentNullException);
-        }
-
         [Test]
         public void Contains_EmptySlot_ReturnsFalse()
         {

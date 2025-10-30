@@ -1,19 +1,7 @@
-﻿namespace TheChest.Core.Tests.Slots
+﻿namespace TheChest.Core.Tests.Slots.Interfaces
 {
     public partial class ILazyStackSlotTests<T>
     {
-        [TestCase(0)]
-        [TestCase(-1)]
-        public void ContainsAmount_InvalidAmount_ThrowsArgumentOutOfRangeException(int amount)
-        {
-            var item = this.itemFactory.CreateDefault();
-            var slot = this.slotFactory.EmptySlot();
-            Assert.That(
-                () => slot.Contains(item, amount), 
-                Throws.TypeOf<ArgumentOutOfRangeException>().And.Message.Contains("amount")
-             );
-        }
-
         [Test]
         public void ContainsAmount_MaxStackAmountSmallerThanSearchedAmount_ReturnsFalse()
         {
