@@ -1,6 +1,6 @@
 ﻿namespace TheChest.Core.Tests.Slots.Interfaces
 {
-    public abstract partial class ISlotTests<T>
+    public partial class ISlotTests<T>
     {
         [Test]
         public void IsEmpty_CurentItemNull_ReturnsTrue()
