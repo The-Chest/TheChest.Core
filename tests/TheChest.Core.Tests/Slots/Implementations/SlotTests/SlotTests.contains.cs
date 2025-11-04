@@ -1,4 +1,4 @@
-﻿namespace TheChest.Core.Tests.Slots.Implementations.SlotTests
+﻿namespace TheChest.Core.Tests.Slots.Implementations
 {
     public partial class SlotTests<T>
     {

@@ -8,18 +8,18 @@ using TheChest.Core.Tests.Slots.Interfaces.Factories;
 namespace TheChest.Core.Tests.Slots.Implementations
 {
     [TestFixtureSource(nameof(FixtureArgs))]
-    internal class SlotTests : SlotTests<TestItem>
+    internal class StackSlotTests : StackSlotTests<TestItem>
     {
         static readonly object[] FixtureArgs =
         {
             new object[]
             {
-                new SlotFactory<Slot<TestItem>, TestItem>(),
+                new StackSlotFactory<StackSlot<TestItem>, TestItem>(),
                 new ItemFactory<TestItem>()
             }
         };
 
-        public SlotTests(ISlotFactory<TestItem> slotFactory, IItemFactory<TestItem> itemFactory) : 
+        public StackSlotTests(IStackSlotFactory<TestItem> slotFactory, IItemFactory<TestItem> itemFactory) : 
             base(slotFactory, itemFactory)
         {
         }

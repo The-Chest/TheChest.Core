@@ -4,9 +4,9 @@ using TheChest.Core.Tests.Slots.Interfaces.Factories;
 
 namespace TheChest.Core.Tests.Slots.Implementations
 {
-    public partial class StackSlotTests<T> : IStackSlotTests<T>
+    public abstract partial class StackSlotTests<T> : IStackSlotTests<T>
     {
-        public StackSlotTests(IStackSlotFactory<T> slotFactory, IItemFactory<T> itemFactory) : 
+        protected StackSlotTests(IStackSlotFactory<T> slotFactory, IItemFactory<T> itemFactory) : 
             base(slotFactory, itemFactory)
         {
         }

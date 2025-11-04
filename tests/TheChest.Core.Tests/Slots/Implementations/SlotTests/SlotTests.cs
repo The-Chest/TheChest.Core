@@ -2,7 +2,7 @@
 using TheChest.Core.Tests.Slots.Interfaces;
 using TheChest.Core.Tests.Slots.Interfaces.Factories;
 
-namespace TheChest.Core.Tests.Slots.Implementations.SlotTests
+namespace TheChest.Core.Tests.Slots.Implementations
 {
     public abstract partial class SlotTests<T> : ISlotTests<T>
     {
