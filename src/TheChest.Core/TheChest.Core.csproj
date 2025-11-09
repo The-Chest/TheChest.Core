@@ -1,46 +1,74 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup Label="Information">
 		<Title>The Chest Core</Title>
 		<Description>Lightweight library providing flexible container and slot classes for managing collections and inventory-like structures.</Description>
 		<Authors>The Chest</Authors>
 	</PropertyGroup>
+
+	<PropertyGroup Label="Package">
+		<IsPackable>true</IsPackable>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageProjectUrl>https://www.nuget.org/packages/TheChest.Core/</PackageProjectUrl>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>			
+	</PropertyGroup>
 	
 	<PropertyGroup Label="Repository">
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<RepositoryUrl>https://github.com/The-Chest/TheChest.Core</RepositoryUrl>
-		<PackageProjectUrl>https://www.nuget.org/packages/TheChest.Core/</PackageProjectUrl>
-		<PackageReadmeFile>readme.md</PackageReadmeFile>		
+		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
 
 	<PropertyGroup Label="Compiler">
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<ImplicitUsings>disable</ImplicitUsings>
-		<Nullable>enable</Nullable>
+		<Nullable>disable</Nullable>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DebugType>portable</DebugType>
+		<Optimize>true</Optimize>
 	</PropertyGroup>
 
 	<PropertyGroup Label="Symbols">
-		<IsPackable>true</IsPackable>
 		<IncludeSymbols>true</IncludeSymbols>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<DebugSymbols>true</DebugSymbols>
 	</PropertyGroup>
 
 	<PropertyGroup Label="CI">
 		<Deterministic>true</Deterministic>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	</PropertyGroup>
-
-	<PropertyGroup Label="Debug">
-		<DebugType>portable</DebugType>
-		<DebugSymbols>true</DebugSymbols>
-		<Optimize>true</Optimize>
+	
+	<PropertyGroup Label="Assembly">
+		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+		<SignAssembly>False</SignAssembly>
+	</PropertyGroup>
+	
+	<PropertyGroup Label="Analysis">
+	  <EnableNETAnalyzers>False</EnableNETAnalyzers>
+	  <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
+	  <AnalysisLevel>none</AnalysisLevel>
 	</PropertyGroup>
 
 	<ItemGroup Label="Package">
-		<None Include="..\..\readme.md">
+		<None Include="..\..\icon.png">
 			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup Label="Docs">
+		<None Include="..\..\README.md">
+			<Pack>False</Pack>
+			<PackagePath>docs</PackagePath>
+		</None>
+		<None Include="..\..\CHANGELOG.md">
+			<Pack>False</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
