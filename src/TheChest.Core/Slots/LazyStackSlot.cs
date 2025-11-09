@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots
