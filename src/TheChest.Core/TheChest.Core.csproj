@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup Label="Package">
+	<PropertyGroup Label="Information">
 		<Title>The Chest Core</Title>
 		<Description>Lightweight library providing flexible container and slot classes for managing collections and inventory-like structures.</Description>
 		<Authors>The Chest</Authors>
@@ -21,6 +21,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Label="Symbols">
+		<IsPackable>true</IsPackable>
 		<IncludeSymbols>true</IncludeSymbols>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -35,9 +36,7 @@
 		<DebugType>portable</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 		<Optimize>true</Optimize>
-		<DebugType>embedded</DebugType>
 	</PropertyGroup>
-
 
 	<ItemGroup Label="Package">
 		<None Include="..\..\readme.md">
