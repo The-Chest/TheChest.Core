@@ -1,7 +1,4 @@
-﻿using TheChest.Core.Tests.Containers.Interfaces.Factories;
-using TheChest.Core.Tests.Items.Interfaces;
-
-namespace TheChest.Core.Tests.Containers.Interfaces
+﻿namespace TheChest.Core.Tests.Containers.Interfaces
 {
     public abstract partial class ILazyStackContainerTests<T>
     {

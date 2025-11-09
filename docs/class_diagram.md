@@ -130,6 +130,7 @@ direction BT
 
 ## ILazyStackContainer Diagram
 The `ILazyStackContainer` diagram represents a generic container interface that supports lazy loading of stackable slots, allowing multiple items from the same type to be stored in a single slot.
+
 ```mermaid
 ---
 config:
