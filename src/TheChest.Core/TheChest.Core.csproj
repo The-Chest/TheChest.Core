@@ -1,28 +1,48 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	
+
 	<PropertyGroup Label="Package">
 		<Title>The Chest Core</Title>
 		<Description>Lightweight library providing flexible container and slot classes for managing collections and inventory-like structures.</Description>
 		<Authors>The Chest</Authors>
-		<RepositoryUrl>https://github.com/The-Chest/TheChest.Core</RepositoryUrl>
-		<PackageProjectUrl>https://www.nuget.org/packages/TheChest.Core/</PackageProjectUrl>
-		<PackageReadmeFile>readme.md</PackageReadmeFile>
-	  	<IncludeSymbols>True</IncludeSymbols>
 	</PropertyGroup>
 	
+	<PropertyGroup Label="Repository">
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<RepositoryUrl>https://github.com/The-Chest/TheChest.Core</RepositoryUrl>
+		<PackageProjectUrl>https://www.nuget.org/packages/TheChest.Core/</PackageProjectUrl>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>		
+	</PropertyGroup>
+
 	<PropertyGroup Label="Compiler">
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<DebugType>embedded</DebugType>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-		<SymbolPackageFormat>symbols.nupkg</SymbolPackageFormat>
 	</PropertyGroup>
-		
+
+	<PropertyGroup Label="Symbols">
+		<IncludeSymbols>true</IncludeSymbols>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+
+	<PropertyGroup Label="CI">
+		<Deterministic>true</Deterministic>
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup>
+
+	<PropertyGroup Label="Debug">
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>true</Optimize>
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+
 	<ItemGroup Label="Package">
-	  <None Include="..\..\readme.md">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	</ItemGroup>	
+		<None Include="..\..\readme.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 </Project>
