@@ -74,8 +74,6 @@ public class MyContainer : IContainer<int>
 {
     private readonly ISlot<int>[] slots; 
 
-    public ISlot<int> this[int index] => this.slots.ToArray()[index];
-
     public int Size { get; }
 
     public bool IsFull { get; }
