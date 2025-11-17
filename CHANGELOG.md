@@ -1,10 +1,22 @@
+# v0.14.0
+
+## What's Removed
+* Removed `this[index]` from `IContainer`, `IStackContainer`, `IInventory`, and `IStackInventory` interfaces and its implementations
+
+## What's next
+* Aiming to release `TheChest.Core` v1.0.0 on the next release
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.13.0...v0.14.0
+
 # v0.13.0
 
 ## What's Changed
 * Improve tests by separating interfaces and implementation 
 * Improve the package building
+
 ## Known issues
 * No better way to instantiate the classes (Thinking about adding a Factory)
+
 ## What's next
 * Maybe the Container structure can be unified (the interface part at least) and the implementation can decide about how to handle it
   * Check how this would affect `TheChest.Inventories`
@@ -15,11 +27,14 @@
 
 ## What's Changed
 * `Contains` methods for all Inventory classes are now part of its interfaces contracts
+
 ## What's Fixed
 * `Contains` methods in all Slot classes are now marked as `virtual`
+
 ## Known issues
 * [#100](https://github.com/The-Chest/TheChest.Core/issues/100) - Interfaces and implementations are sharing the same test scenarios
 * No better way to instantiate the classes (Thinking about adding a Factory)
+
 ## What's next
 * Maybe the Container structure can be unified (the interface part at least) and the implementation can decide about how to handle it
   * Check how this would affect `TheChest.Inventories`
@@ -32,6 +47,7 @@
 * `ILazyStackSlot<T>` and  `ILazyStackContainer<T>` interfaces
   * Separated unit tests for both
   * Docs also added to it
+
 ## Known issues
 * [#100](https://github.com/The-Chest/TheChest.Core/issues/100) - Interfaces and implementations are sharing the same test scenarios
 * [#101](https://github.com/The-Chest/TheChest.Core/issues/101)  - Slots `Contains` method not marked as `virtual`
