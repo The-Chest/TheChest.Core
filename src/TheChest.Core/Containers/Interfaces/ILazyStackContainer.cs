@@ -1,9 +1,7 @@
-﻿using TheChest.Core.Slots.Interfaces;
-
-namespace TheChest.Core.Containers.Interfaces
+﻿namespace TheChest.Core.Containers.Interfaces
 {
     /// <summary>
-    /// Interface with the basics of a container
+    /// Interface with the basics of a container with lazy stack features
     /// </summary>
     /// <typeparam name="T">An item type</typeparam>
     public interface ILazyStackContainer<in T>
@@ -20,12 +18,6 @@ namespace TheChest.Core.Containers.Interfaces
         /// Verify if the container is empty
         /// </summary>
         bool IsEmpty { get; }
-        /// <summary>
-        /// Gets an <see cref="ILazyStackSlot{T}"/> from the Container
-        /// </summary>
-        /// <param name="index">Index of a slot</param>
-        /// <returns>An <see cref="ILazyStackSlot{T}"/> from inside the container</returns>
-        ILazyStackSlot<T> this[int index] { get; }
 
         /// <summary>
         /// Checks if the container contains an item.

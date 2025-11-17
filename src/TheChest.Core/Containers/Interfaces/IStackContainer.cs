@@ -1,9 +1,7 @@
-﻿using TheChest.Core.Slots.Interfaces;
-
-namespace TheChest.Core.Containers.Interfaces
+﻿namespace TheChest.Core.Containers.Interfaces
 {
     /// <summary>
-    /// Interface with the basics of a container with <see cref="IStackSlot{T}"/> features
+    /// Interface with the basics of a container with Stack features
     /// </summary>
     /// <typeparam name="T">An item type</typeparam>
     public interface IStackContainer<in T>
@@ -12,23 +10,15 @@ namespace TheChest.Core.Containers.Interfaces
         /// Size of the current Container
         /// </summary>
         int Size { get; }
-
         /// <summary>
         /// Verify if the container is full
         /// </summary>
         bool IsFull { get; }
-
         /// <summary>
         /// Verify if the container is empty
         /// </summary>
         bool IsEmpty { get; }
 
-        /// <summary>
-        /// Gets an item from <see cref="IStackSlot{T}"/>
-        /// </summary>
-        /// <param name="index">Index of a slot<para>It needs to be smaller than <see cref="IStackContainer{T}.Size"/></para></param>
-        /// <returns>An item from <see cref="IStackSlot{T}"/></returns>
-        IStackSlot<T> this[int index] { get; }
         /// <summary>
         /// Checks if the container contains an item.
         /// </summary>

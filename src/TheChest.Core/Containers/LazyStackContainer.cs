@@ -15,6 +15,12 @@ namespace TheChest.Core.Containers
         /// Slots in the Container
         /// </summary>
         protected readonly ILazyStackSlot<T>[] slots;
+        /// <inheritdoc/>
+        public virtual int Size => this.slots.Length;
+        /// <inheritdoc/>
+        public virtual bool IsFull => this.slots.All(x => x.IsFull);
+        /// <inheritdoc/>
+        public virtual bool IsEmpty => this.slots.All(x => x.IsEmpty);
 
         /// <summary>
         /// Creates a Container with <see cref="ILazyStackSlot{T}"/> implementation
@@ -25,15 +31,6 @@ namespace TheChest.Core.Containers
         {
             this.slots = slots ?? throw new ArgumentNullException(nameof(slots));
         }
-
-        /// <inheritdoc/>
-        public ILazyStackSlot<T> this[int index] => this.slots[index];
-        /// <inheritdoc/>
-        public virtual int Size => this.slots.Length;
-        /// <inheritdoc/>
-        public virtual bool IsFull => this.slots.All(x => x.IsFull);
-        /// <inheritdoc/>
-        public virtual bool IsEmpty => this.slots.All(x => x.IsEmpty);
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
@@ -50,7 +47,6 @@ namespace TheChest.Core.Containers
 
             return false;
         }
-
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>

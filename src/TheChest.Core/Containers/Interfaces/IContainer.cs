@@ -1,6 +1,4 @@
-﻿using TheChest.Core.Slots.Interfaces;
-
-namespace TheChest.Core.Containers.Interfaces
+﻿namespace TheChest.Core.Containers.Interfaces
 {
     /// <summary>
     /// Interface with the basics of a container
@@ -20,13 +18,6 @@ namespace TheChest.Core.Containers.Interfaces
         /// Verify if the container is empty
         /// </summary>
         bool IsEmpty { get; }
-
-        /// <summary>
-        /// Gets an <see cref="ISlot{T}"/> from the Container
-        /// </summary>
-        /// <param name="index">Index of a slot</param>
-        /// <returns>An <see cref="ISlot{T}"/> from inside the container</returns>
-        ISlot<T> this[int index] { get; }
         
         /// <summary>
         /// Checks if the container contains an <paramref name="item"/>.
