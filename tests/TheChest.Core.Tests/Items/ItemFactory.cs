@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using TheChest.Core.Tests.Items.Interfaces;
 
 namespace TheChest.Core.Tests.Items
 {
