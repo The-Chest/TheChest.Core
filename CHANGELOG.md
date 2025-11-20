@@ -1,7 +1,8 @@
 # v0.14.0
 
 ## What's Removed
-* Removed `this[index]` from `IContainer`, `IStackContainer`, `IInventory`, and `IStackInventory` interfaces and its implementations
+* Removed `this[index]` from `IContainer`,`IStackContainer` e `ILazyStackContainer`
+* Removed `this[index]` from `Container`,`StackContainer` e `LazyStackContainer`
 
 ## What's next
 * Aiming to release `TheChest.Core` v1.0.0 on the next release
