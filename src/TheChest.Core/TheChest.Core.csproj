@@ -10,7 +10,7 @@
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageProjectUrl>https://www.nuget.org/packages/TheChest.Core/</PackageProjectUrl>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<PackageReadmeFile>readme.md</PackageReadmeFile>			
+		<PackageReadmeFile>README.md</PackageReadmeFile>			
 	</PropertyGroup>
 	
 	<PropertyGroup Label="Repository">
@@ -60,16 +60,18 @@
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
+		<None Include="..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup Label="Docs">
 		<None Include="..\..\README.md">
 			<Pack>False</Pack>
-			<PackagePath>docs</PackagePath>
 		</None>
 		<None Include="..\..\CHANGELOG.md">
 			<Pack>False</Pack>
-			<PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
 </Project>
