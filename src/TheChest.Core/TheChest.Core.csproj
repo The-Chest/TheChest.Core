@@ -9,7 +9,7 @@
 		<IsPackable>true</IsPackable>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageProjectUrl>https://www.nuget.org/packages/TheChest.Core/</PackageProjectUrl>
-		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>			
 	</PropertyGroup>
 	
