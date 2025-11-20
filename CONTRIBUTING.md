@@ -9,11 +9,9 @@ Please read this guide before opening an issue or pull request.
 
 ### Reporting Bugs
 Please use the existing **[Bug Report Issue Template](https://github.com/The-Chest/TheChest.Core/issues/new?template=bug_report.md)** available in the **Issues** tab.  
-Provide all required information in the template to help investigate the problem efficiently.
 
 ### Requesting Features
 For new features, open an issue using the **[Feature Request Issue Template](https://github.com/The-Chest/TheChest.Core/issues/new?template=feature_request.md)**.  
-Clearly describe the scenario, motivation, and expected behavior as requested in the template.
 
 ### Requesting Refactors / Improvements
 For internal improvements (performance, maintainability, simplification, code cleanup, etc.), use the **[Refactor Request Issue Template](https://github.com/The-Chest/TheChest.Core/issues/new?template=refactor-request.md)**.
