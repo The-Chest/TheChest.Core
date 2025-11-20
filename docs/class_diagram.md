@@ -18,7 +18,6 @@ classDiagram
 direction BT
 	namespace TheChest.Core.Containers.Interfaces {
         class IContainer~T~ {
-	        +ISlot~T~ this[int index]
 	        +int Size
 	        +bool IsEmpty
 	        +bool IsFull
@@ -36,7 +35,6 @@ direction BT
 	namespace TheChest.Core.Containers {
         class Container~T~ {
 			-ISlot~T~[] slots
-			+ISlot~T~ this[int index]
 	        +int Size
 	        +bool IsEmpty
 	        +bool IsFull
@@ -76,7 +74,6 @@ classDiagram
 direction BT
 	namespace TheChest.Core.Containers.Interfaces {
 		class IStackContainer~T~ {
-	        +IStackSlot~T~ this[int index]
 	        +int Size
 	        +bool IsEmpty
 	        +bool IsFull
@@ -99,7 +96,6 @@ direction BT
 	namespace TheChest.Core.Containers {
 		class StackContainer~T~ {
 			-IStackSlot~T~[] slots
-			+IStackSlot~T~ this[int index]
 	        +int Size
 	        +bool IsEmpty
 	        +bool IsFull
@@ -143,7 +139,6 @@ classDiagram
 direction BT
 	namespace TheChest.Core.Containers.Interfaces {
 		class ILazyStackContainer~T~ {
-	        +ILazyStackSlot~T~ this[int index]
 	        +int Size
 	        +bool IsEmpty
 	        +bool IsFull
@@ -162,7 +157,6 @@ direction BT
 	namespace TheChest.Core.Containers {
 		class LazyStackContainer~T~ {
 			-ILazyStackSlot~T~[] slots
-			+ILazyStackSlot~T~ this[int index]
 			+int Size
 			+bool IsEmpty
 			+bool IsFull
