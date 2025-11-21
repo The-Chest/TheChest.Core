@@ -1,5 +1,8 @@
 # The Chest Core
 
+[![NuGet Version](https://img.shields.io/nuget/v/TheChest.core)](https://www.nuget.org/packages/TheChest.Core)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=The-Chest_TheChest.Core&metric=coverage)](https://sonarcloud.io/summary/new_code?id=The-Chest_TheChest.Core)
+
 The Chest Core is a lightweight and extensible library for creating containers, slots, and inventory-like data structures. It provides abstractions and ready-to-use base implementations, allowing to build storage systems.
 
 ## How does it work
