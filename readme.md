@@ -1,6 +1,6 @@
 # The Chest Core
 
-The Chest Core is a library that provides a collection of abstract classes, interfaces, and utility functions to create and manage containers and slots. It is designed to be flexible and extensible.
+The Chest Core is a lightweight and extensible library for creating containers, slots, and inventory-like data structures. It provides abstractions and ready-to-use base implementations, allowing to build storage systems.
 
 ## How does it work
 
