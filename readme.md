@@ -8,6 +8,22 @@ The library revolves around the concepts of `Container` and `Slot`. A `Container
 
 ## How to use it
 
+### Quick Start
+
+```csharp
+using TheChest.Core.Containers;
+using TheChest.Core.Slots;
+
+var slots = new ISlot<int>[]
+{
+    new Slot<int>(0),
+    new Slot<int>(0),
+    new Slot<int>(5)
+};
+
+var container = new Container<int>(slots);
+```
+
 ### Installation
 
 #### NuGet
