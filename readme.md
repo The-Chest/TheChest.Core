@@ -1,12 +1,31 @@
 # The Chest Core
 
-The Chest Core is a library that provides a collection of abstract classes, interfaces, and utility functions to create and manage containers and slots. It is designed to be flexible and extensible.
+[![NuGet Version](https://img.shields.io/nuget/v/TheChest.core)](https://www.nuget.org/packages/TheChest.Core)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=The-Chest_TheChest.Core&metric=coverage)](https://sonarcloud.io/summary/new_code?id=The-Chest_TheChest.Core)
+
+The Chest Core is a lightweight and extensible library for creating containers, slots, and inventory-like data structures. It provides abstractions and ready-to-use base implementations, allowing to build storage systems.
 
 ## How does it work
 
 The library revolves around the concepts of `Container` and `Slot`. A `Container` holds multiple `Slot` objects, and each `Slot` can store an item. The library provides base implementations and interfaces to simplify the creation of custom containers and slots.
 
 ## How to use it
+
+### Quick Start
+
+```csharp
+using TheChest.Core.Containers;
+using TheChest.Core.Slots;
+
+var slots = new ISlot<int>[]
+{
+    new Slot<int>(0),
+    new Slot<int>(0),
+    new Slot<int>(5)
+};
+
+var container = new Container<int>(slots);
+```
 
 ### Installation
 
