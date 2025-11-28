@@ -10,14 +10,8 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
     [TestFixture(typeof(TestStructItem))]
     public partial class StackSlotTests<T> : IStackSlotTests<T>
     {
-        public StackSlotTests() : 
-            base(
-                (container) =>
-                {
-                    container.Register<IStackSlotFactory<T>, StackSlotFactory<StackSlot<T>, T>>();
-                }
-            )
-        {
-        }
+        public StackSlotTests() : base(
+            container => container.Register<IStackSlotFactory<T>, StackSlotFactory<StackSlot<T>, T>>()
+        ) { }
     }
 }

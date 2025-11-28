@@ -11,10 +11,7 @@ namespace TheChest.Core.Tests.Slots.SlotTests
     public partial class SlotTests<T> : ISlotTests<T>
     {
         public SlotTests() : base(
-            container =>
-            {
-                container.Register<ISlotFactory<T>, SlotFactory<Slot<T>,T>>();
-            }
+            container => container.Register<ISlotFactory<T>, SlotFactory<Slot<T>,T>>()
         ) { }
     }
 }
