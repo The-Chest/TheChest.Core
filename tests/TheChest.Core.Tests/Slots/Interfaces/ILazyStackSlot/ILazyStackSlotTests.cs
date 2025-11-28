@@ -1,7 +1,4 @@
-﻿using TheChest.Core.Tests.Items.Interfaces;
-using TheChest.Core.Tests.Slots.Interfaces.Factories;
-
-namespace TheChest.Core.Tests.Slots.Interfaces
+﻿namespace TheChest.Core.Tests.Slots.Interfaces
 {
     public abstract partial class ILazyStackSlotTests<T>
     {

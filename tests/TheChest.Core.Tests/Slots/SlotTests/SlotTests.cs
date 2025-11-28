@@ -1,10 +1,10 @@
 ﻿using TheChest.Core.Slots;
 using TheChest.Core.Tests.Items.Classes;
 using TheChest.Core.Tests.Items.Structs;
-using TheChest.Core.Tests.Slots.Implementations.Factories;
+using TheChest.Core.Tests.Slots.Factories;
 using TheChest.Core.Tests.Slots.Interfaces.ISlots;
 
-namespace TheChest.Core.Tests.Slots.Implementations.Slots
+namespace TheChest.Core.Tests.Slots.SlotTests
 {
     [TestFixture(typeof(TestItem))]
     [TestFixture(typeof(TestStructItem))]

@@ -1,11 +1,11 @@
-﻿namespace TheChest.Core.Tests.Slots.Interfaces
+﻿namespace TheChest.Core.Tests.Slots.Interfaces.IStackSlots
 {
     public partial class IStackSlotTests<T>
     {
         [Test]
         public void IsFull_CurentItemNull_ReturnsFalse()
         {
-            var slot = this.slotFactory.WithItem(default, 1);
+            var slot = this.slotFactory.WithItem(default!, 1, 10);
 
             Assert.That(slot.IsFull, Is.False);
         }
