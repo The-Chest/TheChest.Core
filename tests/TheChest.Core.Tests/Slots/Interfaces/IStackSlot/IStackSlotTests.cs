@@ -1,6 +1,6 @@
 ﻿using TheChest.Core.Tests.Configurations;
 
-namespace TheChest.Core.Tests.Slots.Interfaces.IStackSlots
+namespace TheChest.Core.Tests.Slots.Interfaces.IStackSlotTests
 {
     public abstract partial class IStackSlotTests<T> : BaseTest<T>
     {

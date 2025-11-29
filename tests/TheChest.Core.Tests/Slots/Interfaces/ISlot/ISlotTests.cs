@@ -1,7 +1,7 @@
 ﻿using TheChest.Core.Tests.Items;
 using TheChest.Core.Tests.Configurations;
 
-namespace TheChest.Core.Tests.Slots.Interfaces.ISlots
+namespace TheChest.Core.Tests.Slots.Interfaces.ISlotTests
 {
     public abstract partial class ISlotTests<T> : BaseTest<T>
     {
@@ -12,12 +12,6 @@ namespace TheChest.Core.Tests.Slots.Interfaces.ISlots
         {
             this.slotFactory = this.container.Resolve<ISlotFactory<T>>();
             this.itemFactory = this.container.Resolve<IItemFactory<T>>();
-        }
-
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            this.container.Dispose();
         }
     }
 }

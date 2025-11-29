@@ -1,4 +1,4 @@
-﻿namespace TheChest.Core.Tests.Slots.Interfaces.IStackSlots
+﻿namespace TheChest.Core.Tests.Slots.Interfaces.IStackSlotTests
 {
     public partial class IStackSlotTests<T>
     {

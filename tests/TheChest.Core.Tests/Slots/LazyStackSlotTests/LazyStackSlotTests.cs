@@ -1,7 +1,7 @@
-﻿using TheChest.Core.Slots;
-using TheChest.Core.Tests.Items.Classes;
+﻿using TheChest.Core.Tests.Items.Classes;
 using TheChest.Core.Tests.Items.Structs;
 using TheChest.Core.Tests.Slots.Factories;
+using TheChest.Core.Tests.Slots.Interfaces.ILazyStackSlotTests;
 
 namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 {

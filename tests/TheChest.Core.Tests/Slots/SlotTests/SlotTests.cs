@@ -1,8 +1,7 @@
-﻿using TheChest.Core.Slots;
-using TheChest.Core.Tests.Items.Classes;
+﻿using TheChest.Core.Tests.Items.Classes;
 using TheChest.Core.Tests.Items.Structs;
 using TheChest.Core.Tests.Slots.Factories;
-using TheChest.Core.Tests.Slots.Interfaces.ISlots;
+using TheChest.Core.Tests.Slots.Interfaces.ISlotTests;
 
 namespace TheChest.Core.Tests.Slots.SlotTests
 {

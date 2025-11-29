@@ -1,6 +1,6 @@
 ﻿using TheChest.Core.Tests.Configurations;
 
-namespace TheChest.Core.Tests.Slots.Interfaces
+namespace TheChest.Core.Tests.Slots.Interfaces.ILazyStackSlotTests
 {
     public abstract partial class ILazyStackSlotTests<T> : BaseTest<T>
     {
