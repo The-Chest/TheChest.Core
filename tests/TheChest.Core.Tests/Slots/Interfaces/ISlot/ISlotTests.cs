@@ -3,22 +3,13 @@ using TheChest.Core.Tests.Configurations;
 
 namespace TheChest.Core.Tests.Slots.Interfaces.ISlots
 {
-    public abstract partial class ISlotTests<T>
+    public abstract partial class ISlotTests<T> : BaseTest<T>
     {
         protected readonly ISlotFactory<T> slotFactory;
         protected readonly IItemFactory<T> itemFactory;
 
-        private readonly DIContainer container;
-
-        protected ISlotTests(Action<DIContainer> configure)
+        protected ISlotTests(Action<DIContainer> configure) : base(configure)
         {
-            this.container = new DIContainer();
-
-            configure(this.container);
-
-            if (!this.container.IsRegistered<IItemFactory<T>>())
-                this.container.Register<IItemFactory<T>, ItemFactory<T>>();
-
             this.slotFactory = this.container.Resolve<ISlotFactory<T>>();
             this.itemFactory = this.container.Resolve<IItemFactory<T>>();
         }
