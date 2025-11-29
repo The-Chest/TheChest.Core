@@ -1,10 +1,16 @@
-﻿namespace TheChest.Core.Tests.Slots.Implementations
+﻿using TheChest.Core.Slots;
+using TheChest.Core.Tests.Items.Classes;
+using TheChest.Core.Tests.Items.Structs;
+using TheChest.Core.Tests.Slots.Factories;
+
+namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 {
-    public abstract partial class LazyStackSlotTests<T> : ILazyStackSlotTests<T>
+    [TestFixture(typeof(TestItem))]
+    [TestFixture(typeof(TestStructItem))]
+    public partial class LazyStackSlotTests<T> : ILazyStackSlotTests<T>
     {
-        protected LazyStackSlotTests(ILazyStackSlotFactory<T> slotFactory, IItemFactory<T> itemFactory) : 
-            base(slotFactory, itemFactory)
-        {
-        }
+        public LazyStackSlotTests() : base(
+            container => container.Register<ILazyStackSlotFactory<T>, LazyStackSlotFactory<LazyStackSlot<T>, T>>()
+        ) { }
     }
 }
