@@ -1,4 +1,4 @@
-﻿namespace TheChest.Core.Tests.Containers.Implementations
+﻿namespace TheChest.Core.Tests.Containers.ContainerTests
 {
     public partial class ContainerTests<T>
     {

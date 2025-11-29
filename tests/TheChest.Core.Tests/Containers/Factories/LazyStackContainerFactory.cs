@@ -2,7 +2,7 @@
 using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Tests.Extensions;
 
-namespace TheChest.Core.Tests.Containers.Implementations.Factories
+namespace TheChest.Core.Tests.Containers.Factories
 {
     public class LazyStackContainerFactory<Container, Item> : ILazyStackContainerFactory<Item>
         where Container : ILazyStackContainer<Item>
