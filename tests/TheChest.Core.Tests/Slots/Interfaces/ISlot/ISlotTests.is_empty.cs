@@ -3,14 +3,14 @@
     public partial class ISlotTests<T>
     {
         [Test]
-        public void IsEmpty_CurentItemNull_ReturnsTrue()
+        public void IsEmpty_CurrentItemDefault_ReturnsTrue()
         {
             var slot = this.slotFactory.EmptySlot();
             Assert.That(slot.IsEmpty, Is.True);
         }
 
         [Test]
-        public void IsEmpty_CurentItemNotNull_ReturnsFalse()
+        public void IsEmpty_WithCurrentItem_ReturnsFalse()
         {
             var item = this.itemFactory.CreateDefault();
             var slot = this.slotFactory.FullSlot(item);
@@ -18,7 +18,7 @@
         }
 
         [Test]
-        public void IsEmpty_SlotIsFull_ReturnsFalse()
+        public void IsEmpty_IsFull_ReturnsFalse()
         {
             var item = this.itemFactory.CreateDefault();
             var slot = this.slotFactory.FullSlot(item);

@@ -1,5 +1,4 @@
-﻿using TheChest.Core.Tests.Items;
-using TheChest.Core.Tests.Configurations;
+﻿using TheChest.Core.Tests.Configurations;
 
 namespace TheChest.Core.Tests.Slots.Interfaces.ISlotTests
 {
