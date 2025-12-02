@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using TheChest.Core.Slots.Interfaces;
 
@@ -14,8 +13,54 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// The content inside the slot
         /// </summary>
-        protected T[] content;
+        private object?[] content;
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual T[] Content
+        {
+            get
+            {
+                var result = new T[this.MaxAmount];
 
+                for (int i = 0; i < this.MaxAmount; i++)
+                {
+                    var obj = this.content[i];
+                    if(typeof(T).IsValueType && obj is null)
+                    {
+                        result[i] = default!;
+                    }
+                    else
+                    {
+                        result[i] = (T)obj!;
+                    }
+                }
+
+                return result;
+            }
+            protected set
+            {
+                if (value is null)
+                    throw new ArgumentNullException(nameof(value));
+
+                if (value.Length != this.MaxAmount)
+                {
+                    this.content = new object?[value.Length];
+                    this.maxAmount = value.Length;
+                }
+
+                for (int i = 0; i < value.Length; i++)
+                {
+                    var item = value[i];
+
+                    if (item is null)
+                        continue;
+
+                    this.content[i] = item;
+                    this.amount++;
+                }
+            }
+        }
         /// <summary>
         /// The current amount of items inside the slot
         /// </summary>
@@ -25,7 +70,7 @@ namespace TheChest.Core.Slots
         {
             get
             {
-                return amount;
+                return this.amount;
             }
             protected set
             {
@@ -35,16 +80,15 @@ namespace TheChest.Core.Slots
                         message: "The item amount property cannot be smaller than zero"
                     );
 
-                if (value > MaxAmount)
+                if (value > this.MaxAmount)
                     throw new ArgumentOutOfRangeException(
                         paramName: nameof(value),
                         message: "The item amount cannot be bigger than max amount"
                     );
 
-                amount = value;
+                this.amount = value;
             }
         }
-
         /// <summary>
         /// The maximum amount of items that this slot can hold
         /// </summary>
@@ -54,7 +98,7 @@ namespace TheChest.Core.Slots
         {
             get
             {
-                return maxAmount;
+                return this.maxAmount;
             }
             protected set
             {
@@ -63,50 +107,59 @@ namespace TheChest.Core.Slots
                         paramName: nameof(value),
                         message: "The max amount property cannot be smaller than zero"
                     );
-
-                if (value < Amount)
+                if (value < this.Amount)
                     throw new ArgumentOutOfRangeException(
                         paramName: nameof(value),
                         message: "The item amount cannot be bigger than max amount"
                     );
 
-                maxAmount = value;
+                this.maxAmount = value;
             }
         }
-
         /// <inheritdoc/>
         public virtual bool IsFull => this.Amount == this.MaxAmount;
         /// <inheritdoc/>
         public virtual bool IsEmpty => this.Amount == 0;
 
         /// <summary>
+        /// Creates an empty <see cref="StackSlot{T}"/>
+        /// </summary>
+        public StackSlot() : this(Array.Empty<T>(), 0) 
+        { }
+        /// <summary>
+        /// Creates an empty <see cref="StackSlot{T}"/> with a defined max size
+        /// </summary>
+        /// <param name="maxAmount">The MaxSizeAllowed</param>
+        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxAmount"/> is zero or smaller</exception>
+        public StackSlot(int maxAmount) : this(Array.Empty<T>(), maxAmount)
+        { }
+        /// <summary>
         /// Creates a basic <see cref="StackSlot{T}"/> with the max size defined by the array
         /// </summary>
         /// <param name="items">The amount of items to be added to the created slot and also sets the <see cref="IStackSlot{T}.MaxAmount"/></param>
-        /// <exception cref="ArgumentNullException"></exception>
-        public StackSlot(T[] items)
+        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is null</exception>
+        public StackSlot(T[] items) : this(items, items.Length)
         {
-            this.content = items ?? 
+            if (items is null)
                 throw new ArgumentNullException(nameof(items));
-            this.MaxAmount = items.Length;
-            this.Amount = items.Count(item => !(item is null));
         }
-
         /// <summary>
-        /// Creates a basic <see cref="StackSlot{T}"/> with items and a max size defined by param the <paramref name="maxStackAmount"/>
+        /// Creates a basic <see cref="StackSlot{T}"/> with items and a max size defined by param the <paramref name="maxAmount"/>
         /// </summary>
         /// <param name="items">The amount of items to be inside the created slot</param>
-        /// <param name="maxStackAmount">Sets the max amount permitted to the slot (cannot be smaller than <paramref name="items"/> size)</param>
+        /// <param name="maxAmount">Sets the max amount permitted to the slot (cannot be smaller than <paramref name="items"/> size)</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public StackSlot(T[] items, int maxStackAmount)
+        public StackSlot(T[] items, int maxAmount)
         {
             if (items is null)
                 throw new ArgumentNullException(nameof(items));
 
-            Array.Resize(ref items, maxStackAmount);
-            this.content = items;
-            this.MaxAmount = maxStackAmount;
+            this.content = new object?[items.Length];
+            for (int i = 0; i < items.Length; i++)
+                this.content[i] = items[i];
+
+            this.MaxAmount = maxAmount;
             this.Amount = items.Count(item => !(item is null));
         }
 
@@ -116,27 +169,25 @@ namespace TheChest.Core.Slots
         {
             if(item is null)
                 throw new ArgumentNullException(nameof(item));
-
             if (this.IsEmpty)
                 return false;
 
-            return this.content.Contains(item) && this.Amount >= amount;
+            return this.Content.Contains(item) && this.Amount >= amount;
         }
-
         /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="items"/> contain any null value</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is null or contain any null values</exception>
         public virtual bool Contains(T[] items)
         {
-            if(items.Length == 0 || this.IsEmpty)
+            if (items is null)
+                throw new ArgumentNullException(nameof(items));
+            if (items.Length == 0 || this.IsEmpty)
                 return false;
 
             for (int i = 0; i < items.Length; i++)
             {
-                var item = items[i];
-                if (EqualityComparer<T>.Default.Equals(item, default!))
+                var item = items[i] ?? 
                     throw new ArgumentNullException(nameof(items), "Items cannot contain null values");
-
-                if (!this.content.Contains(item))
+                if (!this.Content.Contains(item))
                     return false;
             }
 
