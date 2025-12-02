@@ -2,8 +2,8 @@
 using TheChest.Core.Containers;
 using TheChest.Core.Tests.Items;
 using TheChest.Core.Tests.Items.Classes;
-using TheChest.Core.Tests.Slots.Implementations.Factories;
-using TheChest.Core.Tests.Containers.Implementations.Factories;
+using TheChest.Core.Tests.Slots.Factories;
+using TheChest.Core.Tests.Containers.Factories;
 
 namespace TheChest.Core.Tests.Containers.Implementations
 {
