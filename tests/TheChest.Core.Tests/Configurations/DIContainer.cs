@@ -34,12 +34,12 @@ namespace TheChest.Core.Tests.Configurations
             this.openGenericRegistrations = new List<Registration>();
         }
 
-        public void Register<TService, TImpl>() where TImpl : TService
+        public DIContainer Register<TService, TImpl>() where TImpl : TService
         {
-            this.Register(typeof(TService), typeof(TImpl));
+            return this.Register(typeof(TService), typeof(TImpl));
         }
 
-        public void Register(Type serviceType, Type implementationType)
+        public DIContainer Register(Type serviceType, Type implementationType)
         {
             var registration = new Registration(serviceType, implementationType);
 
@@ -51,20 +51,25 @@ namespace TheChest.Core.Tests.Configurations
             {
                 this.registrations[serviceType] = registration;
             }
+
+            return this;
         }
 
-        public void Register<TService>(Func<DIContainer, object> factory)
+        public DIContainer Register<TService>(Func<DIContainer, object> factory)
         {
             this.registrations[typeof(TService)] = new Registration(typeof(TService), factory);
+            return this;
         }
 
-        public void Register<TService>(TService instance)
+        public DIContainer Register<TService>(TService instance)
         {
             if (instance is null) 
                 throw new ArgumentNullException(nameof(instance));
 
             var serviceType = typeof(TService);
             this.registrations[serviceType] = new Registration(serviceType, c => instance);
+
+            return this;
         }
 
         public bool IsRegistered<TService>()
