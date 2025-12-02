@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots
@@ -19,7 +18,6 @@ namespace TheChest.Core.Slots
         /// The content of the slot
         /// <para>Use this to compare</para>
         /// </summary>
-        [AllowNull]
         public virtual T Content
         {
             get
@@ -58,7 +56,7 @@ namespace TheChest.Core.Slots
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
-        public virtual bool Contains([AllowNull]T item)
+        public virtual bool Contains(T item)
         {
             if (item is null)
                 throw new ArgumentNullException(nameof(item));
