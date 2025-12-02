@@ -16,10 +16,10 @@ namespace TheChest.Core.Slots
         protected T content;
 
         /// <inheritdoc/>
-        public virtual bool IsFull => !IsEmpty;
+        public virtual bool IsFull => !this.IsEmpty;
 
         /// <inheritdoc/>
-        public virtual bool IsEmpty => EqualityComparer<T>.Default.Equals(content, default!);
+        public virtual bool IsEmpty => EqualityComparer<T>.Default.Equals(this.content, default!);
 
         /// <summary>
         /// Creates a basic slot with an item
@@ -27,7 +27,7 @@ namespace TheChest.Core.Slots
         /// <param name="currentItem">item that belongs to this slot (null if empty)</param>
         public Slot(T currentItem = default!)
         {
-            content = currentItem;
+            this.content = currentItem;
         }
 
         /// <inheritdoc/>
