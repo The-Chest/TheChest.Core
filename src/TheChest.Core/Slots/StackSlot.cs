@@ -15,15 +15,15 @@ namespace TheChest.Core.Slots
         /// </summary>
         private object?[] content;
         /// <summary>
-        /// 
+        /// The content inside the slot
         /// </summary>
         public virtual T[] Content
         {
             get
             {
-                var result = new T[this.MaxAmount];
+                var result = new T[this.maxAmount];
 
-                for (int i = 0; i < this.MaxAmount; i++)
+                for (int i = 0; i < this.maxAmount; i++)
                 {
                     var obj = this.content[i];
                     if(typeof(T).IsValueType && obj is null)
@@ -43,11 +43,11 @@ namespace TheChest.Core.Slots
                 if (value is null)
                     throw new ArgumentNullException(nameof(value));
 
-                if (value.Length != this.MaxAmount)
-                {
-                    this.content = new object?[value.Length];
-                    this.maxAmount = value.Length;
-                }
+                if (value.Length > this.maxAmount)
+                    throw new ArgumentOutOfRangeException(
+                        paramName: nameof(value),
+                        message: "The content size cannot be bigger than max amount"
+                    );
 
                 for (int i = 0; i < value.Length; i++)
                 {
@@ -117,9 +117,9 @@ namespace TheChest.Core.Slots
             }
         }
         /// <inheritdoc/>
-        public virtual bool IsFull => this.Amount == this.MaxAmount;
+        public virtual bool IsFull => !this.IsEmpty && this.amount == this.maxAmount;
         /// <inheritdoc/>
-        public virtual bool IsEmpty => this.Amount == 0;
+        public virtual bool IsEmpty => this.amount == 0;
 
         /// <summary>
         /// Creates an empty <see cref="StackSlot{T}"/>
@@ -130,7 +130,7 @@ namespace TheChest.Core.Slots
         /// Creates an empty <see cref="StackSlot{T}"/> with a defined max size
         /// </summary>
         /// <param name="maxAmount">The MaxSizeAllowed</param>
-        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxAmount"/> is zero or smaller</exception>
+        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxAmount"/> is smaller than zero</exception>
         public StackSlot(int maxAmount) : this(Array.Empty<T>(), maxAmount)
         { }
         /// <summary>
@@ -138,29 +138,43 @@ namespace TheChest.Core.Slots
         /// </summary>
         /// <param name="items">The amount of items to be added to the created slot and also sets the <see cref="IStackSlot{T}.MaxAmount"/></param>
         /// <exception cref="ArgumentNullException">When <paramref name="items"/> is null</exception>
-        public StackSlot(T[] items) : this(items, items.Length)
-        {
-            if (items is null)
-                throw new ArgumentNullException(nameof(items));
-        }
+        public StackSlot(T[] items) : this(items, items?.Length ?? 0)
+        { }
         /// <summary>
         /// Creates a basic <see cref="StackSlot{T}"/> with items and a max size defined by param the <paramref name="maxAmount"/>
         /// </summary>
         /// <param name="items">The amount of items to be inside the created slot</param>
         /// <param name="maxAmount">Sets the max amount permitted to the slot (cannot be smaller than <paramref name="items"/> size)</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is null</exception>
+        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxAmount"/> is smaller than zero or bigger than <paramref name="items"/>.Length</exception>
         public StackSlot(T[] items, int maxAmount)
         {
             if (items is null)
                 throw new ArgumentNullException(nameof(items));
+            if (maxAmount < 0)
+                throw new ArgumentOutOfRangeException(
+                    paramName: nameof(maxAmount),
+                    message: "The max amount property cannot be smaller than zero"
+                );
+            if (maxAmount < items.Length)
+                throw new ArgumentOutOfRangeException(
+                    paramName: nameof(maxAmount),
+                    message: "The item amount cannot be bigger than max amount"
+                );
 
             this.content = new object?[items.Length];
+            this.amount = 0;
+            
             for (int i = 0; i < items.Length; i++)
+            {
                 this.content[i] = items[i];
 
-            this.MaxAmount = maxAmount;
-            this.Amount = items.Count(item => !(item is null));
+                if(this.content[i] is null) continue;
+
+                this.amount++;
+            }
+
+            this.maxAmount = maxAmount;
         }
 
         /// <inheritdoc/>
