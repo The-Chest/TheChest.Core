@@ -44,7 +44,8 @@ direction BT
 	}
 	namespace TheChest.Core.Slots {
         class Slot~T~ {
-			-T content
+			-object? content
+			+T Content
 			+bool IsEmpty
 			+bool IsFull
 			+bool Contains(T item)
@@ -102,8 +103,12 @@ direction BT
 	        +bool Contains(T item)
 			+bool Contains(T item, int amount)
         }
+	}
+
+	namespace TheChest.Core.Slots {
 		class StackSlot~T~{
-			-T content
+			-object?[] content
+			+T[] Content
 			-int amount            
 			+int Amount
             +int MaxAmount
@@ -161,6 +166,19 @@ direction BT
 			+bool IsEmpty
 			+bool IsFull
         }
+	}
+
+	namespace TheChest.Core.Slots {
+		class LazyStackSlot~T~{
+			-object? content
+			+T Content
+			-int amount            
+			+int Amount
+			+int MaxAmount
+			-int maxAmount
+			+bool IsEmpty
+			+bool IsFull
+		}
 	}
 
 	<<interface>> ILazyStackContainer
