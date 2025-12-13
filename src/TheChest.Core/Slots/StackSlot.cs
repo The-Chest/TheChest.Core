@@ -13,7 +13,7 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// The content inside the slot
         /// </summary>
-        private object?[] content;
+        private readonly object?[] content;
         /// <summary>
         /// The content inside the slot
         /// </summary>
@@ -124,22 +124,19 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// Creates an empty <see cref="StackSlot{T}"/>
         /// </summary>
-        public StackSlot() : this(Array.Empty<T>(), 0) 
-        { }
+        public StackSlot() : this(Array.Empty<T>(), 0) { }
         /// <summary>
         /// Creates an empty <see cref="StackSlot{T}"/> with a defined max size
         /// </summary>
         /// <param name="maxAmount">The MaxSizeAllowed</param>
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxAmount"/> is smaller than zero</exception>
-        public StackSlot(int maxAmount) : this(Array.Empty<T>(), maxAmount)
-        { }
+        public StackSlot(int maxAmount) : this(Array.Empty<T>(), maxAmount) { }
         /// <summary>
         /// Creates a basic <see cref="StackSlot{T}"/> with the max size defined by the array
         /// </summary>
         /// <param name="items">The amount of items to be added to the created slot and also sets the <see cref="IStackSlot{T}.MaxAmount"/></param>
         /// <exception cref="ArgumentNullException">When <paramref name="items"/> is null</exception>
-        public StackSlot(T[] items) : this(items, items?.Length ?? 0)
-        { }
+        public StackSlot(T[] items) : this(items, items?.Length ?? 0) { }
         /// <summary>
         /// Creates a basic <see cref="StackSlot{T}"/> with items and a max size defined by param the <paramref name="maxAmount"/>
         /// </summary>

@@ -1,5 +1,4 @@
-﻿using TheChest.Core.Slots;
-using TheChest.Core.Tests.Configurations.Attributes;
+﻿using TheChest.Core.Tests.Configurations.Attributes;
 
 namespace TheChest.Core.Tests.Slots.SlotTests
 {
