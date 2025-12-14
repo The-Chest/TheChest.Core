@@ -14,11 +14,18 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
 
         [Test]
         [IgnoreIfReferenceType]
-        public void ContainsItem_DefaultValue_DefaultItem_ReturnsTrue()
+        public void Contains_DefaultValue_ReturnsFalseIfEmpty()
+        {
+            var slot = this.slotFactory.EmptySlot();
+            Assert.That(slot.Contains(default(T)!), Is.False);
+        }
+
+        [Test]
+        [IgnoreIfReferenceType]
+        public void Contains_DefaultValue_ReturnsTrueIfFull()
         {
             var slot = this.slotFactory.FullSlot(default!);
-            var result = slot.Contains(default(T)!);
-            Assert.That(result, Is.True);
+            Assert.That(slot.Contains(default(T)!), Is.True);
         }
     }
 }
