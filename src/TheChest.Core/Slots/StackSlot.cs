@@ -61,6 +61,7 @@ namespace TheChest.Core.Slots
                 }
             }
         }
+
         /// <summary>
         /// The current amount of items inside the slot
         /// </summary>
@@ -74,21 +75,11 @@ namespace TheChest.Core.Slots
             }
             protected set
             {
-                if (value < 0)
-                    throw new ArgumentOutOfRangeException(
-                        paramName: nameof(value), 
-                        message: "The item amount property cannot be smaller than zero"
-                    );
-
-                if (value > this.MaxAmount)
-                    throw new ArgumentOutOfRangeException(
-                        paramName: nameof(value),
-                        message: "The item amount cannot be bigger than max amount"
-                    );
-
+                ValidateAmount(this.Amount, value);
                 this.amount = value;
             }
         }
+
         /// <summary>
         /// The maximum amount of items that this slot can hold
         /// </summary>
@@ -102,20 +93,11 @@ namespace TheChest.Core.Slots
             }
             protected set
             {
-                if (value < 0)
-                    throw new ArgumentOutOfRangeException(
-                        paramName: nameof(value),
-                        message: "The max amount property cannot be smaller than zero"
-                    );
-                if (value < this.Amount)
-                    throw new ArgumentOutOfRangeException(
-                        paramName: nameof(value),
-                        message: "The item amount cannot be bigger than max amount"
-                    );
-
+                ValidateAmount(this.Amount, value);
                 this.maxAmount = value;
             }
         }
+
         /// <inheritdoc/>
         public virtual bool IsFull => !this.IsEmpty && this.amount == this.maxAmount;
         /// <inheritdoc/>
@@ -148,30 +130,49 @@ namespace TheChest.Core.Slots
         {
             if (items is null)
                 throw new ArgumentNullException(nameof(items));
-            if (maxAmount < 0)
-                throw new ArgumentOutOfRangeException(
-                    paramName: nameof(maxAmount),
-                    message: "The max amount property cannot be smaller than zero"
-                );
-            if (maxAmount < items.Length)
-                throw new ArgumentOutOfRangeException(
-                    paramName: nameof(maxAmount),
-                    message: "The item amount cannot be bigger than max amount"
-                );
 
             this.content = new object?[items.Length];
-            this.amount = 0;
+            var contentAmount = 0;
             
             for (int i = 0; i < items.Length; i++)
             {
                 this.content[i] = items[i];
 
-                if(this.content[i] is null) continue;
+                if(this.content[i] is null) 
+                    continue;
 
-                this.amount++;
+                contentAmount++;
             }
 
+            ValidateAmount(contentAmount, maxAmount);
+
+            this.amount = contentAmount;
             this.maxAmount = maxAmount;
+        }
+
+        /// <summary>
+        /// Validates that the specified amount is within the allowed range.
+        /// </summary>
+        /// <param name="amount">The amount to be validated.</param>
+        /// <param name="maxAmount">The maximum allowed value for <paramref name="amount"/>.</param>
+        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> or <paramref name="maxAmount"/> is less than 0, or <paramref name="amount"/> is greater than <paramref name="maxAmount"/>.</exception>
+        protected static void ValidateAmount(int amount, int maxAmount)
+        {
+            if (amount < 0)
+                throw new ArgumentOutOfRangeException(
+                    paramName: nameof(amount),
+                    message: "The item amount cannot be smaller than zero"
+                );
+            if (maxAmount < 0)
+                throw new ArgumentOutOfRangeException(
+                    paramName: nameof(maxAmount),
+                    message: "The max amount cannot be smaller than zero"
+                );
+            if (amount > maxAmount)
+                throw new ArgumentOutOfRangeException(
+                    paramName: nameof(amount),
+                    message: "The item amount cannot be bigger than max amount"
+                );
         }
 
         /// <inheritdoc/>
