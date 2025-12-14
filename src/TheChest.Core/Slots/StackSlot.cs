@@ -123,7 +123,7 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxAmount"/> is smaller than zero or bigger than <paramref name="items"/>.Length</exception>
         public StackSlot(T[] items, int maxAmount)
         {
-            ValidateContent(items, this.maxAmount);
+            ValidateContent(items, maxAmount);
 
             var contentAmount = 0;
             var contentArray = new object?[items.Length];
