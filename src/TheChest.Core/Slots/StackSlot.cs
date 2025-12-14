@@ -145,7 +145,7 @@ namespace TheChest.Core.Slots
         }
 
         /// <summary>
-        /// Validates that the specified array is not <see langword="null"/> and does not exceed the maximum allowed number of elements.
+        /// Validates that array is not <see langword="null"/> and does not exceed the maximum allowed number of elements.
         /// </summary>
         /// <param name="items">The array of items to validate.</param>
         /// <param name="maxAmount">The maximum number of elements allowed in the <paramref name="items"/> array.</param>
@@ -162,7 +162,7 @@ namespace TheChest.Core.Slots
                 );
         }
         /// <summary>
-        /// Validates that the specified amount is within the allowed range.
+        /// Validates that amount is within the allowed range.
         /// </summary>
         /// <param name="amount">The amount to be validated.</param>
         /// <param name="maxAmount">The maximum allowed value for <paramref name="amount"/>.</param>

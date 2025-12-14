@@ -103,7 +103,7 @@ namespace TheChest.Core.Slots
         }
 
         /// <summary>
-        /// Validates that the specified <paramref name="amount"/> is within the allowed range from zero to the specified <paramref name="maxAmount"/>.
+        /// Validates that <paramref name="amount"/> is within the allowed range from zero to <paramref name="maxAmount"/>.
         /// </summary>
         /// <param name="amount">The amount to be validated.</param>
         /// <param name="maxAmount">The maximum allowed amount.</param>
