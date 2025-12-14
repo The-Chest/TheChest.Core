@@ -1,11 +1,9 @@
-﻿using TheChest.Core.Tests.Containers.Interfaces.Factories;
-using TheChest.Core.Tests.Items.Interfaces;
+﻿using TheChest.Core.Tests.Configurations;
 
 namespace TheChest.Core.Tests.Containers.Interfaces
 {
-    public abstract partial class IStackContainerTests<T>
+    public abstract partial class IStackContainerTests<T> : BaseTest<T>
     {
-        protected Random random;
         protected readonly IStackContainerFactory<T> containerFactory;
         protected readonly IItemFactory<T> itemFactory;
 
@@ -15,16 +13,10 @@ namespace TheChest.Core.Tests.Containers.Interfaces
         protected const int MIN_STACK_SIZE_TEST = 10;
         protected const int MAX_STACK_SIZE_TEST = 20;
 
-        protected IStackContainerTests(IStackContainerFactory<T> containerFactory, IItemFactory<T> itemFactory)
+        protected IStackContainerTests(Action<DIContainer> configure) : base(configure)
         {
-            this.containerFactory = containerFactory;
-            this.itemFactory = itemFactory;
-        }
-
-        [SetUp]
-        public void Setup()
-        {
-            this.random = new Random();
+            this.containerFactory = this.container.Resolve<IStackContainerFactory<T>>();
+            this.itemFactory = this.container.Resolve<IItemFactory<T>>();
         }
     }
 }
