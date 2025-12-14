@@ -21,6 +21,7 @@ namespace TheChest.Core.Slots
         {
             get
             {
+#pragma warning disable CS8601
                 var result = new T[this.maxAmount];
 
                 for (int i = 0; i < this.maxAmount; i++)
@@ -28,26 +29,20 @@ namespace TheChest.Core.Slots
                     var obj = this.content[i];
                     if(typeof(T).IsValueType && obj is null)
                     {
-                        result[i] = default!;
+                        result[i] = default;
                     }
                     else
                     {
-                        result[i] = (T)obj!;
+                        result[i] = (T)obj;
                     }
                 }
 
                 return result;
+#pragma warning restore CS8601
             }
             protected set
             {
-                if (value is null)
-                    throw new ArgumentNullException(nameof(value));
-
-                if (value.Length > this.maxAmount)
-                    throw new ArgumentOutOfRangeException(
-                        paramName: nameof(value),
-                        message: "The content size cannot be bigger than max amount"
-                    );
+                ValidateContent(value, this.maxAmount);
 
                 for (int i = 0; i < value.Length; i++)
                 {
@@ -128,28 +123,44 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxAmount"/> is smaller than zero or bigger than <paramref name="items"/>.Length</exception>
         public StackSlot(T[] items, int maxAmount)
         {
-            if (items is null)
-                throw new ArgumentNullException(nameof(items));
+            ValidateContent(items, this.maxAmount);
 
-            this.content = new object?[items.Length];
             var contentAmount = 0;
+            var contentArray = new object?[items.Length];
             
             for (int i = 0; i < items.Length; i++)
             {
-                this.content[i] = items[i];
+                contentArray[i] = items[i];
 
-                if(this.content[i] is null) 
+                if(contentArray[i] is null) 
                     continue;
 
                 contentAmount++;
             }
-
             ValidateAmount(contentAmount, maxAmount);
 
+            this.content = contentArray;
             this.amount = contentAmount;
             this.maxAmount = maxAmount;
         }
 
+        /// <summary>
+        /// Validates that the specified array is not <see langword="null"/> and does not exceed the maximum allowed number of elements.
+        /// </summary>
+        /// <param name="items">The array of items to validate.</param>
+        /// <param name="maxAmount">The maximum number of elements allowed in the <paramref name="items"/> array.</param>
+        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is <see langword="null"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">When the length of <paramref name="items"/> exceeds <paramref name="maxAmount"/>.</exception>
+        protected static void ValidateContent(T[] items, int maxAmount)
+        {
+            if (items is null)
+                throw new ArgumentNullException(nameof(items));
+            if (items.Length > maxAmount)
+                throw new ArgumentOutOfRangeException(
+                    paramName: nameof(items),
+                    message: "The content size cannot be bigger than max amount"
+                );
+        }
         /// <summary>
         /// Validates that the specified amount is within the allowed range.
         /// </summary>

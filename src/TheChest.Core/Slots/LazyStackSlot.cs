@@ -14,31 +14,29 @@ namespace TheChest.Core.Slots
         /// </summary>
         private object? content;
         /// <summary>
-        /// The current amount of items inside the slot
-        /// </summary>
-        protected int amount;
-        /// <summary>
-        /// The maximum amount of items that this slot can hold
-        /// </summary>
-        protected int maxAmount;
-
-        /// <summary>
         /// The content inside the slot
         /// </summary>
         public virtual T Content
         {
             get
             {
+#pragma warning disable CS8603
                 if (typeof(T).IsValueType && this.content is null)
-                    return default!;
+                    return default;
 
-                return (T)this.content!;
+                return (T)this.content;
+#pragma warning restore CS8603
             }
             protected set
             {
                 this.content = value;
             }
         }
+
+        /// <summary>
+        /// The current amount of items inside the slot
+        /// </summary>
+        protected int amount;
         /// <inheritdoc/>
         public virtual int Amount
         {
@@ -52,6 +50,11 @@ namespace TheChest.Core.Slots
                 this.amount = value;
             }
         }
+
+        /// <summary>
+        /// The maximum amount of items that this slot can hold
+        /// </summary>
+        protected int maxAmount;
         /// <inheritdoc/>
         public virtual int MaxAmount
         {

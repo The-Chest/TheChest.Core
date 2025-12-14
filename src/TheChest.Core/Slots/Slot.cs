@@ -44,7 +44,6 @@ namespace TheChest.Core.Slots
         {
             this.content = null;
         }
-
         /// <summary>
         /// Creates a basic slot with an item
         /// </summary>
