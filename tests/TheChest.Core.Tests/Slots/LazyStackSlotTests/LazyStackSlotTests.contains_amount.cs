@@ -1,4 +1,6 @@
-﻿namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
+﻿using TheChest.Core.Tests.Configurations.Attributes;
+
+namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 {
     public partial class LazyStackSlotTests<T>
     {
@@ -15,6 +17,7 @@
         }
 
         [Test]
+        [IgnoreIfValueType]
         public void ContainsAmount_NullItem_ThrowsArgumentNullException()
         {
             var slot = this.slotFactory.EmptySlot();
@@ -22,6 +25,22 @@
                 () => slot.Contains(default!, 1),
                 Throws.TypeOf<ArgumentNullException>().And.Message.Contains("item")
              );
+        }
+
+        [Test]
+        [IgnoreIfReferenceType]
+        public void ContainsAmount_NullItem_ReturnFalseIfEmpty()
+        {
+            var slot = this.slotFactory.EmptySlot();
+            Assert.That(slot.Contains(default!, 1), Is.False);
+        }
+
+        [Test]
+        [IgnoreIfReferenceType]
+        public void ContainsAmount_NullItem_ReturnTrueIfFull()
+        {
+            var slot = this.slotFactory.FullSlot(default!);
+            Assert.That(slot.Contains(default!, 1), Is.True);
         }
     }
 }

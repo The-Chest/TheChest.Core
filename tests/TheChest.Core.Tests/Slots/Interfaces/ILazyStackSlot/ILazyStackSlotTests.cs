@@ -12,11 +12,5 @@ namespace TheChest.Core.Tests.Slots.Interfaces.ILazyStackSlotTests
             this.slotFactory = this.container.Resolve<ILazyStackSlotFactory<T>>();
             this.itemFactory = this.container.Resolve<IItemFactory<T>>();
         }
-
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            this.container.Dispose();
-        }
     }
 }

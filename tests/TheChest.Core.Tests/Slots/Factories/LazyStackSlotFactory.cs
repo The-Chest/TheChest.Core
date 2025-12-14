@@ -1,6 +1,4 @@
-﻿using TheChest.Core.Slots;
-using TheChest.Core.Slots.Interfaces;
-using TheChest.Core.Tests.Slots.Interfaces.Factories;
+﻿using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Tests.Slots.Factories
 {
@@ -10,7 +8,7 @@ namespace TheChest.Core.Tests.Slots.Factories
         public ILazyStackSlot<Y> EmptySlot()
         {
             var type = typeof(T);
-            var slot = Activator.CreateInstance(type, null, 1, 1);
+            var slot = Activator.CreateInstance(type, null, 0, 1);
             return (ILazyStackSlot<Y>)slot!;
         }
 

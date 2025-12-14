@@ -98,10 +98,7 @@ namespace TheChest.Core.Slots
             ValidateAmount(amount, maxAmount);
 
             this.content = currentItem;
-            if (this.content is null)
-                amount = 0;
-
-            this.amount = amount;
+            this.amount = this.content is null ? 0 : amount;
             this.maxAmount = maxAmount;
         }
 
