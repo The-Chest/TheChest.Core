@@ -1,3 +1,28 @@
+# v0.15.0
+
+## What's Added
+* `.editorconfig` with code style rules
+    * `Nullable` enabled for the project 
+* Slots now have a private field named `content`
+    * It can stores the content from constructor and be `nullable`
+* Attribute for unit tests (`[IgnoreIfReferenceType]` and `[IgnoreIfValueType]`)
+* Slots now have static Valitation methods to be used in constructors
+  * `StackSlot<T>`
+    * `ValidateContent(T[] items, int maxAmount)` - Validates that `items` array is not null or empty and does not exceed `maxAmount`.
+    * `ValidateAmount(int amount, int maxAmount)` - Validates that `amount` is within the allowed range from zero to `maxAmount`.
+  * `LazyStackSlot<T>`
+    * `ValidateAmount(int amount, int maxAmount)` - Validates that `amount` is within the allowed range from zero to `maxAmount`.
+* `MaxAmount` and `Amount` now calls the static Validation methods in its constructors
+## What's Changed
+* Slots now supports reference and value types.
+## Known issues
+* Unit test project is a mess...
+## What's Next
+* [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More wayw to instantiate the Container classes 
+* [#122](https://github.com/The-Chest/TheChest.Core/issues/122) - XML docs descriptions of the interfaces and some properties are not describing improvements 
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.14.0...v0.15.0
+
 # v0.14.0
 
 ## What's Removed
