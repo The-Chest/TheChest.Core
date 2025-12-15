@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Linq;
 
 namespace TheChest.Core.Tests.Configurations
 {
@@ -152,10 +153,9 @@ namespace TheChest.Core.Tests.Configurations
                 return;
             disposed = true;
 
-            foreach (var kv in this.registrations)
+            foreach (var d in this.registrations.Values.OfType<IDisposable>())
             {
-                if (kv.Value is IDisposable d) 
-                    d.Dispose();
+                d.Dispose();
             }
         }
     }
