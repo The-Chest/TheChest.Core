@@ -8,7 +8,7 @@ namespace TheChest.Core.Tests.Slots.Factories
         public virtual IStackSlot<Y> EmptySlot()
         {
             var type = typeof(T);
-            var slot = Activator.CreateInstance(type, Array.Empty<Y>(), 1);
+            var slot = Activator.CreateInstance(type);
             return (IStackSlot<Y>)slot!;
         }
 

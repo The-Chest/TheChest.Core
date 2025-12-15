@@ -8,7 +8,7 @@ namespace TheChest.Core.Tests.Slots.Factories
         public ILazyStackSlot<Y> EmptySlot()
         {
             var type = typeof(T);
-            var slot = Activator.CreateInstance(type, null, 0, 1);
+            var slot = Activator.CreateInstance(type);
             return (ILazyStackSlot<Y>)slot!;
         }
 
