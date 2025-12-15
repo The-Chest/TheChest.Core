@@ -4,17 +4,17 @@ namespace TheChest.Core.Tests.Configurations
 {
     public abstract class BaseTest<T>
     {
-        protected readonly DIContainer container;
+        protected readonly DIContainer configurations;
         protected readonly Random random;
 
         protected BaseTest(Action<DIContainer> configure)
         {
-            this.container = new DIContainer();
+            this.configurations = new DIContainer();
 
-            configure(this.container);
+            configure(this.configurations);
 
-            if (!this.container.IsRegistered<IItemFactory<T>>())
-                this.container.Register<IItemFactory<T>, ItemFactory<T>>();
+            if (!this.configurations.IsRegistered<IItemFactory<T>>())
+                this.configurations.Register<IItemFactory<T>, ItemFactory<T>>();
             
             this.random = new Random();
         }
@@ -22,7 +22,7 @@ namespace TheChest.Core.Tests.Configurations
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            this.container.Dispose();
+            this.configurations.Dispose();
         }
     }
 }

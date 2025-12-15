@@ -9,8 +9,8 @@ namespace TheChest.Core.Tests.Slots.Interfaces.IStackSlotTests
 
         protected IStackSlotTests(Action<DIContainer> configure) : base(configure)
         {
-            this.slotFactory = this.container.Resolve<IStackSlotFactory<T>>();
-            this.itemFactory = this.container.Resolve<IItemFactory<T>>();
+            this.slotFactory = this.configurations.Resolve<IStackSlotFactory<T>>();
+            this.itemFactory = this.configurations.Resolve<IItemFactory<T>>();
         }
     }
 }

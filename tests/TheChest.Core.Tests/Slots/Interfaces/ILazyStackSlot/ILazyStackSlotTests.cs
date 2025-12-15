@@ -9,8 +9,8 @@ namespace TheChest.Core.Tests.Slots.Interfaces.ILazyStackSlotTests
 
         protected ILazyStackSlotTests(Action<DIContainer> configure) : base(configure)
         {
-            this.slotFactory = this.container.Resolve<ILazyStackSlotFactory<T>>();
-            this.itemFactory = this.container.Resolve<IItemFactory<T>>();
+            this.slotFactory = this.configurations.Resolve<ILazyStackSlotFactory<T>>();
+            this.itemFactory = this.configurations.Resolve<IItemFactory<T>>();
         }
     }
 }

@@ -15,8 +15,8 @@ namespace TheChest.Core.Tests.Containers.Interfaces
 
         protected IStackContainerTests(Action<DIContainer> configure) : base(configure)
         {
-            this.containerFactory = this.container.Resolve<IStackContainerFactory<T>>();
-            this.itemFactory = this.container.Resolve<IItemFactory<T>>();
+            this.containerFactory = this.configurations.Resolve<IStackContainerFactory<T>>();
+            this.itemFactory = this.configurations.Resolve<IItemFactory<T>>();
         }
     }
 }

@@ -15,8 +15,8 @@ namespace TheChest.Core.Tests.Containers.Interfaces
 
         protected ILazyStackContainerTests(Action<DIContainer> configure) : base(configure)
         {
-            this.containerFactory = this.container.Resolve<ILazyStackContainerFactory<T>>();
-            this.itemFactory = this.container.Resolve<IItemFactory<T>>();
+            this.containerFactory = this.configurations.Resolve<ILazyStackContainerFactory<T>>();
+            this.itemFactory = this.configurations.Resolve<IItemFactory<T>>();
         }
     }
 }
