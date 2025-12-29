@@ -1,4 +1,5 @@
-﻿using TheChest.Core.Slots.Interfaces;
+﻿using System.Reflection;
+using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Tests.Extensions
 {
@@ -76,6 +77,15 @@ namespace TheChest.Core.Tests.Extensions
                 slots.Shuffle();
 
             return slots;
+        }
+
+        internal static ConstructorInfo GetSmallerConstructor(this Type implType)
+        {
+            var ctors = implType.GetConstructors(BindingFlags.Public | BindingFlags.Instance);
+            var ctor = ctors.OrderByDescending(c => c.GetParameters().Length).FirstOrDefault()
+                ?? throw new InvalidOperationException("No public constructor found for " + implType.FullName);
+
+            return ctor;
         }
     }
 }

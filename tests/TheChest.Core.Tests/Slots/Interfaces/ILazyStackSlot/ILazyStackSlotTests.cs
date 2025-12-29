@@ -1,4 +1,5 @@
 ﻿using TheChest.Core.Tests.Configurations;
+using TheChest.Core.Tests.Configurations.DependencyInjection;
 
 namespace TheChest.Core.Tests.Slots.Interfaces.ILazyStackSlotTests
 {
