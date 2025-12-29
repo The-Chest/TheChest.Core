@@ -1,4 +1,5 @@
-﻿using TheChest.Core.Tests.Items;
+﻿using TheChest.Core.Tests.Configurations.DependencyInjection;
+using TheChest.Core.Tests.Items;
 
 namespace TheChest.Core.Tests.Configurations
 {
@@ -17,12 +18,6 @@ namespace TheChest.Core.Tests.Configurations
                 this.configurations.Register<IItemFactory<T>, ItemFactory<T>>();
             
             this.random = new Random();
-        }
-
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            this.configurations.Dispose();
         }
     }
 }

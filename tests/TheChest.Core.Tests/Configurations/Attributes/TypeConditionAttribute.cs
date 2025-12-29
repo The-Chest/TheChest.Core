@@ -19,9 +19,9 @@ namespace TheChest.Core.Tests.Configurations.Attributes
             if (!fixtureType.IsGenericType)
                 return;
 
-            var t = fixtureType.GetGenericArguments()[0];
+            var firstArgument = fixtureType.GetGenericArguments()[0];
 
-            if (this.ShouldIgnore(t))
+            if (this.ShouldIgnore(firstArgument))
             {
                 test.RunState = RunState.Ignored;
             }
