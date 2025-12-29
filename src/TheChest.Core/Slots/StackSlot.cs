@@ -27,14 +27,7 @@ namespace TheChest.Core.Slots
                 for (int i = 0; i < this.maxAmount; i++)
                 {
                     var obj = this.content[i];
-                    if(typeof(T).IsValueType && obj is null)
-                    {
-                        result[i] = default;
-                    }
-                    else
-                    {
-                        result[i] = (T)obj;
-                    }
+                    result[i] = (typeof(T).IsValueType && obj is null) ? default : (T)obj;
                 }
 
                 return result;
