@@ -1,9 +1,9 @@
 ﻿namespace TheChest.Core.Containers.Interfaces
 {
     /// <summary>
-    /// Interface with the basics of a container with Stack features
+    /// Defines a generic stack-like container that can store items of type <typeparamref name="T"/>.
     /// </summary>
-    /// <typeparam name="T">An item type</typeparam>
+    /// <typeparam name="T">The type of items that the container can hold.</typeparam>
     public interface IStackContainer<in T>
     {
         /// <summary>
