@@ -1,19 +1,19 @@
-﻿namespace TheChest.Core.Tests.Items.Classes
+﻿namespace TheChest.Core.Tests.Items.ValueType
 {
-    internal class TestItem
+    internal readonly struct TestStructItem
     {
         public string Id { get; }
         public string Name { get; }
         public string Description { get; }
 
-        public TestItem(string id, string name, string description)
+        public TestStructItem(string id, string name, string description)
         {
             this.Id = id;
             this.Name = name;
             this.Description = description;
         }
 
-        public TestItem()
+        public TestStructItem()
         {
             this.Id = "";
             this.Name = "";
@@ -23,9 +23,9 @@
         public override bool Equals(object? obj)
         {
             if (obj == null) return false;
-            if (obj is not TestItem) return false;
-            var item = obj as TestItem;
-            return item?.Id == this.Id;
+            if (obj is not TestStructItem) return false;
+            var item = (TestStructItem)obj;
+            return item.Id == this.Id;
         }
 
         public override int GetHashCode()
