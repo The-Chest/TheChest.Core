@@ -130,6 +130,7 @@ namespace TheChest.Core.Slots
 
                 contentAmount++;
             }
+
             ValidateAmount(contentAmount, maxAmount);
 
             this.content = contentArray;
