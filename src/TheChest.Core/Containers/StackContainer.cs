@@ -6,13 +6,13 @@ using TheChest.Core.Slots.Interfaces;
 namespace TheChest.Core.Containers
 {
     /// <summary>
-    /// Generic container with <see cref="IStackContainer{T}"/> implementation
+    /// Represents a stack-like container providing operations for items.
     /// </summary>
-    /// <typeparam name="T">An item type</typeparam>
+    /// <typeparam name="T">The type of elements stored in the container.</typeparam>
     public class StackContainer<T> : IStackContainer<T>
     {
         /// <summary>
-        /// Slots in the Container
+        /// The collection of slots used to store elements of type <typeparamref name="T"/>.
         /// </summary>
         protected readonly IStackSlot<T>[] slots;
         /// <inheritdoc/>

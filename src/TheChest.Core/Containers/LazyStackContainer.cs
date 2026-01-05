@@ -6,13 +6,13 @@ using TheChest.Core.Slots.Interfaces;
 namespace TheChest.Core.Containers
 {
     /// <summary>
-    /// Generic container with <see cref="ILazyStackContainer{T}"/> implementation
+    /// Represents a stack-like container providing operations with lazy evaluation capabilities.
     /// </summary>
-    /// <typeparam name="T">An item type</typeparam>
+    /// <typeparam name="T">The type of elements stored in the container.</typeparam>
     public class LazyStackContainer<T> : ILazyStackContainer<T>
     {
         /// <summary>
-        /// Slots in the Container
+        /// The collection of slots used to store elements of type <typeparamref name="T"/>.
         /// </summary>
         protected readonly ILazyStackSlot<T>[] slots;
         /// <inheritdoc/>

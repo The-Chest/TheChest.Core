@@ -5,9 +5,9 @@ using TheChest.Core.Slots.Interfaces;
 namespace TheChest.Core.Slots
 {
     /// <summary>
-    /// Slot with with <see cref="IStackSlot{T}"/> implementation with a collection of items
+    /// Represents a slot that can hold a stack of items of a specified type, with a configurable maximum capacity.
     /// </summary>
-    /// <typeparam name="T">The item collection inside the slot accepts</typeparam>
+    /// <typeparam name="T">The type of item the slot can hold</typeparam>
     public class StackSlot<T> : IStackSlot<T>
     {
         /// <summary>

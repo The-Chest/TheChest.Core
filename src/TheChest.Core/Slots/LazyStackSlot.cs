@@ -4,9 +4,13 @@ using TheChest.Core.Slots.Interfaces;
 namespace TheChest.Core.Slots
 {
     /// <summary>
-    /// Slot with with <see cref="IStackSlot{T}"/> implementation which have only one item repeatedly 
+    /// Represents a lazily-initialized stack slot that can hold a specified content item and track its quantity up to a defined maximum.
     /// </summary>
-    /// <typeparam name="T">The item the slot accepts</typeparam>
+    /// <remarks>
+    /// <see cref="LazyStackSlot{T}"/> provides a stack-like container for a single type of item,
+    /// supporting quantity tracking and maximum capacity constraints.
+    /// </remarks>
+    /// <typeparam name="T">The type of the content stored in the slot.</typeparam>
     public class LazyStackSlot<T> : ILazyStackSlot<T>
     {
         /// <summary>
