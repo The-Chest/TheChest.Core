@@ -1,8 +1,10 @@
-﻿namespace TheChest.Core.Tests.Containers.Interfaces
+﻿using TheChest.Core.Tests.Configurations;
+using TheChest.Core.Tests.Configurations.DependencyInjection;
+
+namespace TheChest.Core.Tests.Containers.Interfaces
 {
-    public abstract partial class ILazyStackContainerTests<T>
+    public abstract partial class ILazyStackContainerTests<T> : BaseTest<T>
     {
-        protected Random random;
         protected readonly ILazyStackContainerFactory<T> containerFactory;
         protected readonly IItemFactory<T> itemFactory;
 
@@ -12,16 +14,10 @@
         protected const int MIN_STACK_SIZE_TEST = 10;
         protected const int MAX_STACK_SIZE_TEST = 20;
 
-        protected ILazyStackContainerTests(ILazyStackContainerFactory<T> containerFactory, IItemFactory<T> itemFactory)
+        protected ILazyStackContainerTests(Action<DIContainer> configure) : base(configure)
         {
-            this.containerFactory = containerFactory;
-            this.itemFactory = itemFactory;
-        }
-
-        [SetUp]
-        public void Setup()
-        {
-            this.random = new Random();
+            this.containerFactory = this.configurations.Resolve<ILazyStackContainerFactory<T>>();
+            this.itemFactory = this.configurations.Resolve<IItemFactory<T>>();
         }
     }
 }

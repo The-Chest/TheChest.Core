@@ -1,14 +1,17 @@
-﻿namespace TheChest.Core.Tests.Slots.Interfaces
+﻿using TheChest.Core.Tests.Configurations;
+using TheChest.Core.Tests.Configurations.DependencyInjection;
+
+namespace TheChest.Core.Tests.Slots.Interfaces.ISlotTests
 {
-    public abstract partial class ISlotTests<T>
+    public abstract partial class ISlotTests<T> : BaseTest<T>
     {
         protected readonly ISlotFactory<T> slotFactory;
         protected readonly IItemFactory<T> itemFactory;
 
-        protected ISlotTests(ISlotFactory<T> slotFactory, IItemFactory<T> itemFactory)
+        protected ISlotTests(Action<DIContainer> configure) : base(configure)
         {
-            this.slotFactory = slotFactory;
-            this.itemFactory = itemFactory;
+            this.slotFactory = this.configurations.Resolve<ISlotFactory<T>>();
+            this.itemFactory = this.configurations.Resolve<IItemFactory<T>>();
         }
     }
 }

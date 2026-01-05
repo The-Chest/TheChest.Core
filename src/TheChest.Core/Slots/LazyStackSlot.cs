@@ -12,16 +12,31 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// The content inside the slot
         /// </summary>
-        protected T content;
+        private object? content;
+        /// <summary>
+        /// The content inside the slot
+        /// </summary>
+        public virtual T Content
+        {
+            get
+            {
+#pragma warning disable CS8603
+                if (typeof(T).IsValueType && this.content is null)
+                    return default;
+
+                return (T)this.content;
+#pragma warning restore CS8603
+            }
+            protected set
+            {
+                this.content = value;
+            }
+        }
+
         /// <summary>
         /// The current amount of items inside the slot
         /// </summary>
         protected int amount;
-        /// <summary>
-        /// The maximum amount of items that this slot can hold
-        /// </summary>
-        protected int maxAmount;
-
         /// <inheritdoc/>
         public virtual int Amount
         {
@@ -31,22 +46,15 @@ namespace TheChest.Core.Slots
             }
             protected set
             {
-                if (value < 0)
-                    throw new ArgumentOutOfRangeException(
-                        nameof(value),
-                        "The amount property cannot be smaller than zero"
-                    );
-
-                if (value > this.maxAmount)
-                    throw new ArgumentOutOfRangeException(
-                        nameof(value),
-                        "The item amount cannot be bigger than max amount"
-
-                    );
-
+                ValidateAmount(value, this.maxAmount);
                 this.amount = value;
             }
         }
+
+        /// <summary>
+        /// The maximum amount of items that this slot can hold
+        /// </summary>
+        protected int maxAmount;
         /// <inheritdoc/>
         public virtual int MaxAmount
         {
@@ -56,27 +64,28 @@ namespace TheChest.Core.Slots
             }
             protected set
             {
-                if (value < 0)
-                    throw new ArgumentOutOfRangeException(
-                        nameof(value),
-                        "The max amount property cannot be smaller than zero"
-                    );
-
-                if (value < this.amount)
-                    throw new ArgumentOutOfRangeException(
-                        nameof(value),
-                        "The item amount cannot be bigger than max amount"
-                    );
-
+                ValidateAmount(this.amount, value);
                 this.maxAmount = value;
             }
         }
 
         /// <inheritdoc/>
-        public virtual bool IsFull => this.Amount == this.MaxAmount && !(this.content is null);
+        public virtual bool IsFull => !this.IsEmpty && this.amount == this.maxAmount;
         /// <inheritdoc/>
-        public virtual bool IsEmpty => this.Amount == 0 || this.content is null;
+        public virtual bool IsEmpty => this.amount == 0 || this.content is null;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LazyStackSlot{T}"/> class with default values.
+        /// </summary>
+        /// <remarks>
+        /// The slot is initialized with no content, an amount of zero, and a maximum amount of one.
+        /// </remarks>
+        public LazyStackSlot()
+        {
+            this.content = null;
+            this.amount = 0;
+            this.maxAmount = 1;
+        }
         /// <summary>
         /// Creates a basic Stack Slot with an amount and max amount
         /// </summary>
@@ -84,15 +93,41 @@ namespace TheChest.Core.Slots
         /// <param name="amount">The amount of <paramref name="currentItem"/> to be added</param>
         /// <param name="maxAmount">The maximum permited amount of <paramref name="currentItem"/> to be added</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public LazyStackSlot(T currentItem = default!, int amount = 1, int maxAmount = 1)
+        public LazyStackSlot(T currentItem, int amount = 1, int maxAmount = 1)
         {
-            this.content = currentItem;
-            this.MaxAmount = maxAmount;
+            ValidateAmount(amount, maxAmount);
 
-            if (currentItem is null)
-                this.Amount = 0;
-            else
-                this.Amount = amount;
+            this.content = currentItem;
+            this.amount = this.content is null ? 0 : amount;
+            this.maxAmount = maxAmount;
+        }
+
+        /// <summary>
+        /// Validates that <paramref name="amount"/> is within the allowed range from zero to <paramref name="maxAmount"/>.
+        /// </summary>
+        /// <param name="amount">The amount to be validated.</param>
+        /// <param name="maxAmount">The maximum allowed amount.</param>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// When <paramref name="amount"/> is less than zero, greater than <paramref name="maxAmount"/>, 
+        /// or <paramref name="maxAmount"/> is less than zero.
+        /// </exception>
+        protected static void ValidateAmount(int amount, int maxAmount)
+        {
+            if (amount < 0)
+                throw new ArgumentOutOfRangeException(
+                    nameof(amount),
+                    "The amount property cannot be smaller than zero"
+                );
+            if (maxAmount < 0)
+                throw new ArgumentOutOfRangeException(
+                    nameof(maxAmount),
+                    "The max amount property cannot be smaller than zero"
+                );
+            if (amount > maxAmount)
+                throw new ArgumentOutOfRangeException(
+                    nameof(amount),
+                    "The item amount cannot be bigger than max amount"
+                );
         }
 
         /// <inheritdoc/>
@@ -107,7 +142,6 @@ namespace TheChest.Core.Slots
 
             return item.Equals(this.content);
         }
-
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
         public virtual bool Contains(T item, int amount)

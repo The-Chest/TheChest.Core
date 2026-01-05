@@ -1,27 +1,20 @@
-﻿using TheChest.Core.Tests.Containers.Interfaces.Factories;
-using TheChest.Core.Tests.Items.Interfaces;
+﻿using TheChest.Core.Tests.Configurations;
+using TheChest.Core.Tests.Configurations.DependencyInjection;
 
 namespace TheChest.Core.Tests.Containers.Interfaces
 {
-    public abstract partial class IContainerTests<T>
+    public abstract partial class IContainerTests<T> : BaseTest<T>
     {
-        protected Random random;
         protected readonly IContainerFactory<T> containerFactory;
         protected readonly IItemFactory<T> itemFactory;
 
         protected const int MIN_SIZE_TEST = 10;
         protected const int MAX_SIZE_TEST = 20;
 
-        protected IContainerTests(IContainerFactory<T> containerFactory, IItemFactory<T> itemFactory)
+        protected IContainerTests(Action<DIContainer> configure) : base(configure)
         {
-            this.containerFactory = containerFactory;
-            this.itemFactory = itemFactory;
-        }
-
-        [SetUp]
-        public void Setup()
-        {
-            this.random = new Random();
+            this.containerFactory = this.configurations.Resolve<IContainerFactory<T>>();
+            this.itemFactory = this.configurations.Resolve<IItemFactory<T>>();
         }
     }
 }

@@ -8,21 +8,25 @@
 	<PropertyGroup Label="Package">
 		<IsPackable>true</IsPackable>
 		<PackageIcon>icon.png</PackageIcon>
+		<PackageTags>container;slot;inventory;lightweight</PackageTags>
 		<PackageProjectUrl>https://www.nuget.org/packages/TheChest.Core/</PackageProjectUrl>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<PackageReadmeFile>README.md</PackageReadmeFile>			
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageReleaseNotes>CHANGELOG.md</PackageReleaseNotes>
 	</PropertyGroup>
 	
 	<PropertyGroup Label="Repository">
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<RepositoryUrl>https://github.com/The-Chest/TheChest.Core</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
+		<RepositoryBranch>main</RepositoryBranch>
+		<RepositoryCommit>$(SourceRevisionId)</RepositoryCommit>
 	</PropertyGroup>
 
 	<PropertyGroup Label="Compiler">
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<ImplicitUsings>disable</ImplicitUsings>
-		<Nullable>disable</Nullable>
+		<Nullable>enable</Nullable>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<DebugType>portable</DebugType>
 		<Optimize>true</Optimize>

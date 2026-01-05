@@ -1,24 +1,17 @@
-﻿using TheChest.Core.Tests.Items.Interfaces;
-using TheChest.Core.Tests.Slots.Interfaces.Factories;
+﻿using TheChest.Core.Tests.Configurations;
+using TheChest.Core.Tests.Configurations.DependencyInjection;
 
-namespace TheChest.Core.Tests.Slots.Interfaces
+namespace TheChest.Core.Tests.Slots.Interfaces.IStackSlotTests
 {
-    public abstract partial class IStackSlotTests<T>
+    public abstract partial class IStackSlotTests<T> : BaseTest<T>
     {
         protected readonly IStackSlotFactory<T> slotFactory;
         protected readonly IItemFactory<T> itemFactory;
-        protected Random random;
 
-        protected IStackSlotTests(IStackSlotFactory<T> slotFactory, IItemFactory<T> itemFactory)
+        protected IStackSlotTests(Action<DIContainer> configure) : base(configure)
         {
-            this.slotFactory = slotFactory;
-            this.itemFactory = itemFactory;
-        }
-
-        [SetUp]
-        public void Setup()
-        {
-            random = new Random();
+            this.slotFactory = this.configurations.Resolve<IStackSlotFactory<T>>();
+            this.itemFactory = this.configurations.Resolve<IItemFactory<T>>();
         }
     }
 }

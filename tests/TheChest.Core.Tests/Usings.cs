@@ -1,4 +1,7 @@
-﻿global using NUnit.Framework;
+﻿global using TheChest.Core.Slots;
+global using TheChest.Core.Containers;
+
+global using NUnit.Framework;
 
 global using TheChest.Core.Tests.Items.Interfaces;
 
