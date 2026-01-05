@@ -28,6 +28,21 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
             Assert.That(slot.Contains(default!, 10), Is.True);
         }
 
+        [Test]
+        [IgnoreIfValueType]
+        public void ContainsAmount_NotEnoughItems_ReturnsFalse()
+        {
+            var items = this.itemFactory.CreateMany(5)
+                .Concat(this.itemFactory.CreateManyRandom(5))
+                .ToArray();
+
+            //TODO: improve container factory to allow specific items in slots
+            var container = this.containerFactory.ShuffledItemsContainer(10, 10, items);
+
+            var item = this.itemFactory.CreateDefault();
+            Assert.That(container.Contains(item, 6), Is.False);
+        }
+
         [TestCase(0)]
         [TestCase(-1)]
         public void ContainsAmount_InvalidAmount_ThrowsArgumentOutOfRangeException(int amount)

@@ -52,7 +52,7 @@ namespace TheChest.Core.Containers
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
         public virtual bool Contains(T item, int amount)
         {
-            if(item is null) 
+            if (item is null) 
                 throw new ArgumentNullException(nameof(item));
             if (amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(amount));

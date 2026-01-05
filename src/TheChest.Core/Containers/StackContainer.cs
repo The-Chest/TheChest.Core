@@ -16,11 +16,11 @@ namespace TheChest.Core.Containers
         /// </summary>
         protected readonly IStackSlot<T>[] slots;
         /// <inheritdoc/>
+        public virtual int Size => this.slots.Length;
+        /// <inheritdoc/>
         public virtual bool IsFull => this.slots.All(x => x.IsFull);
         /// <inheritdoc/>
         public virtual bool IsEmpty => this.slots.All(x => x.IsEmpty);
-        /// <inheritdoc/>
-        public virtual int Size => this.slots.Length;
 
         /// <summary>
         /// Creates a Container with <see cref="IStackSlot{T}"/> implementation
@@ -60,9 +60,11 @@ namespace TheChest.Core.Containers
             var amountFound = 0;
             for (var i = 0; i < this.slots.Length; i++)
             {
-                if (this.slots[i].Contains(item))
+                var slot = this.slots[i];
+                if (slot.Contains(item))
                 {
                     amountFound++;
+                    //amountFound += slot.Amount;
                     if (amountFound >= amount)
                         return true;
                 }
