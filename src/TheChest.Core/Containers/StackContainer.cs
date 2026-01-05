@@ -34,7 +34,7 @@ namespace TheChest.Core.Containers
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
-        public bool Contains(T item)
+        public virtual bool Contains(T item)
         {
             if (item is null)
                 throw new ArgumentNullException(nameof(item));
@@ -50,7 +50,7 @@ namespace TheChest.Core.Containers
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
-        public bool Contains(T item, int amount)
+        public virtual bool Contains(T item, int amount)
         {
             if (item is null)
                 throw new ArgumentNullException(nameof(item));
