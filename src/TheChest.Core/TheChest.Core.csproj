@@ -75,7 +75,7 @@
 			<Pack>False</Pack>
 		</None>
 		<None Include="..\..\CHANGELOG.md">
-			<Pack>False</Pack>
+			<Pack>True</Pack>
 		</None>
 	</ItemGroup>
 </Project>
