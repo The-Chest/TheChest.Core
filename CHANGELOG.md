@@ -1,3 +1,15 @@
+# v0.15.1
+
+## What's Fixed
+* `StackContainer<T>.Contains` methods are now virtual.
+## What's Changed
+* XML docs improved on the classes and interfaces
+## What's Next
+* [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
+* [#123](https://github.com/The-Chest/TheChest.Core/issues/127) - DLL file to release 
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.15.0...v0.15.1
+
 # v0.15.0
 
 ## What's Added
@@ -18,7 +30,7 @@
 ## Known issues
 * Unit test project is a mess...
 ## What's Next
-* [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More wayw to instantiate the Container classes 
+* [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
 * [#122](https://github.com/The-Chest/TheChest.Core/issues/122) - XML docs descriptions of the interfaces and some properties are not describing improvements 
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.14.0...v0.15.0
