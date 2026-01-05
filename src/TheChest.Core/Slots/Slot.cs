@@ -4,9 +4,9 @@ using TheChest.Core.Slots.Interfaces;
 namespace TheChest.Core.Slots
 {
     /// <summary>
-    /// Generic Slot with with <see cref="ISlot{T}"/> implementation
+    /// Represents a generic slot that can hold a single item of type <typeparamref name="T"/>.
     /// </summary>
-    /// <typeparam name="T">The item the slot accepts</typeparam>
+    /// <typeparam name="T">The type of item the slot can hold</typeparam>
     public class Slot<T> : ISlot<T>
     {
         /// <summary>
