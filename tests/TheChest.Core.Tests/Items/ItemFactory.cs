@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using TheChest.Core.Tests.Extensions;
 
 namespace TheChest.Core.Tests.Items
 {
@@ -19,31 +20,22 @@ namespace TheChest.Core.Tests.Items
             var instance = Activator.CreateInstance(type) ??
                 throw new InvalidOperationException($"Could not create instance of type {type.FullName}");
 
-            var fields = instance.GetType().GetFields(BindingFlags.NonPublic |BindingFlags.Instance);
+            var instanceType = instance.GetType();
+            if(instanceType.IsEnum || instanceType.IsPrimitive)
+            {
+                if (instanceType.IsEnum)
+                {
+                    var values = ((T[])instanceType.GetEnumValues()).Skip(1).ToArray();
+                    values.Shuffle();
+                    return (T)values.GetValue(0)!;
+                }
+                return SetRandomValue<T>(instanceType);
+            }
+
+            var fields = instanceType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
             foreach (var field in fields)
             {
-                switch (field.FieldType.Name)
-                {
-                    case "Int32":
-                    case "Int64":
-                    case "Double":
-                    case "Single":
-                    case "Decimal":
-                    case "Byte":
-                    case "Short":
-                    case "Long":
-                    case "Float":
-                        field.SetValue(instance, Random.Shared.Next(1, 1000));
-                        break;
-                    case "String":
-                        field.SetValue(instance, Guid.NewGuid().ToString());
-                        break;
-                    case "Boolean":
-                        field.SetValue(instance, Random.Shared.Next(0, 2) == 1);
-                        break;
-                    default:
-                        throw new NotImplementedException($"Random generation for field type {field.FieldType.Name} is not implemented.");
-                }
+                field.SetValue(instance, ItemFactory<T>.SetRandomValue<dynamic>(field.FieldType));
             }
             return (T)instance;
         }
@@ -57,5 +49,39 @@ namespace TheChest.Core.Tests.Items
         {
             return Enumerable.Repeat(CreateRandom(), amount).ToArray();
         }
+
+        private static Y SetRandomValue<Y>(Type type)
+        {
+            return type switch
+            {
+                var t when t == typeof(int)
+                    => (Y)(object)Random.Shared.Next(1, 1000),
+
+                var t when t == typeof(long)
+                    => (Y)(object)Random.Shared.NextInt64(1, 1000),
+
+                var t when t == typeof(double)
+                    => (Y)(object)(Random.Shared.NextDouble() * 1000),
+
+                var t when t == typeof(float)
+                    => (Y)(object)(float)(Random.Shared.NextDouble() * 1000),
+
+                var t when t == typeof(decimal)
+                    => (Y)(object)(decimal)(Random.Shared.NextDouble() * 1000),
+
+                var t when t == typeof(byte)
+                    => (Y)(object)(byte)Random.Shared.Next(1, 255),
+
+                var t when t == typeof(string)
+                    => (Y)(object)Guid.NewGuid().ToString(),
+
+                var t when t == typeof(bool)
+                    => (Y)(object)(Random.Shared.Next(0, 2) == 1),
+
+                _ => throw new NotImplementedException(
+                    $"Random generation for type {typeof(Y).Name} is not implemented.")
+            };
+        }
+
     }
 }

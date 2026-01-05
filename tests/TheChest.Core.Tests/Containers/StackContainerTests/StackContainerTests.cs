@@ -1,6 +1,4 @@
 ﻿using TheChest.Core.Tests.Containers.Factories;
-using TheChest.Core.Tests.Items.Classes;
-using TheChest.Core.Tests.Items.Structs;
 using TheChest.Core.Tests.Slots.Factories;
 
 namespace TheChest.Core.Tests.Containers.StackContainerTests
@@ -8,6 +6,7 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
     [TestFixture(typeof(TestItem))]
     [TestFixture(typeof(TestStructItem))]
+    [TestFixture(typeof(TestEnumItem))]
     public partial class StackContainerTests<T> : IStackContainerTests<T>
     {
         public StackContainerTests() :

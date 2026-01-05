@@ -19,6 +19,7 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
 
         [Test]
         [IgnoreIfReferenceType]
+        [IgnoreIfPrimitiveType]
         public void ContainsItems_ParamsWithDefaultValue_ReturnsFalse()
         {
             var slot = this.slotFactory.FullSlot(this.itemFactory.CreateDefault());
@@ -28,6 +29,16 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
                 default!
             };
             Assert.That(slot.Contains(items), Is.False);
+        }
+
+        [Test]
+        [IgnoreIfValueType]
+        [IgnoreIfReferenceType]
+        public void ContainsItems_PrimitiveParamsWithDefaultValue_ReturnsTrue()
+        {
+            var slot = this.slotFactory.FullSlot(this.itemFactory.CreateDefault());
+            var items = new T[2];
+            Assert.That(slot.Contains(items), Is.True);
         }
 
         [Test]
