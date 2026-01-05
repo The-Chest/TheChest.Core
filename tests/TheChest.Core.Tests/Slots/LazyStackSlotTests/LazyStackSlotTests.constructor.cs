@@ -40,6 +40,18 @@
         }
 
         [Test]
+        public void Constructor_AmountSmallerThanZero_ThrowsArgumentOutOfRangeException()
+        {
+            var item = this.itemFactory.CreateDefault();
+            Assert.That(
+                () => this.slotFactory.WithItem(item, -1, 5),
+                Throws.Exception
+                    .With.TypeOf<ArgumentOutOfRangeException>()
+                    .And.Message.Contains("The amount property cannot be smaller than zero (Parameter 'amount')")
+            );
+        }
+
+        [Test]
         public void Constructor_MaxAmountLessThanZero_ThrowsArgumentOutOfRangeException()
         {
             var item = this.itemFactory.CreateDefault();
