@@ -4,8 +4,8 @@ namespace TheChest.Core.Tests.Containers.Interfaces.Factories
 {
     public interface ILazyStackContainerFactory<T>
     {
-        ILazyStackContainer<T> EmptyContainer(int size = 20);
-        ILazyStackContainer<T> FullContainer(int size, int stackSize, T item = default!);
-        ILazyStackContainer<T> ShuffledItemsContainer(int size, int stackSize, params T[] items);
+        ILazyStackContainer<T> Empty(int size = 20);
+        ILazyStackContainer<T> Full(int size, int stackSize, T item = default!);
+        ILazyStackContainer<T> ShuffledItems(int size, int stackSize, params T[] items);
     }
 }

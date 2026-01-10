@@ -8,7 +8,7 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
         [IgnoreIfValueType]
         public void Contains_NullItem_ThrowsArgumentNullException()
         {
-            var container = this.containerFactory.EmptyContainer();
+            var container = this.containerFactory.Empty();
             Assert.That(() => container.Contains(default!), Throws.ArgumentNullException);
         }
 
@@ -16,7 +16,7 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
         [IgnoreIfReferenceType]
         public void Contains_DefaultValue_ReturnsFalseIfEmpty()
         {
-            var slot = this.containerFactory.EmptyContainer();
+            var slot = this.containerFactory.Empty();
             Assert.That(slot.Contains(default(T)!), Is.False);
         }
 
@@ -24,7 +24,7 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
         [IgnoreIfReferenceType]
         public void Contains_DefaultValue_ReturnsTrueIfFull()
         {
-            var slot = this.containerFactory.FullContainer(20, 10, default(T)!);
+            var slot = this.containerFactory.Full(20, 10, default(T)!);
             Assert.That(slot.Contains(default(T)!), Is.True);
         }
     }

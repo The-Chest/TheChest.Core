@@ -6,7 +6,7 @@
         public void ContainsAmount_EmptyContainer_ReturnsFalse()
         {
             var item = this.itemFactory.CreateDefault();
-            var container = this.containerFactory.EmptyContainer();
+            var container = this.containerFactory.Empty();
             Assert.That(container.Contains(item), Is.False);
         }
 
@@ -14,7 +14,7 @@
         public void ContainsAmount_NotFoundItem_ReturnsFalse()
         {
             var items = this.itemFactory.CreateManyRandom(10);
-            var container = this.containerFactory.ShuffledItemsContainer(10, 5, items);
+            var container = this.containerFactory.ShuffledItems(10, 5, items);
 
             var paramItem = this.itemFactory.CreateDefault();
             Assert.That(container.Contains(paramItem, 20), Is.False);
@@ -26,7 +26,7 @@
             var item = this.itemFactory.CreateDefault();
             var items = this.itemFactory.CreateManyRandom(9)
                 .Append(item).ToArray();
-            var container = this.containerFactory.ShuffledItemsContainer(10, 5, items);
+            var container = this.containerFactory.ShuffledItems(10, 5, items);
 
             var paramItem = this.itemFactory.CreateDefault();
             Assert.That(container.Contains(paramItem, 20), Is.False);
@@ -37,7 +37,7 @@
         {
             var items = this.itemFactory.CreateManyRandom(5).ToList();
             items.AddRange(this.itemFactory.CreateMany(5));
-            var container = this.containerFactory.ShuffledItemsContainer(10, 5, items.ToArray());
+            var container = this.containerFactory.ShuffledItems(10, 5, items.ToArray());
 
             var paramItem = this.itemFactory.CreateDefault();
             Assert.That(container.Contains(paramItem, 5), Is.True);
@@ -49,7 +49,7 @@
             var item = this.itemFactory.CreateRandom();
             var items = this.itemFactory.CreateMany(9)
                 .Append(item).ToArray();
-            var container = this.containerFactory.ShuffledItemsContainer(10, 5, items.ToArray());
+            var container = this.containerFactory.ShuffledItems(10, 5, items.ToArray());
 
             var paramItem = this.itemFactory.CreateDefault();
             Assert.That(container.Contains(paramItem, 5), Is.True);
