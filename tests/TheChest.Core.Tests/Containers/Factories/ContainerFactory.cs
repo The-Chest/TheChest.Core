@@ -52,7 +52,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return (IContainer<Item>)container!;
         }
 
-        public virtual IContainer<Item> ShuffledItem(int size, Item item)
+        public virtual IContainer<Item> WithShuffledItem(int size, Item item)
         {
             if (item is null)
                 throw new ArgumentException("Item cannot be null");
@@ -79,7 +79,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return (IContainer<Item>)container!;
         }
 
-        public virtual IContainer<Item> ShuffledItems(int size, params Item[] items)
+        public virtual IContainer<Item> WithItemsShuffled(int size, params Item[] items)
         {
             if (items.Length > size)
                 throw new ArgumentException($"Item amount ({items.Length}) cannot be bigger than the container size ({size})");

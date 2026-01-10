@@ -16,7 +16,7 @@
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var items = this.itemFactory.CreateMany(randomSize - 1);
 
-            var container = this.containerFactory.ShuffledItems(randomSize, items);
+            var container = this.containerFactory.WithItemsShuffled(randomSize, items);
 
             Assert.That(container.IsFull, Is.False);
         }
@@ -27,7 +27,7 @@
             var item = this.itemFactory.CreateDefault();
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
 
-            var container = this.containerFactory.ShuffledItem(randomSize, item);
+            var container = this.containerFactory.WithShuffledItem(randomSize, item);
 
             Assert.That(container.IsFull, Is.False);
         }

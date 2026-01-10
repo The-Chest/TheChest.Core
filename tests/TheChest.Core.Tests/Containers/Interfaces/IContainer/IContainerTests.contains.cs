@@ -26,7 +26,7 @@
             var item = this.itemFactory.CreateDefault();
             var items = this.itemFactory.CreateManyRandom(9)
                 .Append(item).ToArray();
-            var container = this.containerFactory.ShuffledItems(10, items);
+            var container = this.containerFactory.WithItemsShuffled(10, items);
 
             var paramItem = this.itemFactory.CreateDefault();
             Assert.That(container.Contains(paramItem), Is.True);
