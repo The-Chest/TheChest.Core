@@ -1,5 +1,4 @@
-﻿using TheChest.Core.Containers;
-using TheChest.Core.Containers.Interfaces;
+﻿using TheChest.Core.Containers.Interfaces;
 using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Tests.Extensions;
 
@@ -15,7 +14,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             this.slotFactory = slotFactory;
         }
 
-        public virtual IContainer<Item> EmptyContainer(int size = 20)
+        public virtual IContainer<Item> Empty(int size = 20)
         {
             var containerType = typeof(Container).GetContainerType(typeof(IContainer<Item>));
             var slotType = containerType.GetSlotTypeByConstructor<ISlot<Item>>();
@@ -34,7 +33,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return (IContainer<Item>)container!;
         }
 
-        public virtual IContainer<Item> FullContainer(int size, Item item)
+        public virtual IContainer<Item> Full(int size, Item item)
         {
             var containerType = typeof(Container).GetContainerType(typeof(IContainer<Item>));
             var slotType = containerType.GetSlotTypeByConstructor<ISlot<Item>>();
@@ -53,7 +52,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return (IContainer<Item>)container!;
         }
 
-        public virtual IContainer<Item> ShuffledItemContainer(int size, Item item)
+        public virtual IContainer<Item> ShuffledItem(int size, Item item)
         {
             if (item is null)
                 throw new ArgumentException("Item cannot be null");
@@ -80,7 +79,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return (IContainer<Item>)container!;
         }
 
-        public virtual IContainer<Item> ShuffledItemsContainer(int size, params Item[] items)
+        public virtual IContainer<Item> ShuffledItems(int size, params Item[] items)
         {
             if (items.Length > size)
                 throw new ArgumentException($"Item amount ({items.Length}) cannot be bigger than the container size ({size})");

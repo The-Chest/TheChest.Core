@@ -1,10 +1,10 @@
-﻿using TheChest.Core.Containers;
-using TheChest.Core.Containers.Interfaces;
+﻿using TheChest.Core.Containers.Interfaces;
 using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Tests.Extensions;
 
 namespace TheChest.Core.Tests.Containers.Factories
 {
+    //TODO: improve this factory to allow specific items in slots
     public class StackContainerFactory<Container, Item> : IStackContainerFactory<Item>
         where Container : StackContainer<Item>
     {
