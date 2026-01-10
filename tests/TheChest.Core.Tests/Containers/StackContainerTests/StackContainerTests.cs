@@ -3,7 +3,6 @@ using TheChest.Core.Tests.Slots.Factories;
 
 namespace TheChest.Core.Tests.Containers.StackContainerTests
 {
-
     [TestFixture(typeof(TestItem))]
     [TestFixture(typeof(TestStructItem))]
     [TestFixture(typeof(TestEnumItem))]

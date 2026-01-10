@@ -4,8 +4,8 @@ namespace TheChest.Core.Tests.Containers.Interfaces.Factories
 {
     public interface IStackContainerFactory<T>
     {
-        IStackContainer<T> EmptyContainer(int size = 20);
-        IStackContainer<T> FullContainer(int size, int stackSize, T item = default!);
-        IStackContainer<T> ShuffledItemsContainer(int size, int stackSize, params T[] items);
+        IStackContainer<T> Empty(int size = 20);
+        IStackContainer<T> Full(int size, int stackSize, T item = default!);
+        IStackContainer<T> ShuffledItems(int size, int stackSize, params T[] items);
     }
 }
