@@ -47,8 +47,7 @@
         public void ContainsAmount_AmountBiggerThanSearchedAmount_ReturnsTrue()
         {
             var item = this.itemFactory.CreateRandom();
-            var items = this.itemFactory.CreateMany(9)
-                .Append(item).ToArray();
+            var items = this.itemFactory.CreateMany(9).Append(item).ToArray();
             var container = this.containerFactory.ShuffledItems(10, 5, items.ToArray());
 
             var paramItem = this.itemFactory.CreateDefault();

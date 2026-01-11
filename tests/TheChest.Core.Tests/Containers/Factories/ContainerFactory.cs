@@ -22,7 +22,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    slotFactory: _ => slotFactory.EmptySlot(),
+                    factory: _ => slotFactory.EmptySlot(),
                     shuffle: true
                 );
 
@@ -41,7 +41,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    slotFactory: _ => slotFactory.FullSlot(item),
+                    factory: _ => slotFactory.FullSlot(item),
                     shuffle: true
                 );
             var container = Activator.CreateInstance(
@@ -52,7 +52,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return (IContainer<Item>)container!;
         }
 
-        public virtual IContainer<Item> WithShuffledItem(int size, Item item)
+        public virtual IContainer<Item> WithItemShuffled(int size, Item item)
         {
             if (item is null)
                 throw new ArgumentException("Item cannot be null");
@@ -64,7 +64,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    slotFactory: 
+                    factory: 
                         i => i == randomIndex
                             ? slotFactory.FullSlot(item)
                             : slotFactory.EmptySlot(),
@@ -90,10 +90,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    slotFactory:
-                        i => i < items.Length
-                            ? slotFactory.FullSlot(items[i])
-                            : slotFactory.EmptySlot(),
+                    factory: i => i < items.Length ? slotFactory.FullSlot(items[i]) : slotFactory.EmptySlot(),
                     shuffle: true
                 );
 
@@ -102,6 +99,28 @@ namespace TheChest.Core.Tests.Containers.Factories
                 args: new object[1] { slots }
             );
 
+            return (IContainer<Item>)container!;
+        }
+
+        public virtual IContainer<Item> WithItems(int size, params Item[] items)
+        {
+            if (items.Length > size)
+                throw new ArgumentException($"Item amount ({items.Length}) cannot be bigger than the container size ({size})");
+            
+            var containerType = typeof(Container).GetContainerType(typeof(IContainer<Item>));
+            var slotType = containerType.GetSlotTypeByConstructor<ISlot<Item>>();
+
+            var slots = slotType
+                .CreateSlots(
+                    size: size,
+                    factory: i => i < items.Length ? slotFactory.FullSlot(items[i]) : slotFactory.EmptySlot(),
+                    shuffle: false
+                );
+
+            var container = Activator.CreateInstance(
+                type: containerType,
+                args: new object[1] { slots }
+            );
             return (IContainer<Item>)container!;
         }
     }

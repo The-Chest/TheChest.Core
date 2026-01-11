@@ -32,15 +32,15 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
         [IgnoreIfValueType]
         public void ContainsAmount_NotEnoughItems_ReturnsFalse()
         {
-            var items = this.itemFactory.CreateMany(5)
+            var size = this.random.Next(5, 20);
+            var stackSize = this.random.Next(5, 10);
+            var items = this.itemFactory.CreateMany(1)
                 .Concat(this.itemFactory.CreateManyRandom(5))
                 .ToArray();
-
-            //TODO: improve container factory to allow specific items in slots
-            var container = this.containerFactory.Empty(20);
+            var container = this.containerFactory.ShuffledItems(size, stackSize, items);
 
             var item = this.itemFactory.CreateDefault();
-            Assert.That(container.Contains(item, 6), Is.False);
+            Assert.That(container.Contains(item, stackSize + 1), Is.False);
         }
 
         [TestCase(0)]
