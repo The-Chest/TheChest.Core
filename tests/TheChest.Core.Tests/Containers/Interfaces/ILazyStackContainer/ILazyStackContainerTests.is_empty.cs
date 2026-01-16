@@ -5,7 +5,7 @@
         [Test]
         public void IsEmpty_EmptySlots_ReturnsTrue()
         {
-            var container = this.containerFactory.EmptyContainer();
+            var container = this.containerFactory.Empty();
             Assert.That(container.IsEmpty, Is.True);
         }
 
@@ -15,7 +15,7 @@
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var randomStackSize = random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
 
-            var container = this.containerFactory.ShuffledItemsContainer(
+            var container = this.containerFactory.ShuffledItems(
                 randomSize, 
                 randomStackSize, 
                 this.itemFactory.CreateDefault()
@@ -29,7 +29,7 @@
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var randomStackSize = random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
 
-            var container = this.containerFactory.FullContainer(
+            var container = this.containerFactory.Full(
                 randomSize, 
                 randomStackSize, 
                 this.itemFactory.CreateDefault()

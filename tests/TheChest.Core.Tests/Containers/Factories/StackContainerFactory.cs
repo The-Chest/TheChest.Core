@@ -1,10 +1,10 @@
-﻿using TheChest.Core.Containers;
-using TheChest.Core.Containers.Interfaces;
+﻿using TheChest.Core.Containers.Interfaces;
 using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Tests.Extensions;
 
 namespace TheChest.Core.Tests.Containers.Factories
 {
+    //TODO: improve this factory to allow specific items in slots
     public class StackContainerFactory<Container, Item> : IStackContainerFactory<Item>
         where Container : StackContainer<Item>
     {
@@ -15,7 +15,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             this.slotFactory = slotFactory;
         }
 
-        public virtual IStackContainer<Item> EmptyContainer(int size = 20)
+        public virtual IStackContainer<Item> Empty(int size = 20)
         {
             var containerType = typeof(Container).GetContainerType(typeof(IStackContainer<Item>));
             var slotType = containerType.GetSlotTypeByConstructor<IStackSlot<Item>>();
@@ -23,7 +23,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    slotFactory: _ => slotFactory.EmptySlot(),
+                    factory: _ => slotFactory.EmptySlot(),
                     shuffle: true
                 );
 
@@ -34,7 +34,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return (IStackContainer<Item>)container!;
         }
 
-        public virtual IStackContainer<Item> FullContainer(int size, int stackSize, Item item = default!)
+        public virtual IStackContainer<Item> Full(int size, int stackSize, Item item = default!)
         {
             var containerType = typeof(Container).GetContainerType(typeof(IStackContainer<Item>));
             var slotType = containerType.GetSlotTypeByConstructor<IStackSlot<Item>>();
@@ -42,7 +42,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    slotFactory: _ => slotFactory.WithItem(item, stackSize, stackSize),
+                    factory: _ => slotFactory.WithItem(item, stackSize, stackSize),
                     shuffle: true
                 );
             var container = Activator.CreateInstance(
@@ -53,7 +53,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return (IStackContainer<Item>)container!;
         }
 
-        public virtual IStackContainer<Item> ShuffledItemsContainer(int size, int stackSize, params Item[] items)
+        public virtual IStackContainer<Item> ShuffledItems(int size, int stackSize, params Item[] items)
         {
             if (items.Length > size)
                 throw new ArgumentException($"Item amount ({items.Length}) cannot be bigger than the container size ({size})");
@@ -64,9 +64,9 @@ namespace TheChest.Core.Tests.Containers.Factories
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    slotFactory:
+                    factory:
                         i => i < items.Length
-                            ? slotFactory.FullSlot(items[i])
+                            ? slotFactory.WithItem(items[i], stackSize, stackSize)
                             : slotFactory.EmptySlot(),
                     shuffle: true
                 );

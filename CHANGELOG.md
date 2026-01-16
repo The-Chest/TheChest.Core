@@ -1,3 +1,17 @@
+# v0.15.2
+
+## What's Fixed
+* `StackContainer<T>.Contains(T item, int amount)` now count all items in all slots to compare with `amount` instead of one for each slot.
+## What's Removed
+* Useless amount validation on `StackSlot<T>.Contains(T item)`
+## Known Issues
+* Unit tests project is running on .net 6.0 while the main project is on .net standard 2.1
+## What's Next
+* [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
+* [#123](https://github.com/The-Chest/TheChest.Core/issues/127) - DLL file to release 
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.15.1...v0.15.2
+
 # v0.15.1
 
 ## What's Fixed

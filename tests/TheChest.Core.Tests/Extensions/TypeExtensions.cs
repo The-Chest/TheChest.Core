@@ -11,14 +11,10 @@ namespace TheChest.Core.Tests.Extensions
         )
         {
             if (!interfaceType.IsInterface)
-                throw new ArgumentException(
-                    $"'{interfaceType.FullName}' is not an interface."
-                );
+                throw new ArgumentException($"'{interfaceType.FullName}' is not an interface.");
 
             if (!interfaceType.IsAssignableFrom(containerType))
-                throw new ArgumentException(
-                    $"Type '{containerType.FullName}' does not implement '{interfaceType.FullName}'."
-                );
+                throw new ArgumentException($"Type '{containerType.FullName}' does not implement '{interfaceType.FullName}'.");
 
             return containerType;
         }
@@ -43,17 +39,11 @@ namespace TheChest.Core.Tests.Extensions
                     ?? throw new ArgumentException($"Container type '{containerType.FullName}' does not have a suitable constructor.");
 
             var slotParameter = constructor.GetParameters().FirstOrDefault(x => x.Name == slotParameterName)
-                ?? throw new ArgumentException(
-                    $"Container type '{containerType.FullName}' does not have a constructor with {typeof(TSlotInterface).Name}[]."
-                );
+                ?? throw new ArgumentException($"Container type '{containerType.FullName}' does not have a constructor with {typeof(TSlotInterface).Name}[].");
 
             var slotType = slotParameter.ParameterType.GetElementType();
             if (!typeof(TSlotInterface).IsAssignableFrom(slotType))
-            {
-                throw new ArgumentException(
-                    $"Type '{slotType?.FullName}' does not implement {typeof(TSlotInterface).FullName}."
-                );
-            }
+                throw new ArgumentException($"Type '{slotType?.FullName}' does not implement {typeof(TSlotInterface).FullName}.");
 
             return slotType!;
         }
@@ -61,17 +51,14 @@ namespace TheChest.Core.Tests.Extensions
         internal static Array CreateSlots<Item>(
             this Type slotType,
             int size, 
-            Func<int, ISlot<Item>> slotFactory,
+            Func<int, ISlot<Item>> factory,
             bool shuffle = false
         )
         {
             var slots = Array.CreateInstance(slotType, size);
 
             for (int i = 0; i < size; i++)
-            {
-                var slot = slotFactory(i);
-                slots.SetValue(slot, i);
-            }
+                slots.SetValue(factory(i), i);
 
             if (shuffle)
                 slots.Shuffle();
@@ -82,10 +69,8 @@ namespace TheChest.Core.Tests.Extensions
         internal static ConstructorInfo GetSmallerConstructor(this Type implType)
         {
             var ctors = implType.GetConstructors(BindingFlags.Public | BindingFlags.Instance);
-            var ctor = ctors.OrderByDescending(c => c.GetParameters().Length).FirstOrDefault()
+            return ctors.OrderByDescending(c => c.GetParameters().Length).FirstOrDefault()
                 ?? throw new InvalidOperationException("No public constructor found for " + implType.FullName);
-
-            return ctor;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using TheChest.Core.Slots;
-using TheChest.Core.Tests.Configurations.Attributes;
+﻿using TheChest.Core.Tests.Configurations.Attributes;
 
 namespace TheChest.Core.Tests.Containers.ContainerTests
 {
@@ -9,7 +8,7 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         [IgnoreIfValueType]
         public void Contains_NullItem_ThrowsArgumentNullException()
         {
-            var container = this.containerFactory.EmptyContainer();
+            var container = this.containerFactory.Empty();
             Assert.Throws<ArgumentNullException>(() => container.Contains(default!));
         }
 
@@ -17,7 +16,7 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         [IgnoreIfReferenceType]
         public void Contains_DefaultValue_ReturnsFalseIfEmpty()
         {
-            var slot = this.containerFactory.EmptyContainer();
+            var slot = this.containerFactory.Empty();
             Assert.That(slot.Contains(default(T)!), Is.False);
         }
 
@@ -25,7 +24,7 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         [IgnoreIfReferenceType]
         public void Contains_DefaultValue_ReturnsTrueIfFull()
         {
-            var slot = this.containerFactory.FullContainer(20, default(T)!);
+            var slot = this.containerFactory.Full(20, default(T)!);
             Assert.That(slot.Contains(default(T)!), Is.True);
         }
     }

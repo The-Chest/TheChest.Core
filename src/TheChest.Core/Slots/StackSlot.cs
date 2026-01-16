@@ -189,7 +189,7 @@ namespace TheChest.Core.Slots
             if (this.IsEmpty)
                 return false;
 
-            return this.Content.Contains(item) && this.Amount >= amount;
+            return this.Content.Contains(item);
         }
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="items"/> is null or contain any null values</exception>

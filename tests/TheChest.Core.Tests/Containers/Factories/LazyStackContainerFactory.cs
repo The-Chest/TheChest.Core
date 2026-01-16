@@ -14,7 +14,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             this.slotFactory = slotFactory;
         }
 
-        public virtual ILazyStackContainer<Item> EmptyContainer(int size = 20)
+        public virtual ILazyStackContainer<Item> Empty(int size = 20)
         {
             var containerType = typeof(Container).GetContainerType(typeof(ILazyStackContainer<Item>));
             var slotType = containerType.GetSlotTypeByConstructor<ILazyStackSlot<Item>>();
@@ -22,7 +22,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    slotFactory: _ => slotFactory.EmptySlot(),
+                    factory: _ => slotFactory.EmptySlot(),
                     shuffle: true
                 );
 
@@ -33,7 +33,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return (ILazyStackContainer<Item>)container!;
         }
 
-        public virtual ILazyStackContainer<Item> FullContainer(int size, int stackSize, Item item = default!)
+        public virtual ILazyStackContainer<Item> Full(int size, int stackSize, Item item = default!)
         {
             var containerType = typeof(Container).GetContainerType(typeof(ILazyStackContainer<Item>));
             var slotType = containerType.GetSlotTypeByConstructor<ILazyStackSlot<Item>>();
@@ -41,7 +41,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    slotFactory: _ => slotFactory.WithItem(item, stackSize, stackSize),
+                    factory: _ => slotFactory.WithItem(item, stackSize, stackSize),
                     shuffle: true
                 );
             var container = Activator.CreateInstance(
@@ -52,7 +52,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             return (ILazyStackContainer<Item>)container!;
         }
 
-        public virtual ILazyStackContainer<Item> ShuffledItemsContainer(int size, int stackSize, params Item[] items)
+        public virtual ILazyStackContainer<Item> ShuffledItems(int size, int stackSize, params Item[] items)
         {
             if (items.Length > size)
                 throw new ArgumentException($"Item amount ({items.Length}) cannot be bigger than the container size ({size})");
@@ -63,7 +63,7 @@ namespace TheChest.Core.Tests.Containers.Factories
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    slotFactory:
+                    factory:
                         i => i < items.Length
                             ? slotFactory.FullSlot(items[i])
                             : slotFactory.EmptySlot(),

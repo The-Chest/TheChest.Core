@@ -12,7 +12,7 @@
 		<PackageProjectUrl>https://www.nuget.org/packages/TheChest.Core/</PackageProjectUrl>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageReleaseNotes>CHANGELOG.md</PackageReleaseNotes>
+		<PackageReleaseNotes>See CHANGELOG.md for details.</PackageReleaseNotes>
 	</PropertyGroup>
 	
 	<PropertyGroup Label="Repository">
