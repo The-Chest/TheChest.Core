@@ -66,7 +66,7 @@ namespace TheChest.Core.Tests.Containers.Factories
                     size: size,
                     factory:
                         i => i < items.Length
-                            ? slotFactory.FullSlot(items[i])
+                            ? slotFactory.WithItem(items[i], stackSize, stackSize)
                             : slotFactory.EmptySlot(),
                     shuffle: true
                 );

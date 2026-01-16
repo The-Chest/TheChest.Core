@@ -63,8 +63,7 @@ namespace TheChest.Core.Containers
                 var slot = this.slots[i];
                 if (slot.Contains(item))
                 {
-                    amountFound++;
-                    //amountFound += slot.Amount;
+                    amountFound += slot.Amount;
                     if (amountFound >= amount)
                         return true;
                 }
