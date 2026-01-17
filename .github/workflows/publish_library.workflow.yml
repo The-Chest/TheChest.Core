@@ -60,18 +60,32 @@ jobs:
         with:
           script: |
             const fs = require('fs');
+
             const tag = context.ref.replace("refs/tags/", "");
+            const version = tag.replace("v", "");
+            
             const release = await github.repos.getReleaseByTag({
               owner: context.repo.owner,
               repo: context.repo.repo,
               tag
             });
-            const version = tag.replace("v", "");
-            const fileName = `TheChest.Core.${version}.nupkg`;
+            
+            // NuGet package
+            const nupkgName = `TheChest.Core.${version}.nupkg`;
             await github.repos.uploadReleaseAsset({
               owner: context.repo.owner,
               repo: context.repo.repo,
               release_id: release.data.id,
-              name: fileName,
-              data: await fs.readFileSync(`./${fileName}`)
+              name: nupkgName,
+              data: fs.readFileSync(`./${nupkgName}`)
+            });
+            
+            // DLL File
+            const dllName = `TheChest.Core.${version}.dll`;
+            await github.repos.uploadReleaseAsset({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: release.data.id,
+              name: dllName,
+              data: fs.readFileSync(`./src/TheChest.Core/bin/Release/${dllName}`)
             });
