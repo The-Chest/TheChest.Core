@@ -26,7 +26,7 @@
 	<PropertyGroup Label="Compiler">
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<ImplicitUsings>disable</ImplicitUsings>
-		<Nullable>enable</Nullable>
+		<Nullable>disable</Nullable>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<DebugType>portable</DebugType>
 		<Optimize>true</Optimize>
