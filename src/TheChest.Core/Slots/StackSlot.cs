@@ -119,7 +119,7 @@ namespace TheChest.Core.Slots
             ValidateContent(items, maxAmount);
 
             var contentAmount = 0;
-            var contentArray = new object?[items.Length];
+            var contentArray = new object[items.Length];
             
             for (int i = 0; i < items.Length; i++)
             {
