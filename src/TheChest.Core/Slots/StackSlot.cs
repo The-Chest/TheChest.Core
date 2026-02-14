@@ -13,7 +13,7 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// The content inside the slot
         /// </summary>
-        private readonly object?[] content;
+        private readonly object[] content;
         /// <summary>
         /// The content inside the slot
         /// </summary>

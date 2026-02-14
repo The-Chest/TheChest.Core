@@ -16,7 +16,7 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// The content inside the slot
         /// </summary>
-        private object? content;
+        private object content;
         /// <summary>
         /// The content inside the slot
         /// </summary>
@@ -24,12 +24,10 @@ namespace TheChest.Core.Slots
         {
             get
             {
-#pragma warning disable CS8603
                 if (typeof(T).IsValueType && this.content is null)
                     return default;
 
                 return (T)this.content;
-#pragma warning restore CS8603
             }
             protected set
             {
