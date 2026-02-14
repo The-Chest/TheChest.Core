@@ -13,7 +13,7 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// The content inside the slot
         /// </summary>
-        private readonly object?[] content;
+        private readonly object[] content;
         /// <summary>
         /// The content inside the slot
         /// </summary>
@@ -119,7 +119,7 @@ namespace TheChest.Core.Slots
             ValidateContent(items, maxAmount);
 
             var contentAmount = 0;
-            var contentArray = new object?[items.Length];
+            var contentArray = new object[items.Length];
             
             for (int i = 0; i < items.Length; i++)
             {

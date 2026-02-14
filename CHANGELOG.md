@@ -1,11 +1,28 @@
+# v0.15.3
+
+## What's changed
+* Field `content` doesn't have Nullable type anymore in `Slot<T>`, `StackSlot<T>` and `LazyStackSlot<T>`
+
+## Known Issues
+* Unit tests project is running on .net 6.0 while the main project is on .net standard 2.1
+
+## What's Next
+* [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
+* [#140](https://github.com/The-Chest/TheChest.Core/issues/140) - New Property `AvailableAmount` to `StackSlot<T>` and `LazyStackSlot<T>` 
+
+* **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.15.2...v0.15.3
+
 # v0.15.2
 
 ## What's Fixed
 * `StackContainer<T>.Contains(T item, int amount)` now count all items in all slots to compare with `amount` instead of one for each slot.
+
 ## What's Removed
 * Useless amount validation on `StackSlot<T>.Contains(T item)`
+
 ## Known Issues
 * Unit tests project is running on .net 6.0 while the main project is on .net standard 2.1
+
 ## What's Next
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
 * [#123](https://github.com/The-Chest/TheChest.Core/issues/127) - DLL file to release 
@@ -16,8 +33,10 @@
 
 ## What's Fixed
 * `StackContainer<T>.Contains` methods are now virtual.
+
 ## What's Changed
 * XML docs improved on the classes and interfaces
+
 ## What's Next
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
 * [#123](https://github.com/The-Chest/TheChest.Core/issues/127) - DLL file to release 
@@ -39,10 +58,13 @@
   * `LazyStackSlot<T>`
     * `ValidateAmount(int amount, int maxAmount)` - Validates that `amount` is within the allowed range from zero to `maxAmount`.
 * `MaxAmount` and `Amount` now calls the static Validation methods in its constructors
+
 ## What's Changed
 * Slots now supports reference and value types.
+
 ## Known issues
 * Unit test project is a mess...
+
 ## What's Next
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
 * [#122](https://github.com/The-Chest/TheChest.Core/issues/122) - XML docs descriptions of the interfaces and some properties are not describing improvements 
@@ -176,6 +198,7 @@
 
 ## What's Added
 * Now every class/interface have its own summary doc on nuget.pkg
+
 ## Known issues
 * [#20](https://github.com/The-Chest/TheChest.Core/issues/20) - `StackSlot` constructor with no validation
 * [#24](https://github.com/The-Chest/TheChest.Core/issues/24) - Project .net version outdated
@@ -286,8 +309,10 @@
 * Unit tests to `BaseContainer<T>` and `BaseStackContainer<T>`
 * Unit tests to `BaseSlot<T>` and `BaseStackSlot<T>`
 * Example projects - `TheChest.Example.ConsoleApp`
+
 ## What's Changed
 * `BaseStackSlot<T>(T[] items, int maxStack)` now calls base class constructor `BaseSlot<T>(T item)` 
+
 ## Known Issues
 * No documentation yet
 * No unit tests to Inventory features yet

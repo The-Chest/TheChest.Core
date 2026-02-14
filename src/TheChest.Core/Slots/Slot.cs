@@ -13,7 +13,7 @@ namespace TheChest.Core.Slots
         /// The content of the slot stored as an object.
         /// <para>Use <see cref="Content"/> to se its value</para>
         /// </summary>
-        private object? content;
+        private object content;
         /// <summary>
         /// The content of the slot
         /// <para>Use this to compare</para>
