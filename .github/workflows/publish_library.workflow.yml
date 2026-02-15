@@ -26,7 +26,7 @@ jobs:
       uses: actions/upload-artifact@v4.6.2
       with:
         name: ${{ github.ref_name }}
-        path: 'src/TheChest.Core/bin/Release'
+        path: 'src/TheChest.Core/bin/Release/netstandard2.1'
         retention-days: 14
   publish:
     runs-on: ubuntu-latest
@@ -46,7 +46,7 @@ jobs:
         uses: actions/download-artifact@v4.2.1
         with:
           name: ${{ github.ref_name }}
-          path: 'src/TheChest.Core/bin/Release'
+          path: 'src/TheChest.Core/bin/Release/netstandard2.1'
       - name: Restore dependencies
         run: dotnet restore src/TheChest.Core
       - name: Pack library
@@ -81,11 +81,11 @@ jobs:
             });
             
             // DLL File
-            const dllName = `TheChest.Core.${version}.dll`;
+            const dllName = `TheChest.Core.dll`;
             await github.repos.uploadReleaseAsset({
               owner: context.repo.owner,
               repo: context.repo.repo,
               release_id: release.data.id,
               name: dllName,
-              data: fs.readFileSync(`./src/TheChest.Core/bin/Release/${dllName}`)
+              data: fs.readFileSync(`src/TheChest.Core/bin/Release/netstandard2.1/${dllName}`)
             });
