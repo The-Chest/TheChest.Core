@@ -21,7 +21,6 @@ namespace TheChest.Core.Slots
         {
             get
             {
-#pragma warning disable CS8601
                 var result = new T[this.maxAmount];
 
                 for (int i = 0; i < this.maxAmount; i++)
@@ -31,7 +30,6 @@ namespace TheChest.Core.Slots
                 }
 
                 return result;
-#pragma warning restore CS8601
             }
             protected set
             {
@@ -86,6 +84,8 @@ namespace TheChest.Core.Slots
             }
         }
 
+        /// <inheritdoc/>
+        public virtual int AvailableAmount => this.maxAmount - this.amount;
         /// <inheritdoc/>
         public virtual bool IsFull => !this.IsEmpty && this.amount == this.maxAmount;
         /// <inheritdoc/>
