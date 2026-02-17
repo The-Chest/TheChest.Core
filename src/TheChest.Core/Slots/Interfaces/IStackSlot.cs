@@ -18,6 +18,10 @@
         /// </summary>
         int MaxAmount { get; }
         /// <summary>
+        /// Defines the amount of available item that this slot can contain.
+        /// </summary>
+        int AvailableAmount { get; }
+        /// <summary>
         /// Checks if the slot contains the specified items.
         /// </summary>
         /// <param name="items">items to be checked inside the slot</param>

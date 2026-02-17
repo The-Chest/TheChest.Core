@@ -72,6 +72,8 @@ namespace TheChest.Core.Slots
         }
 
         /// <inheritdoc/>
+        public virtual int AvailableAmount => this.maxAmount - this.amount;
+        /// <inheritdoc/>
         public virtual bool IsFull => !this.IsEmpty && this.amount == this.maxAmount;
         /// <inheritdoc/>
         public virtual bool IsEmpty => this.amount == 0 || this.content is null;

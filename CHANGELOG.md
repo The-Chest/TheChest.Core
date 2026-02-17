@@ -1,3 +1,21 @@
+# v0.16.0
+
+## What's Added
+* `AvailableAmount` property to `StackSlot<T>` and `LazyStackSlot<T>`
+  * It returns the amount of items that can be added to the slot until it reaches its max amount. 
+  * It is calculated as `MaxAmount - Amount`
+
+## Known Issues
+* Unit tests project is running on .net 6.0 while the main project is on .net standard 2.1
+  * Perhaps it can be updated to use a matrix of .net versions to the test project
+* `StackSlot<T>.content` is being created with the size of the param `items` instead of the param `maxAmount`.
+
+## What's Next
+* [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
+* Hopefully v1.0.0
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.15.3...v0.16.0
+
 # v0.15.3
 
 ## What's changed
