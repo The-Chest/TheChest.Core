@@ -19,7 +19,7 @@
         [Test]
         public void AvailableAmount_SlotWithItem_ReturnsMaxAmountLessAmount()
         {
-            var slot = this.slotFactory.WithItem(this.itemFactory.CreateDefault(), 0);
+            var slot = this.slotFactory.WithItem(this.itemFactory.CreateDefault(), 5);
             Assert.That(slot.AvailableAmount, Is.EqualTo(slot.MaxAmount - slot.Amount));
         }
     }
