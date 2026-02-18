@@ -1,3 +1,17 @@
+# v0.16.1
+
+## What's Changed
+* `StackSlot<T>.content` is not `readonly` anymore, so it can be modified by the class methods and not only by the constructor.
+
+## Known Issues
+* `StackSlot<T>.content` is now being created with the size of the param `maxAmount`.
+
+## What's Next
+* [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
+* Hopefully v1.0.0
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.16.0...v0.16.1
+
 # v0.16.0
 
 ## What's Added
