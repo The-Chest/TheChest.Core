@@ -10,9 +10,6 @@ namespace TheChest.Core.Slots
     /// <typeparam name="T">The type of item the slot can hold</typeparam>
     public class StackSlot<T> : IStackSlot<T>
     {
-        /// <summary>
-        /// The content inside the slot
-        /// </summary>
         private object[] content;
         /// <summary>
         /// The content inside the slot
@@ -61,7 +58,7 @@ namespace TheChest.Core.Slots
             }
             protected set
             {
-                ValidateAmount(this.Amount, value);
+                ValidateAmount(value, this.maxAmount);
                 this.amount = value;
             }
         }
@@ -79,7 +76,8 @@ namespace TheChest.Core.Slots
             }
             protected set
             {
-                ValidateAmount(this.Amount, value);
+                ValidateAmount(this.amount, value);
+                Array.Resize(ref this.content, value);
                 this.maxAmount = value;
             }
         }
@@ -98,21 +96,21 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// Creates an empty <see cref="StackSlot{T}"/> with a defined max size
         /// </summary>
-        /// <param name="maxAmount">The MaxSizeAllowed</param>
+        /// <param name="maxAmount">The Max Size Allowed</param>
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxAmount"/> is smaller than zero</exception>
         public StackSlot(int maxAmount) : this(Array.Empty<T>(), maxAmount) { }
         /// <summary>
         /// Creates a basic <see cref="StackSlot{T}"/> with the max size defined by the array
         /// </summary>
         /// <param name="items">The amount of items to be added to the created slot and also sets the <see cref="IStackSlot{T}.MaxAmount"/></param>
-        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is null</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is <see langword="null"/></exception>
         public StackSlot(T[] items) : this(items, items?.Length ?? 0) { }
         /// <summary>
         /// Creates a basic <see cref="StackSlot{T}"/> with items and a max size defined by param the <paramref name="maxAmount"/>
         /// </summary>
         /// <param name="items">The amount of items to be inside the created slot</param>
         /// <param name="maxAmount">Sets the max amount permitted to the slot (cannot be smaller than <paramref name="items"/> size)</param>
-        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is null</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is <see langword="null"/></exception>
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxAmount"/> is smaller than zero or bigger than <paramref name="items"/>.Length</exception>
         public StackSlot(T[] items, int maxAmount)
         {
@@ -190,7 +188,7 @@ namespace TheChest.Core.Slots
         }
 
         /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
         public virtual bool Contains(T item)
         {
             if(item is null)
@@ -201,7 +199,7 @@ namespace TheChest.Core.Slots
             return this.Content.Contains(item);
         }
         /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is null or contain any null values</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is <see langword="null"/> or contain any <see langword="null"/></exception>
         public virtual bool Contains(T[] items)
         {
             if (items is null)
