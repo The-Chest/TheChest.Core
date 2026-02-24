@@ -13,16 +13,18 @@
         public void AvailableAmount_FullSlot_ReturnsZero()
         {
             var slot = this.slotFactory.FullSlot(this.itemFactory.CreateDefault());
+            
             Assert.That(slot.AvailableAmount, Is.Zero);
         }
 
         [Test]
         public void AvailableAmount_SlotWithItem_ReturnsMaxAmountLessAmount()
         {
-            var maxAmount = this.random.Next(10, 20);
-            var item = this.itemFactory.CreateDefault();
-            var slot = this.slotFactory.WithItem(item, 0, maxAmount);
-            Assert.That(slot.AvailableAmount, Is.EqualTo(slot.MaxAmount - slot.Amount));
+            var amount = this.random.Next(1, 10);
+            var maxAmount = this.random.Next(11, 20);
+            var slot = this.slotFactory.WithItem(this.itemFactory.CreateDefault(), amount, maxAmount);
+
+            Assert.That(slot.AvailableAmount, Is.EqualTo(maxAmount - amount));
         }
     }
 }
