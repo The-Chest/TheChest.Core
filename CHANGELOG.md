@@ -2,12 +2,12 @@
 
 ## What's Changed
 * `StackSlot<T>.content` is not `readonly` anymore, so it can be modified by the class methods and not only by the constructor.
-
-## Known Issues
-* `StackSlot<T>.content` is now being created with the size of the param `maxAmount`.
+* `StackSlot<T>.MaxAmount` now changes `StackSlot<T>.content` Length.
 
 ## What's Next
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
+* Remove `amount` and `maxAmount` by and make properties `Amount` and `MaxAmount` to be calculated by the length of `content` and the length of `content` that is not null respectively.
+* Unit tests running on an .net matrix array or something
 * Hopefully v1.0.0
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.16.0...v0.16.1

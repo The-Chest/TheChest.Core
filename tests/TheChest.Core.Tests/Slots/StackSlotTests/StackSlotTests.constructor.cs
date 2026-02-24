@@ -20,6 +20,7 @@
             var item = this.itemFactory.CreateDefault();
             int amount = this.random.Next(5, 10);
             int maxAmount = this.random.Next(10, 20);
+
             var slot = this.slotFactory.WithItem(item, amount, maxAmount);
             
             Assert.Multiple(() =>
