@@ -5,9 +5,7 @@
         [Test]
         public void AvailableAmount_EmptySlot_ReturnsMaxAmount()
         {
-            var amount = this.random.Next(1, 10);
-            var maxAmount = this.random.Next(10, 20);
-            var slot = this.slotFactory.WithItem(this.itemFactory.CreateDefault(), amount, maxAmount);
+            var slot = this.slotFactory.EmptySlot();
             
             Assert.That(slot.AvailableAmount, Is.EqualTo(slot.MaxAmount));
         }
