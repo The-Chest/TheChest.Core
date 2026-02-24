@@ -6,6 +6,7 @@
         public void Constructor_NoParameters_InitializesWithDefaultValues()
         {
             var slot = this.slotFactory.EmptySlot();
+            
             Assert.Multiple(() =>
             {
                 Assert.That(slot.Amount, Is.Zero);
@@ -14,12 +15,14 @@
         }
 
         [Test]
-        public void Constructor_ItemArrayBiggerThanMaxAmount_ThrowsArgumentException()
+        public void Constructor_ItemArrayLessThanMaxAmount_SetsAmountAndMaxAmount()
         {
             var item = this.itemFactory.CreateDefault();
-            int amount = 5;
-            int maxAmount = 5;
+            int amount = this.random.Next(5, 10);
+            int maxAmount = this.random.Next(10, 20);
+
             var slot = this.slotFactory.WithItem(item, amount, maxAmount);
+            
             Assert.Multiple(() =>
             {
                 Assert.That(slot.Amount, Is.EqualTo(amount));
@@ -28,9 +31,10 @@
         }
 
         [Test]
-        public void Constructor_AmountGreaterThanMaxAmount_ThrowsArgumentException()
+        public void Constructor_AmountGreaterThanMaxAmount_ThrowsArgumentOutOfRangeException()
         {
             var item = this.itemFactory.CreateDefault();
+            
             Assert.That(
                 () => this.slotFactory.WithItem(item, 6, 5),
                 Throws.Exception
@@ -43,6 +47,7 @@
         public void Constructor_MaxAmountLessThanZero_ThrowsArgumentOutOfRangeException()
         {
             var item = this.itemFactory.CreateDefault();
+            
             Assert.That(
                 () => this.slotFactory.WithItem(item, 5, -1),
                 Throws.Exception
@@ -55,8 +60,8 @@
         public void Constructor_ValidParameters_InitializesCorrectly()
         {
             var item = this.itemFactory.CreateDefault();
-            int amount = 5;
-            int maxAmount = 10;
+            int amount = this.random.Next(5, 10);
+            int maxAmount = amount;
 
             var slot = this.slotFactory.WithItem(item, amount, maxAmount);
 
