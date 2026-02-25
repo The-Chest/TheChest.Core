@@ -35,9 +35,17 @@ direction BT
 	namespace TheChest.Core.Containers {
         class Container~T~ {
 			-ISlot~T~[] slots
+
 	        +int Size
 	        +bool IsEmpty
 	        +bool IsFull
+
+			+ Container()
+			+ Container(int size)
+			+ Container(T[] items)
+			+ Container(T[] items, int size)
+			+ Container(IInventorySlot~T~[] slots)
+
 	        +bool Contains(T item)
 			+bool Contains(T item, int amount)
         }
@@ -46,8 +54,13 @@ direction BT
         class Slot~T~ {
 			-object content
 			+T Content
+
+			+ Slot()
+			+ Slot(T currentItem)
+
 			+bool IsEmpty
 			+bool IsFull
+
 			+bool Contains(T item)
         }
 	}
