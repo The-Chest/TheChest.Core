@@ -17,15 +17,16 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         public void Contains_DefaultValue_ReturnsFalseIfEmpty()
         {
             var slot = this.containerFactory.Empty();
-            Assert.That(slot.Contains(default(T)!), Is.False);
+            Assert.That(slot.Contains(item: default!), Is.False);
         }
 
         [Test]
         [IgnoreIfReferenceType]
         public void Contains_DefaultValue_ReturnsTrueIfFull()
         {
-            var slot = this.containerFactory.Full(20, default(T)!);
-            Assert.That(slot.Contains(default(T)!), Is.True);
+            var item = default(T);
+            var slot = this.containerFactory.Full(20, item!);
+            Assert.That(slot.Contains(item: default!), Is.True);
         }
     }
 }
