@@ -18,9 +18,33 @@ namespace TheChest.Core.Containers
         /// <inheritdoc/>
         public virtual int Size => this.slots.Length;
         /// <inheritdoc/>
-        public virtual bool IsFull => this.slots.All(x => x.IsFull);
+        public virtual bool IsFull
+        {
+            get
+            {
+                for (int i = 0; i < this.slots.Length; i++)
+                {
+                    if (!this.slots[i].IsFull)
+                        return false;
+                }
+
+                return true;
+            }
+        }
         /// <inheritdoc/>
-        public virtual bool IsEmpty => this.slots.All(x => x.IsEmpty);
+        public virtual bool IsEmpty
+        {
+            get
+            {
+                for (int i = 0; i < this.slots.Length; i++)
+                {
+                    if (!this.slots[i].IsEmpty)
+                        return false;
+                }
+
+                return true;
+            }
+        }
 
         /// <summary>
         /// Creates a Container with <see cref="IStackSlot{T}"/> implementation
