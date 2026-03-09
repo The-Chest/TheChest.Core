@@ -1,3 +1,22 @@
+# v0.17.0
+
+## What's Added
+* Four new constructors to `Container<T>` class that creates slots with `Slot<T>` implementation. 
+  * `Container()` - Creates a container with no slots. Might be removed/private.
+  * `Container(T[] items)` - Creates a container with slots created from the `items` array. 
+    * Each slot will have one item from the array as content.
+  * `Container(int size)` - Creates a container with `size` and empty slots.
+  * `Container(T[] items, int size)` - Creates a container with `size` and slots created from the `items` array. 
+    * Each slot will have one item from the array as content until it reaches the end of the array
+    * Then it will create empty slots until it reaches the `size`.
+
+## What's Next
+* Remove `amount` and `maxAmount` by and make properties `Amount` and `MaxAmount` to be calculated by the length of `content` and the length of `content` that is not null respectively.
+* Unit tests running on an .net matrix array or something
+* Hopefully v1.0.0
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.16.1...v0.17.0
+
 # v0.16.1
 
 ## What's Changed
