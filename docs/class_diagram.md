@@ -40,11 +40,11 @@ direction BT
 	        +bool IsEmpty
 	        +bool IsFull
 
-			+ Container()
-			+ Container(int size)
-			+ Container(T[] items)
-			+ Container(T[] items, int size)
-			+ Container(IInventorySlot~T~[] slots)
+			+Container()
+			+Container(int size)
+			+Container(T[] items)
+			+Container(T[] items, int size)
+			+Container(ISlot~T~[] slots)
 
 	        +bool Contains(T item)
 			+bool Contains(T item, int amount)
@@ -55,8 +55,8 @@ direction BT
 			-object content
 			+T Content
 
-			+ Slot()
-			+ Slot(T currentItem)
+			+Slot()
+			+Slot(T currentItem)
 
 			+bool IsEmpty
 			+bool IsFull
@@ -111,7 +111,13 @@ direction BT
 	namespace TheChest.Core.Containers {
 		class StackContainer~T~ {
 			-IStackSlot~T~[] slots
-	        +int Size
+
+			+StackContainer()
+			+StackContainer(int size)
+			+StackContainer(T[] items, int maxStackSize)
+			+StackContainer(IStackSlot~T~[] slots)
+	        
+			+int Size
 	        +bool IsEmpty
 	        +bool IsFull
 	        +bool Contains(T item)
@@ -123,13 +129,17 @@ direction BT
 		class StackSlot~T~{
 			-object[] contents
 			+T[] Content
+
 			-int amount            
 			+int Amount
+
 			-int maxAmount
             +int MaxAmount
+
             +int AvailableAmount
 	        +bool IsEmpty
 	        +bool IsFull
+
 	        +bool Contains(T item)
 	        +bool Contains(T[] items)
 		}
