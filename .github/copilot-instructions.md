@@ -25,6 +25,7 @@
 - All containers and slots are generic (`<T>`), supporting any item type.
 - Prefer explicit size validation in custom containers.
 - Use `ISlot<T>[]` for slot arrays.
+
 ### Tests Conventions
 - Tests are organized by container/slot type and feature (see `Containers/`, `Slots/` in tests).
 - Custom attributes for test configuration are in `tests/TheChest.Core.Tests/Configurations/Attributes/`.
@@ -34,6 +35,10 @@
 - No external runtime dependencies; pure C#/.NET Standard 2.1.
 - Extend by subclassing or implementing interfaces (see README for examples).
 - For new container/slot types, follow the pattern in `src/TheChest.Core/Containers/` and `src/TheChest.Core/Slots/`.
+
+## API Conventions
+- Avoid creating types for parameters; use method parameters directly.
+- Use clear, descriptive method names for container and slot operations.
 
 ## Key Files & Directories
 - `src/TheChest.Core/Containers/` — Container implementations & interfaces
