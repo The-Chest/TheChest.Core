@@ -2,13 +2,21 @@
 
 ## What's Added
 * Four new constructors to `Container<T>` class that creates slots with `Slot<T>` implementation. 
-  * `Container()` - Creates a container with no slots. Might be removed/private.
+  * `Container()` - Creates a container with no slots.
   * `Container(T[] items)` - Creates a container with slots created from the `items` array. 
     * Each slot will have one item from the array as content.
   * `Container(int size)` - Creates a container with `size` and empty slots.
   * `Container(T[] items, int size)` - Creates a container with `size` and slots created from the `items` array. 
     * Each slot will have one item from the array as content until it reaches the end of the array
     * Then it will create empty slots until it reaches the `size`.
+* Three new constructors to `StackContainer<T>` class that creates slots with `StackSlot<T>` implementation. 
+  * `StackContainer()` - Creates a container with no slots. 
+  * `StackContainer(int size, int maxAmount)` - Creates a container with `size` and empty slots with `maxAmount` as max amount.
+  * `StackContainer(T[] items, int maxAmount)` - Creates a container with slots created from the `items` array. 
+* Three new constructors to `LazyStackContainer<T>` class that creates slots with `LazyStackSlot<T>` implementation. 
+  * `LazyStackContainer()` - Creates a container with no slots. 
+  * `LazyStackContainer(int size, int maxAmount)` - Creates a container with `size` and empty slots with `maxAmount` as max amount.
+  * `LazyStackContainer((T item, int amount)[] items, int maxAmount)` - Creates a container with slots created from the `items` tuple. 
 
 ## What's Next
 * Remove `amount` and `maxAmount` by and make properties `Amount` and `MaxAmount` to be calculated by the length of `content` and the length of `content` that is not null respectively.
