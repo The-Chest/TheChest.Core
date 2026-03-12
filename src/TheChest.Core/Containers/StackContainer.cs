@@ -56,19 +56,7 @@ namespace TheChest.Core.Containers
         /// <param name="size">Amount of slots in the container</param>
         /// <param name="maxStackSize">Max stack size for each slot in the container</param>
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxStackSize"/> is zero or smaller</exception>
-        public StackContainer(int size, int maxStackSize)
-        {
-            if (size < 0)
-                throw new ArgumentOutOfRangeException(nameof(size), "Size cannot be negative.");
-            if (maxStackSize <= 0)
-                throw new ArgumentOutOfRangeException(nameof(maxStackSize), "Max stack size must be greater than zero.");
-
-            this.slots = new IStackSlot<T>[size];
-            for (int i = 0; i < size; i++)
-            {
-                this.slots[i] = new StackSlot<T>(maxStackSize);
-            }
-        }
+        public StackContainer(int size, int maxStackSize) : this(new T[size], maxStackSize) { }
         /// <summary>
         /// Creates a Container with <see cref="IStackSlot{T}"/> implementation and initializes it with the provided items and max stack size.
         /// </summary>
@@ -78,19 +66,43 @@ namespace TheChest.Core.Containers
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxStackSize"/> is zero or smaller</exception>
         public StackContainer(T[] items, int maxStackSize)
         {
-            if (items == null) 
-                throw new ArgumentNullException(nameof(items));
             if (maxStackSize <= 0) 
                 throw new ArgumentOutOfRangeException(nameof(maxStackSize), "Max stack size must be greater than zero.");
+            
+            if (items == null)
+                throw new ArgumentNullException(nameof(items));
+           
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i] is null)
+                    throw new ArgumentNullException(nameof(items), $"Item at index {i} is null.");
+            }
 
             this.slots = new IStackSlot<T>[items.Length];
 
-            for (int i = 0; i < items.Length; i++)
+            var index = 0;
+
+            while (index < items.Length)
             {
-                //TODO: improve distribution by trying to get maxStackSize equal items in each slot instead of just 1
-                var item = items[i] ?? 
-                    throw new ArgumentNullException(nameof(items), $"Item at index {i} is null.");
-                this.slots[i] = new StackSlot<T>(new T[1] { item }, maxStackSize);
+                var start = index;
+                var end = start;
+
+                while (end + 1 < items.Length && items[end + 1].Equals(items[start]))
+                {
+                    end++;
+                }
+
+                var count = end - start + 1;
+                var stackItems = new T[count];
+
+                for (var i = 0; i < count; i++)
+                {
+                    stackItems[i] = items[start + i];
+                }
+
+                this.slots[index] = new StackSlot<T>(stackItems, maxStackSize);
+
+                index = end + 1;
             }
         }
         /// <summary>

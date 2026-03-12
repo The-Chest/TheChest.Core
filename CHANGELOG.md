@@ -18,6 +18,9 @@
   * `LazyStackContainer(int size, int maxAmount)` - Creates a container with `size` and empty slots with `maxAmount` as max amount.
   * `LazyStackContainer((T item, int amount)[] items, int maxAmount)` - Creates a container with slots created from the `items` tuple. 
 
+## Known issues
+* `StackContainer<T>` constructor is complex 
+
 ## What's Next
 * Remove `amount` and `maxAmount` by and make properties `Amount` and `MaxAmount` to be calculated by the length of `content` and the length of `content` that is not null respectively.
 * Unit tests running on an .net matrix array or something

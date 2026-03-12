@@ -188,6 +188,12 @@ direction BT
 	namespace TheChest.Core.Containers {
 		class LazyStackContainer~T~ {
 			-ILazyStackSlot~T~[] slots
+
+			LazyStackContainer()
+			LazyStackContainer(int size)
+			LazyStackContainer((T item, int amount)[] items, int maxStackSize)
+			LazyStackContainer(ILazyStackSlot~T~[] slots)
+
 			+int Size
 			+bool IsEmpty
 			+bool IsFull

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.3.11520.95 d18.3
+VisualStudioVersion = 18.3.11520.95
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheChest.Core", "src\TheChest.Core\TheChest.Core.csproj", "{A6D8674D-129E-4CC4-A34F-E4D42719D35D}"
 EndProject
@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{DBF05821-E
 	ProjectSection(SolutionItems) = preProject
 		docs\class_diagram.md = docs\class_diagram.md
 		.github\copilot-instructions.md = .github\copilot-instructions.md
+		SECURITY.md = SECURITY.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configs", "configs", "{380A7511-A354-6D7A-0CC0-8FA1F1BA7B6C}"
