@@ -62,7 +62,7 @@ namespace TheChest.Core.Containers
         /// </summary>
         /// <param name="items">An array of items to initialize the container with.</param>
         /// <param name="maxStackSize">Max stack size for each slot in the container</param>
-        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is null or contains null elements</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is <see langword="null"/> or contains <see langword="null"/> elements</exception>
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxStackSize"/> is zero or smaller</exception>
         public StackContainer(T[] items, int maxStackSize)
         {
@@ -85,14 +85,14 @@ namespace TheChest.Core.Containers
         /// Creates a Container with <see cref="IStackSlot{T}"/> implementation
         /// </summary>
         /// <param name="slots">An array of <see cref="IStackSlot{T}"/></param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="slots"/> is <see langword="null"/> or contains <see langword="null"/> elements</exception>
         public StackContainer(IStackSlot<T>[] slots)
         {
             this.slots = slots ?? throw new ArgumentNullException(nameof(slots));
         }
 
         /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
         public virtual bool Contains(T item)
         {
             if (item is null)
@@ -107,7 +107,7 @@ namespace TheChest.Core.Containers
             return false;
         }
         /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
         public virtual bool Contains(T item, int amount)
         {
