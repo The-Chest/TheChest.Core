@@ -54,7 +54,19 @@ namespace TheChest.Core.Containers
         /// </summary>
         /// <param name="size">The number of slots in the container.</param>
         /// <param name="maxStackSize">The maximum stack size for each slot.</param>
-        public LazyStackContainer(int size, int maxStackSize) : this(new (T item, int amount)[size], maxStackSize) { }
+        public LazyStackContainer(int size, int maxStackSize)
+        {
+            if (size < 0)
+                throw new ArgumentOutOfRangeException(nameof(size), "Size cannot be negative.");
+            if (maxStackSize <= 0)
+                throw new ArgumentOutOfRangeException(nameof(maxStackSize));
+
+            this.slots = new ILazyStackSlot<T>[size];
+            for (int i = 0; i < size; i++)
+            {
+                this.slots[i] = new LazyStackSlot<T>(default!, 0, maxStackSize);
+            }
+        }
         /// <summary>
         /// Initializes a new instance of the <see cref="LazyStackContainer{T}"/> class with the specified items and maximum amount.
         /// </summary>

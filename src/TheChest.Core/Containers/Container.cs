@@ -49,7 +49,10 @@ namespace TheChest.Core.Containers
         /// <summary>
         /// Creates an empty Container with a default size of 0 and <see cref="Slot{T}"/> implementation
         /// </summary>
-        public Container() : this(Array.Empty<T>(), 0) { }
+        public Container()
+        {
+            this.slots = Array.Empty<ISlot<T>>();
+        }
         /// <summary>
         /// Creates a Container with <see cref="Slot{T}"/> implementation and the size of the provided items array
         /// </summary>
@@ -85,10 +88,9 @@ namespace TheChest.Core.Containers
             this.slots = new Slot<T>[size];
             for (var i = 0; i < size; i++)
             {
-                if (i < items.Length)
-                    this.slots[i] = new Slot<T>(items[i]);
-                else
-                    this.slots[i] = new Slot<T>();
+                this.slots[i] = i < items.Length
+                    ? new Slot<T>(items[i])
+                    : new Slot<T>();
             }
         }
         /// <summary>
