@@ -56,7 +56,19 @@ namespace TheChest.Core.Containers
         /// <param name="size">Amount of slots in the container</param>
         /// <param name="maxStackSize">Max stack size for each slot in the container</param>
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxStackSize"/> is zero or smaller</exception>
-        public StackContainer(int size, int maxStackSize) : this(new T[size], maxStackSize) { }
+        public StackContainer(int size, int maxStackSize)
+        {
+            if (size < 0)
+                throw new ArgumentOutOfRangeException(nameof(size), "Size cannot be negative.");
+            if (maxStackSize <= 0)
+                throw new ArgumentOutOfRangeException(nameof(maxStackSize), "Max stack size must be greater than zero.");
+
+            this.slots = new IStackSlot<T>[size];
+            for (int i = 0; i < size; i++)
+            {
+                this.slots[i] = new StackSlot<T>(maxStackSize);
+            }
+        }
         /// <summary>
         /// Creates a Container with <see cref="IStackSlot{T}"/> implementation and initializes it with the provided items and max stack size.
         /// </summary>
