@@ -45,8 +45,23 @@ namespace TheChest.Core.Containers
                 return true;
             }
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LazyStackContainer{T}"/> class with default size of 20 and max stack size of 1.
+        /// </summary>
         public LazyStackContainer() : this(20, 1) { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LazyStackContainer{T}"/> class with the specified size and maximum stack size.
+        /// </summary>
+        /// <param name="size">The number of slots in the container.</param>
+        /// <param name="maxStackSize">The maximum stack size for each slot.</param>
         public LazyStackContainer(int size, int maxStackSize) : this(new (T item, int amount)[size], maxStackSize) { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LazyStackContainer{T}"/> class with the specified items and maximum amount.
+        /// </summary>
+        /// <param name="items">An array of tuples containing items and their amounts to initialize the slots.</param>
+        /// <param name="maxAmount">The maximum amount per slot.</param>
+        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is <see langword="null"/> or when an item within <paramref name="items"/> is <see langword="null"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxAmount"/> is less than or equal to zero, or when an amount within <paramref name="items"/> is less than or equal to zero.</exception>
         public LazyStackContainer((T item, int amount)[] items, int maxAmount)
         {
             if (items == null)
