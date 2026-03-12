@@ -88,10 +88,9 @@ namespace TheChest.Core.Containers
             this.slots = new Slot<T>[size];
             for (var i = 0; i < size; i++)
             {
-                if (i < items.Length)
-                    this.slots[i] = new Slot<T>(items[i]);
-                else
-                    this.slots[i] = new Slot<T>();
+                this.slots[i] = i < items.Length
+                    ? new Slot<T>(items[i])
+                    : new Slot<T>();
             }
         }
         /// <summary>
