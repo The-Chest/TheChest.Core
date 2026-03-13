@@ -68,6 +68,10 @@
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
+		<None Include="..\..\CHANGELOG.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup Label="Docs">
@@ -75,7 +79,7 @@
 			<Pack>False</Pack>
 		</None>
 		<None Include="..\..\CHANGELOG.md">
-			<Pack>True</Pack>
+			<Pack>False</Pack>
 		</None>
 	</ItemGroup>
 </Project>
