@@ -35,9 +35,17 @@ direction BT
 	namespace TheChest.Core.Containers {
         class Container~T~ {
 			-ISlot~T~[] slots
+
 	        +int Size
 	        +bool IsEmpty
 	        +bool IsFull
+
+			+Container()
+			+Container(int size)
+			+Container(T[] items)
+			+Container(T[] items, int size)
+			+Container(ISlot~T~[] slots)
+
 	        +bool Contains(T item)
 			+bool Contains(T item, int amount)
         }
@@ -46,8 +54,13 @@ direction BT
         class Slot~T~ {
 			-object content
 			+T Content
+
+			+Slot()
+			+Slot(T currentItem)
+
 			+bool IsEmpty
 			+bool IsFull
+
 			+bool Contains(T item)
         }
 	}
@@ -98,7 +111,13 @@ direction BT
 	namespace TheChest.Core.Containers {
 		class StackContainer~T~ {
 			-IStackSlot~T~[] slots
-	        +int Size
+
+			+StackContainer()
+			+StackContainer(int size)
+			+StackContainer(T[] items, int maxStackSize)
+			+StackContainer(IStackSlot~T~[] slots)
+	        
+			+int Size
 	        +bool IsEmpty
 	        +bool IsFull
 	        +bool Contains(T item)
@@ -110,13 +129,17 @@ direction BT
 		class StackSlot~T~{
 			-object[] contents
 			+T[] Content
+
 			-int amount            
 			+int Amount
+
 			-int maxAmount
             +int MaxAmount
+
             +int AvailableAmount
 	        +bool IsEmpty
 	        +bool IsFull
+
 	        +bool Contains(T item)
 	        +bool Contains(T[] items)
 		}
@@ -165,6 +188,12 @@ direction BT
 	namespace TheChest.Core.Containers {
 		class LazyStackContainer~T~ {
 			-ILazyStackSlot~T~[] slots
+
+			LazyStackContainer()
+			LazyStackContainer(int size)
+			LazyStackContainer((T item, int amount)[] items, int maxStackSize)
+			LazyStackContainer(ILazyStackSlot~T~[] slots)
+
 			+int Size
 			+bool IsEmpty
 			+bool IsFull

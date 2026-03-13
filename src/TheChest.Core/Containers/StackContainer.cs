@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq;
 using TheChest.Core.Containers.Interfaces;
+using TheChest.Core.Slots;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Containers
@@ -18,22 +18,105 @@ namespace TheChest.Core.Containers
         /// <inheritdoc/>
         public virtual int Size => this.slots.Length;
         /// <inheritdoc/>
-        public virtual bool IsFull => this.slots.All(x => x.IsFull);
-        /// <inheritdoc/>
-        public virtual bool IsEmpty => this.slots.All(x => x.IsEmpty);
+        public virtual bool IsFull
+        {
+            get
+            {
+                for (int i = 0; i < this.slots.Length; i++)
+                {
+                    if (!this.slots[i].IsFull)
+                        return false;
+                }
 
+                return true;
+            }
+        }
+        /// <inheritdoc/>
+        public virtual bool IsEmpty
+        {
+            get
+            {
+                for (int i = 0; i < this.slots.Length; i++)
+                {
+                    if (!this.slots[i].IsEmpty)
+                        return false;
+                }
+
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Creates an empty Container with <see cref="IStackSlot{T}"/> implementation that can hold one item per slot.
+        /// </summary>
+        public StackContainer() : this(Array.Empty<T>(), 1) { }
+        /// <summary>
+        /// Creates a Container with <see cref="IStackSlot{T}"/> implementation and initializes it with the provided size and max stack size.
+        /// </summary>
+        /// <param name="size">Amount of slots in the container</param>
+        /// <param name="maxStackSize">Max stack size for each slot in the container</param>
+        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxStackSize"/> is zero or smaller</exception>
+        public StackContainer(int size, int maxStackSize) : this(new T[size], maxStackSize) { }
+        /// <summary>
+        /// Creates a Container with <see cref="IStackSlot{T}"/> implementation and initializes it with the provided items and max stack size.
+        /// </summary>
+        /// <param name="items">An array of items to initialize the container with.</param>
+        /// <param name="maxStackSize">Max stack size for each slot in the container</param>
+        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is <see langword="null"/> or contains <see langword="null"/> elements</exception>
+        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxStackSize"/> is zero or smaller</exception>
+        public StackContainer(T[] items, int maxStackSize)
+        {
+            if (maxStackSize <= 0) 
+                throw new ArgumentOutOfRangeException(nameof(maxStackSize), "Max stack size must be greater than zero.");
+            
+            if (items == null)
+                throw new ArgumentNullException(nameof(items));
+           
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i] is null)
+                    throw new ArgumentNullException(nameof(items), $"Item at index {i} is null.");
+            }
+
+            this.slots = new IStackSlot<T>[items.Length];
+
+            var index = 0;
+
+            while (index < items.Length)
+            {
+                var start = index;
+                var end = start;
+
+                while (end + 1 < items.Length && items[end + 1].Equals(items[start]))
+                {
+                    end++;
+                }
+
+                var count = end - start + 1;
+                var stackItems = new T[count];
+
+                for (var i = 0; i < count; i++)
+                {
+                    stackItems[i] = items[start + i];
+                }
+
+                this.slots[index] = new StackSlot<T>(stackItems, maxStackSize);
+
+                index = end + 1;
+            }
+        }
         /// <summary>
         /// Creates a Container with <see cref="IStackSlot{T}"/> implementation
         /// </summary>
         /// <param name="slots">An array of <see cref="IStackSlot{T}"/></param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="slots"/> is <see langword="null"/> or contains <see langword="null"/> elements</exception>
         public StackContainer(IStackSlot<T>[] slots)
         {
             this.slots = slots ?? throw new ArgumentNullException(nameof(slots));
         }
 
         /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
         public virtual bool Contains(T item)
         {
             if (item is null)
@@ -48,7 +131,7 @@ namespace TheChest.Core.Containers
             return false;
         }
         /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
         public virtual bool Contains(T item, int amount)
         {
