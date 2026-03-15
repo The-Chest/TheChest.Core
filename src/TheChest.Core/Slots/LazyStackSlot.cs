@@ -148,17 +148,17 @@ namespace TheChest.Core.Slots
         }
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
-        public virtual bool Contains(T item, int amount)
+        public virtual bool Contains(T item, int requiredAmount)
         {
             if (item is null)
                 throw new ArgumentNullException(nameof(item));
-            if (amount <= 0)
-                throw new ArgumentOutOfRangeException(nameof(amount));
+            if (requiredAmount <= 0)
+                throw new ArgumentOutOfRangeException(nameof(requiredAmount));
 
             if (this.IsEmpty)
                 return false;
             return item.Equals(this.content) && 
-                amount <= this.Amount;
+                requiredAmount <= this.Amount;
         }
     }
 }
