@@ -31,17 +31,8 @@ namespace TheChest.Core.Slots
             protected set
             {
                 ValidateContent(value, this.maxAmount);
-
-                for (int i = 0; i < value.Length; i++)
-                {
-                    var item = value[i];
-
-                    if (item is null)
-                        continue;
-
-                    this.content[i] = item;
-                    this.amount++;
-                }
+                this.content = NormalizeContents(value);
+                this.amount = value.Length;
             }
         }
 
@@ -114,35 +105,8 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxAmount"/> is smaller than zero or bigger than <paramref name="items"/>.Length</exception>
         public StackSlot(T[] items, int maxAmount)
         {
-            ValidateContent(items, maxAmount);
-
-            var contentAmount = 0;
-            var contentArray = new object[maxAmount];
-            
-            for (int index = 0; index < maxAmount; index++)
-            {
-                if (index >= items.Length)
-                {
-                    contentArray[index] = null;
-                    continue;
-                }
-                
-                contentArray[index] = items[index];
-
-                if (contentArray[index] is null)
-                {
-                    contentArray[index] = null;
-                    continue;
-                }
-
-                contentAmount++;
-            }
-
-            ValidateAmount(contentAmount, maxAmount);
-
-            this.content = contentArray;
-            this.amount = contentAmount;
-            this.maxAmount = maxAmount;
+            this.MaxAmount = maxAmount;
+            this.Content = items;
         }
 
         /// <summary>
@@ -185,6 +149,32 @@ namespace TheChest.Core.Slots
                     paramName: nameof(amount),
                     message: "The item amount cannot be bigger than max amount"
                 );
+        }
+        /// <summary>
+        /// Removes any <see langword="null"/> values from the input array and returns a new array containing only the non-null items.
+        /// </summary>
+        /// <remarks>
+        /// If <typeparamref name="T"/> is a value type, the method will simply cast the items to an object array without checking for null values, since value types cannot be null. 
+        /// </remarks>
+        /// <param name="items">The array of items to normalize.</param>
+        /// <returns>A new array containing only the non-null items from the input array.</returns>
+        protected static object[] NormalizeContents(T[] items)
+        {
+            if(typeof(T).IsValueType)
+                return items.Cast<object>().ToArray();  
+
+            var result = new object[items.Length];
+            var index = 0;
+            for (int i = 0; i < items.Length; i++)
+            {
+                var item = items[i];
+                if (!(item is null))
+                {
+                    result[index++] = item;
+                }
+            }
+            Array.Resize(ref result, index);
+            return result;
         }
 
         /// <inheritdoc/>
