@@ -20,16 +20,25 @@
 - **Test:** Use `dotnet test TheChest.Core.sln` (tests are in `tests/TheChest.Core.Tests/`).
 - **NuGet:** Package is published as `TheChest.Core`.
 - **Coverage:** SonarCloud badge in README; coverage is tracked in CI.
+- **CI/CD:** PRs must pass all NUnit tests, maintain SonarCloud coverage, and pass CodeQL security scan.
 
 ## Project Conventions
 - All containers and slots are generic (`<T>`), supporting any item type.
 - Prefer explicit size validation in custom containers.
-- Use `ISlot<T>[]` for slot arrays.
+- ImplicitUsings is disabled.
+- Nullable reference types disabled (`<Nullable>disable</Nullable>`).
+- No expression-bodied methods/constructors (coding style preference).
+- Use `var` even when the type is obvious.
+- Naming: Interfaces start with `I`, public members PascalCase, private fields camelCase.
 
 ### Tests Conventions
 - Tests are organized by container/slot type and feature (see `Containers/`, `Slots/` in tests).
 - Custom attributes for test configuration are in `tests/TheChest.Core.Tests/Configurations/Attributes/`.
 - Dependency injection helpers for tests are in `tests/TheChest.Core.Tests/Configurations/DependencyInjection/`.
+- NUnit 3.14.0 framework with custom DIContainer.
+- Generic test fixtures parameterized with `[TestFixture(typeof(T))]` for TestItem, TestStructItem, TestEnumItem.
+- Base class: `BaseTest<T>` provides DI and random generator.
+- Value type handling: Slot stores `object content` to handle nullable value types (check with `typeof(T).IsValueType && content is null`).
 
 ## Integration & Extensibility
 - No external runtime dependencies; pure C#/.NET Standard 2.1.
@@ -46,7 +55,9 @@
 - `tests/TheChest.Core.Tests/` — Test suite, organized by feature
 - `readme.md` — Usage, extension, and architecture examples
 - `docs/` — Additional documentation and design notes
+- `CONTRIBUTING.md` — Dev setup, conventions, PR checklist, CI pipeline info
+- `CHANGELOG.md` — Version history
 
 ---
 
-For more, see the README and test directories for usage and extension patterns.
+For more, see the README, CONTRIBUTING.md, and test directories for usage and extension patterns.
