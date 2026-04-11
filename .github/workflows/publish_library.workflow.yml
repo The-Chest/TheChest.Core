@@ -74,6 +74,6 @@ jobs:
         uses: The-Chest/Actions/upload-release-artifacts@v1
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
-          path: "src/${{ env.PROJECT_NAME }}"
+          path: "./"
           name: "${{ env.PROJECT_NAME }}.${{ steps.get-version.outputs.version }}.nupkg"
           version: "${{ steps.get-version.outputs.version }}"
