@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots
@@ -14,25 +15,18 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// The content inside the slot
         /// </summary>
-        public virtual T[] Content
+        public virtual IReadOnlyCollection<T> Content
         {
             get
             {
-                var result = new T[this.maxAmount];
-
-                for (int i = 0; i < this.maxAmount; i++)
-                {
-                    var obj = this.content[i];
-                    result[i] = (typeof(T).IsValueType && obj is null) ? default : (T)obj;
-                }
-
-                return result;
+                return this.content.Cast<T>().ToList().AsReadOnly();
             }
             protected set
             {
-                ValidateContent(value, this.maxAmount);
-                this.content = NormalizeContents(value);
-                this.amount = value.Length;
+                var newValue = (T[])value;
+                ValidateContent(newValue, this.maxAmount);
+                this.content = NormalizeContent(newValue);
+                this.amount = newValue.Length;
             }
         }
 
@@ -158,7 +152,7 @@ namespace TheChest.Core.Slots
         /// </remarks>
         /// <param name="items">The array of items to normalize.</param>
         /// <returns>A new array containing only the non-null items from the input array.</returns>
-        protected static object[] NormalizeContents(T[] items)
+        protected static object[] NormalizeContent(T[] items)
         {
             if(typeof(T).IsValueType)
                 return items.Cast<object>().ToArray();  
