@@ -1,3 +1,15 @@
+# v0.17.1
+
+## What's Fixed
+* Added new protected method `NormalizeContent` to `StackSlot<T>`
+  * **For reference types** : Removes any null values from the input array and returns a new array containing only the non-null items.
+  * **For value types** : The method will simply cast the items to an object array without checking for null values.
+* The property `Content` in `StackSlot<T>` had some changes 
+  * **Setter** : It now resizes the 'content' with values that are not null using the new method `NormalizeContent` and then it updates the `amount` field with the length of the new array.
+  * **Getter** : It now returns an ReadOnlyCollection of the `content` array instead of the array itself. 
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.17.0...v0.17.1
+
 # v0.17.0
 
 ## What's Added

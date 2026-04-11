@@ -30,17 +30,21 @@ var container = new Container<int>(slots);
 ### Installation
 
 #### NuGet
+
 To install the library via Nuget, you can use the following command:
-```bash
+
+``` bash
 dotnet add package TheChest.Core
 ```
 
 #### DLL
+
 Alternatively, you can download the DLL file and reference it directly in your project.
 
 ### Usage
 
 #### Extending the classes
+
 The library provides ready-to-use implementations such as `Container<T>` and `Slot<T>`. These can be used directly or extended to add custom behavior. For example:
 
 ```csharp

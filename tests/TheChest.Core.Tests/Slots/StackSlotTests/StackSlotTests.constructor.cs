@@ -52,7 +52,7 @@
                 () => this.slotFactory.WithItem(item, 5, -1),
                 Throws.Exception
                     .With.TypeOf<ArgumentOutOfRangeException>()
-                    .And.Message.Contains("The content size cannot be bigger than max amount")
+                    .And.Message.Contains("The max amount cannot be smaller than zero")
             );
         }
 
