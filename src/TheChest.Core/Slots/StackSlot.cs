@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Collections.Generic;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots
@@ -15,18 +14,27 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// The content inside the slot
         /// </summary>
-        public virtual IReadOnlyCollection<T> Content
+        public virtual T[] Content
         {
             get
             {
-                return this.content.Cast<T>().ToList().AsReadOnly();
+                var result = new T[maxAmount];
+
+                for (int i = 0; i < maxAmount; i++)
+                {
+                    var obj = content[i];
+                    result[i] = (typeof(T).IsValueType && obj is null)
+                        ? default
+                        : (T)obj;
+                }
+
+                return result;
             }
             protected set
             {
-                var newValue = (T[])value;
-                ValidateContent(newValue, this.maxAmount);
-                this.content = NormalizeContent(newValue);
-                this.amount = newValue.Length;
+                ValidateContent(value, this.maxAmount);
+                this.content = NormalizeContent(value);
+                this.amount = value.Length;
             }
         }
 
@@ -116,8 +124,9 @@ namespace TheChest.Core.Slots
                 throw new ArgumentNullException(nameof(items));
             if (items.Length > maxAmount)
                 throw new ArgumentOutOfRangeException(
-                    paramName: nameof(items),
-                    message: "The content size cannot be bigger than max amount"
+                    message: "The content size cannot be bigger than max amount",
+                    actualValue: items.Length,
+                    paramName: nameof(items)
                 );
         }
         /// <summary>
