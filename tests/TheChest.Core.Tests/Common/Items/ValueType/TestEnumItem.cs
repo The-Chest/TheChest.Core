@@ -1,4 +1,4 @@
-﻿namespace TheChest.Core.Tests.Items.ValueType
+﻿namespace TheChest.Core.Tests.Common.Items.ValueType
 {
     public enum TestEnumItem
     {

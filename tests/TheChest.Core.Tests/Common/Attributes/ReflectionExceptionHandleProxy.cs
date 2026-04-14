@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace TheChest.Core.Tests.Attributes
+namespace TheChest.Core.Tests.Common.Attributes
 {
     internal class ReflectionExceptionHandleProxy<T> : DispatchProxy
     {

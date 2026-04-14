@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using TheChest.Core.Slots.Interfaces;
 
-namespace TheChest.Core.Tests.Extensions
+namespace TheChest.Core.Tests.Common.Extensions
 {
     internal static class TypeExtensions
     {
