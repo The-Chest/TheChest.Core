@@ -1,3 +1,13 @@
+# v0.17.3
+
+## What's Fixed
+
+* Changes in `StackSlot<T>.Content`
+  * The getter now doesn't return null or default when item from `content` is null.
+  * The setter now when receiving null items it'll normalize the array removing the null items and then it will update the `amount` field with the length of the new array. 
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.17.2...v0.17.3
+
 # v0.17.2
 
 ## What's Fixed
