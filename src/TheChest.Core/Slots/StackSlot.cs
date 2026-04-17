@@ -12,6 +12,10 @@ namespace TheChest.Core.Slots
     public class StackSlot<T> : IStackSlot<T>
     {
         private object[] content;
+
+        private T[] cacheContent;
+        private bool isCacheValid;
+
         /// <summary>
         /// The content inside the slot
         /// </summary>
@@ -19,13 +23,24 @@ namespace TheChest.Core.Slots
         {
             get
             {
-                return this.content.ToGenericArray<T>();
+                if (!this.isCacheValid)
+                {
+                    this.cacheContent = this.content.ToGenericArray<T>();
+                    this.isCacheValid = true;
+                }
+
+                return this.cacheContent;
             }
             protected set
             {
                 ValidateContent(value, this.maxAmount);
+
                 this.content = value.ToObjectArray();
                 this.amount = this.content.Length;
+
+                Array.Resize(ref this.content, maxAmount);
+
+                this.isCacheValid = false;
             }
         }
 
@@ -44,6 +59,8 @@ namespace TheChest.Core.Slots
             {
                 ValidateAmount(value, this.maxAmount);
                 this.amount = value;
+
+                this.isCacheValid = false;
             }
         }
 
@@ -63,6 +80,7 @@ namespace TheChest.Core.Slots
                 ValidateAmount(this.amount, value);
                 Array.Resize(ref this.content, value);
                 this.maxAmount = value;
+                this.isCacheValid = false;
             }
         }
 
