@@ -1,4 +1,4 @@
-﻿using TheChest.Core.Tests.Configurations.Attributes;
+﻿using TheChest.Core.Tests.Common.Configurations.Attributes;
 
 namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 {
