@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using TheChest.Core.Slots.Extensions;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots
@@ -18,23 +19,13 @@ namespace TheChest.Core.Slots
         {
             get
             {
-                var result = new T[maxAmount];
-
-                for (int i = 0; i < maxAmount; i++)
-                {
-                    var obj = content[i];
-                    result[i] = (typeof(T).IsValueType && obj is null)
-                        ? default
-                        : (T)obj;
-                }
-
-                return result;
+                return this.content.ToGenericArray<T>();
             }
             protected set
             {
                 ValidateContent(value, this.maxAmount);
-                this.content = NormalizeContent(value);
-                this.amount = value.Length;
+                this.content = value.ToObjectArray();
+                this.amount = this.content.Length;
             }
         }
 
@@ -152,32 +143,6 @@ namespace TheChest.Core.Slots
                     paramName: nameof(amount),
                     message: "The item amount cannot be bigger than max amount"
                 );
-        }
-        /// <summary>
-        /// Removes any <see langword="null"/> values from the input array and returns a new array containing only the non-null items.
-        /// </summary>
-        /// <remarks>
-        /// If <typeparamref name="T"/> is a value type, the method will simply cast the items to an object array without checking for null values, since value types cannot be null. 
-        /// </remarks>
-        /// <param name="items">The array of items to normalize.</param>
-        /// <returns>A new array containing only the non-null items from the input array.</returns>
-        protected static object[] NormalizeContent(T[] items)
-        {
-            if(typeof(T).IsValueType)
-                return items.Cast<object>().ToArray();  
-
-            var result = new object[items.Length];
-            var index = 0;
-            for (int i = 0; i < items.Length; i++)
-            {
-                var item = items[i];
-                if (!(item is null))
-                {
-                    result[index++] = item;
-                }
-            }
-            Array.Resize(ref result, index);
-            return result;
         }
 
         /// <inheritdoc/>

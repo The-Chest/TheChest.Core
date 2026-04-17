@@ -82,4 +82,8 @@
 			<Pack>False</Pack>
 		</None>
 	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="TheChest.Core.Tests" />
+	</ItemGroup>
 </Project>

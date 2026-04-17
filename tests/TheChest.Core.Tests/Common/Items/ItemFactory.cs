@@ -1,7 +1,8 @@
 ﻿using System.Reflection;
-using TheChest.Core.Tests.Extensions;
+using TheChest.Core.Tests.Common.Extensions;
+using TheChest.Core.Tests.Common.Items.Interfaces;
 
-namespace TheChest.Core.Tests.Items
+namespace TheChest.Core.Tests.Common.Items
 {
     public class ItemFactory<T> : IItemFactory<T>
     {

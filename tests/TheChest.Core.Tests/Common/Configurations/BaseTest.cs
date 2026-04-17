@@ -1,7 +1,8 @@
-﻿using TheChest.Core.Tests.Configurations.DependencyInjection;
-using TheChest.Core.Tests.Items;
+﻿using TheChest.Core.Tests.Common.Configurations.DependencyInjection;
+using TheChest.Core.Tests.Common.Items;
+using TheChest.Core.Tests.Common.Items.Interfaces;
 
-namespace TheChest.Core.Tests.Configurations
+namespace TheChest.Core.Tests.Common.Configurations
 {
     public abstract class BaseTest<T>
     {

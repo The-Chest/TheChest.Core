@@ -26,7 +26,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configs", "configs", "{380A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infra", "infra", "{5DFDF432-71B9-4140-991E-6A0141B9F243}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\codeql.workflow.yml = .github\workflows\codeql.workflow.yml
 		.github\workflows\publish_library.workflow.yml = .github\workflows\publish_library.workflow.yml
 		.github\workflows\sonarcloud.yml = .github\workflows\sonarcloud.yml
 	EndProjectSection

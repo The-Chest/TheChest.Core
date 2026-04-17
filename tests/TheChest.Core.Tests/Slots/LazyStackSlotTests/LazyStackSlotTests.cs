@@ -1,4 +1,6 @@
-﻿using TheChest.Core.Tests.Slots.Factories;
+﻿using TheChest.Core.Tests.Common.Items.ReferenceType;
+using TheChest.Core.Tests.Common.Items.ValueType;
+using TheChest.Core.Tests.Slots.Factories;
 using TheChest.Core.Tests.Slots.Interfaces.ILazyStackSlotTests;
 
 namespace TheChest.Core.Tests.Slots.LazyStackSlotTests

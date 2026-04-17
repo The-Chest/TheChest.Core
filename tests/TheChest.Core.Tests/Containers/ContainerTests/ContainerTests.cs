@@ -1,4 +1,6 @@
-﻿using TheChest.Core.Tests.Containers.Factories;
+﻿using TheChest.Core.Tests.Common.Items.ReferenceType;
+using TheChest.Core.Tests.Common.Items.ValueType;
+using TheChest.Core.Tests.Containers.Factories;
 using TheChest.Core.Tests.Slots.Factories;
 
 namespace TheChest.Core.Tests.Containers.ContainerTests

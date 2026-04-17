@@ -1,4 +1,4 @@
-﻿namespace TheChest.Core.Tests.Configurations.DependencyInjection
+﻿namespace TheChest.Core.Tests.Common.Configurations.DependencyInjection
 {
     internal class Registration
     {

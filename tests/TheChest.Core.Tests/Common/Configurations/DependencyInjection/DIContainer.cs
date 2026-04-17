@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
-using TheChest.Core.Tests.Attributes;
-using TheChest.Core.Tests.Extensions;
+using TheChest.Core.Tests.Common.Attributes;
+using TheChest.Core.Tests.Common.Extensions;
 
-namespace TheChest.Core.Tests.Configurations.DependencyInjection
+namespace TheChest.Core.Tests.Common.Configurations.DependencyInjection
 {
     public sealed class DIContainer
     {
