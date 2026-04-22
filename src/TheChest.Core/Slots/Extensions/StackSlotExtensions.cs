@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TheChest.Core.Extensions;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots.Extensions

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using TheChest.Core.Slots.Extensions;
+using TheChest.Core.Extensions;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots

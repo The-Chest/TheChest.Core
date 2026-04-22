@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TheChest.Core.Slots.Extensions
+namespace TheChest.Core.Extensions
 {
     internal static class ArrayExtensions
     {
@@ -26,7 +26,6 @@ namespace TheChest.Core.Slots.Extensions
             
             return result;
         }
-
         /// <summary>
         /// Removes any <see langword="null"/> values from the input array and returns a new array containing only the non-null items in an object array.
         /// </summary>
