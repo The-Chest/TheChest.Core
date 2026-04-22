@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TheChest.Core.Extensions;
+﻿using TheChest.Core.Extensions;
 
 namespace TheChest.Core.Tests.Extensions
 {
@@ -9,7 +8,7 @@ namespace TheChest.Core.Tests.Extensions
         public void GetAdjacentEqualCount_NoAdjacentEqualItems_ReturnsStartIndex()
         {
             var first = this.itemFactory.CreateRandom();
-            var second = this.CreateRandomDifferentFrom(first);
+            var second = this.itemFactory.CreateRandom();
             var array = new[] { first, second };
 
             var result = array.GetAdjacentEqualCount(startIndex: 0, maxCount: 5);
@@ -21,7 +20,7 @@ namespace TheChest.Core.Tests.Extensions
         public void GetAdjacentEqualCount_AdjacentEqualItemsExist_ReturnsLastAdjacentIndex()
         {
             var first = this.itemFactory.CreateRandom();
-            var second = this.CreateRandomDifferentFrom(first);
+            var second = this.itemFactory.CreateRandom();
             var array = new[] { first, first, first, second };
 
             var result = array.GetAdjacentEqualCount(startIndex: 0, maxCount: 10);
@@ -44,7 +43,7 @@ namespace TheChest.Core.Tests.Extensions
         public void GetAdjacentEqualCount_StartIndexHasPreviousEqualItems_OnlyCountsForwardFromStartIndex()
         {
             var first = this.itemFactory.CreateRandom();
-            var second = this.CreateRandomDifferentFrom(first);
+            var second = this.itemFactory.CreateRandom();
             var array = new[] { second, first, first, first };
 
             var result = array.GetAdjacentEqualCount(startIndex: 1, maxCount: 10);
@@ -61,24 +60,6 @@ namespace TheChest.Core.Tests.Extensions
             var result = array.GetAdjacentEqualCount(startIndex: 0, maxCount: 1);
 
             Assert.That(result, Is.EqualTo(0));
-        }
-
-        private T CreateRandomDifferentFrom(T item)
-        {
-            var comparer = EqualityComparer<T>.Default;
-            var candidate = this.itemFactory.CreateRandom();
-
-            for (int i = 0; i < 10 && comparer.Equals(candidate, item); i++)
-            {
-                candidate = this.itemFactory.CreateRandom();
-            }
-
-            if (comparer.Equals(candidate, item))
-            {
-                Assert.Inconclusive("Unable to generate a distinct test value.");
-            }
-
-            return candidate;
         }
     }
 }
