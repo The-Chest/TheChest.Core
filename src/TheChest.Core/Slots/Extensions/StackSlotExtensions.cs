@@ -17,7 +17,7 @@ namespace TheChest.Core.Slots.Extensions
                 var startIndex = index;
                 var endIndex = items.GetAdjacentEqualCount(startIndex, maxStackSize);
 
-                slots.Add(new StackSlot<T>(items[startIndex..endIndex], maxStackSize));
+                slots.Add(new StackSlot<T>(items[startIndex..(endIndex + 1)], maxStackSize));
 
                 index = endIndex + 1;
             }
