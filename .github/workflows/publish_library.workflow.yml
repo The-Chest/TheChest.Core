@@ -16,14 +16,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
   
       - name: Get Current Version
         id: get-version
         uses: The-Chest/Actions/get-version@v1
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '6.0.x'
 
@@ -41,14 +41,14 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
   
       - name: Get Version
         id: get-version
         uses: The-Chest/Actions/get-version@v1
 
       - name: Download Build Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: "${{ env.PROJECT_NAME }}.${{ steps.get-version.outputs.version }}"
           path: "src/${{ env.PROJECT_NAME }}/bin/Release/netstandard2.1"
