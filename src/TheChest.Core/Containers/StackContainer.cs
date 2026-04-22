@@ -1,6 +1,6 @@
 ﻿using System;
 using TheChest.Core.Containers.Interfaces;
-using TheChest.Core.Slots;
+using TheChest.Core.Slots.Extensions;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Containers
@@ -66,44 +66,19 @@ namespace TheChest.Core.Containers
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxStackSize"/> is zero or smaller</exception>
         public StackContainer(T[] items, int maxStackSize)
         {
-            if (maxStackSize <= 0) 
-                throw new ArgumentOutOfRangeException(nameof(maxStackSize), "Max stack size must be greater than zero.");
-            
             if (items == null)
                 throw new ArgumentNullException(nameof(items));
-           
+
+            if (maxStackSize <= 0)
+                throw new ArgumentOutOfRangeException(nameof(maxStackSize), "Max stack size must be greater than zero.");
+
             for (int i = 0; i < items.Length; i++)
             {
                 if (items[i] is null)
                     throw new ArgumentNullException(nameof(items), $"Item at index {i} is null.");
             }
 
-            this.slots = new IStackSlot<T>[items.Length];
-
-            var index = 0;
-
-            while (index < items.Length)
-            {
-                var start = index;
-                var end = start;
-
-                while (end + 1 < items.Length && items[end + 1].Equals(items[start]))
-                {
-                    end++;
-                }
-
-                var count = end - start + 1;
-                var stackItems = new T[count];
-
-                for (var i = 0; i < count; i++)
-                {
-                    stackItems[i] = items[start + i];
-                }
-
-                this.slots[index] = new StackSlot<T>(stackItems, maxStackSize);
-
-                index = end + 1;
-            }
+            this.slots = items.ToStackSlots(maxStackSize);
         }
         /// <summary>
         /// Creates a Container with <see cref="IStackSlot{T}"/> implementation

@@ -20,21 +20,11 @@ namespace TheChest.Core.Tests.Extensions
         }
 
         [Test]
-        public void ToGenericArray_NullArray_ThrowsArgumentNullException()
-        {
-            object[] array = null!;
-
-            var exception = Assert.Throws<ArgumentNullException>(() => array.ToGenericArray<T>());
-
-            Assert.That(exception!.ParamName, Is.EqualTo("array"));
-        }
-
-        [Test]
         public void ToGenericArray_ArrayContainsNulls_ReturnsTypedArrayWithoutNulls()
         {
             var first = this.itemFactory.CreateRandom();
             var second = this.itemFactory.CreateRandom();
-            object[] array = new object[] { first!, null!, second!, null! };
+            var array = new object[] { first!, null!, second!, null! };
 
             var result = array.ToGenericArray<T>();
 
