@@ -8,7 +8,7 @@ namespace TheChest.Core.Tests.Extensions
         public void GetAdjacentEqualCount_NoAdjacentEqualItems_ReturnsStartIndex()
         {
             var first = this.itemFactory.CreateRandom();
-            var second = this.itemFactory.CreateRandom();
+            var second = this.itemFactory.CreateDifferentFrom(first);
             var array = new[] { first, second };
 
             var result = array.GetAdjacentEqualCount(startIndex: 0, maxCount: 5);
@@ -20,7 +20,7 @@ namespace TheChest.Core.Tests.Extensions
         public void GetAdjacentEqualCount_AdjacentEqualItemsExist_ReturnsLastAdjacentIndex()
         {
             var first = this.itemFactory.CreateRandom();
-            var second = this.itemFactory.CreateRandom();
+            var second = this.itemFactory.CreateDifferentFrom(first);
             var array = new[] { first, first, first, second };
 
             var result = array.GetAdjacentEqualCount(startIndex: 0, maxCount: 10);
@@ -43,7 +43,7 @@ namespace TheChest.Core.Tests.Extensions
         public void GetAdjacentEqualCount_StartIndexHasPreviousEqualItems_OnlyCountsForwardFromStartIndex()
         {
             var first = this.itemFactory.CreateRandom();
-            var second = this.itemFactory.CreateRandom();
+            var second = this.itemFactory.CreateDifferentFrom(first);
             var array = new[] { second, first, first, first };
 
             var result = array.GetAdjacentEqualCount(startIndex: 1, maxCount: 10);
