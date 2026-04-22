@@ -15,6 +15,16 @@ namespace TheChest.Core.Tests.Common.Items
             return (T)instance;
         }
 
+        public T CreateDifferentFrom(T item)
+        {
+            var randomItem = this.CreateRandom()!;
+            while (randomItem.Equals(item))
+            {
+                randomItem = CreateRandom()!;
+            }
+            return randomItem;
+        }
+
         public T CreateRandom()
         {
             var type = typeof(T);
@@ -83,6 +93,5 @@ namespace TheChest.Core.Tests.Common.Items
                     $"Random generation for type {typeof(Y).Name} is not implemented.")
             };
         }
-
     }
 }

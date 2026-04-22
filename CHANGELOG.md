@@ -1,3 +1,12 @@
+# v0.17.4
+
+## What's Fixed
+* `StackSlot<T>(T[] items, int maxStackSize)` constructor now 
+  * properly distributes the items across the slots by using the extension method `ToStackSlots`.
+  * throws `ArgumentOutOfRangeException` when `maxStackSize` parameter is less than or equal to zero.
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.17.3...v0.17.4
+
 # v0.17.3
 
 ## What's Fixed

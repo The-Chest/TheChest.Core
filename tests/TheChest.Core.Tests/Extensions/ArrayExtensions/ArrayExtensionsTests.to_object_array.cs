@@ -1,46 +1,10 @@
-﻿using TheChest.Core.Slots.Extensions;
-using TheChest.Core.Tests.Common.Configurations;
+﻿using TheChest.Core.Extensions;
 using TheChest.Core.Tests.Common.Configurations.Attributes;
-using TheChest.Core.Tests.Common.Items.Interfaces;
-using TheChest.Core.Tests.Common.Items.ReferenceType;
-using TheChest.Core.Tests.Common.Items.ValueType;
 
 namespace TheChest.Core.Tests.Extensions
 {
-    [TestFixture(typeof(TestItem))]
-    [TestFixture(typeof(TestStructItem))]
-    [TestFixture(typeof(TestEnumItem))]
-    public class ArrayExtensionsTests<T> : BaseTest<T>
+    public partial class ArrayExtensionsTests<T>
     {
-        private readonly IItemFactory<T> itemFactory;
-
-        public ArrayExtensionsTests() : base(_ => { })
-        {
-            this.itemFactory = this.configurations.Resolve<IItemFactory<T>>();
-        }
-
-        [Test]
-        public void ToGenericArray_NullArray_ThrowsArgumentNullException()
-        {
-            object[] array = null!;
-
-            var exception = Assert.Throws<ArgumentNullException>(() => array.ToGenericArray<T>());
-
-            Assert.That(exception!.ParamName, Is.EqualTo("array"));
-        }
-
-        [Test]
-        public void ToGenericArray_ArrayContainsNulls_ReturnsTypedArrayWithoutNulls()
-        {
-            var first = this.itemFactory.CreateRandom();
-            var second = this.itemFactory.CreateRandom();
-            object[] array = new object[] { first!, null!, second!, null! };
-
-            var result = array.ToGenericArray<T>();
-
-            Assert.That(result, Is.EqualTo(new[] { first, second }));
-        }
-
         [Test]
         public void ToObjectArray_NullArray_ThrowsArgumentNullException()
         {

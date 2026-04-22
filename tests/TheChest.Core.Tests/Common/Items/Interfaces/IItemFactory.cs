@@ -18,6 +18,12 @@
         /// <returns>Any <see cref="T"/> instance</returns>
         T CreateRandom();
         /// <summary>
+        /// Creates a new instance of type T with randomized properties based on the specified item.
+        /// </summary>
+        /// <param name="item">The item to use as a template for generating randomized values.</param>
+        /// <returns>A new instance of type T with properties randomized from the provided item.</returns>
+        T CreateDifferentFrom(T item);
+        /// <summary>
         /// Creates an array of items using <see cref="CreateDefault"/>
         /// </summary>
         /// <param name="amount">Size of the returned array of items</param>
