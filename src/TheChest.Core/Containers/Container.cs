@@ -1,5 +1,6 @@
 ﻿using System;
 using TheChest.Core.Containers.Interfaces;
+using TheChest.Core.Extensions;
 using TheChest.Core.Slots;
 using TheChest.Core.Slots.Interfaces;
 
@@ -107,7 +108,7 @@ namespace TheChest.Core.Containers
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
         public virtual bool Contains(T item)
         {
-            if (item is null)
+            if (item.IsNull())
                 throw new ArgumentNullException(nameof(item));
 
             for (var i = 0; i < this.slots.Length; i++)
@@ -123,7 +124,7 @@ namespace TheChest.Core.Containers
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
         public virtual bool Contains(T item, int amount)
         {
-            if (item is null)
+            if (item.IsNull())
                 throw new ArgumentNullException(nameof(item));
             if (amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(amount));

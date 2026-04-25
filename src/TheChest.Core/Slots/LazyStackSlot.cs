@@ -1,4 +1,5 @@
 ﻿using System;
+using TheChest.Core.Extensions;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots
@@ -91,13 +92,25 @@ namespace TheChest.Core.Slots
             this.maxAmount = 1;
         }
         /// <summary>
+        /// Initializes a new instance of the <see cref="LazyStackSlot{T}"/> class with the specified maximum amount.
+        /// </summary>
+        /// <param name="maxAmount">The maximum number of items that the stack slot can hold.</param>
+        public LazyStackSlot(int maxAmount)
+        {
+            ValidateAmount(0, maxAmount);
+
+            this.content = null;
+            this.amount = 0;
+            this.maxAmount = maxAmount;
+        }
+        /// <summary>
         /// Creates a basic Stack Slot with an amount and max amount
         /// </summary>
         /// <param name="currentItem">The current item to be added</param>
         /// <param name="amount">The amount of <paramref name="currentItem"/> to be added</param>
         /// <param name="maxAmount">The maximum permited amount of <paramref name="currentItem"/> to be added</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public LazyStackSlot(T currentItem, int amount = 1, int maxAmount = 1)
+        public LazyStackSlot(T currentItem, int amount, int maxAmount)
         {
             ValidateAmount(amount, maxAmount);
 
@@ -138,7 +151,7 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
         public virtual bool Contains(T item)
         {
-            if (item is null)
+            if (item.IsNull())
                 throw new ArgumentNullException(nameof(item));
 
             if (this.IsEmpty)
@@ -150,7 +163,7 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
         public virtual bool Contains(T item, int amount)
         {
-            if (item is null)
+            if (item.IsNull())
                 throw new ArgumentNullException(nameof(item));
             if (amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(amount));

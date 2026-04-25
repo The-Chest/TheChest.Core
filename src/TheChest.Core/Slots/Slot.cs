@@ -1,4 +1,5 @@
 ﻿using System;
+using TheChest.Core.Extensions;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots
@@ -23,9 +24,9 @@ namespace TheChest.Core.Slots
             get
             {
                 if (typeof(T).IsValueType && this.content is null)
-                    return default!;
+                    return default;
 
-                return (T)this.content!;
+                return (T)this.content;
             }
             protected set
             {
@@ -57,7 +58,7 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
         public virtual bool Contains(T item)
         {
-            if (item is null)
+            if (item.IsNull())
                 throw new ArgumentNullException(nameof(item));
 
             if (this.IsEmpty)

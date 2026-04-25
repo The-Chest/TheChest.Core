@@ -167,7 +167,7 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
         public virtual bool Contains(T item)
         {
-            if(item is null)
+            if (item.IsNull())
                 throw new ArgumentNullException(nameof(item));
             if (this.IsEmpty)
                 return false;
@@ -185,7 +185,8 @@ namespace TheChest.Core.Slots
 
             for (int i = 0; i < items.Length; i++)
             {
-                var item = items[i] ?? 
+                var item = items[i];
+                if (item.IsNull())
                     throw new ArgumentNullException(nameof(items), "Items cannot contain null values");
                 if (!this.Content.Contains(item))
                     return false;
