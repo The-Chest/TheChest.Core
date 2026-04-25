@@ -42,7 +42,8 @@ namespace TheChest.Core.Extensions
             for (int i = 0; i < array.Length; i++)
             {
                 var item = array[i];
-                if (!(item is null))
+
+                if (!item.IsNull())
                 {
                     result[index++] = item;
                 }
