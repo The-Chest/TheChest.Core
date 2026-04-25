@@ -55,13 +55,18 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore src
-      - name: Pack library
-        run: dotnet pack src --configuration Release /p:Version=${{ steps.get-version.outputs.version }} --no-build --output .
+
+      - name: Publish NuGet package
+        uses: The-Chest/Actions/publish-nuget@v1
+        with:
+          package-path: src
+          package-name: ${{ env.PROJECT_NAME }}
+          package-version: ${{ steps.get-version.outputs.version }}
+          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+      
       - name: Push library to Github Packages
         run: dotnet nuget push ${{ env.PROJECT_NAME }}.${{ steps.get-version.outputs.version }}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key "${{secrets.GH_NUGET_APIKEY}}"
-      - name: Push library to Nuget
-        run: dotnet nuget push ${{ env.PROJECT_NAME }}.${{ steps.get-version.outputs.version }}.nupkg --source https://api.nuget.org/v3/index.json --api-key "${{secrets.NUGET_APIKEY}}"
-      
+
       - name: Upload DLL to release
         uses: The-Chest/Actions/upload-release-artifacts@v1
         with:
