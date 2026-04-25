@@ -1,8 +1,12 @@
 # v0.18.0
 
+## What's Added
+* `LazyStackSlot` now have a new constructor:
+  * `LazyStackSlot(int maxAmount)` - Creates an empty LazyStackSlot with `maxAmount` as max amount. 
+
 ## What's Changed
 * Project now uses the C# 7.3 version, so it can be used in more projects that are not using the latest C# version.
-* 
+* `LazyStackSlot` constructor `LazyStackSlot(T currentItem, int amount, int maxAmount)` now have required properties `amount` and `maxAmount` instead of the default value 1.
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.17.4...v0.18.0
 
