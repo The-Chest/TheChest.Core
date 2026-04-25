@@ -65,7 +65,7 @@ namespace TheChest.Core.Containers
             this.slots = new ILazyStackSlot<T>[size];
             for (int i = 0; i < size; i++)
             {
-                this.slots[i] = new LazyStackSlot<T>(default, 0, maxStackSize);
+                this.slots[i] = new LazyStackSlot<T>(maxStackSize);
             }
         }
         /// <summary>
