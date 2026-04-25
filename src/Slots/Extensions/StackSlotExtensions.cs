@@ -20,7 +20,7 @@ namespace TheChest.Core.Slots.Extensions
 
                 var itemsToAdd = items
                     .Skip(startIndex)
-                    .Take(endIndex)
+                    .Take(endIndex - startIndex)
                     .ToArray();
                 slots.Add(new StackSlot<T>(itemsToAdd, maxStackSize));
 
