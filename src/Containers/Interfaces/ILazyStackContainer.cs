@@ -29,7 +29,7 @@
         /// Checks if the container contains an amount of <paramref name="item"/>.
         /// </summary>
         /// <param name="item">Item to be checked</param>
-        /// <param name="amount">The minimun amount of <paramref name="item"/> expected</param>
+        /// <param name="amount">The minimum amount of <paramref name="item"/> expected</param>
         /// <returns>Returns true when the container contains an <paramref name="amount"/> of <paramref name="item"/> in any of its slots</returns>
         bool Contains(T item, int amount);
     }

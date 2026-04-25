@@ -49,11 +49,12 @@
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
 		<SignAssembly>False</SignAssembly>
 	</PropertyGroup>
-	
-	<PropertyGroup Label="Analysis">
-	  <EnableNETAnalyzers>False</EnableNETAnalyzers>
-	  <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
-	  <AnalysisLevel>none</AnalysisLevel>
+
+	<PropertyGroup Label="Analyzers">
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>latest</AnalysisLevel>
+		<AnalysisMode>All</AnalysisMode>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 	</PropertyGroup>
 
 	<ItemGroup Label="Package">
