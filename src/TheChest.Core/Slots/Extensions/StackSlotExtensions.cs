@@ -16,15 +16,15 @@ namespace TheChest.Core.Slots.Extensions
             while (index < items.Length)
             {
                 var startIndex = index;
-                var endIndex = items.GetAdjacentEqualCount(startIndex, maxStackSize) + 1;
+                var itemCount = items.GetAdjacentEqualCount(startIndex, maxStackSize) + 1;
 
                 var itemsToAdd = items
                     .Skip(startIndex)
-                    .Take(endIndex)
+                    .Take(itemCount)
                     .ToArray();
                 slots.Add(new StackSlot<T>(itemsToAdd, maxStackSize));
 
-                index = endIndex;
+                index = startIndex + itemCount;
             }
 
             return slots.ToArray();
