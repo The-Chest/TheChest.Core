@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TheChest.Core.Extensions;
 using TheChest.Core.Slots.Interfaces;
@@ -18,10 +19,13 @@ namespace TheChest.Core.Slots.Extensions
                 var startIndex = index;
                 var endIndex = items.GetAdjacentEqualCount(startIndex, maxStackSize) + 1;
 
-                var itemsToAdd = items
-                    .Skip(startIndex)
-                    .Take(endIndex - startIndex)
-                    .ToArray();
+                var amountToAdd = endIndex - startIndex;
+                var itemsToAdd = new T[amountToAdd];
+
+                Array.Copy(
+                    items, startIndex, 
+                    itemsToAdd, 0, amountToAdd
+                );
                 slots.Add(new StackSlot<T>(itemsToAdd, maxStackSize));
 
                 index = endIndex;
