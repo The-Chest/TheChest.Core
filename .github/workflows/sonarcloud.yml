@@ -40,7 +40,7 @@ jobs:
         id: dotnet-build
         uses: The-Chest/Actions/dotnet-build@v1
         with:
-          project-path: "src/${{ env.PROJECT_NAME }}"
+          project-path: "src"
           create-build-artifact: false
       
       - name: Restore dependencies

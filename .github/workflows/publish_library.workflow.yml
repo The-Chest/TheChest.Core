@@ -31,10 +31,10 @@ jobs:
         id: dotnet-build
         uses: The-Chest/Actions/dotnet-build@v1
         with:
-          project-path: "src/${{ env.PROJECT_NAME }}"
+          project-path: "src"
           create-build-artifact: true
           artifact-name: "${{ env.PROJECT_NAME }}.${{ steps.get-version.outputs.version }}"
-          artifact-folder: "src/${{ env.PROJECT_NAME }}/bin/Release/netstandard2.1"
+          artifact-folder: "src/bin/Release/netstandard2.1"
   publish:
     runs-on: ubuntu-latest
     needs: build
@@ -51,22 +51,27 @@ jobs:
         uses: actions/download-artifact@v6
         with:
           name: "${{ env.PROJECT_NAME }}.${{ steps.get-version.outputs.version }}"
-          path: "src/${{ env.PROJECT_NAME }}/bin/Release/netstandard2.1"
+          path: "src/bin/Release/netstandard2.1"
 
       - name: Restore dependencies
-        run: dotnet restore src/${{ env.PROJECT_NAME }}
-      - name: Pack library
-        run: dotnet pack src/${{ env.PROJECT_NAME }} --configuration Release /p:Version=${{ steps.get-version.outputs.version }} --no-build --output .
+        run: dotnet restore src
+
+      - name: Publish NuGet package
+        uses: The-Chest/Actions/publish-nuget@v1
+        with:
+          package-path: src
+          package-name: ${{ env.PROJECT_NAME }}
+          package-version: ${{ steps.get-version.outputs.version }}
+          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+      
       - name: Push library to Github Packages
         run: dotnet nuget push ${{ env.PROJECT_NAME }}.${{ steps.get-version.outputs.version }}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key "${{secrets.GH_NUGET_APIKEY}}"
-      - name: Push library to Nuget
-        run: dotnet nuget push ${{ env.PROJECT_NAME }}.${{ steps.get-version.outputs.version }}.nupkg --source https://api.nuget.org/v3/index.json --api-key "${{secrets.NUGET_APIKEY}}"
-      
+
       - name: Upload DLL to release
         uses: The-Chest/Actions/upload-release-artifacts@v1
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
-          path: "src/${{ env.PROJECT_NAME }}/bin/Release/netstandard2.1"
+          path: "src/bin/Release/netstandard2.1"
           name: "${{ env.PROJECT_NAME }}.dll"
           version: "${{ steps.get-version.outputs.version }}"
                 
