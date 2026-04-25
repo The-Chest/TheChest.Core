@@ -204,11 +204,19 @@ direction BT
 		class LazyStackSlot~T~{
 			-object content
 			+T Content
+
 			-int amount            
 			+int Amount
+
 			-int maxAmount
 			+int MaxAmount
+
             +int AvailableAmount
+
+			+ LazyStackSlot()
+			+ LazyStackSlot(int maxAmount)
+			+ LazyStackSlot(T currentItem, int amount, int maxAmount)
+
 			+bool IsEmpty
 			+bool IsFull
 		}
