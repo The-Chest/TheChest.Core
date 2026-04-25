@@ -1,15 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 18
-VisualStudioVersion = 18.3.11520.95
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36511.14 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheChest.Core", "src\TheChest.Core\TheChest.Core.csproj", "{A6D8674D-129E-4CC4-A34F-E4D42719D35D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F2C73DF4-9769-49EC-94F0-DCF91CC5C7C2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7C06F316-5168-46BC-9A49-54ADAE23B173}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheChest.Core.Tests", "tests\TheChest.Core.Tests\TheChest.Core.Tests.csproj", "{6E9D0AD7-424E-4E44-AC43-E8E7FCD53151}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{DBF05821-E851-4E02-8264-3850757D24E8}"
 	ProjectSection(SolutionItems) = preProject
@@ -30,27 +26,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infra", "infra", "{5DFDF432
 		.github\workflows\sonarcloud.yml = .github\workflows\sonarcloud.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheChest.Core", "src\TheChest.Core.csproj", "{57FE2D0B-7B34-3237-3E0F-FF267D8684B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheChest.Core.Tests", "tests\TheChest.Core.Tests.csproj", "{01D1274F-D7DC-CB00-ED7E-1844B379BC6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A6D8674D-129E-4CC4-A34F-E4D42719D35D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A6D8674D-129E-4CC4-A34F-E4D42719D35D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A6D8674D-129E-4CC4-A34F-E4D42719D35D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A6D8674D-129E-4CC4-A34F-E4D42719D35D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E9D0AD7-424E-4E44-AC43-E8E7FCD53151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E9D0AD7-424E-4E44-AC43-E8E7FCD53151}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E9D0AD7-424E-4E44-AC43-E8E7FCD53151}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E9D0AD7-424E-4E44-AC43-E8E7FCD53151}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57FE2D0B-7B34-3237-3E0F-FF267D8684B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57FE2D0B-7B34-3237-3E0F-FF267D8684B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57FE2D0B-7B34-3237-3E0F-FF267D8684B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57FE2D0B-7B34-3237-3E0F-FF267D8684B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01D1274F-D7DC-CB00-ED7E-1844B379BC6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01D1274F-D7DC-CB00-ED7E-1844B379BC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01D1274F-D7DC-CB00-ED7E-1844B379BC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01D1274F-D7DC-CB00-ED7E-1844B379BC6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A6D8674D-129E-4CC4-A34F-E4D42719D35D} = {F2C73DF4-9769-49EC-94F0-DCF91CC5C7C2}
-		{6E9D0AD7-424E-4E44-AC43-E8E7FCD53151} = {7C06F316-5168-46BC-9A49-54ADAE23B173}
+		{57FE2D0B-7B34-3237-3E0F-FF267D8684B5} = {F2C73DF4-9769-49EC-94F0-DCF91CC5C7C2}
+		{01D1274F-D7DC-CB00-ED7E-1844B379BC6D} = {7C06F316-5168-46BC-9A49-54ADAE23B173}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF9A167E-B926-4A99-B692-8A3566AB0996}

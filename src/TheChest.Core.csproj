@@ -57,29 +57,29 @@
 	</PropertyGroup>
 
 	<ItemGroup Label="Package">
-		<None Include="..\..\icon.png">
+		<None Include="..\icon.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
-		<None Include="..\..\LICENSE">
+		<None Include="..\LICENSE">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
-		<None Include="..\..\README.md">
+		<None Include="..\README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
-		<None Include="..\..\CHANGELOG.md">
+		<None Include="..\CHANGELOG.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
 
 	<ItemGroup Label="Docs">
-		<None Include="..\..\README.md">
+		<None Include="..\README.md">
 			<Pack>False</Pack>
 		</None>
-		<None Include="..\..\CHANGELOG.md">
+		<None Include="..\CHANGELOG.md">
 			<Pack>False</Pack>
 		</None>
 	</ItemGroup>
