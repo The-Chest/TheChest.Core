@@ -1,3 +1,11 @@
+# v0.18.0
+
+## What's Changed
+* Project now uses the C# 7.3 version, so it can be used in more projects that are not using the latest C# version.
+* 
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.17.4...v0.18.0
+
 # v0.17.4
 
 ## What's Fixed
