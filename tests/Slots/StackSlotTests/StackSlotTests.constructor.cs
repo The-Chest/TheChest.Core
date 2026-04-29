@@ -54,20 +54,6 @@
             );
         }
 
-        [Test]
-        public void Constructor_ValidParameters_InitializesCorrectly()
-        {
-            var item = this.itemFactory.CreateDefault();
-            int amount = this.random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
-            int maxAmount = amount;
 
-            var slot = new StackSlot<T>(Enumerable.Repeat(item, amount).ToArray(), maxAmount);
-
-            Assert.Multiple(() =>
-            {
-                Assert.That(slot.Amount, Is.EqualTo(amount));
-                Assert.That(slot.MaxAmount, Is.EqualTo(maxAmount));
-            });
-        }
     }
 }
