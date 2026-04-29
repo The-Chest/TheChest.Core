@@ -7,7 +7,7 @@ namespace TheChest.Core.Tests.Slots.SlotTests
         [Test]
         public void Constructor_NoParameters_CreatesEmptySlot()
         {
-            var slot = this.slotFactory.EmptySlot();
+            var slot = new Slot<T>();
             Assert.Multiple(() =>
             {
                 Assert.That(slot.IsEmpty, Is.True);
@@ -19,7 +19,7 @@ namespace TheChest.Core.Tests.Slots.SlotTests
         [IgnoreIfValueType]
         public void Constructor_NullItem_CreatesEmptySlot()
         {
-            var slot = this.slotFactory.FullSlot(default!);
+            var slot = new Slot<T>(default!);
             Assert.Multiple(() =>
             {
                 Assert.That(slot.IsEmpty, Is.True);
@@ -31,7 +31,7 @@ namespace TheChest.Core.Tests.Slots.SlotTests
         [IgnoreIfReferenceType]
         public void Constructor_DefaultValue_CreatesFullSlot()
         {
-            var slot = this.slotFactory.FullSlot(default!);
+            var slot = new Slot<T>(default!);
             Assert.Multiple(() =>
             {
                 Assert.That(slot.IsEmpty, Is.False);
