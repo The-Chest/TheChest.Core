@@ -3,7 +3,7 @@
     public partial class IStackSlotTests<T>
     {
         [Test]
-        public void IsFull_CurentItemNull_ReturnsFalse()
+        public void IsFull_CurrentItemNull_ReturnsFalse()
         {
             var slot = this.slotFactory.WithItem(default!, 1, 10);
 
