@@ -51,7 +51,5 @@
                     .And.Message.Contains("The max amount cannot be smaller than zero")
             );
         }
-
-
     }
 }
