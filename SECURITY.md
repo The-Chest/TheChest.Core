@@ -6,8 +6,8 @@ The following table indicates which versions of this library are currently suppo
 
 | Version   | Supported          |
 | --------- | ------------------ |
-| 0.17.x    | :white_check_mark: |
-| < 0.17.0  | :x:                |
+| 0.18.x    | :white_check_mark: |
+| < 0.18.0  | :x:                |
 
 > The next major release will be **v1.0.0**,and it might change to other security rules.
 
