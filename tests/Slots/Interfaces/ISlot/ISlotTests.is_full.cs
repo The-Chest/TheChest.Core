@@ -10,7 +10,7 @@
         }
 
         [Test]
-        public void IsFull_CurentItemNotNull_ReturnsTrue()
+        public void IsFull_CurrentItemNotNull_ReturnsTrue()
         {
             var item = this.itemFactory.CreateDefault();
             var slot = this.slotFactory.FullSlot(item);
