@@ -48,8 +48,7 @@
         {
             Assert.That(
                 () => new StackSlot<T>(-1),
-                Throws.Exception
-                    .With.TypeOf<ArgumentOutOfRangeException>()
+                Throws.TypeOf<ArgumentOutOfRangeException>()
                     .And.Message.Contains("The max amount cannot be smaller than zero")
             );
         }
