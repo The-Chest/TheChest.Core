@@ -11,7 +11,7 @@
         }
 
         [Test]
-        public void IsFull_CurentItemInHalfMaxStack_ReturnsFalse()
+        public void IsFull_CurrentItemInHalfMaxStack_ReturnsFalse()
         {
             var maxStack = random.Next(5,20);
 
