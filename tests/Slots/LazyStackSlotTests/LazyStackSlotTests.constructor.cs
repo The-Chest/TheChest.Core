@@ -1,11 +1,11 @@
 ﻿namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 {
-    public partial class LazyStackSlotTests<T> 
+    public partial class LazyStackSlotTests<T>
     {
         [Test]
         public void Constructor_NoParameters_InitializesWithDefaultValues()
         {
-            var slot = this.slotFactory.EmptySlot();
+            var slot = new LazyStackSlot<T>();
             Assert.Multiple(() =>
             {
                 Assert.That(slot.Amount, Is.Zero);
@@ -14,12 +14,13 @@
         }
 
         [Test]
-        public void Constructor_ItemArrayBiggerThanMaxAmount_ThrowsArgumentException()
+        public void Constructor_ItemAndAmountAndMaxAmount_InitializesCorrectly()
         {
             var item = this.itemFactory.CreateDefault();
-            int amount = this.random.Next(5, 10);
-            int maxAmount = this.random.Next(10, 20);
-            var slot = this.slotFactory.WithItem(item, amount, maxAmount);
+            int amount = this.random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
+            int maxAmount = this.random.Next(amount, MAX_STACK_SIZE_TEST + MIN_STACK_SIZE_TEST);
+
+            var slot = new LazyStackSlot<T>(item, amount, maxAmount);
             Assert.Multiple(() =>
             {
                 Assert.That(slot.Amount, Is.EqualTo(amount));
@@ -32,10 +33,10 @@
         {
             var item = this.itemFactory.CreateDefault();
             Assert.That(
-                () => this.slotFactory.WithItem(item, 6, 5),
+                () => new LazyStackSlot<T>(item, 6, 5),
                 Throws.Exception
                     .With.TypeOf<ArgumentOutOfRangeException>()
-                    .And.Message.Contains("The item amount cannot be bigger than max amount (Parameter 'amount')")
+                    .And.Message.Contains("The item amount cannot be bigger than max amount")
             );
         }
 
@@ -44,10 +45,10 @@
         {
             var item = this.itemFactory.CreateDefault();
             Assert.That(
-                () => this.slotFactory.WithItem(item, -1, 5),
+                () => new LazyStackSlot<T>(item, -1, 5),
                 Throws.Exception
                     .With.TypeOf<ArgumentOutOfRangeException>()
-                    .And.Message.Contains("The amount property cannot be smaller than zero (Parameter 'amount')")
+                    .And.Message.Contains("The amount property cannot be smaller than zero")
             );
         }
 
@@ -56,27 +57,11 @@
         {
             var item = this.itemFactory.CreateDefault();
             Assert.That(
-                () => this.slotFactory.WithItem(item, 5, -1),
+                () => new LazyStackSlot<T>(item, 5, -1),
                 Throws.Exception
                     .With.TypeOf<ArgumentOutOfRangeException>()
-                    .And.Message.Contains("The max amount property cannot be smaller than zero (Parameter 'maxAmount')")
+                    .And.Message.Contains("The max amount property cannot be smaller than zero")
             );
-        }
-
-        [Test]
-        public void Constructor_ValidParameters_InitializesCorrectly()
-        {
-            var item = this.itemFactory.CreateDefault();
-            int amount = 5;
-            int maxAmount = 10;
-
-            var slot = this.slotFactory.WithItem(item, amount, maxAmount);
-
-            Assert.Multiple(() =>
-            {
-                Assert.That(slot.Amount, Is.EqualTo(amount));
-                Assert.That(slot.MaxAmount, Is.EqualTo(maxAmount));
-            });
         }
     }
 }

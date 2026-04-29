@@ -9,6 +9,9 @@ namespace TheChest.Core.Tests.Slots.Interfaces.ILazyStackSlotTests
         protected readonly ILazyStackSlotFactory<T> slotFactory;
         protected readonly IItemFactory<T> itemFactory;
 
+        protected const int MIN_STACK_SIZE_TEST = 5;
+        protected const int MAX_STACK_SIZE_TEST = 10;
+
         protected ILazyStackSlotTests(Action<DIContainer> configure) : base(configure)
         {
             this.slotFactory = this.configurations.Resolve<ILazyStackSlotFactory<T>>();

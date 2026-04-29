@@ -5,8 +5,8 @@
         [Test]
         public void Constructor_NoParameters_InitializesWithDefaultValues()
         {
-            var slot = this.slotFactory.EmptySlot();
-            
+            var slot = new StackSlot<T>();
+
             Assert.Multiple(() =>
             {
                 Assert.That(slot.Amount, Is.Zero);
@@ -15,14 +15,14 @@
         }
 
         [Test]
-        public void Constructor_ItemArrayLessThanMaxAmount_SetsAmountAndMaxAmount()
+        public void Constructor_ItemsAndMaxAmount_SetsAmountAndMaxAmount()
         {
             var item = this.itemFactory.CreateDefault();
-            int amount = this.random.Next(5, 10);
-            int maxAmount = this.random.Next(10, 20);
+            int amount = this.random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
+            int maxAmount = this.random.Next(amount, MAX_STACK_SIZE_TEST + MIN_STACK_SIZE_TEST);
 
-            var slot = this.slotFactory.WithItem(item, amount, maxAmount);
-            
+            var slot = new StackSlot<T>(Enumerable.Repeat(item, amount).ToArray(), maxAmount);
+
             Assert.Multiple(() =>
             {
                 Assert.That(slot.Amount, Is.EqualTo(amount));
@@ -34,9 +34,9 @@
         public void Constructor_AmountGreaterThanMaxAmount_ThrowsArgumentOutOfRangeException()
         {
             var item = this.itemFactory.CreateDefault();
-            
+
             Assert.That(
-                () => this.slotFactory.WithItem(item, 6, 5),
+                () => new StackSlot<T>(Enumerable.Repeat(item, 6).ToArray(), 5),
                 Throws.Exception
                     .With.TypeOf<ArgumentOutOfRangeException>()
                     .And.Message.Contains("The content size cannot be bigger than max amount")
@@ -46,10 +46,8 @@
         [Test]
         public void Constructor_MaxAmountLessThanZero_ThrowsArgumentOutOfRangeException()
         {
-            var item = this.itemFactory.CreateDefault();
-            
             Assert.That(
-                () => this.slotFactory.WithItem(item, 5, -1),
+                () => new StackSlot<T>(-1),
                 Throws.Exception
                     .With.TypeOf<ArgumentOutOfRangeException>()
                     .And.Message.Contains("The max amount cannot be smaller than zero")
@@ -60,10 +58,10 @@
         public void Constructor_ValidParameters_InitializesCorrectly()
         {
             var item = this.itemFactory.CreateDefault();
-            int amount = this.random.Next(5, 10);
+            int amount = this.random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
             int maxAmount = amount;
 
-            var slot = this.slotFactory.WithItem(item, amount, maxAmount);
+            var slot = new StackSlot<T>(Enumerable.Repeat(item, amount).ToArray(), maxAmount);
 
             Assert.Multiple(() =>
             {
