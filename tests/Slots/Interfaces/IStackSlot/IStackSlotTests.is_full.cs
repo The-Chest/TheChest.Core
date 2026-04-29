@@ -30,7 +30,7 @@
         }
 
         [Test]
-        public void IsFull_CurentItemInMaxStack_ReturnsTrue()
+        public void IsFull_CurrentItemInMaxStack_ReturnsTrue()
         {
             var maxStack = random.Next(5, 20);
 
