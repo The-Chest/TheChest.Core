@@ -41,7 +41,7 @@
 # v0.17.2
 
 ## What's Fixed
-* The getter from property `Content` in `StackSlot<T>` now returns the content as an Array instead of an ReadOnlyCollection, like before. 
+* The getter from property `Content` in `StackSlot<T>` now returns the content as an Array instead of a ReadOnlyCollection, like before. 
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.17.1...v0.17.2
 
@@ -81,7 +81,7 @@
 * `StackContainer<T>` constructor is complex 
 
 ## What's Next
-* Remove `amount` and `maxAmount` by and make properties `Amount` and `MaxAmount` to be calculated by the length of `content` and the length of `content` that is not null respectively.
+* Remove `amount` and `maxAmount` and make properties `Amount` and `MaxAmount` to be calculated by the length of `content` and the length of `content` that is not null respectively.
 * Unit tests running on an .net matrix array or something
 * Hopefully v1.0.0
 
@@ -95,7 +95,7 @@
 
 ## What's Next
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
-* Remove `amount` and `maxAmount` by and make properties `Amount` and `MaxAmount` to be calculated by the length of `content` and the length of `content` that is not null respectively.
+* Remove `amount` and `maxAmount` and make properties `Amount` and `MaxAmount` to be calculated by the length of `content` and the length of `content` that is not null respectively.
 * Unit tests running on an .net matrix array or something
 * Hopefully v1.0.0
 
@@ -146,7 +146,7 @@
 
 ## What's Next
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
-* [#123](https://github.com/The-Chest/TheChest.Core/issues/127) - DLL file to release 
+* [#123](https://github.com/The-Chest/TheChest.Core/issues/123) - DLL file to release 
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.15.1...v0.15.2
 
@@ -160,7 +160,7 @@
 
 ## What's Next
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
-* [#123](https://github.com/The-Chest/TheChest.Core/issues/127) - DLL file to release 
+* [#123](https://github.com/The-Chest/TheChest.Core/issues/123) - DLL file to release 
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.15.0...v0.15.1
 
