@@ -309,7 +309,7 @@
 * Summary docs finished
 
 ## What's Changed
-* Project now is using .net standard v2.1
+* Project now is using .NET Standard v2.1
 
 ## Known issues
 * [#20](https://github.com/The-Chest/TheChest.Core/issues/20) - `StackSlot` constructor with no validation
