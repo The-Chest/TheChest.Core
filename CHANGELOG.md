@@ -400,7 +400,7 @@
 * `ISlotItemFactory.CreateItem` is now called `ISlotItemFactory.CreateDefault`
 
 ## Known Issues
-* https://github.com/The-Chest/the-chest-core/issues/12 -` IStackSlot<T>` and `ILazyStackSlot<T>` tests not working together
+* https://github.com/The-Chest/the-chest-core/issues/12 - `IStackSlot<T>` and `ILazyStackSlot<T>` tests not working together
 
 # v0.2.0
 
