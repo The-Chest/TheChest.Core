@@ -10,7 +10,7 @@
 # v0.18.0
 
 ## What's Added
-* `LazyStackSlot` now have a new constructor:
+* `LazyStackSlot` now has a new constructor:
   * `LazyStackSlot(int maxAmount)` - Creates an empty LazyStackSlot with `maxAmount` as maximum amount. 
 
 ## What's Changed
