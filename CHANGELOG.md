@@ -11,7 +11,7 @@
 
 ## What's Added
 * `LazyStackSlot` now have a new constructor:
-  * `LazyStackSlot(int maxAmount)` - Creates an empty LazyStackSlot with `maxAmount` as max amount. 
+  * `LazyStackSlot(int maxAmount)` - Creates an empty LazyStackSlot with `maxAmount` as maximum amount. 
 
 ## What's Changed
 * Project now uses the C# 7.3 version, so it can be used in more projects that are not using the latest C# version.
