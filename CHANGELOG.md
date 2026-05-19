@@ -172,7 +172,7 @@
 * Slots now have a private field named `content`
     * It can stores the content from constructor and be `nullable`
 * Attribute for unit tests (`[IgnoreIfReferenceType]` and `[IgnoreIfValueType]`)
-* Slots now have static Valitation methods to be used in constructors
+* Slots now have static Validation methods to be used in constructors
   * `StackSlot<T>`
     * `ValidateContent(T[] items, int maxAmount)` - Validates that `items` array is not null or empty and does not exceed `maxAmount`.
     * `ValidateAmount(int amount, int maxAmount)` - Validates that `amount` is within the allowed range from zero to `maxAmount`.
