@@ -358,7 +358,7 @@
 
 ## Known issues
 * [#20](https://github.com/The-Chest/TheChest.Core/issues/20) - `StackSlot` constructor with no validation
-* [#24](https://github.com/The-Chest/TheChest.Core/issues/24) - Project .net version outdated
+* [#24](https://github.com/The-Chest/TheChest.Core/issues/24) - Project .NET version outdated
 
 # v0.4.0
 
