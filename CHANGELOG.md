@@ -131,7 +131,7 @@
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
 * [#140](https://github.com/The-Chest/TheChest.Core/issues/140) - New Property `AvailableAmount` to `StackSlot<T>` and `LazyStackSlot<T>` 
 
-* **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.15.2...v0.15.3
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.15.2...v0.15.3
 
 # v0.15.2
 
