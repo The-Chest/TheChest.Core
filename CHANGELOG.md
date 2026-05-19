@@ -125,7 +125,7 @@
 * Field `content` doesn't have Nullable type anymore in `Slot<T>`, `StackSlot<T>` and `LazyStackSlot<T>`
 
 ## Known Issues
-* Unit tests project is running on .net 6.0 while the main project is on .net standard 2.1
+* Unit tests project is running on .NET 6.0 while the main project is on .NET Standard 2.1
 
 ## What's Next
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
