@@ -142,7 +142,7 @@
 * Useless amount validation on `StackSlot<T>.Contains(T item)`
 
 ## Known Issues
-* Unit tests project is running on .net 6.0 while the main project is on .net standard 2.1
+* Unit tests project is running on .NET 6.0 while the main project is on .NET Standard 2.1
 
 ## What's Next
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
@@ -172,7 +172,7 @@
 * Slots now have a private field named `content`
     * It can stores the content from constructor and be `nullable`
 * Attribute for unit tests (`[IgnoreIfReferenceType]` and `[IgnoreIfValueType]`)
-* Slots now have static Valitation methods to be used in constructors
+* Slots now have static Validation methods to be used in constructors
   * `StackSlot<T>`
     * `ValidateContent(T[] items, int maxAmount)` - Validates that `items` array is not null or empty and does not exceed `maxAmount`.
     * `ValidateAmount(int amount, int maxAmount)` - Validates that `amount` is within the allowed range from zero to `maxAmount`.
@@ -309,7 +309,7 @@
 * Summary docs finished
 
 ## What's Changed
-* Project now is using .net standard v2.1
+* Project now is using .NET Standard v2.1
 
 ## Known issues
 * [#20](https://github.com/The-Chest/TheChest.Core/issues/20) - `StackSlot` constructor with no validation
