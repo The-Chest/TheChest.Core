@@ -2,8 +2,8 @@
 
 ## What's Fixed
 - Internal `StackSlot` creation fixes
- - Reduce unnecessary overallocation when grouping adjacent items into stack slots by estimating the number of slots from `items.Length` and `maxStackSize`.
- - Prevent potential out-of-range array operations by ensuring computed `endIndex` does not exceed the source array length.
+  - Reduce unnecessary overallocation when grouping adjacent items into stack slots by estimating the number of slots from `items.Length` and `maxStackSize`.
+  - Prevent potential out-of-range array operations by ensuring computed `endIndex` does not exceed the source array length.
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.18.0...v0.18.1
 
