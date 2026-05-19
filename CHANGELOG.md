@@ -160,7 +160,7 @@
 
 ## What's Next
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
-* [#123](https://github.com/The-Chest/TheChest.Core/issues/127) - DLL file to release 
+* [#123](https://github.com/The-Chest/TheChest.Core/issues/123) - DLL file to release 
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.15.0...v0.15.1
 
