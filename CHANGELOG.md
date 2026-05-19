@@ -131,7 +131,7 @@
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
 * [#140](https://github.com/The-Chest/TheChest.Core/issues/140) - New Property `AvailableAmount` to `StackSlot<T>` and `LazyStackSlot<T>` 
 
-* **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.15.2...v0.15.3
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.15.2...v0.15.3
 
 # v0.15.2
 
@@ -400,7 +400,7 @@
 * `ISlotItemFactory.CreateItem` is now called `ISlotItemFactory.CreateDefault`
 
 ## Known Issues
-* https://github.com/The-Chest/the-chest-core/issues/12 -` IStackSlot<T>` and `ILazyStackSlot<T>` tests not working together
+* https://github.com/The-Chest/the-chest-core/issues/12 - `IStackSlot<T>` and `ILazyStackSlot<T>` tests not working together
 
 # v0.2.0
 
@@ -422,7 +422,7 @@
 * `ISlotItemFactory.CreateItem` is now called `ISlotItemFactory.CreateDefault`
 
 ## Known Issues
-* https://github.com/The-Chest/the-chest-core/issues/12 -` IStackSlot<T>` and `ILazyStackSlot<T>` tests not working together
+* https://github.com/The-Chest/the-chest-core/issues/12 - `IStackSlot<T>` and `ILazyStackSlot<T>` tests not working together
 
 # v0.1.1
 
