@@ -41,7 +41,7 @@
 # v0.17.2
 
 ## What's Fixed
-* The getter from property `Content` in `StackSlot<T>` now returns the content as an Array instead of an ReadOnlyCollection, like before. 
+* The getter from property `Content` in `StackSlot<T>` now returns the content as an Array instead of a ReadOnlyCollection, like before. 
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.17.1...v0.17.2
 
