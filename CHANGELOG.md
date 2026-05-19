@@ -1,21 +1,21 @@
 # v0.18.1
 
 ## What's Fixed
-- Internal `StackSlot` creation fixes
-  - Reduce unnecessary overallocation when grouping adjacent items into stack slots by estimating the number of slots from `items.Length` and `maxStackSize`.
-  - Prevent potential out-of-range array operations by ensuring computed `endIndex` does not exceed the source array length.
+* Internal `StackSlot` creation fixes
+  * Reduce unnecessary overallocation when grouping adjacent items into stack slots by estimating the number of slots from `items.Length` and `maxStackSize`.
+  * Prevent potential out-of-range array operations by ensuring computed `endIndex` does not exceed the source array length.
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.18.0...v0.18.1
 
 # v0.18.0
 
 ## What's Added
-* `LazyStackSlot` now have a new constructor:
-  * `LazyStackSlot(int maxAmount)` - Creates an empty LazyStackSlot with `maxAmount` as max amount. 
+* `LazyStackSlot` now has a new constructor:
+  * `LazyStackSlot(int maxAmount)` - Creates an empty LazyStackSlot with `maxAmount` as maximum amount. 
 
 ## What's Changed
 * Project now uses the C# 7.3 version, so it can be used in more projects that are not using the latest C# version.
-* `LazyStackSlot` constructor `LazyStackSlot(T currentItem, int amount, int maxAmount)` now have required properties `amount` and `maxAmount` instead of the default value 1.
+* `LazyStackSlot` constructor `LazyStackSlot(T currentItem, int amount, int maxAmount)` now has required properties `amount` and `maxAmount` instead of the default value 1.
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.17.4...v0.18.0
 
@@ -41,7 +41,7 @@
 # v0.17.2
 
 ## What's Fixed
-* The getter from property `Content` in `StackSlot<T>` now returns the content as an Array instead of an ReadOnlyCollection, like before. 
+* The getter from property `Content` in `StackSlot<T>` now returns the content as an Array instead of a ReadOnlyCollection, like before. 
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.17.1...v0.17.2
 
@@ -81,8 +81,8 @@
 * `StackContainer<T>` constructor is complex 
 
 ## What's Next
-* Remove `amount` and `maxAmount` by and make properties `Amount` and `MaxAmount` to be calculated by the length of `content` and the length of `content` that is not null respectively.
-* Unit tests running on an .net matrix array or something
+* Remove `amount` and `maxAmount` and make properties `Amount` and `MaxAmount` to be calculated by the length of `content` and the length of `content` that is not null respectively.
+* Unit tests running on a .NET matrix array or something
 * Hopefully v1.0.0
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.16.1...v0.17.0
@@ -95,8 +95,8 @@
 
 ## What's Next
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
-* Remove `amount` and `maxAmount` by and make properties `Amount` and `MaxAmount` to be calculated by the length of `content` and the length of `content` that is not null respectively.
-* Unit tests running on an .net matrix array or something
+* Remove `amount` and `maxAmount` and make properties `Amount` and `MaxAmount` to be calculated by the length of `content` and the length of `content` that is not null respectively.
+* Unit tests running on a .NET matrix array or something
 * Hopefully v1.0.0
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.16.0...v0.16.1
@@ -125,13 +125,13 @@
 * Field `content` doesn't have Nullable type anymore in `Slot<T>`, `StackSlot<T>` and `LazyStackSlot<T>`
 
 ## Known Issues
-* Unit tests project is running on .net 6.0 while the main project is on .net standard 2.1
+* Unit tests project is running on .NET 6.0 while the main project is on .NET Standard 2.1
 
 ## What's Next
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
 * [#140](https://github.com/The-Chest/TheChest.Core/issues/140) - New Property `AvailableAmount` to `StackSlot<T>` and `LazyStackSlot<T>` 
 
-* **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.15.2...v0.15.3
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.15.2...v0.15.3
 
 # v0.15.2
 
@@ -142,11 +142,11 @@
 * Useless amount validation on `StackSlot<T>.Contains(T item)`
 
 ## Known Issues
-* Unit tests project is running on .net 6.0 while the main project is on .net standard 2.1
+* Unit tests project is running on .NET 6.0 while the main project is on .NET Standard 2.1
 
 ## What's Next
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
-* [#123](https://github.com/The-Chest/TheChest.Core/issues/127) - DLL file to release 
+* [#123](https://github.com/The-Chest/TheChest.Core/issues/123) - DLL file to release 
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.15.1...v0.15.2
 
@@ -160,7 +160,7 @@
 
 ## What's Next
 * [#127](https://github.com/The-Chest/TheChest.Core/issues/127) - More ways to instantiate the Container classes 
-* [#123](https://github.com/The-Chest/TheChest.Core/issues/127) - DLL file to release 
+* [#123](https://github.com/The-Chest/TheChest.Core/issues/123) - DLL file to release 
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.15.0...v0.15.1
 
@@ -172,7 +172,7 @@
 * Slots now have a private field named `content`
     * It can stores the content from constructor and be `nullable`
 * Attribute for unit tests (`[IgnoreIfReferenceType]` and `[IgnoreIfValueType]`)
-* Slots now have static Valitation methods to be used in constructors
+* Slots now have static Validation methods to be used in constructors
   * `StackSlot<T>`
     * `ValidateContent(T[] items, int maxAmount)` - Validates that `items` array is not null or empty and does not exceed `maxAmount`.
     * `ValidateAmount(int amount, int maxAmount)` - Validates that `amount` is within the allowed range from zero to `maxAmount`.
@@ -309,7 +309,7 @@
 * Summary docs finished
 
 ## What's Changed
-* Project now is using .net standard v2.1
+* Project now is using .NET Standard v2.1
 
 ## Known issues
 * [#20](https://github.com/The-Chest/TheChest.Core/issues/20) - `StackSlot` constructor with no validation
@@ -322,7 +322,7 @@
 
 ## Known issues
 * [#20](https://github.com/The-Chest/TheChest.Core/issues/20) - `StackSlot` constructor with no validation
-* [#24](https://github.com/The-Chest/TheChest.Core/issues/24) - Project .net version outdated
+* [#24](https://github.com/The-Chest/TheChest.Core/issues/24) - Project .NET version outdated
 
 # v0.7.0
 
@@ -333,7 +333,7 @@
 
 ## Known issues
 * [#20](https://github.com/The-Chest/TheChest.Core/issues/20) - `StackSlot` constructor with no validation
-* [#24](https://github.com/The-Chest/TheChest.Core/issues/24) - Project .net version outdated
+* [#24](https://github.com/The-Chest/TheChest.Core/issues/24) - Project .NET version outdated
 
 # v0.6.0
 
@@ -347,7 +347,7 @@
 
 ## Known issues
 * [#20](https://github.com/The-Chest/TheChest.Core/issues/20) - `StackSlot` constructor with no validation
-* [#24](https://github.com/The-Chest/TheChest.Core/issues/24) - Project .net version outdated
+* [#24](https://github.com/The-Chest/TheChest.Core/issues/24) - Project .NET version outdated
 
 # v0.5.0
 
@@ -358,7 +358,7 @@
 
 ## Known issues
 * [#20](https://github.com/The-Chest/TheChest.Core/issues/20) - `StackSlot` constructor with no validation
-* [#24](https://github.com/The-Chest/TheChest.Core/issues/24) - Project .net version outdated
+* [#24](https://github.com/The-Chest/TheChest.Core/issues/24) - Project .NET version outdated
 
 # v0.4.0
 
@@ -400,7 +400,7 @@
 * `ISlotItemFactory.CreateItem` is now called `ISlotItemFactory.CreateDefault`
 
 ## Known Issues
-* https://github.com/The-Chest/the-chest-core/issues/12 -` IStackSlot<T>` and `ILazyStackSlot<T>` tests not working together
+* https://github.com/The-Chest/the-chest-core/issues/12 - `IStackSlot<T>` and `ILazyStackSlot<T>` tests not working together
 
 # v0.2.0
 
@@ -422,7 +422,7 @@
 * `ISlotItemFactory.CreateItem` is now called `ISlotItemFactory.CreateDefault`
 
 ## Known Issues
-* https://github.com/The-Chest/the-chest-core/issues/12 -` IStackSlot<T>` and `ILazyStackSlot<T>` tests not working together
+* https://github.com/The-Chest/the-chest-core/issues/12 - `IStackSlot<T>` and `ILazyStackSlot<T>` tests not working together
 
 # v0.1.1
 
