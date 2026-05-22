@@ -20,7 +20,7 @@ namespace TheChest.Core.Slots.Extensions
             {
                 var startIndex = index;
                 var endIndex = Math.Min(
-                    items.GetAdjacentEqualCount(startIndex, maxStackSize) + 1,
+                    items.GetAdjacentEqualIndex(startIndex, maxStackSize) + 1,
                     items.Length
                 );
 

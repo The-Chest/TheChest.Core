@@ -65,7 +65,7 @@ namespace TheChest.Core.Extensions
         /// <param name="startIndex">The zero-based index at which to begin searching for adjacent equal elements.</param>
         /// <param name="maxCount">The maximum number of adjacent equal elements to consider, including the starting element. Must be greater than zero.</param>
         /// <returns>The index of the last element in the sequence of adjacent equal elements, starting from the specified index and not exceeding the maximum count.</returns>
-        internal static int GetAdjacentEqualCount<T>(this T[] array, int startIndex, int maxCount)
+        internal static int GetAdjacentEqualIndex<T>(this T[] array, int startIndex, int maxCount)
         {
             var index = startIndex;
             var amount = 1;

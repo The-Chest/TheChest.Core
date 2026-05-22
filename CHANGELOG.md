@@ -1,3 +1,10 @@
+# v0.18.2
+
+## What's Fixed
+* 
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.18.1...v0.18.2
+
 # v0.18.1
 
 ## What's Fixed

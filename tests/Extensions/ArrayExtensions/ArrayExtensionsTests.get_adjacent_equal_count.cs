@@ -11,7 +11,7 @@ namespace TheChest.Core.Tests.Extensions
             var second = this.itemFactory.CreateDifferentFrom(first);
             var array = new[] { first, second };
 
-            var result = array.GetAdjacentEqualCount(startIndex: 0, maxCount: 5);
+            var result = array.GetAdjacentEqualIndex(startIndex: 0, maxCount: 5);
 
             Assert.That(result, Is.EqualTo(0));
         }
@@ -23,7 +23,7 @@ namespace TheChest.Core.Tests.Extensions
             var second = this.itemFactory.CreateDifferentFrom(first);
             var array = new[] { first, first, first, second };
 
-            var result = array.GetAdjacentEqualCount(startIndex: 0, maxCount: 10);
+            var result = array.GetAdjacentEqualIndex(startIndex: 0, maxCount: 10);
 
             Assert.That(result, Is.EqualTo(2));
         }
@@ -34,7 +34,7 @@ namespace TheChest.Core.Tests.Extensions
             var item = this.itemFactory.CreateRandom();
             var array = new[] { item, item, item, item };
 
-            var result = array.GetAdjacentEqualCount(startIndex: 0, maxCount: 2);
+            var result = array.GetAdjacentEqualIndex(startIndex: 0, maxCount: 2);
 
             Assert.That(result, Is.EqualTo(1));
         }
@@ -46,7 +46,7 @@ namespace TheChest.Core.Tests.Extensions
             var second = this.itemFactory.CreateDifferentFrom(first);
             var array = new[] { second, first, first, first };
 
-            var result = array.GetAdjacentEqualCount(startIndex: 1, maxCount: 10);
+            var result = array.GetAdjacentEqualIndex(startIndex: 1, maxCount: 10);
 
             Assert.That(result, Is.EqualTo(3));
         }
@@ -57,7 +57,7 @@ namespace TheChest.Core.Tests.Extensions
             var item = this.itemFactory.CreateRandom();
             var array = new[] { item, item, item };
 
-            var result = array.GetAdjacentEqualCount(startIndex: 0, maxCount: 1);
+            var result = array.GetAdjacentEqualIndex(startIndex: 0, maxCount: 1);
 
             Assert.That(result, Is.EqualTo(0));
         }
