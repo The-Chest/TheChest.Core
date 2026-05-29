@@ -47,7 +47,7 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// The current amount of items inside the slot
         /// </summary>
-        protected int amount;
+        private int amount;
         /// <inheritdoc/>
         public virtual int Amount
         {
@@ -67,7 +67,7 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// The maximum amount of items that this slot can hold
         /// </summary>
-        protected int maxAmount;
+        private int maxAmount;
         /// <inheritdoc/>
         public virtual int MaxAmount
         {
