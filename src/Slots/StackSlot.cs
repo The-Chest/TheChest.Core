@@ -12,6 +12,8 @@ namespace TheChest.Core.Slots
     public class StackSlot<T> : IStackSlot<T>
     {
         private object[] content;
+        private int amount;
+        private int maxAmount;
 
         private T[] cacheContent;
         private bool isCacheValid;
@@ -44,10 +46,6 @@ namespace TheChest.Core.Slots
             }
         }
 
-        /// <summary>
-        /// The current amount of items inside the slot
-        /// </summary>
-        protected int amount;
         /// <inheritdoc/>
         public virtual int Amount
         {
@@ -63,11 +61,6 @@ namespace TheChest.Core.Slots
                 this.isCacheValid = false;
             }
         }
-
-        /// <summary>
-        /// The maximum amount of items that this slot can hold
-        /// </summary>
-        protected int maxAmount;
         /// <inheritdoc/>
         public virtual int MaxAmount
         {

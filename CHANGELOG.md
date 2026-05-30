@@ -1,9 +1,13 @@
-# v0.18.2
+# v0.19.0
 
-## What's Fixed
-* 
+## What's Changed
+* `amount` and `maxAmount` fields from `StackSlot<T>` and `LazyStackSlot<T>` are now private
 
-**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.18.1...v0.18.2
+## What's Next
+* Improves in Container classes to implement from interfaces from `System.Collections.Generic`
+* The protected field `slots` in Container classes can be changed to an protected property.
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.18.1...v0.19.0
 
 # v0.18.1
 
