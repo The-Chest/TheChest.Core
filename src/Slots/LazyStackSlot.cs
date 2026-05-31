@@ -118,31 +118,31 @@ namespace TheChest.Core.Slots
         /// </summary>
         /// <param name="amount">The amount to be validated.</param>
         /// <param name="maxAmount">The maximum allowed amount.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// When <paramref name="amount"/> is less than zero, greater than <paramref name="maxAmount"/>, 
-        /// or <paramref name="maxAmount"/> is less than zero.
-        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException"> When <paramref name="amount"/> is less than zero, greater than <paramref name="maxAmount"/>, or <paramref name="maxAmount"/> is less than zero.</exception>
         protected static void ValidateAmount(int amount, int maxAmount)
         {
             if (amount < 0)
                 throw new ArgumentOutOfRangeException(
-                    nameof(amount),
-                    "The amount property cannot be smaller than zero"
+                    paramName: nameof(amount),
+                    actualValue: amount,
+                    message: "The amount property cannot be smaller than zero"
                 );
             if (maxAmount < 0)
                 throw new ArgumentOutOfRangeException(
-                    nameof(maxAmount),
-                    "The max amount property cannot be smaller than zero"
+                    paramName: nameof(maxAmount),
+                    actualValue: maxAmount,
+                    message: "The max amount property cannot be smaller than zero"
                 );
             if (amount > maxAmount)
                 throw new ArgumentOutOfRangeException(
-                    nameof(amount),
-                    "The item amount cannot be bigger than max amount"
+                    paramName: nameof(amount),
+                    actualValue: amount,
+                    message: "The item amount cannot be bigger than max amount"
                 );
         }
 
         /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
         public virtual bool Contains(T item)
         {
             if (item.IsNull())
@@ -154,18 +154,22 @@ namespace TheChest.Core.Slots
             return item.Equals(this.content);
         }
         /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
         public virtual bool Contains(T item, int amount)
         {
             if (item.IsNull())
                 throw new ArgumentNullException(nameof(item));
             if (amount <= 0)
-                throw new ArgumentOutOfRangeException(nameof(amount));
+                throw new ArgumentOutOfRangeException(
+                    paramName: nameof(amount),
+                    actualValue: amount,
+                    message: "The amount must be greater than zero"
+                );
 
             if (this.IsEmpty)
                 return false;
-            return item.Equals(this.content) && 
-                amount <= this.Amount;
+            
+            return item.Equals(this.content) && amount <= this.Amount;
         }
     }
 }
