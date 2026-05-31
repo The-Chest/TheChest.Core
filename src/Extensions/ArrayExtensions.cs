@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TheChest.Core.Extensions
 {
@@ -10,14 +11,14 @@ namespace TheChest.Core.Extensions
         /// </summary>
         /// <param name="array">The array to be normalized.</param>
         /// <returns>A new array containing only the non-null items from the input array.</returns>
-        internal static T[] ToGenericArray<T>(this object[] array)
-        {            
-            var result = new T[array.Length];
+        internal static T[] ToGenericArray<T>(this IEnumerable<object> array)
+        {
+            var amount = array.Count();
+            var result = new T[amount];
             var index = 0;
-            for (int i = 0; i < array.Length; i++)
+            foreach (var item in array)
             {
-                var item = array[i];
-                if (!(item is null))
+                if (!item.IsNull())
                 {
                     result[index++] = (T)item;
                 }
@@ -32,17 +33,15 @@ namespace TheChest.Core.Extensions
         /// <param name="array">The array to be normalized.</param>
         /// <returns>A new array containing only the non-null items from the input array.</returns>
         /// <exception cref="ArgumentNullException">When the input array is <see langword="null"/>.</exception>
-        internal static object[] ToObjectArray<T>(this T[] array)
+        internal static object[] ToObjectArray<T>(this IEnumerable<T> array)
         {
             if (array == null)
                 throw new ArgumentNullException(nameof(array));
 
-            var result = new object[array.Length];
+            var result = new object[array.Count()];
             var index = 0;
-            for (int i = 0; i < array.Length; i++)
+            foreach (var item in array)
             {
-                var item = array[i];
-
                 if (!item.IsNull())
                 {
                     result[index++] = item;
