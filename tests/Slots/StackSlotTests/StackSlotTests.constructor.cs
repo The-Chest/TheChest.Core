@@ -38,7 +38,7 @@
             Assert.That(
                 () => new StackSlot<T>(Enumerable.Repeat(item, 6).ToArray(), 5),
                 Throws.TypeOf<ArgumentOutOfRangeException>()
-                    .And.Message.Contains("The content size cannot be bigger than max amount")
+                    .And.Message.Contains("The item amount cannot be bigger than max amount")
             );
         }
 

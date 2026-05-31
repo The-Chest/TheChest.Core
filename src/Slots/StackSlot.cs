@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TheChest.Core.Extensions;
 using TheChest.Core.Slots.Interfaces;
@@ -21,7 +22,7 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// The content inside the slot
         /// </summary>
-        public virtual T[] Content
+        public virtual IEnumerable<T> Content
         {
             get
             {
@@ -120,14 +121,16 @@ namespace TheChest.Core.Slots
         /// <param name="maxAmount">The maximum number of elements allowed in the <paramref name="items"/> array.</param>
         /// <exception cref="ArgumentNullException">When <paramref name="items"/> is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">When the length of <paramref name="items"/> exceeds <paramref name="maxAmount"/>.</exception>
-        protected static void ValidateContent(T[] items, int maxAmount)
+        protected static void ValidateContent(IEnumerable<T> items, int maxAmount)
         {
             if (items is null)
                 throw new ArgumentNullException(nameof(items));
-            if (items.Length > maxAmount)
+
+            var itemCount = items.Count();
+            if (itemCount > maxAmount)
                 throw new ArgumentOutOfRangeException(
-                    message: "The content size cannot be bigger than max amount",
-                    actualValue: items.Length,
+                    message: "The item amount cannot be bigger than max amount",
+                    actualValue: itemCount,
                     paramName: nameof(items)
                 );
         }
@@ -142,16 +145,19 @@ namespace TheChest.Core.Slots
             if (amount < 0)
                 throw new ArgumentOutOfRangeException(
                     paramName: nameof(amount),
+                    actualValue: amount,
                     message: "The item amount cannot be smaller than zero"
                 );
             if (maxAmount < 0)
                 throw new ArgumentOutOfRangeException(
                     paramName: nameof(maxAmount),
+                    actualValue: maxAmount,
                     message: "The max amount cannot be smaller than zero"
                 );
             if (amount > maxAmount)
                 throw new ArgumentOutOfRangeException(
                     paramName: nameof(amount),
+                    actualValue: amount,
                     message: "The item amount cannot be bigger than max amount"
                 );
         }
