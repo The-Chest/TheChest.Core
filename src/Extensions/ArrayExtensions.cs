@@ -13,19 +13,13 @@ namespace TheChest.Core.Extensions
         /// <returns>A new array containing only the non-null items from the input array.</returns>
         internal static T[] ToGenericArray<T>(this IEnumerable<object> array)
         {
-            var amount = array.Count();
-            var result = new T[amount];
-            var index = 0;
-            foreach (var item in array)
-            {
-                if (!item.IsNull())
-                {
-                    result[index++] = (T)item;
-                }
-            }
-            Array.Resize(ref result, index);
-            
-            return result;
+            if (array == null)
+                throw new ArgumentNullException(nameof(array));
+
+            return array
+                .Where(x => !x.IsNull())
+                .Select(item => (T)item)
+                .ToArray();
         }
         /// <summary>
         /// Removes any <see langword="null"/> values from the input array and returns a new array containing only the non-null items in an object array.
@@ -38,18 +32,10 @@ namespace TheChest.Core.Extensions
             if (array == null)
                 throw new ArgumentNullException(nameof(array));
 
-            var result = new object[array.Count()];
-            var index = 0;
-            foreach (var item in array)
-            {
-                if (!item.IsNull())
-                {
-                    result[index++] = item;
-                }
-            }
-            Array.Resize(ref result, index);
-            
-            return result;
+            return array
+                .Where(x => !x.IsNull())
+                .Select(item => (object)item)
+                .ToArray();
         }
         /// <summary>
         /// Finds the last index in the array, starting from a specified position, where consecutive elements are equal
