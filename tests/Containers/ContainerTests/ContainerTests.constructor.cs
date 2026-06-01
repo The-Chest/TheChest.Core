@@ -46,7 +46,7 @@
 
         [Test(Description = "The constructor creates an empty container when no parameters are provided.")]
         [Category("Constructor")]
-        [Category("No Parameters")]
+        [Category("Default")]
         [Category("Behavior")]
         [Category("Success")]
         public void Constructor_NoParameters_CreatesEmptyContainer()
