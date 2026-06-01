@@ -3,7 +3,7 @@
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     internal sealed class IgnoreIfReferenceTypeAttribute : TypeConditionAttribute
     {
-        protected override bool ShouldIgnore(Type type) => !type.IsValueType;
+        protected override bool ShouldSkip(Type type) => !type.IsValueType;
 
         protected override string Reason => "Ignored because test does not apply to reference types.";
     }
