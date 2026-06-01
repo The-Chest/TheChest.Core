@@ -1,6 +1,7 @@
 ﻿using TheChest.Core.Tests.Common.Configurations;
 using TheChest.Core.Tests.Common.Configurations.DependencyInjection;
 using TheChest.Core.Tests.Common.Items.Interfaces;
+using TheChest.Core.Tests.Factories.Slots.Interfaces;
 
 namespace TheChest.Core.Tests.Slots.Interfaces.ISlotTests
 {

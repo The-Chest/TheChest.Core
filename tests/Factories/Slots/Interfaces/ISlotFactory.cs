@@ -1,6 +1,6 @@
 ﻿using TheChest.Core.Slots.Interfaces;
 
-namespace TheChest.Core.Tests.Slots.Interfaces.Factories
+namespace TheChest.Core.Tests.Factories.Slots.Interfaces
 {
     /// <summary>
     /// Factory interface to instantiate any <see cref="ISlot{T}"/>

@@ -1,6 +1,6 @@
 ﻿using TheChest.Core.Containers.Interfaces;
 
-namespace TheChest.Core.Tests.Containers.Interfaces.Factories
+namespace TheChest.Core.Tests.Factories.Containers.Interfaces
 {
     public interface IStackContainerFactory<T>
     {

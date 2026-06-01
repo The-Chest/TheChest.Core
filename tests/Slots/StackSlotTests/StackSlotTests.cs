@@ -1,6 +1,7 @@
 ﻿using TheChest.Core.Tests.Common.Items.ReferenceType;
 using TheChest.Core.Tests.Common.Items.ValueType;
-using TheChest.Core.Tests.Slots.Factories;
+using TheChest.Core.Tests.Factories.Slots;
+using TheChest.Core.Tests.Factories.Slots.Interfaces;
 using TheChest.Core.Tests.Slots.Interfaces.IStackSlotTests;
 
 namespace TheChest.Core.Tests.Slots.StackSlotTests 

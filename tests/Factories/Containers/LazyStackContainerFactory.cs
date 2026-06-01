@@ -1,8 +1,10 @@
 ﻿using TheChest.Core.Containers.Interfaces;
 using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Tests.Common.Extensions;
+using TheChest.Core.Tests.Factories.Containers.Interfaces;
+using TheChest.Core.Tests.Factories.Slots.Interfaces;
 
-namespace TheChest.Core.Tests.Containers.Factories
+namespace TheChest.Core.Tests.Factories.Containers
 {
     public class LazyStackContainerFactory<Container, Item> : ILazyStackContainerFactory<Item>
         where Container : ILazyStackContainer<Item>

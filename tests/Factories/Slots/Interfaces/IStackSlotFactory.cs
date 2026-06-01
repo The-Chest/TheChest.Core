@@ -1,7 +1,7 @@
 ﻿using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Tests.Common.Attributes;
 
-namespace TheChest.Core.Tests.Slots.Interfaces.Factories
+namespace TheChest.Core.Tests.Factories.Slots.Interfaces
 {
     /// <summary>
     /// Factory interface to instantiate any <see cref="IStackSlot{T}"/> type

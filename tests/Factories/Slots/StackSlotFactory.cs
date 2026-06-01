@@ -1,6 +1,7 @@
 ﻿using TheChest.Core.Slots.Interfaces;
+using TheChest.Core.Tests.Factories.Slots.Interfaces;
 
-namespace TheChest.Core.Tests.Slots.Factories
+namespace TheChest.Core.Tests.Factories.Slots
 {
     public class StackSlotFactory<T, Y> : IStackSlotFactory<Y> where T : StackSlot<Y>
     {
@@ -32,7 +33,7 @@ namespace TheChest.Core.Tests.Slots.Factories
             var items = new Y[amount];
             Array.Fill(items, item);
 
-            return this.WithItems(items, amount, maxAmount);
+            return WithItems(items, amount, maxAmount);
         }
     }
 }

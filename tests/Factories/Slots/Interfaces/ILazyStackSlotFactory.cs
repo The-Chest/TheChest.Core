@@ -1,7 +1,7 @@
 ﻿using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Tests.Common.Attributes;
 
-namespace TheChest.Core.Tests.Slots.Interfaces.Factories
+namespace TheChest.Core.Tests.Factories.Slots.Interfaces
 {
     /// <summary>
     /// Defines a factory for creating instances of <see cref="ILazyStackSlot{T}"/>.

@@ -1,7 +1,10 @@
 ﻿using TheChest.Core.Tests.Common.Items.ReferenceType;
 using TheChest.Core.Tests.Common.Items.ValueType;
-using TheChest.Core.Tests.Containers.Factories;
-using TheChest.Core.Tests.Slots.Factories;
+using TheChest.Core.Tests.Containers.Interfaces;
+using TheChest.Core.Tests.Factories.Containers;
+using TheChest.Core.Tests.Factories.Containers.Interfaces;
+using TheChest.Core.Tests.Factories.Slots;
+using TheChest.Core.Tests.Factories.Slots.Interfaces;
 
 namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 {
