@@ -5,6 +5,7 @@ using TheChest.Core.Tests.Slots.Factories;
 
 namespace TheChest.Core.Tests.Containers.ContainerTests
 {
+    [Category("Container")]
     [TestFixture(typeof(TestItem))]
     [TestFixture(typeof(TestStructItem))]
     [TestFixture(typeof(TestEnumItem))]
