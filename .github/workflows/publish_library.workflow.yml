@@ -10,6 +10,7 @@ permissions:
 
 env:
   PROJECT_NAME: "TheChest.Core"
+  RELEASE_OUTPUT_DIR: "src/bin/Release/netstandard2.1"
 
 jobs:
   build:
@@ -34,7 +35,7 @@ jobs:
           project-path: "src"
           create-build-artifact: true
           artifact-name: "${{ env.PROJECT_NAME }}.${{ steps.get-version.outputs.version }}"
-          artifact-folder: "src/bin/Release/netstandard2.1"
+          artifact-folder: "${{ env.RELEASE_OUTPUT_DIR }}"
   publish:
     runs-on: ubuntu-latest
     needs: build
@@ -51,7 +52,7 @@ jobs:
         uses: actions/download-artifact@v6
         with:
           name: "${{ env.PROJECT_NAME }}.${{ steps.get-version.outputs.version }}"
-          path: "src/bin/Release/netstandard2.1"
+          path: "${{ env.RELEASE_OUTPUT_DIR }}"
 
       - name: Restore dependencies
         run: dotnet restore src

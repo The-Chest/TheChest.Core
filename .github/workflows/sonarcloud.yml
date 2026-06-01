@@ -4,10 +4,6 @@ on:
   push:
     branches: 
       - 'master'
-      - 'src/*' 
-      - 'src/**'
-      - 'test/*' 
-      - 'tests/**'
   pull_request:
     types: [opened, synchronize, reopened]
     branches: 
