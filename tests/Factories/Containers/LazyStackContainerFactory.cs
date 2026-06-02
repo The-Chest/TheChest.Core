@@ -16,7 +16,7 @@ namespace TheChest.Core.Tests.Factories.Containers
             this.slotFactory = slotFactory;
         }
 
-        public virtual ILazyStackContainer<Item> Empty(int size = 20)
+        public virtual ILazyStackContainer<Item> Empty(int size = 20, int stackSize = 10)
         {
             var containerType = typeof(Container).GetContainerType(typeof(ILazyStackContainer<Item>));
             var slotType = containerType.GetSlotTypeByConstructor<ILazyStackSlot<Item>>();
@@ -24,7 +24,7 @@ namespace TheChest.Core.Tests.Factories.Containers
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    factory: _ => slotFactory.EmptySlot(),
+                    factory: _ => slotFactory.EmptySlot(stackSize),
                     shuffle: true
                 );
 

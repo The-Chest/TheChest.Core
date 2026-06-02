@@ -17,14 +17,14 @@ namespace TheChest.Core.Tests.Factories.Slots.Interfaces
         /// </summary>
         /// <returns>An empty <see cref="ILazyStackSlot{T}"/></returns>
         [ReflectionExceptionHandle]
-        ILazyStackSlot<T> EmptySlot();
+        ILazyStackSlot<T> Empty(int amount = 1, int maxAmount = 10);
         /// <summary>
-        /// Creates an <see cref="ILazyStackSlot{T}"/> with an amount of itens and max amount set 
+        /// Creates a new lazy stack slot containing the specified item and quantities.
         /// </summary>
-        /// <param name="item">item to be added to the created slot</param>
-        /// <param name="amount">amount of the item that will be added</param>
-        /// <param name="maxAmount">max amount of the </param>
-        /// <returns>An Slot with an array of</returns>
+        /// <param name="item">The item to include in the stack slot.</param>
+        /// <param name="amount">The initial quantity of the item.</param>
+        /// <param name="maxAmount">The maximum quantity allowed in the stack slot.</param>
+        /// <returns>A lazy stack slot instance with the specified item and quantities.</returns>
         [ReflectionExceptionHandle]
         ILazyStackSlot<T> WithItem(T item, int amount = 1, int maxAmount = 10);
         /// <summary>
@@ -33,6 +33,6 @@ namespace TheChest.Core.Tests.Factories.Slots.Interfaces
         /// <param name="item">The item that will be inside the created N times inside it <see cref="ILazyStackSlot{T}"/></param>
         /// <returns>A full <see cref="ILazyStackSlot{T}"/></returns>
         [ReflectionExceptionHandle]
-        ILazyStackSlot<T> FullSlot(T item);
+        ILazyStackSlot<T> Full(T item, int maxAmount = 10);
     }
 }

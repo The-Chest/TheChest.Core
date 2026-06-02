@@ -3,30 +3,34 @@ using TheChest.Core.Tests.Factories.Slots.Interfaces;
 
 namespace TheChest.Core.Tests.Factories.Slots
 {
-    public class LazyStackSlotFactory<T, Y> : ILazyStackSlotFactory<Y> 
-        where T : LazyStackSlot<Y>
+    public class LazyStackSlotFactory<T, Y> : ILazyStackSlotFactory<Y>  where T : LazyStackSlot<Y>
     {
-        public ILazyStackSlot<Y> EmptySlot()
+        private static ILazyStackSlot<Y> Instantiate(object? item, int amount = 1, int maxAmount = 10)
         {
-            var type = typeof(T);
-            var slot = Activator.CreateInstance(type);
+            var slot = Activator.CreateInstance(
+                type: typeof(T), 
+                args: new object?[3] { 
+                    item is null ? default : (Y)item, 
+                    amount, 
+                    maxAmount 
+                }
+             );
             return (ILazyStackSlot<Y>)slot!;
         }
 
-        public ILazyStackSlot<Y> FullSlot(Y item)
+        public ILazyStackSlot<Y> Empty(int amount = 1, int maxAmount = 10)
         {
-            var type = typeof(T);
-            var size = new Random().Next(1, 10);
+            return Instantiate(null, amount, maxAmount);
+        }
 
-            var slot = Activator.CreateInstance(type, item, size, size);
-            return (ILazyStackSlot<Y>)slot!;
+        public ILazyStackSlot<Y> Full(Y item, int maxAmount = 10)
+        {
+            return Instantiate(item, maxAmount, maxAmount);
         }
 
         public ILazyStackSlot<Y> WithItem(Y item, int amount = 1, int maxAmount = 10)
         {
-            var type = typeof(T);
-            var slot = Activator.CreateInstance(type, item, amount, maxAmount);
-            return (ILazyStackSlot<Y>)slot!;
+            return Instantiate(item, amount, maxAmount);
         }
     }
 }
