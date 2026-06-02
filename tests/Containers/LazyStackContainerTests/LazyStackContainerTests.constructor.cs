@@ -23,8 +23,7 @@
         [Category("Behavior")]
         public void Constructor_SizeAndMaxStackSize_CreatesContainerWithGivenSize()
         {
-            var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
-            var maxStackSize = this.random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
+            var (size, maxStackSize) = this.GenerateRandomSizeAndStackSize();
 
             var container = new LazyStackContainer<T>(size, maxStackSize);
 
@@ -36,15 +35,15 @@
             });
         }
 
-        [Description("Constructor with invalid size parameter throws an ArgumentOutOfRangeException.")]
+        [Description("Constructor with negative size parameter throws an ArgumentOutOfRangeException.")]
         [TestCase(-1)]
         [Category("Constructor")]
         [Category("Behavior")]
         [Category("Exception")]
-        public void Constructor_InvalidSizeSize_ThrowsArgumentOutOfRangeException(int multiplier)
+        public void Constructor_NegativeSize_ThrowsArgumentOutOfRangeException(int multiplier)
         {
-            var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST) * multiplier;
-            var maxStackSize = this.random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
+            var (size, maxStackSize) = this.GenerateRandomSizeAndStackSize();
+            size *= multiplier;
 
             Assert.That(
                 () => new LazyStackContainer<T>(size, maxStackSize),
@@ -60,8 +59,8 @@
         [Category("Exception")]
         public void Constructor_InvalidMaxStackSize_ThrowsArgumentOutOfRangeException(int multiplier)
         {
-            var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
-            var maxStackSize = this.random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST) * multiplier;
+            var (size, maxStackSize) = this.GenerateRandomSizeAndStackSize(); 
+            maxStackSize *= multiplier;
 
             Assert.That(
                 () => new LazyStackContainer<T>(size, maxStackSize),
