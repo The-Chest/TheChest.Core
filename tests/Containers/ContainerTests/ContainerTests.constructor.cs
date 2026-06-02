@@ -4,7 +4,6 @@
     {
         [Test(Description = "The constructor throws an ArgumentOutOfRangeException when the size parameter is negative.")]
         [Category("Constructor")]
-        [Category("Wrong Parameters")]
         [Category("Behavior")]
         [Category("Exception")]
         public void Constructor_NegativeSize_ThrowsArgumentOutOfRangeException()
@@ -17,7 +16,6 @@
 
         [Test(Description = "The constructor throws an ArgumentException when the size parameter is smaller than the length of the items array.")]
         [Category("Constructor")]
-        [Category("Wrong Parameters")]
         [Category("Behavior")]
         [Category("Exception")]
         public void Constructor_ItemsAndSize_WhenSizeIsSmallerThanItemsLength_ThrowsArgumentException()
@@ -33,7 +31,6 @@
 
         [Test(Description = "The constructor throws an ArgumentNullException when the items parameter is null.")]
         [Category("Constructor")]
-        [Category("Wrong Parameters")]
         [Category("Behavior")]
         [Category("Exception")]
         public void Constructor_ItemsAndSize_WhenItemsIsNull_ThrowsArgumentNullException()
@@ -46,7 +43,6 @@
 
         [Test(Description = "The constructor creates an empty container when no parameters are provided.")]
         [Category("Constructor")]
-        [Category("Default")]
         [Category("Behavior")]
         [Category("Success")]
         public void Constructor_NoParameters_CreatesEmptyContainer()
@@ -63,7 +59,6 @@
 
         [Test(Description = "The constructor creates an empty container with the given size.")]
         [Category("Constructor")]
-        [Category("Valid Parameters")]
         [Category("Behavior")]
         [Category("Success")]
         public void Constructor_Size_CreatesContainerWithGivenSize()
@@ -81,7 +76,6 @@
 
         [Test(Description = "The constructor creates a full container when the size parameter is equal to the length of the items array.")]
         [Category("Constructor")]
-        [Category("Valid Parameters")]
         [Category("Behavior")]
         [Category("Success")]
         public void Constructor_ItemsAndSize_WhenSizeEqualsItemsLength_CreatesFullContainer()
@@ -101,7 +95,6 @@
 
         [Test(Description = "The constructor creates a partially filled container when the size parameter is greater than the length of the items array.")]
         [Category("Constructor")]
-        [Category("Valid Parameters")]
         [Category("Behavior")]
         [Category("Success")]
         public void Constructor_ItemsAndSize_WhenSizeIsGreaterThanItemsLength_CreatesPartiallyFilledContainer()

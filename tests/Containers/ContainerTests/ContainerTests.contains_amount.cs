@@ -6,7 +6,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
     {
         [Test(Description = "ContainsAmount method throws an ArgumentNullException when a null item is passed.")]
         [Category("Contains With Amount")]
-        [Category("Wrong Parameters")]
         [Category("Behavior")]
         [Category("Exception")]
         [IgnoreIfValueType]
@@ -24,7 +23,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         [TestCase(0)]
         [TestCase(-1)]
         [Category("Contains With Amount")]
-        [Category("Wrong Parameters")]
         [Category("Behavior")]
         [Category("Exception")]
         public void ContainsAmount_InvalidAmount_ThrowsArgumentOutOfRangeException(int amount)
@@ -41,7 +39,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test(Description = "ContainsAmount method returns false when the item is not present in the container.")]
         [Category("Contains With Amount")]
-        [Category("Valid Parameters")]
         [Category("Result")]
         [Category("Failure")]
         [IgnoreIfReferenceType]
@@ -55,7 +52,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test(Description = "ContainsAmount method returns true when the item is present in the container with the specified amount.")]
         [Category("Contains With Amount")]
-        [Category("Valid Parameters")]
         [Category("Result")]
         [Category("Success")]
         [IgnoreIfReferenceType]
@@ -70,7 +66,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test(Description = "ContainsAmount method returns false when the container is empty, regardless of the item.")]
         [Category("Contains With Amount")]
-        [Category("Valid Parameters")]
         [Category("Behavior")]
         [Category("Failure")]
         public void ContainsAmount_EmptyContainer_ReturnsFalse()
@@ -84,7 +79,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test(Description = "ContainsAmount method returns false when the item is not found in the container, regardless of the amount.")]
         [Category("Contains With Amount")]
-        [Category("Valid Parameters")]
         [Category("Behavior")]
         [Category("Failure")]
         public void ContainsAmount_NotFoundItem_ReturnsFalse()
@@ -100,7 +94,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test(Description = "ContainsAmount method returns false when the total amount of the item in the container is smaller than the searched amount.")]
         [Category("Contains With Amount")]
-        [Category("Valid Parameters")]
         [Category("Result")]
         [Category("Failure")]
         public void ContainsAmount_AmountSmallerThanSearchedAmount_ReturnsFalse()
@@ -118,7 +111,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test(Description = "ContainsAmount method returns true when the total amount of the item in the container is equal to the searched amount.")]
         [Category("Contains With Amount")]
-        [Category("Valid Parameters")]
         [Category("Result")]
         [Category("Success")]
         public void ContainsAmount_AmountEqualThanSearchedAmount_ReturnsTrue()

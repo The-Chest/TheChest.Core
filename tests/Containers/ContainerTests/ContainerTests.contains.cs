@@ -6,7 +6,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
     {
         [Test(Description = "Contains method throws an ArgumentNullException when a null item is passed.")]
         [Category("Contains")]
-        [Category("Wrong Parameters")]
         [Category("Behavior")]
         [Category("Exception")]
         [IgnoreIfValueType]
@@ -21,7 +20,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test(Description = "Contains method returns false when the item is not present in the container.")]
         [Category("Contains")]
-        [Category("Valid Parameters")]
         [Category("Result")]
         [Category("Failure")]
         [IgnoreIfReferenceType]
@@ -33,7 +31,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test(Description = "Contains method returns true when the item is present in the container.")]
         [Category("Contains")]
-        [Category("Valid Parameters")]
         [Category("Result")]
         [Category("Success")]
         [IgnoreIfReferenceType]
@@ -47,7 +44,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test(Description = "Contains method throws an ArgumentNullException when a null item is passed.")]
         [Category("Contains")]
-        [Category("Valid Parameters")]
         [Category("Result")]
         [Category("Failure")]
         public void Contains_EmptyContainer_ReturnsFalse()
@@ -61,7 +57,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test(Description = "Contains method returns false when all items in the container are different from the parameter.")]
         [Category("Contains")]
-        [Category("Valid Parameters")]
         [Category("Result")]
         [Category("Failure")]
         public void Contains_AllItemsDifferentFromParam_ReturnsFalse()
@@ -76,7 +71,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test(Description = "Contains method returns true when at least one item in the container is equal to the parameter.")]
         [Category("Contains")]
-        [Category("Valid Parameters")]
         [Category("Result")]
         [Category("Success")]
         public void Contains_OneItemEqualsToParam_ReturnsTrue()
