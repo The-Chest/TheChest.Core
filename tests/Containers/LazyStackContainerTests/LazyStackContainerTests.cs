@@ -21,5 +21,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
                 }
             )
         { }
+
+        private (int size, int stackSize) GenerateRandomSizeAndStackSize() =>
+            (this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST), this.random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST));
     }
 }
