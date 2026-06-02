@@ -6,14 +6,14 @@ namespace TheChest.Core.Tests.Factories.Slots
     public class SlotFactory<T, Y> : ISlotFactory<Y> 
         where T : Slot<Y>
     {
-        public virtual ISlot<Y> EmptySlot()
+        public virtual ISlot<Y> Empty()
         {
             var type = typeof(T);
             var slot = Activator.CreateInstance(type);
             return (ISlot<Y>)slot!;
         }
 
-        public virtual ISlot<Y> FullSlot(Y item)
+        public virtual ISlot<Y> Full(Y item)
         {
             var type = typeof(T);
             var constructor = type.GetConstructor(new Type[1] { typeof(Y?) });

@@ -25,7 +25,7 @@ namespace TheChest.Core.Tests.Factories.Containers
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    factory: _ => slotFactory.EmptySlot(),
+                    factory: _ => slotFactory.Empty(),
                     shuffle: true
                 );
 
@@ -69,7 +69,7 @@ namespace TheChest.Core.Tests.Factories.Containers
                     factory:
                         i => i < items.Length
                             ? slotFactory.WithItem(items[i], stackSize, stackSize)
-                            : slotFactory.EmptySlot(),
+                            : slotFactory.Empty(),
                     shuffle: true
                 );
 

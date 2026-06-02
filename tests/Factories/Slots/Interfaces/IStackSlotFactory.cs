@@ -14,7 +14,7 @@ namespace TheChest.Core.Tests.Factories.Slots.Interfaces
         /// </summary>
         /// <returns>An empty <see cref="IStackSlot{T}"/></returns>
         [ReflectionExceptionHandle]
-        IStackSlot<T> EmptySlot();
+        IStackSlot<T> Empty();
         /// <summary>
         /// Creates an <see cref="IStackSlot{T}"/> with an amount of itens and max amount set 
         /// </summary>
@@ -33,6 +33,6 @@ namespace TheChest.Core.Tests.Factories.Slots.Interfaces
         /// <param name="item">The item that will be inside the created N times inside it <see cref="IStackSlot{T}"/></param>
         /// <returns>A full <see cref="IStackSlot{T}"/></returns>
         [ReflectionExceptionHandle]
-        IStackSlot<T> FullSlot(T item);
+        IStackSlot<T> Full(T item);
     }
 }

@@ -17,7 +17,7 @@ namespace TheChest.Core.Tests.Factories.Slots.Interfaces
         /// </summary>
         /// <returns>An empty <see cref="ILazyStackSlot{T}"/></returns>
         [ReflectionExceptionHandle]
-        ILazyStackSlot<T> Empty(int amount = 1, int maxAmount = 10);
+        ILazyStackSlot<T> Empty(int amount = 0, int maxAmount = 10);
         /// <summary>
         /// Creates a new lazy stack slot containing the specified item and quantities.
         /// </summary>

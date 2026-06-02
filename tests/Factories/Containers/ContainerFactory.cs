@@ -24,7 +24,7 @@ namespace TheChest.Core.Tests.Factories.Containers
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    factory: _ => slotFactory.EmptySlot(),
+                    factory: _ => slotFactory.Empty(),
                     shuffle: true
                 );
 
@@ -43,7 +43,7 @@ namespace TheChest.Core.Tests.Factories.Containers
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    factory: _ => slotFactory.FullSlot(item),
+                    factory: _ => slotFactory.Full(item),
                     shuffle: true
                 );
             var container = Activator.CreateInstance(
@@ -68,8 +68,8 @@ namespace TheChest.Core.Tests.Factories.Containers
                     size: size,
                     factory: 
                         i => i == randomIndex
-                            ? slotFactory.FullSlot(item)
-                            : slotFactory.EmptySlot(),
+                            ? slotFactory.Full(item)
+                            : slotFactory.Empty(),
                     shuffle: true
                 );
 
@@ -92,7 +92,7 @@ namespace TheChest.Core.Tests.Factories.Containers
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    factory: i => i < items.Length ? slotFactory.FullSlot(items[i]) : slotFactory.EmptySlot(),
+                    factory: i => i < items.Length ? slotFactory.Full(items[i]) : slotFactory.Empty(),
                     shuffle: true
                 );
 
@@ -115,7 +115,7 @@ namespace TheChest.Core.Tests.Factories.Containers
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    factory: i => i < items.Length ? slotFactory.FullSlot(items[i]) : slotFactory.EmptySlot(),
+                    factory: i => i < items.Length ? slotFactory.Full(items[i]) : slotFactory.Empty(),
                     shuffle: false
                 );
 
