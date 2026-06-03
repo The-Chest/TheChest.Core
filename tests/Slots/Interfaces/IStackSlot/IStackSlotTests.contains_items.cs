@@ -5,7 +5,7 @@
         [Test]
         public void ContainsItems_EmptyParams_ReturnsFalse()
         {
-            var slot = this.slotFactory.FullSlot(this.itemFactory.CreateDefault());
+            var slot = this.slotFactory.Full(this.itemFactory.CreateDefault());
             var result = slot.Contains(Array.Empty<T>());
             Assert.That(result, Is.False);
         }
@@ -13,7 +13,7 @@
         [Test]
         public void ContainsItems_EmptySlot_ReturnsFalse()
         {
-            var slot = this.slotFactory.EmptySlot();
+            var slot = this.slotFactory.Empty();
             var result = slot.Contains(Array.Empty<T>());
             Assert.That(result, Is.False);
         }
@@ -21,7 +21,7 @@
         [Test]
         public void ContainsItems_ContainingOnlyOne_ReturnsFalse()
         {
-            var slot = this.slotFactory.FullSlot(this.itemFactory.CreateDefault());
+            var slot = this.slotFactory.Full(this.itemFactory.CreateDefault());
             var items = new T[2]
             {
                 this.itemFactory.CreateDefault(),
@@ -34,7 +34,7 @@
         [Test]
         public void ContainsItems_ContainingNoItemsFromParams_ReturnsFalse()
         {
-            var slot = this.slotFactory.FullSlot(this.itemFactory.CreateDefault());
+            var slot = this.slotFactory.Full(this.itemFactory.CreateDefault());
             var items = new T[2]
             {
                 this.itemFactory.CreateRandom(),
@@ -47,7 +47,7 @@
         [Test]
         public void ContainsItems_AllItems_ReturnsTrue()
         {
-            var slot = this.slotFactory.FullSlot(this.itemFactory.CreateDefault());
+            var slot = this.slotFactory.Full(this.itemFactory.CreateDefault());
             var items = new T[2]
             {
                 this.itemFactory.CreateDefault(),

@@ -9,7 +9,7 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
         public void ContainsAmount_InvalidAmount_ThrowsArgumentOutOfRangeException(int amount)
         {
             var item = this.itemFactory.CreateDefault();
-            var slot = this.slotFactory.EmptySlot();
+            var slot = this.slotFactory.Empty();
             Assert.That(
                 () => slot.Contains(item, amount), 
                 Throws.TypeOf<ArgumentOutOfRangeException>().And.Message.Contains("amount")
@@ -20,7 +20,7 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
         [IgnoreIfValueType]
         public void ContainsAmount_NullItem_ThrowsArgumentNullException()
         {
-            var slot = this.slotFactory.EmptySlot();
+            var slot = this.slotFactory.Empty();
             Assert.That(
                 () => slot.Contains(default!, 1),
                 Throws.TypeOf<ArgumentNullException>().And.Message.Contains("item")
@@ -31,7 +31,7 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
         [IgnoreIfReferenceType]
         public void ContainsAmount_NullItem_ReturnFalseIfEmpty()
         {
-            var slot = this.slotFactory.EmptySlot();
+            var slot = this.slotFactory.Empty();
             Assert.That(slot.Contains(default!, 1), Is.False);
         }
 
@@ -39,7 +39,7 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
         [IgnoreIfReferenceType]
         public void ContainsAmount_NullItem_ReturnTrueIfFull()
         {
-            var slot = this.slotFactory.FullSlot(default!);
+            var slot = this.slotFactory.Full(default!);
             Assert.That(slot.Contains(default!, 1), Is.True);
         }
     }

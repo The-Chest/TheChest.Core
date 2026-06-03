@@ -23,7 +23,7 @@
         [Test]
         public void IsFull_SlotIsEmpty_ReturnsFalse()
         {
-            var slot = this.slotFactory.EmptySlot();
+            var slot = this.slotFactory.Empty();
 
             Assert.That(slot.IsFull, Is.False);
             Assert.That(slot.IsFull, Is.Not.EqualTo(slot.IsEmpty));

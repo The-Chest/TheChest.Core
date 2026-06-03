@@ -5,7 +5,7 @@
         [Test]
         public void Contains_EmptySlot_ReturnsFalse()
         {
-            var slot = this.slotFactory.EmptySlot();
+            var slot = this.slotFactory.Empty();
             var item = this.itemFactory.CreateDefault();
             Assert.That(slot.Contains(item), Is.False);
         }
@@ -15,7 +15,7 @@
         {
             var item = this.itemFactory.CreateDefault();
             var randomItem = this.itemFactory.CreateRandom();
-            var slot = this.slotFactory.FullSlot(randomItem);
+            var slot = this.slotFactory.Full(randomItem);
 
             Assert.That(slot.Contains(item), Is.False);
         }
@@ -25,7 +25,7 @@
         {
             var item = this.itemFactory.CreateDefault();
             var sameItem = this.itemFactory.CreateDefault();
-            var slot = this.slotFactory.FullSlot(sameItem);
+            var slot = this.slotFactory.Full(sameItem);
 
             Assert.That(slot.Contains(item), Is.True);
         }

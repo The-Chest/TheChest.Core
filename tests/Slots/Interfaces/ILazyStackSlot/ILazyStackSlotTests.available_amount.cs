@@ -5,7 +5,7 @@
         [Test]
         public void AvailableAmount_EmptySlot_ReturnsMaxAmount()
         {
-            var slot = this.slotFactory.EmptySlot();
+            var slot = this.slotFactory.Empty();
             
             Assert.That(slot.AvailableAmount, Is.EqualTo(slot.MaxAmount));
         }
@@ -13,7 +13,7 @@
         [Test]
         public void AvailableAmount_FullSlot_ReturnsZero()
         {
-            var slot = this.slotFactory.FullSlot(this.itemFactory.CreateDefault());
+            var slot = this.slotFactory.Full(this.itemFactory.CreateDefault());
             
             Assert.That(slot.AvailableAmount, Is.Zero);
         }

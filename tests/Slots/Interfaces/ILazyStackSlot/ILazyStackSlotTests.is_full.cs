@@ -7,7 +7,7 @@ namespace TheChest.Core.Tests.Slots.Interfaces.ILazyStackSlotTests
         [Test]
         public void IsFull_NoContent_ReturnsFalse()
         {
-            var slot = this.slotFactory.EmptySlot();
+            var slot = this.slotFactory.Empty();
             Assert.That(slot.IsFull, Is.False);
         }
 
@@ -15,7 +15,7 @@ namespace TheChest.Core.Tests.Slots.Interfaces.ILazyStackSlotTests
         public void IsFull_FullSlot_ReturnsTrue()
         {
             var item = this.itemFactory.CreateDefault();
-            var slot = this.slotFactory.FullSlot(item);
+            var slot = this.slotFactory.Full(item);
             Assert.That(slot.IsFull, Is.True);
         }
 

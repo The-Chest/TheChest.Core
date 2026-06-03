@@ -6,7 +6,7 @@
         public void Contains_EmptySlot_ReturnsFalse()
         {
             var item = this.itemFactory.CreateDefault();
-            var slot = this.slotFactory.EmptySlot();
+            var slot = this.slotFactory.Empty();
             Assert.That(slot.Contains(item), Is.False);
         }
 
@@ -14,7 +14,7 @@
         public void Contains_SlotWithItem_DifferentFromParam_ReturnsFalse()
         {
             var item = this.itemFactory.CreateDefault();
-            var slot = this.slotFactory.FullSlot(item);
+            var slot = this.slotFactory.Full(item);
 
             var paramItem = this.itemFactory.CreateRandom();
             Assert.That(slot.Contains(paramItem), Is.False);
@@ -24,7 +24,7 @@
         public void Contains_SlotWithItem_EqualsItemFromParam_ReturnsTrue()
         {
             var item = this.itemFactory.CreateDefault();
-            var slot = this.slotFactory.FullSlot(item);
+            var slot = this.slotFactory.Full(item);
 
             var paramItem = this.itemFactory.CreateDefault();
             Assert.That(slot.Contains(paramItem), Is.True);

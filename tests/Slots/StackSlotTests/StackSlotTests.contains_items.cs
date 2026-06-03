@@ -8,7 +8,7 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
         [IgnoreIfValueType]
         public void ContainsItems_ParamsWithNullItem_ThrowsArgumentNullException()
         {
-            var slot = this.slotFactory.FullSlot(this.itemFactory.CreateDefault());
+            var slot = this.slotFactory.Full(this.itemFactory.CreateDefault());
             var items = new T[2]
             {
                 this.itemFactory.CreateDefault(),
@@ -22,7 +22,7 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
         [IgnoreIfPrimitiveType]
         public void ContainsItems_ParamsWithDefaultValue_ReturnsFalse()
         {
-            var slot = this.slotFactory.FullSlot(this.itemFactory.CreateDefault());
+            var slot = this.slotFactory.Full(this.itemFactory.CreateDefault());
             var items = new T[2]
             {
                 this.itemFactory.CreateDefault(),
@@ -36,7 +36,7 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
         [IgnoreIfReferenceType]
         public void ContainsItems_PrimitiveParamsWithDefaultValue_ReturnsTrue()
         {
-            var slot = this.slotFactory.FullSlot(this.itemFactory.CreateDefault());
+            var slot = this.slotFactory.Full(this.itemFactory.CreateDefault());
             var items = new T[2];
             Assert.That(slot.Contains(items), Is.True);
         }
@@ -44,7 +44,7 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
         [Test]
         public void ContainsItems_NullItem_ThrowsArgumentNullException()
         {
-            var slot = this.slotFactory.EmptySlot();
+            var slot = this.slotFactory.Empty();
             Assert.That(() => slot.Contains(default(T[])!), Throws.ArgumentNullException);
         }
     }

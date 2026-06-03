@@ -6,7 +6,7 @@
         public void IsEmpty_FullSlot_ReturnsFalse()
         {
             var item = this.itemFactory.CreateDefault();
-            var slot = this.slotFactory.FullSlot(item);
+            var slot = this.slotFactory.Full(item);
             Assert.That(slot.IsEmpty, Is.False);
         }
 
@@ -22,7 +22,7 @@
         [Test]
         public void IsEmpty_NoContent_ReturnsTrue()
         {
-            var slot = this.slotFactory.EmptySlot();
+            var slot = this.slotFactory.Empty();
             Assert.That(slot.IsEmpty, Is.True);
         }
 

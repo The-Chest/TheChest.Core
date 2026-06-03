@@ -12,7 +12,7 @@
         [Test]
         public void IsEmpty_CurrentItemNull_ReturnsTrue()
         {
-            var slot = this.slotFactory.EmptySlot();
+            var slot = this.slotFactory.Empty();
             Assert.That(slot.IsEmpty, Is.True);
         }
 
