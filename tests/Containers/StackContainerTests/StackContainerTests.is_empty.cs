@@ -3,6 +3,7 @@
     public partial class StackContainerTests<T>
     {
         [Test]
+        [Description("IsEmpty Property returns true when slots are empty.")]
         public void IsEmpty_EmptySlots_ReturnsTrue()
         {
             var container = this.containerFactory.Empty();
@@ -10,6 +11,7 @@
         }
 
         [Test]
+        [Description("IsEmpty Property returns false when some slots are empty.")]
         public void IsEmpty_SomeEmptySlots_ReturnsFalse()
         {
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -20,6 +22,7 @@
         }
 
         [Test]
+        [Description("IsEmpty Property returns false when all slots are full.")]
         public void IsEmpty_AllSlotsFull_ReturnsFalse()
         {
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);

@@ -5,6 +5,7 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
     public partial class StackContainerTests<T>
     {
         [Test]
+        [Description("Contains Method returns false when the container is empty.")]
         public void Contains_EmptyContainer_ReturnsFalse()
         {
             var item = this.itemFactory.CreateDefault();
@@ -13,6 +14,7 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
         }
 
         [Test]
+        [Description("Contains Method returns false when all items are different from the searched item.")]
         public void Contains_AllItemsDifferentFromParam_ReturnsFalse()
         {
             var item = this.itemFactory.CreateDefault();
@@ -23,6 +25,7 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
         }
 
         [Test]
+        [Description("Contains Method returns true when one item equals the searched item.")]
         public void Contains_OneItemEqualsToParam_ReturnsTrue()
         {
             var item = this.itemFactory.CreateDefault();
@@ -36,6 +39,7 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
         [IgnoreIfValueType]
+        [Description("Contains Method throws ArgumentNullException when the searched item is null.")]
         public void Contains_NullItem_ThrowsArgumentNullException()
         {
             var container = this.containerFactory.Empty();
@@ -44,6 +48,7 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
         [IgnoreIfReferenceType]
+        [Description("Contains Method returns false when the searched item is a default value and the container is empty.")]
         public void Contains_DefaultValue_ReturnsFalseIfEmpty()
         {
             var slot = this.containerFactory.Empty();
@@ -52,6 +57,7 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
         [IgnoreIfReferenceType]
+        [Description("Contains Method returns true when the searched item is a default value and the container is full.")]
         public void Contains_DefaultValue_ReturnsTrueIfFull()
         {
             var slot = this.containerFactory.Full(20, 10, default(T)!);
