@@ -59,13 +59,33 @@ namespace TheChest.Core.Containers
         /// </summary>
         /// <param name="items">Items to be added to the slots on the container</param>
         /// <exception cref="ArgumentNullException">When <paramref name="items"/> is null</exception>
-        public Container(T[] items) : this(items, items.Length) { }
+        public Container(T[] items)
+        {
+            if (items == null)
+                throw new ArgumentNullException(nameof(items));
+
+            this.slots = new ISlot<T>[items.Length];
+            for (var i = 0; i < items.Length; i++)
+            {
+                this.slots[i] = new Slot<T>(items[i]);
+            }
+        }
         /// <summary>
         /// Creates a Container with <see cref="Slot{T}"/> implementation
         /// </summary>
         /// <param name="size">Number with the size of the container</param>
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="size"/> is zero or smaller</exception>
-        public Container(int size) : this(Array.Empty<T>(), size) { }
+        public Container(int size)
+        {
+            if (size <= 0)
+                throw new ArgumentOutOfRangeException(nameof(size));
+
+            this.slots = new ISlot<T>[size];
+            for (var i = 0; i < size; i++)
+            {
+                this.slots[i] = new Slot<T>();
+            }
+        }
         /// <summary>
         /// Creates a Container with <see cref="Slot{T}"/> implementation, provided <paramref name="items"/> and the size of the container is defined by the <paramref name="size"/>
         /// </summary>
@@ -86,7 +106,7 @@ namespace TheChest.Core.Containers
                     nameof(size)
                 );
 
-            this.slots = new Slot<T>[size];
+            this.slots = new ISlot<T>[size];
             for (var i = 0; i < size; i++)
             {
                 this.slots[i] = i < items.Length
