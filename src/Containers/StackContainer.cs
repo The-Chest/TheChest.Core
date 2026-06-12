@@ -1,6 +1,7 @@
 ﻿using System;
 using TheChest.Core.Containers.Interfaces;
 using TheChest.Core.Extensions;
+using TheChest.Core.Slots;
 using TheChest.Core.Slots.Extensions;
 using TheChest.Core.Slots.Interfaces;
 
@@ -15,7 +16,7 @@ namespace TheChest.Core.Containers
         /// <summary>
         /// The collection of slots used to store elements of type <typeparamref name="T"/>.
         /// </summary>
-        protected readonly IStackSlot<T>[] slots;
+        protected IStackSlot<T>[] slots;
         /// <inheritdoc/>
         public virtual int Size => this.slots.Length;
         /// <inheritdoc/>
@@ -50,14 +51,29 @@ namespace TheChest.Core.Containers
         /// <summary>
         /// Creates an empty Container with <see cref="IStackSlot{T}"/> implementation that can hold one item per slot.
         /// </summary>
-        public StackContainer() : this(Array.Empty<T>(), 1) { }
+        public StackContainer()
+        {
+            this.slots = Array.Empty<IStackSlot<T>>();
+        }
         /// <summary>
         /// Creates a Container with <see cref="IStackSlot{T}"/> implementation and initializes it with the provided size and max stack size.
         /// </summary>
         /// <param name="size">Amount of slots in the container</param>
         /// <param name="maxStackSize">Max stack size for each slot in the container</param>
-        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxStackSize"/> is zero or smaller</exception>
-        public StackContainer(int size, int maxStackSize) : this(new T[size], maxStackSize) { }
+        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxStackSize"/> is zero or negative, or when <paramref name="size"/> is zero or negative</exception>
+        public StackContainer(int size, int maxStackSize)
+        {
+            if (size <= 0)
+                throw new ArgumentOutOfRangeException(nameof(size), "Size must be greater than or equal to zero.");
+            if (maxStackSize <= 0)
+                throw new ArgumentOutOfRangeException(nameof(maxStackSize), "Max stack size must be greater than zero.");
+
+            this.slots = new IStackSlot<T>[size];
+            for (int i = 0; i < size; i++)
+            {
+                this.slots[i] = new StackSlot<T>(maxStackSize);
+            }
+        }
         /// <summary>
         /// Creates a Container with <see cref="IStackSlot{T}"/> implementation and initializes it with the provided items and max stack size.
         /// </summary>
@@ -69,15 +85,8 @@ namespace TheChest.Core.Containers
         {
             if (items == null)
                 throw new ArgumentNullException(nameof(items));
-
             if (maxStackSize <= 0)
                 throw new ArgumentOutOfRangeException(nameof(maxStackSize), "Max stack size must be greater than zero.");
-
-            for (int i = 0; i < items.Length; i++)
-            {
-                if (items[i].IsNull())
-                    throw new ArgumentNullException(nameof(items), $"Item at index {i} is null.");
-            }
 
             this.slots = items.ToStackSlots(maxStackSize);
         }

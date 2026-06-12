@@ -15,7 +15,7 @@ namespace TheChest.Core.Containers
         /// <summary>
         /// The collection of slots used to store elements of type <typeparamref name="T"/>.
         /// </summary>
-        protected readonly ILazyStackSlot<T>[] slots;
+        protected ILazyStackSlot<T>[] slots;
         /// <inheritdoc/>
         public virtual int Size => this.slots.Length;
         /// <inheritdoc/>

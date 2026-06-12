@@ -4,6 +4,7 @@
 * `amount` and `maxAmount` fields from `StackSlot<T>` and `LazyStackSlot<T>` are now private
 * `StackSlot<T>.Content` is now an `IEnumerable<T>`
 * `ArgumentOutOfRangeException` now shows the actual value and the parameter name that caused the exception in `StackSlot<T>` constructors
+* `slots` field in `LazyStackContainer<T>` and `StackContainer<T>` is not readonly anymore, so it can be modified by the class methods and not only by the constructor.
 
 ## What's Next
 * Improves in Container classes to implement from interfaces from `System.Collections.Generic`
