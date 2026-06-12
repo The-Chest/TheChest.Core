@@ -18,7 +18,7 @@
         [Category("Constructor")]
         [Category("Behavior")]
         [Category("Exception")]
-        public void Constructor_ItemsAndSize_WhenSizeIsSmallerThanItemsLength_ThrowsArgumentException()
+        public void Constructor_ItemsAndSize_SizeSmallerThanItemsLength_ThrowsArgumentException()
         {
             var amount = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var items = this.itemFactory.CreateMany(amount);
@@ -33,7 +33,7 @@
         [Category("Constructor")]
         [Category("Behavior")]
         [Category("Exception")]
-        public void Constructor_ItemsAndSize_WhenItemsIsNull_ThrowsArgumentNullException()
+        public void Constructor_ItemsAndSize_NullItems_ThrowsArgumentNullException()
         {
             Assert.That(
                 () => new Container<T>(null!, 1),
@@ -78,7 +78,7 @@
         [Category("Constructor")]
         [Category("Behavior")]
         [Category("Success")]
-        public void Constructor_ItemsAndSize_WhenSizeEqualsItemsLength_CreatesFullContainer()
+        public void Constructor_ItemsAndSize_SizeEqualsItemsLength_CreatesFullContainer()
         {
             var amount = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var items = this.itemFactory.CreateMany(amount);
@@ -97,7 +97,7 @@
         [Category("Constructor")]
         [Category("Behavior")]
         [Category("Success")]
-        public void Constructor_ItemsAndSize_WhenSizeIsGreaterThanItemsLength_CreatesPartiallyFilledContainer()
+        public void Constructor_ItemsAndSize_SizeGreaterThanItemsLength_CreatesPartiallyFilledContainer()
         {
             var amount = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var items = this.itemFactory.CreateMany(amount);
