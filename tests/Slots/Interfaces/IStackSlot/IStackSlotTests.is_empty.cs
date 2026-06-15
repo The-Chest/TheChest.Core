@@ -5,7 +5,7 @@
         [Test]
         public void IsEmpty_StackAmountZero_ReturnsTrue()
         {
-            var slot = this.slotFactory.WithItem(this.itemFactory.CreateDefault(), 0);
+            var slot = this.slotFactory.WithItem(this.itemFactory.CreateDefault(), 0,10);
             Assert.That(slot.IsEmpty, Is.True);
         }
 
@@ -19,7 +19,7 @@
         [Test]
         public void IsEmpty_CurrentItemNotNull_ReturnsFalse()
         {
-            var slot = this.slotFactory.WithItem(this.itemFactory.CreateDefault());
+            var slot = this.slotFactory.WithItem(this.itemFactory.CreateDefault(),1 , 10);
             Assert.That(slot.IsEmpty, Is.False);
         }
     }

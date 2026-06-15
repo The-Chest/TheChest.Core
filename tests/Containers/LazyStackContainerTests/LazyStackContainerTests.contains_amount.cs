@@ -4,7 +4,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 {
     public partial class LazyStackContainerTests<T>
     {
-        [Test(Description = "Contains method throws an ArgumentNullException when a null item is passed.")]
+        [Test]
+		[Description("Contains method throws an ArgumentNullException when a null item is passed.")]
         [Category("Contains")]
         [Category("Reference Type")]
         [Category("Behavior")]
@@ -22,7 +23,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
             );
         }
 
-        [Test(Description = "Contains method returns false when a default value item is passed to an empty container.")]
+        [Test]
+		[Description("Contains method returns false when a default value item is passed to an empty container.")]
         [Category("Contains")]
         [Category("Value Type")]
         [Category("Result")]
@@ -37,7 +39,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
             Assert.That(container.Contains(default!, amount), Is.False);
         }
 
-        [Test(Description = "Contains method returns true when a default value item is passed to a full container.")]
+        [Test]
+		[Description("Contains method returns true when a default value item is passed to a full container.")]
         [Category("Contains")]
         [Category("Value Type")]
         [Category("Result")]
@@ -69,7 +72,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
             );
         }
 
-        [Test(Description = "Contains method returns false when the container is empty, regardless of the item passed.")]
+        [Test]
+		[Description("Contains method returns false when the container is empty, regardless of the item passed.")]
         [Category("Contains")]
         [Category("Result")]
         [Category("Failure")]
@@ -83,7 +87,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
             Assert.That(container.Contains(item, amount), Is.False);
         }
 
-        [Test(Description = "Contains method returns false when the item is not found in the container.")]
+        [Test]
+		[Description("Contains method returns false when the item is not found in the container.")]
         [Category("Contains")]
         [Category("Result")]
         [Category("Failure")]
@@ -98,7 +103,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
             Assert.That(container.Contains(paramItem, amount), Is.False);
         }
 
-        [Test(Description = "Contains method returns false when the total amount of the item in the container is smaller than the searched amount.")]
+        [Test]
+		[Description("Contains method returns false when the total amount of the item in the container is smaller than the searched amount.")]
         [Category("Contains")]
         [Category("Result")]
         [Category("Failure")]
@@ -115,7 +121,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
             Assert.That(container.Contains(paramItem, amount), Is.False);
         }
 
-        [Test(Description = "Contains method returns true when the total amount of the item in the container is equal to the searched amount.")]
+        [Test]
+		[Description("Contains method returns true when the total amount of the item in the container is equal to the searched amount.")]
         [Category("Contains")]
         [Category("Result")]
         [Category("Success")]
@@ -131,7 +138,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
             Assert.That(container.Contains(paramItem, halfAmount), Is.True);
         }
 
-        [Test(Description = "Contains method returns true when the total amount of the item in the container is bigger than the searched amount.")]
+        [Test]
+		[Description("Contains method returns true when the total amount of the item in the container is bigger than the searched amount.")]
         [Category("Contains")]
         [Category("Result")]
         [Category("Success")]
@@ -146,7 +154,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
             Assert.That(container.Contains(paramItem, 5), Is.True);
         }
 
-        [Test(Description = "Contains method returns true when the total amount of the item in the container is bigger than the searched amount and the items are in multiple slots.")]
+        [Test]
+		[Description("Contains method returns true when the total amount of the item in the container is bigger than the searched amount and the items are in multiple slots.")]
         [Category("Contains")]
         [Category("Result")]
         [Category("Success")]

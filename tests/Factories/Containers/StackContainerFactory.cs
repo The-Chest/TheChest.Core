@@ -17,7 +17,7 @@ namespace TheChest.Core.Tests.Factories.Containers
             this.slotFactory = slotFactory;
         }
 
-        public virtual IStackContainer<Item> Empty(int size = 20)
+        public virtual IStackContainer<Item> Empty(int size, int stackSize)
         {
             var containerType = typeof(Container).GetContainerType(typeof(IStackContainer<Item>));
             var slotType = containerType.GetSlotTypeByConstructor<IStackSlot<Item>>();
@@ -25,7 +25,7 @@ namespace TheChest.Core.Tests.Factories.Containers
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    factory: _ => slotFactory.Empty(),
+                    factory: _ => slotFactory.Empty(stackSize),
                     shuffle: true
                 );
 
@@ -69,7 +69,7 @@ namespace TheChest.Core.Tests.Factories.Containers
                     factory:
                         i => i < items.Length
                             ? slotFactory.WithItem(items[i], stackSize, stackSize)
-                            : slotFactory.Empty(),
+                            : slotFactory.Empty(stackSize),
                     shuffle: true
                 );
 

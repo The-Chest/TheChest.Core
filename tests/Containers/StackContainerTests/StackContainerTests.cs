@@ -2,7 +2,6 @@
 using TheChest.Core.Tests.Common.Items.Interfaces;
 using TheChest.Core.Tests.Common.Items.ReferenceType;
 using TheChest.Core.Tests.Common.Items.ValueType;
-using TheChest.Core.Tests.Containers.Interfaces;
 using TheChest.Core.Tests.Factories.Containers;
 using TheChest.Core.Tests.Factories.Containers.Interfaces;
 using TheChest.Core.Tests.Factories.Slots;
@@ -35,5 +34,7 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
             this.containerFactory = this.configurations.Resolve<IStackContainerFactory<T>>();
             this.itemFactory = this.configurations.Resolve<IItemFactory<T>>();
         }
+        private (int size, int stackSize) GenerateRandomSizeAndStackSize() =>
+               (this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST), this.random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST));
     }
 }

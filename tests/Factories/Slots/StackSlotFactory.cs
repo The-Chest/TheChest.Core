@@ -5,10 +5,10 @@ namespace TheChest.Core.Tests.Factories.Slots
 {
     public class StackSlotFactory<T, Y> : IStackSlotFactory<Y> where T : StackSlot<Y>
     {
-        public virtual IStackSlot<Y> Empty()
+        public virtual IStackSlot<Y> Empty(int stackSize = 10)
         {
             var type = typeof(T);
-            var slot = Activator.CreateInstance(type);
+            var slot = Activator.CreateInstance(type, stackSize);
             return (IStackSlot<Y>)slot!;
         }
         public virtual IStackSlot<Y> Full(Y item)

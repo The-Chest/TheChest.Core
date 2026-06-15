@@ -4,7 +4,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 {
     public partial class LazyStackContainerTests<T>
     {
-        [Test(Description = "Contains method throws an exception if the item is null.")]
+        [Test]
+		[Description("Contains method throws an exception if the item is null.")]
         [Category("Contains")]
         [Category("Reference Type")]
         [Category("Behavior")]
@@ -21,7 +22,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
             );
         }
 
-        [Test(Description = "Contains method returns false if the item is the default value and the container is empty.")]
+        [Test]
+		[Description("Contains method returns false if the item is the default value and the container is empty.")]
         [Category("Contains")]
         [Category("Value Type")]
         [Category("Result")]
@@ -35,7 +37,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
             Assert.That(container.Contains(default!), Is.False);
         }
 
-        [Test(Description = "Contains method returns true if the item is the default value and the container is full.")]
+        [Test]
+		[Description("Contains method returns true if the item is the default value and the container is full.")]
         [Category("Contains")]
         [Category("Result")]
         [Category("Success")]
@@ -49,7 +52,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
         }
 
 
-        [Test(Description = "Contains method returns false if the item is not in the container.")]
+        [Test]
+		[Description("Contains method returns false if the item is not in the container.")]
         [Category("Contains")]
         [Category("Result")]
         [Category("Failure")]
@@ -62,7 +66,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
             Assert.That(container.Contains(item), Is.False);
         }
 
-        [Test(Description = "Contains method returns false if all items in the container are different from the parameter item.")]
+        [Test]
+		[Description("Contains method returns false if all items in the container are different from the parameter item.")]
         [Category("Contains")]
         [Category("Result")]
         [Category("Failure")]
@@ -76,7 +81,8 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
             Assert.That(container.Contains(paramItem), Is.False);
         }
 
-        [Test(Description = "Contains method returns true if at least one item in the container is equal to the parameter item.")]
+        [Test]
+		[Description("Contains method returns true if at least one item in the container is equal to the parameter item.")]
         [Category("Contains")]
         [Category("Result")]
         [Category("Success")]

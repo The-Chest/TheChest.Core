@@ -2,7 +2,8 @@
 {
     public partial class LazyStackContainerTests<T>
     {
-        [Test(Description = "IsEmpty property returns true when all slots in the container are empty.")]
+        [Test]
+		[Description("IsEmpty property returns true when all slots in the container are empty.")]
         [Category("IsEmpty")]
         [Category("Property")]
         public void IsEmpty_EmptySlots_ReturnsTrue()
@@ -13,7 +14,8 @@
             Assert.That(container.IsEmpty, Is.True);
         }
 
-        [Test(Description = "IsEmpty property returns false when some slots in the container are empty and some are full.")]
+        [Test]
+		[Description("IsEmpty property returns false when some slots in the container are empty and some are full.")]
         [Category("IsEmpty")]
         [Category("Property")]
         public void IsEmpty_SomeEmptySlots_ReturnsFalse()
@@ -29,7 +31,8 @@
             Assert.That(container.IsEmpty, Is.False);
         }
 
-        [Test(Description = "IsEmpty property returns false when all slots in the container are full.")]
+        [Test]
+		[Description("IsEmpty property returns false when all slots in the container are full.")]
         [Category("IsEmpty")]
         [Category("Property")]
         public void IsEmpty_AllSlotsFull_ReturnsFalse()

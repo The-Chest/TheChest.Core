@@ -5,7 +5,8 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 {
     public partial class StackContainerTests<T>
     {
-        [Test(Description = "The constructor should create an empty container with no slots when no parameters are provided.")]
+        [Test]
+		[Description("The constructor should create an empty container with no slots when no parameters are provided.")]
         [Category("Constructor")]
         [Category("Behavior")]
         [Category("Success")]
@@ -21,7 +22,8 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
             });
         }
 
-        [Test(Description = "The constructor should create an empty container with the given size and max stack size, and initialize the slots accordingly.")]
+        [Test]
+		[Description("The constructor should create an empty container with the given size and max stack size, and initialize the slots accordingly.")]
         [Category("Constructor")]
         [Category("Behavior")]
         [Category("Success")]

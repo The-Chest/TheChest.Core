@@ -2,7 +2,8 @@
 {
     public partial class LazyStackContainerTests<T>
     {
-        [Test(Description = "Size property returns the correct size of the container.")]
+        [Test]
+		[Description("Size property returns the correct size of the container.")]
         [Category("Size")]
         [Category("Property")]
         public void Size_NoInitialValue_SetsSizeToTwenty()

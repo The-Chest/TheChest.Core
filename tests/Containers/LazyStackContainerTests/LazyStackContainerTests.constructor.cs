@@ -2,7 +2,8 @@
 {
     public partial class LazyStackContainerTests<T>
     {
-        [Test(Description = "Constructor with no parameters creates a container with the default size.")]
+        [Test]
+		[Description("Constructor with no parameters creates a container with the default size.")]
         [Category("Constructor")]
         [Category("Default")]
         [Category("Behavior")]
@@ -18,7 +19,8 @@
             });
         }
 
-        [Test(Description = "Constructor with size and max stack size parameters creates a container with the given size.")]
+        [Test]
+		[Description("Constructor with size and max stack size parameters creates a container with the given size.")]
         [Category("Constructor")]
         [Category("Behavior")]
         public void Constructor_SizeAndMaxStackSize_CreatesContainerWithGivenSize()

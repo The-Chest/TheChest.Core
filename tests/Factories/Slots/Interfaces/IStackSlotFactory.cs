@@ -14,7 +14,7 @@ namespace TheChest.Core.Tests.Factories.Slots.Interfaces
         /// </summary>
         /// <returns>An empty <see cref="IStackSlot{T}"/></returns>
         [ReflectionExceptionHandle]
-        IStackSlot<T> Empty();
+        IStackSlot<T> Empty(int stackSize = 10);
         /// <summary>
         /// Creates an <see cref="IStackSlot{T}"/> with an amount of itens and max amount set 
         /// </summary>
@@ -23,10 +23,10 @@ namespace TheChest.Core.Tests.Factories.Slots.Interfaces
         /// <param name="maxAmount">max amount of the </param>
         /// <returns>An Slot with an array of</returns>
         [ReflectionExceptionHandle]
-        IStackSlot<T> WithItem(T item, int amount = 1, int maxAmount = 10);
+        IStackSlot<T> WithItem(T item, int amount, int maxAmount);
 
         [ReflectionExceptionHandle]
-        IStackSlot<T> WithItems(T[] items, int amount = 1, int maxAmount = 10);
+        IStackSlot<T> WithItems(T[] items, int amount, int maxAmount);
         /// <summary>
         /// Creates an <see cref="IStackSlot{T}"/> with the max supported amount of items inside it
         /// </summary>
