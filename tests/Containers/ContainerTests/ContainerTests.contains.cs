@@ -8,6 +8,7 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         [Category("Contains")]
         [Category("Behavior")]
         [Category("Exception")]
+        [Category("ReferenceType")]
         [IgnoreIfValueType]
         public void Contains_NullItem_ThrowsArgumentNullException()
         {
@@ -22,6 +23,7 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         [Category("Contains")]
         [Category("Result")]
         [Category("Failure")]
+        [Category("ValueType")]
         [IgnoreIfReferenceType]
         public void Contains_DefaultValue_ReturnsFalseIfEmpty()
         {
@@ -33,11 +35,14 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         [Category("Contains")]
         [Category("Result")]
         [Category("Success")]
+        [Category("ValueType")]
         [IgnoreIfReferenceType]
         public void Contains_DefaultValue_ReturnsTrueIfFull()
         {
+            var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var item = default(T);
-            var slot = this.containerFactory.Full(20, item!);
+            var slot = this.containerFactory.Full(size, item!);
+
             Assert.That(slot.Contains(item: default!), Is.True);
         }
 

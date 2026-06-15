@@ -8,6 +8,7 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         [Category("Contains With Amount")]
         [Category("Behavior")]
         [Category("Exception")]
+        [Category("ReferenceType")]
         [IgnoreIfValueType]
         public void ContainsAmount_NullItem_ThrowsArgumentNullException()
         {
@@ -17,6 +18,36 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
                 () => container.Contains(default!, 1),
                 Throws.ArgumentNullException.With.Property("ParamName").EqualTo("item")
             );
+        }
+
+        [Test(Description = "ContainsAmount method returns false when the item is not present in the container.")]
+        [Category("Contains With Amount")]
+        [Category("Result")]
+        [Category("Failure")]
+        [Category("ValueType")]
+        [IgnoreIfReferenceType]
+        public void ContainsAmount_DefaultValue_ReturnsFalseIfEmpty()
+        {
+            var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
+            var slot = this.containerFactory.Empty(size);
+
+            Assert.That(slot.Contains(default!, 1), Is.False);
+        }
+
+
+        [Test(Description = "ContainsAmount method returns true when the item is present in the container with the specified amount.")]
+        [Category("Contains With Amount")]
+        [Category("Result")]
+        [Category("Success")]
+        [Category("ValueType")]
+        [IgnoreIfReferenceType]
+        public void ContainsAmount_DefaultValue_ReturnsTrue()
+        {
+            var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
+            var slot = this.containerFactory.Full(size, default!);
+
+            var amount = this.random.Next(1, size + 1);
+            Assert.That(slot.Contains(default!, amount), Is.True);
         }
 
         [Description("ContainsAmount method throws an ArgumentOutOfRangeException when a non-positive amount is passed.")]
@@ -35,33 +66,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
                 () => container.Contains(item, amount),
                 Throws.TypeOf<ArgumentOutOfRangeException>().With.Property("ParamName").EqualTo("amount")
             );
-        }
-
-        [Test(Description = "ContainsAmount method returns false when the item is not present in the container.")]
-        [Category("Contains With Amount")]
-        [Category("Result")]
-        [Category("Failure")]
-        [IgnoreIfReferenceType]
-        public void ContainsAmount_DefaultValue_ReturnsFalseIfEmpty()
-        {
-            var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
-            var slot = this.containerFactory.Empty(size);
-
-            Assert.That(slot.Contains(default!, 1), Is.False);
-        }
-
-        [Test(Description = "ContainsAmount method returns true when the item is present in the container with the specified amount.")]
-        [Category("Contains With Amount")]
-        [Category("Result")]
-        [Category("Success")]
-        [IgnoreIfReferenceType]
-        public void ContainsAmount_DefaultValue_ReturnsTrue()
-        {
-            var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
-            var slot = this.containerFactory.Full(size, default!);
-
-            var amount = this.random.Next(1, size + 1);
-            Assert.That(slot.Contains(default!, amount), Is.True);
         }
 
         [Test(Description = "ContainsAmount method returns false when the container is empty, regardless of the item.")]
