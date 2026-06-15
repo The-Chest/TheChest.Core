@@ -8,7 +8,7 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         [Category("Contains With Amount")]
         [Category("Behavior")]
         [Category("Exception")]
-        [Category("ReferenceType")]
+        [Category("Reference Type")]
         [IgnoreIfValueType]
         public void ContainsAmount_NullItem_ThrowsArgumentNullException()
         {

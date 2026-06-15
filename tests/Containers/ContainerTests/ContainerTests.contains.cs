@@ -8,7 +8,7 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         [Category("Contains")]
         [Category("Behavior")]
         [Category("Exception")]
-        [Category("ReferenceType")]
+        [Category("Reference Type")]
         [IgnoreIfValueType]
         public void Contains_NullItem_ThrowsArgumentNullException()
         {
@@ -23,7 +23,7 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         [Category("Contains")]
         [Category("Result")]
         [Category("Failure")]
-        [Category("ValueType")]
+        [Category("Value Type")]
         [IgnoreIfReferenceType]
         public void Contains_DefaultValue_ReturnsFalseIfEmpty()
         {
@@ -35,7 +35,7 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         [Category("Contains")]
         [Category("Result")]
         [Category("Success")]
-        [Category("ValueType")]
+        [Category("Value Type")]
         [IgnoreIfReferenceType]
         public void Contains_DefaultValue_ReturnsTrueIfFull()
         {
