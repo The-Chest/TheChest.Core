@@ -1,4 +1,5 @@
 ﻿using TheChest.Core.Tests.Common.Configurations.Attributes;
+using TheChest.Core.Tests.Common.NUnit.TestCases;
 
 namespace TheChest.Core.Tests.Containers.ContainerTests
 {
@@ -51,11 +52,10 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         }
 
         [Description("ContainsAmount method throws an ArgumentOutOfRangeException when a non-positive amount is passed.")]
-        [TestCase(0)]
-        [TestCase(-1)]
         [Category("Contains With Amount")]
         [Category("Behavior")]
         [Category("Exception")]
+        [WrongAmount]
         public void ContainsAmount_InvalidAmount_ThrowsArgumentOutOfRangeException(int amount)
         {
             var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
