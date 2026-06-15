@@ -2,7 +2,8 @@
 {
     public partial class ContainerTests<T>
     {
-        [Test(Description = "The constructor throws an ArgumentOutOfRangeException when the size parameter is negative.")]
+        [Test]
+        [Description("The constructor throws an ArgumentOutOfRangeException when the size parameter is negative.")]
         [Category("Constructor")]
         [Category("Behavior")]
         [Category("Exception")]
@@ -14,7 +15,8 @@
             );
         }
 
-        [Test(Description = "The constructor throws an ArgumentException when the size parameter is smaller than the length of the items array.")]
+        [Test]
+        [Description("The constructor throws an ArgumentException when the size parameter is smaller than the length of the items array.")]
         [Category("Constructor")]
         [Category("Behavior")]
         [Category("Exception")]
@@ -29,7 +31,8 @@
             );
         }
 
-        [Test(Description = "The constructor throws an ArgumentNullException when the items parameter is null.")]
+        [Test]
+        [Description("The constructor throws an ArgumentNullException when the items parameter is null.")]
         [Category("Constructor")]
         [Category("Behavior")]
         [Category("Exception")]
@@ -41,7 +44,8 @@
             );
         }
 
-        [Test(Description = "The constructor creates an empty container when no parameters are provided.")]
+        [Test]
+        [Description("The constructor creates an empty container when no parameters are provided.")]
         [Category("Constructor")]
         [Category("Behavior")]
         [Category("Success")]
@@ -57,7 +61,8 @@
             });
         }
 
-        [Test(Description = "The constructor creates an empty container with the given size.")]
+        [Test]
+        [Description("The constructor creates an empty container with the given size.")]
         [Category("Constructor")]
         [Category("Behavior")]
         [Category("Success")]
@@ -74,7 +79,8 @@
             });
         }
 
-        [Test(Description = "The constructor creates a full container when the size parameter is equal to the length of the items array.")]
+        [Test]
+        [Description("The constructor creates a full container when the size parameter is equal to the length of the items array.")]
         [Category("Constructor")]
         [Category("Behavior")]
         [Category("Success")]
@@ -93,7 +99,8 @@
             });
         }
 
-        [Test(Description = "The constructor creates a partially filled container when the size parameter is greater than the length of the items array.")]
+        [Test]
+        [Description("The constructor creates a partially filled container when the size parameter is greater than the length of the items array.")]
         [Category("Constructor")]
         [Category("Behavior")]
         [Category("Success")]

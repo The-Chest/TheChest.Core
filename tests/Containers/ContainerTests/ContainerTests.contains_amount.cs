@@ -5,7 +5,8 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 {
     public partial class ContainerTests<T>
     {
-        [Test(Description = "ContainsAmount method throws an ArgumentNullException when a null item is passed.")]
+        [Test]
+        [Description("ContainsAmount method throws an ArgumentNullException when a null item is passed.")]
         [Category("Contains With Amount")]
         [Category("Behavior")]
         [Category("Exception")]
@@ -21,7 +22,8 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
             );
         }
 
-        [Test(Description = "ContainsAmount method returns false when the item is not present in the container.")]
+        [Test]
+        [Description("ContainsAmount method returns false when the item is not present in the container.")]
         [Category("Contains With Amount")]
         [Category("Result")]
         [Category("Failure")]
@@ -36,7 +38,8 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         }
 
 
-        [Test(Description = "ContainsAmount method returns true when the item is present in the container with the specified amount.")]
+        [Test]
+        [Description("ContainsAmount method returns true when the item is present in the container with the specified amount.")]
         [Category("Contains With Amount")]
         [Category("Result")]
         [Category("Success")]
@@ -51,11 +54,11 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
             Assert.That(slot.Contains(default!, amount), Is.True);
         }
 
+        [WrongAmount]
         [Description("ContainsAmount method throws an ArgumentOutOfRangeException when a non-positive amount is passed.")]
         [Category("Contains With Amount")]
         [Category("Behavior")]
         [Category("Exception")]
-        [WrongAmount]
         public void ContainsAmount_InvalidAmount_ThrowsArgumentOutOfRangeException(int amount)
         {
             var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -68,7 +71,8 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
             );
         }
 
-        [Test(Description = "ContainsAmount method returns false when the container is empty, regardless of the item.")]
+        [Test]
+        [Description("ContainsAmount method returns false when the container is empty, regardless of the item.")]
         [Category("Contains With Amount")]
         [Category("Behavior")]
         [Category("Failure")]
@@ -81,7 +85,8 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
             Assert.That(container.Contains(item), Is.False);
         }
 
-        [Test(Description = "ContainsAmount method returns false when the item is not found in the container, regardless of the amount.")]
+        [Test]
+        [Description("ContainsAmount method returns false when the item is not found in the container, regardless of the amount.")]
         [Category("Contains With Amount")]
         [Category("Behavior")]
         [Category("Failure")]
@@ -96,7 +101,8 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
             Assert.That(container.Contains(item, amount), Is.False);
         }
 
-        [Test(Description = "ContainsAmount method returns false when the total amount of the item in the container is smaller than the searched amount.")]
+        [Test]
+        [Description("ContainsAmount method returns false when the total amount of the item in the container is smaller than the searched amount.")]
         [Category("Contains With Amount")]
         [Category("Result")]
         [Category("Failure")]
@@ -113,7 +119,8 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
             Assert.That(container.Contains(paramItem, amount), Is.False);
         }
 
-        [Test(Description = "ContainsAmount method returns true when the total amount of the item in the container is equal to the searched amount.")]
+        [Test]
+        [Description("ContainsAmount method returns true when the total amount of the item in the container is equal to the searched amount.")]
         [Category("Contains With Amount")]
         [Category("Result")]
         [Category("Success")]
@@ -129,7 +136,8 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
             Assert.That(container.Contains(paramItem, halfSize), Is.True);
         }
 
-        [Test(Description = "ContainsAmount method returns true when the total amount of the item in the container is bigger than the searched amount.")]
+        [Test]
+        [Description("ContainsAmount method returns true when the total amount of the item in the container is bigger than the searched amount.")]
         [Category("Contains With Amount")]
         [Category("Valid Parameters")]
         [Category("Result")]

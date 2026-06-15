@@ -4,7 +4,8 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 {
     public partial class ContainerTests<T>
     {
-        [Test(Description = "Contains method throws an ArgumentNullException when a null item is passed.")]
+        [Test]
+        [Description("Contains method throws an ArgumentNullException when a null item is passed.")]
         [Category("Contains")]
         [Category("Behavior")]
         [Category("Exception")]
@@ -19,7 +20,8 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
             );
         }
 
-        [Test(Description = "Contains method returns false when the item is not present in the container.")]
+        [Test]
+        [Description("Contains method returns false when the item is not present in the container.")]
         [Category("Contains")]
         [Category("Result")]
         [Category("Failure")]
@@ -31,7 +33,8 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
             Assert.That(slot.Contains(item: default!), Is.False);
         }
 
-        [Test(Description = "Contains method returns true when the item is present in the container.")]
+        [Test]
+        [Description("Contains method returns true when the item is present in the container.")]
         [Category("Contains")]
         [Category("Result")]
         [Category("Success")]
@@ -47,7 +50,8 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         }
 
 
-        [Test(Description = "Contains method throws an ArgumentNullException when a null item is passed.")]
+        [Test]
+        [Description("Contains method returns false when the container is empty.")]
         [Category("Contains")]
         [Category("Result")]
         [Category("Failure")]
@@ -60,7 +64,8 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
             Assert.That(container.Contains(item), Is.False);
         }
 
-        [Test(Description = "Contains method returns false when all items in the container are different from the parameter.")]
+        [Test]
+        [Description("Contains method returns false when all items in the container are different from the parameter.")]
         [Category("Contains")]
         [Category("Result")]
         [Category("Failure")]
@@ -74,7 +79,8 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
             Assert.That(container.Contains(paramItem), Is.False);
         }
 
-        [Test(Description = "Contains method returns true when at least one item in the container is equal to the parameter.")]
+        [Test]
+        [Description("Contains method returns true when at least one item in the container is equal to the parameter.")]
         [Category("Contains")]
         [Category("Result")]
         [Category("Success")]

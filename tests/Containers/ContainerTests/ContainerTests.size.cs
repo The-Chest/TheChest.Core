@@ -2,7 +2,8 @@
 {
     public partial class ContainerTests<T>
     {
-        [Test(Description = "Size property of the container when it has initial value.")]
+        [Test]
+        [Description("Size property of the container when it has initial value.")]
         [Category("Size")]
         [Category("Property")]
         public void Size_WithInitialValue_SetsSizeToSpecifiedValue()

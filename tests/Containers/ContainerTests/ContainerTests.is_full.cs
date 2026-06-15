@@ -2,7 +2,8 @@
 {
     public partial class ContainerTests<T>
     {
-        [Test(Description = "IsFull property of the container when it has empty slots.")]
+        [Test]
+        [Description("IsFull property of the container when it has empty slots.")]
         [Category("IsFull")]
         [Category("Property")]
         public void IsFull_EmptySlots_ReturnsFalse()
@@ -13,7 +14,8 @@
             Assert.That(container.IsFull, Is.False);
         }
 
-        [Test(Description = "IsFull property of the container when it has one empty slot.")]
+        [Test]
+        [Description("IsFull property of the container when it has one empty slot.")]
         [Category("IsFull")]
         [Category("Property")]
         public void IsFull_OneEmptySlot_ReturnsFalse()
@@ -25,7 +27,8 @@
             Assert.That(container.IsFull, Is.False);
         }
 
-        [Test(Description = "IsFull property of the container when it has one full slot.")]
+        [Test]
+        [Description("IsFull property of the container when it has one full slot.")]
         [Category("IsFull")]
         [Category("Property")]
         public void IsFull_OneFullSlot_ReturnsFalse()
@@ -37,7 +40,8 @@
             Assert.That(container.IsFull, Is.False);
         }
 
-        [Test(Description = "IsFull property of the container when all slots are full.")]
+        [Test]
+        [Description("IsFull property of the container when all slots are full.")]
         [Category("IsFull")]
         [Category("Property")]
         public void IsFull_AllSlotsFull_ReturnsTrue()
