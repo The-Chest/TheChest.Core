@@ -5,7 +5,7 @@ namespace TheChest.Core.Tests.Factories.Slots
 {
     public class LazyStackSlotFactory<T, Y> : ILazyStackSlotFactory<Y>  where T : LazyStackSlot<Y>
     {
-        private static ILazyStackSlot<Y> Instantiate(object? item, int amount = 1, int maxAmount = 10)
+        private static ILazyStackSlot<Y> Instantiate(object? item, int amount, int maxAmount)
         {
             var slot = Activator.CreateInstance(
                 type: typeof(T), 
@@ -18,19 +18,10 @@ namespace TheChest.Core.Tests.Factories.Slots
             return (ILazyStackSlot<Y>)slot!;
         }
 
-        public ILazyStackSlot<Y> Empty(int amount = 1, int maxAmount = 10)
-        {
-            return Instantiate(null, amount, maxAmount);
-        }
+        public ILazyStackSlot<Y> Empty(int amount, int maxAmount) => Instantiate(null, amount, maxAmount);
 
-        public ILazyStackSlot<Y> Full(Y item, int maxAmount = 10)
-        {
-            return Instantiate(item, maxAmount, maxAmount);
-        }
+        public ILazyStackSlot<Y> Full(Y item, int maxAmount) => Instantiate(item, maxAmount, maxAmount);
 
-        public ILazyStackSlot<Y> WithItem(Y item, int amount = 1, int maxAmount = 10)
-        {
-            return Instantiate(item, amount, maxAmount);
-        }
+        public ILazyStackSlot<Y> WithItem(Y item, int amount, int maxAmount) => Instantiate(item, amount, maxAmount);
     }
 }
