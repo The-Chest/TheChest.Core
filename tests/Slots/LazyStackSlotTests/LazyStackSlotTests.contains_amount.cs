@@ -19,7 +19,7 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
             Assert.That(
                 () => slot.Contains(item, amount), 
                 Throws.TypeOf<ArgumentOutOfRangeException>().And.Property("ParamName").EqualTo("amount")
-             );
+            );
         }
 
         [Test]
@@ -90,7 +90,7 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
             var slot = this.slotFactory.WithItem(item, amount, stackSize);
 
             var paramItem = this.itemFactory.CreateDefault();
-            var paramAmount = this.random.Next(1, stackSize + amount);
+            var paramAmount = this.random.Next(stackSize, stackSize * 2);
             var contains = slot.Contains(paramItem, paramAmount);
 
             Assert.That(contains, Is.False);

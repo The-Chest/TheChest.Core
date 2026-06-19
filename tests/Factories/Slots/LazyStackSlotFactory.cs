@@ -3,18 +3,18 @@ using TheChest.Core.Tests.Factories.Slots.Interfaces;
 
 namespace TheChest.Core.Tests.Factories.Slots
 {
-    public class LazyStackSlotFactory<T, Y> : ILazyStackSlotFactory<Y>  where T : LazyStackSlot<Y>
+    public class LazyStackSlotFactory<T, Y> : ILazyStackSlotFactory<Y> where T : LazyStackSlot<Y>
     {
         private static ILazyStackSlot<Y> Instantiate(object? item, int amount, int maxAmount)
         {
             var slot = Activator.CreateInstance(
-                type: typeof(T), 
-                args: new object?[3] { 
-                    item is null ? default : (Y)item, 
-                    amount, 
-                    maxAmount 
+                type: typeof(T),
+                args: new object?[3] {
+                    item is null ? default : (Y)item,
+                    amount,
+                    maxAmount
                 }
-             );
+            );
             return (ILazyStackSlot<Y>)slot!;
         }
 

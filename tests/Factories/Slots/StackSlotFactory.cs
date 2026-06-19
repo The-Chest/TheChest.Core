@@ -11,6 +11,7 @@ namespace TheChest.Core.Tests.Factories.Slots
             var slot = Activator.CreateInstance(type, stackSize);
             return (IStackSlot<Y>)slot!;
         }
+
         public virtual IStackSlot<Y> Full(Y item)
         {
             var type = typeof(T);
