@@ -1,4 +1,6 @@
-﻿namespace TheChest.Core.Tests.Containers.ContainerTests
+﻿using TheChest.Core.Tests.Common.Extensions.Containers;
+
+namespace TheChest.Core.Tests.Containers.ContainerTests
 {
     public partial class ContainerTests<T>
     {
@@ -45,6 +47,19 @@
         }
 
         [Test]
+        [Description("The constructor throws an ArgumentNullException when the items parameter is null.")]
+        [Category("Constructor")]
+        [Category("Behavior")]
+        [Category("Exception")]
+        public void Constructor_Items_NullItems_ThrowsArgumentNullException()
+        {
+            Assert.That(
+                () => new Container<T>((T[])null!),
+                Throws.TypeOf<ArgumentNullException>().With.Property("ParamName").EqualTo("items")
+            );
+        }
+
+        [Test]
         [Description("The constructor creates an empty container when no parameters are provided.")]
         [Category("Constructor")]
         [Category("Behavior")]
@@ -76,6 +91,48 @@
                 Assert.That(container.Size, Is.EqualTo(size));
                 Assert.That(container.IsEmpty, Is.True);
                 Assert.That(container.IsFull, Is.False);
+            });
+        }
+
+        [Test]
+        [Description("The constructor creates an empty container when the items array is empty.")]
+        [Category("Constructor")]
+        [Category("Behavior")]
+        [Category("Success")]
+        public void Constructor_Items_EmptyItems_CreatesEmptyContainer()
+        {
+            var container = new Container<T>(Array.Empty<T>());
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(container.Size, Is.Zero);
+                Assert.That(container.IsEmpty, Is.True);
+                Assert.That(container.IsFull, Is.True);
+            });
+        }
+
+        [Test]
+        [Description("The constructor creates a full container with the same size and items from the items array.")]
+        [Category("Constructor")]
+        [Category("Behavior")]
+        [Category("Success")]
+        public void Constructor_Items_CreatesFullContainerWithItems()
+        {
+            var amount = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
+            var items = this.itemFactory.CreateManyRandom(amount);
+
+            var container = new Container<T>(items);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(container.Size, Is.EqualTo(items.Length));
+                Assert.That(container.IsEmpty, Is.False);
+                Assert.That(container.IsFull, Is.True);
+
+                for (var i = 0; i < items.Length; i++)
+                {
+                    Assert.That(container.GetItem(i), Is.EqualTo(items[i]));
+                }
             });
         }
 
