@@ -5,36 +5,33 @@ namespace TheChest.Core.Tests.Factories.Slots
 {
     public class StackSlotFactory<T, Y> : IStackSlotFactory<Y> where T : StackSlot<Y>
     {
-        public virtual IStackSlot<Y> Empty(int stackSize = 10)
+        public virtual IStackSlot<Y> Empty(int stackSize)
         {
             var type = typeof(T);
             var slot = Activator.CreateInstance(type, stackSize);
             return (IStackSlot<Y>)slot!;
         }
 
-        public virtual IStackSlot<Y> Full(Y item)
+        public virtual IStackSlot<Y> Full(Y item, int stackSize)
         {
             var type = typeof(T);
-
-            var size = new Random().Next(1, 10);
-            var items = new Y[size];
+            var items = new Y[stackSize];
             Array.Fill(items, item);
 
-            var slot = Activator.CreateInstance(type, items, size);
+            var slot = Activator.CreateInstance(type, items, stackSize);
             return (IStackSlot<Y>)slot!;
         }
 
-        public virtual IStackSlot<Y> WithItems(Y[] items, int amount = 1, int maxAmount = 10)
+        public virtual IStackSlot<Y> WithItem(Y item, int amount, int maxAmount)
         {
-            return (IStackSlot<Y>)Activator.CreateInstance(typeof(T), items, maxAmount)!;
-        }
-
-        public virtual IStackSlot<Y> WithItem(Y item, int amount = 1, int maxAmount = 10)
-        {
+            var type = typeof(T);
             var items = new Y[amount];
+
             Array.Fill(items, item);
 
-            return WithItems(items, amount, maxAmount);
+            var slot = Activator.CreateInstance(type, items, maxAmount);
+
+            return (IStackSlot<Y>)slot!;
         }
     }
 }
