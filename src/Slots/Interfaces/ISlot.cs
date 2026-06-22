@@ -18,7 +18,7 @@
         /// Checks if the slot contains the specified item.
         /// </summary>
         /// <param name="item">Item to be checked</param>
-        /// <returns>True if the slot contains the item</returns>
+        /// <returns><see langword="true"/> if the slot contains the item, otherwise <see langword="false"/></returns>
         bool Contains(T item);
     }
 }

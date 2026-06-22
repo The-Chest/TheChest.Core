@@ -3,6 +3,10 @@
     public partial class LazyStackContainerTests<T>
     {
         [Test]
+		[Description("Constructor with no parameters creates a container with the default size.")]
+        [Category("Constructor")]
+        [Category("Default")]
+        [Category("Behavior")]
         public void Constructor_NoParameters_CreatesContainerWithDefaultSize()
         {
             var container = new LazyStackContainer<T>();
@@ -16,10 +20,12 @@
         }
 
         [Test]
+		[Description("Constructor with size and max stack size parameters creates a container with the given size.")]
+        [Category("Constructor")]
+        [Category("Behavior")]
         public void Constructor_SizeAndMaxStackSize_CreatesContainerWithGivenSize()
         {
-            var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
-            var maxStackSize = this.random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST);
+            var (size, maxStackSize) = this.GenerateRandomSizeAndStackSize();
 
             var container = new LazyStackContainer<T>(size, maxStackSize);
 
@@ -31,12 +37,37 @@
             });
         }
 
-        [Test]
-        public void Constructor_NegativeSize_ThrowsArgumentOutOfRangeException()
+        [Description("Constructor with negative size parameter throws an ArgumentOutOfRangeException.")]
+        [TestCase(-1)]
+        [Category("Constructor")]
+        [Category("Behavior")]
+        [Category("Exception")]
+        public void Constructor_NegativeSize_ThrowsArgumentOutOfRangeException(int multiplier)
         {
+            var (size, maxStackSize) = this.GenerateRandomSizeAndStackSize();
+            size *= multiplier;
+
             Assert.That(
-                () => new LazyStackContainer<T>(-1, 1),
-                Throws.TypeOf<ArgumentOutOfRangeException>());
+                () => new LazyStackContainer<T>(size, maxStackSize),
+                Throws.TypeOf<ArgumentOutOfRangeException>().With.Property("ParamName").EqualTo("size")
+            );
+        }
+
+        [Description("Constructor with invalid max stack size parameter throws an ArgumentOutOfRangeException.")]
+        [TestCase(-1)]
+        [TestCase(0)]
+        [Category("Constructor")]
+        [Category("Behavior")]
+        [Category("Exception")]
+        public void Constructor_InvalidMaxStackSize_ThrowsArgumentOutOfRangeException(int multiplier)
+        {
+            var (size, maxStackSize) = this.GenerateRandomSizeAndStackSize(); 
+            maxStackSize *= multiplier;
+
+            Assert.That(
+                () => new LazyStackContainer<T>(size, maxStackSize),
+                Throws.TypeOf<ArgumentOutOfRangeException>().With.Property("ParamName").EqualTo("maxStackSize")
+            );
         }
     }
 }

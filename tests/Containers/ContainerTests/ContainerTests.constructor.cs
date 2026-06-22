@@ -1,8 +1,69 @@
-﻿namespace TheChest.Core.Tests.Containers.ContainerTests
+﻿using TheChest.Core.Tests.Common.Extensions.Containers;
+
+namespace TheChest.Core.Tests.Containers.ContainerTests
 {
     public partial class ContainerTests<T>
     {
         [Test]
+        [Description("The constructor throws an ArgumentOutOfRangeException when the size parameter is negative.")]
+        [Category("Constructor")]
+        [Category("Behavior")]
+        [Category("Exception")]
+        public void Constructor_NegativeSize_ThrowsArgumentOutOfRangeException()
+        {
+            Assert.That(
+                () => new Container<T>(-1),
+                Throws.TypeOf<ArgumentOutOfRangeException>().With.Property("ParamName").EqualTo("size")
+            );
+        }
+
+        [Test]
+        [Description("The constructor throws an ArgumentException when the size parameter is smaller than the length of the items array.")]
+        [Category("Constructor")]
+        [Category("Behavior")]
+        [Category("Exception")]
+        public void Constructor_ItemsAndSize_SizeSmallerThanItemsLength_ThrowsArgumentException()
+        {
+            var amount = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
+            var items = this.itemFactory.CreateMany(amount);
+
+            Assert.That(
+                () => new Container<T>(items, amount - 1),
+                Throws.TypeOf<ArgumentException>().With.Property("ParamName").EqualTo("size")
+            );
+        }
+
+        [Test]
+        [Description("The constructor throws an ArgumentNullException when the items parameter is null.")]
+        [Category("Constructor")]
+        [Category("Behavior")]
+        [Category("Exception")]
+        public void Constructor_ItemsAndSize_NullItems_ThrowsArgumentNullException()
+        {
+            Assert.That(
+                () => new Container<T>(null!, 1),
+                Throws.TypeOf<ArgumentNullException>().With.Property("ParamName").EqualTo("items")
+            );
+        }
+
+        [Test]
+        [Description("The constructor throws an ArgumentNullException when the items parameter is null.")]
+        [Category("Constructor")]
+        [Category("Behavior")]
+        [Category("Exception")]
+        public void Constructor_Items_NullItems_ThrowsArgumentNullException()
+        {
+            Assert.That(
+                () => new Container<T>((T[])null!),
+                Throws.TypeOf<ArgumentNullException>().With.Property("ParamName").EqualTo("items")
+            );
+        }
+
+        [Test]
+        [Description("The constructor creates an empty container when no parameters are provided.")]
+        [Category("Constructor")]
+        [Category("Behavior")]
+        [Category("Success")]
         public void Constructor_NoParameters_CreatesEmptyContainer()
         {
             var container = new Container<T>();
@@ -16,6 +77,10 @@
         }
 
         [Test]
+        [Description("The constructor creates an empty container with the given size.")]
+        [Category("Constructor")]
+        [Category("Behavior")]
+        [Category("Success")]
         public void Constructor_Size_CreatesContainerWithGivenSize()
         {
             var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -30,23 +95,53 @@
         }
 
         [Test]
-        public void Constructor_NegativeSize_ThrowsArgumentOutOfRangeException()
+        [Description("The constructor creates an empty container when the items array is empty.")]
+        [Category("Constructor")]
+        [Category("Behavior")]
+        [Category("Success")]
+        public void Constructor_Items_EmptyItems_CreatesEmptyContainer()
         {
-            Assert.That(
-                () => new Container<T>(-1),
-                Throws.TypeOf<ArgumentOutOfRangeException>());
+            var container = new Container<T>(Array.Empty<T>());
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(container.Size, Is.Zero);
+                Assert.That(container.IsEmpty, Is.True);
+                Assert.That(container.IsFull, Is.True);
+            });
         }
 
         [Test]
-        public void Constructor_ItemsAndSize_WhenItemsIsNull_ThrowsArgumentNullException()
+        [Description("The constructor creates a full container with the same size and items from the items array.")]
+        [Category("Constructor")]
+        [Category("Behavior")]
+        [Category("Success")]
+        public void Constructor_Items_CreatesFullContainerWithItems()
         {
-            Assert.That(
-                () => new Container<T>(null!, 1),
-                Throws.TypeOf<ArgumentNullException>());
+            var amount = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
+            var items = this.itemFactory.CreateManyRandom(amount);
+
+            var container = new Container<T>(items);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(container.Size, Is.EqualTo(items.Length));
+                Assert.That(container.IsEmpty, Is.False);
+                Assert.That(container.IsFull, Is.True);
+
+                for (var i = 0; i < items.Length; i++)
+                {
+                    Assert.That(container.GetItem(i), Is.EqualTo(items[i]));
+                }
+            });
         }
 
         [Test]
-        public void Constructor_ItemsAndSize_WhenSizeEqualsItemsLength_CreatesFullContainer()
+        [Description("The constructor creates a full container when the size parameter is equal to the length of the items array.")]
+        [Category("Constructor")]
+        [Category("Behavior")]
+        [Category("Success")]
+        public void Constructor_ItemsAndSize_SizeEqualsItemsLength_CreatesFullContainer()
         {
             var amount = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var items = this.itemFactory.CreateMany(amount);
@@ -62,7 +157,11 @@
         }
 
         [Test]
-        public void Constructor_ItemsAndSize_WhenSizeIsGreaterThanItemsLength_CreatesPartiallyFilledContainer()
+        [Description("The constructor creates a partially filled container when the size parameter is greater than the length of the items array.")]
+        [Category("Constructor")]
+        [Category("Behavior")]
+        [Category("Success")]
+        public void Constructor_ItemsAndSize_SizeGreaterThanItemsLength_CreatesPartiallyFilledContainer()
         {
             var amount = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var items = this.itemFactory.CreateMany(amount);
@@ -76,17 +175,6 @@
                 Assert.That(container.IsEmpty, Is.False);
                 Assert.That(container.IsFull, Is.False);
             });
-        }
-
-        [Test]
-        public void Constructor_ItemsAndSize_WhenSizeIsSmallerThanItemsLength_ThrowsArgumentException()
-        {
-            var amount = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
-            var items = this.itemFactory.CreateMany(amount);
-
-            Assert.That(
-                () => new Container<T>(items, amount - 1),
-                Throws.TypeOf<ArgumentException>());
         }
     }
 }

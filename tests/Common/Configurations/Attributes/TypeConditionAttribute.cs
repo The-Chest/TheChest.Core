@@ -6,7 +6,7 @@ namespace TheChest.Core.Tests.Common.Configurations.Attributes
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     internal abstract class TypeConditionAttribute : NUnitAttribute, IApplyToTest
     {
-        protected abstract bool ShouldIgnore(Type type);
+        protected abstract bool ShouldSkip(Type type);
 
         protected virtual string Reason => "Condition not met.";
 
@@ -21,9 +21,9 @@ namespace TheChest.Core.Tests.Common.Configurations.Attributes
 
             var firstArgument = fixtureType.GetGenericArguments()[0];
 
-            if (this.ShouldIgnore(firstArgument))
+            if (this.ShouldSkip(firstArgument))
             {
-                test.RunState = RunState.Ignored;
+                test.RunState = RunState.Skipped;
             }
         }
     }
