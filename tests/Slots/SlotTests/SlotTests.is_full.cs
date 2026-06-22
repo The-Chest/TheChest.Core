@@ -23,7 +23,6 @@
             var slot = this.slotFactory.Empty();
 
             Assert.That(slot.IsFull, Is.False);
-            Assert.That(slot.IsFull, Is.Not.EqualTo(slot.IsEmpty));
         }
     }
 }

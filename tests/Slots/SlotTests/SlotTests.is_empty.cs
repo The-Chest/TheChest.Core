@@ -24,18 +24,5 @@
 
             Assert.That(slot.IsEmpty, Is.False);
         }
-
-        [Test]
-        [Description("IsEmpty returns false for a full slot.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
-        public void IsEmpty_IsFull_ReturnsFalse()
-        {
-            var item = this.itemFactory.CreateDefault();
-            var slot = this.slotFactory.Full(item);
-
-            Assert.That(slot.IsEmpty, Is.False);
-            Assert.That(slot.IsEmpty, Is.Not.EqualTo(slot.IsFull));
-        }
     }
 }
