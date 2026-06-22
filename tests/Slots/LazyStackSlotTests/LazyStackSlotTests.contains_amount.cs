@@ -89,7 +89,7 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
             var item = this.itemFactory.CreateDefault();
             var slot = this.slotFactory.WithItem(item, amount, stackSize);
 
-            var paramItem = this.itemFactory.CreateDefault();
+            var paramItem = this.itemFactory.CreateRandom();
             var paramAmount = this.random.Next(stackSize, stackSize * 2);
             var contains = slot.Contains(paramItem, paramAmount);
 
