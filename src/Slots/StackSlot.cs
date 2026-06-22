@@ -167,7 +167,7 @@ namespace TheChest.Core.Slots
         public virtual bool Contains(T item)
         {
             if (item.IsNull())
-                throw new ArgumentNullException(nameof(item));
+                throw new ArgumentNullException(nameof(item), "Item cannot be null");
             if (this.IsEmpty)
                 return false;
 
@@ -178,11 +178,12 @@ namespace TheChest.Core.Slots
         public virtual bool Contains(T[] items)
         {
             if (items is null)
-                throw new ArgumentNullException(nameof(items));
+                throw new ArgumentNullException(nameof(items), "Items cannot be null");
+            
             if (items.Length == 0 || this.IsEmpty)
                 return false;
 
-            for (int i = 0; i < items.Length; i++)
+            for (var i = 0; i < items.Length; i++)
             {
                 var item = items[i];
                 if (item.IsNull())

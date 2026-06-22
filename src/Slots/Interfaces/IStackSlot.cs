@@ -25,7 +25,7 @@
         /// Checks if the slot contains the specified items.
         /// </summary>
         /// <param name="items">items to be checked inside the slot</param>
-        /// <returns>true if the slot contains all <paramref name="items"/></returns>
+        /// <returns><see langword="true"/> if the slot contains all <paramref name="items"/>, otherwise <see langword="false"/></returns>
         bool Contains(T[] items);
     }
 }
