@@ -16,7 +16,7 @@
         }
 
         [Test]
-        [Description("IsFull returns true when the amount is equal to the max stack size and the content is not null.")]
+        [Description("IsFull returns false when the amount is less than the max stack size and the content is not null.")]
         [Category("IsFull")]
         [Category("Property")]
         public void IsFull_CurrentItemNotAtMaxStack_ReturnsFalse()
