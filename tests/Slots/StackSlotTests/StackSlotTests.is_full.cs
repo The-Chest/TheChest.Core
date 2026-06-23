@@ -19,7 +19,7 @@
         [Description("IsFull returns true when the amount is equal to the max stack size and the content is not null.")]
         [Category("IsFull")]
         [Category("Property")]
-        public void IsFull_CurrentItemInHalfMaxStack_ReturnsFalse()
+        public void IsFull_CurrentItemNotAtMaxStack_ReturnsFalse()
         {
             var maxStackSize = this.GenerateStackSize();
             var amount = this.random.Next(1, maxStackSize);
