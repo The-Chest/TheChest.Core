@@ -44,7 +44,7 @@
         }
 
         [Test]
-        [Description("A slot cannot be full if it is empty, even if the amount is equal to the max stack size.")]
+        [Description("IsFull returns true when the amount is equal to the max stack size and the content is not null.")]
         [Category("IsFull")]
         [Category("Property")]
         public void IsFull_CurrentItemInMaxStack_ReturnsTrue()
