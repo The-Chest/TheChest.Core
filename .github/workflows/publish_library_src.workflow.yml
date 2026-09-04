@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: ${{ inputs.version }}
+          ref: v${{ inputs.version }}
 
       - name: Zip Folder
         run: zip -r "${{ env.PROJECT_NAME }}.${{ inputs.version }}.zip" src/ -i "*.cs"
