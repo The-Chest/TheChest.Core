@@ -37,6 +37,6 @@ jobs:
         uses: The-Chest/Actions/upload-release-artifacts@v1
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
-          path: "src"
+          path: "./"
           name: "${{ env.PROJECT_NAME }}.${{ inputs.version }}.zip"
           version: "${{ inputs.version }}"
