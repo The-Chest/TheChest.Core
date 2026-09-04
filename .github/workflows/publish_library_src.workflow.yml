@@ -39,4 +39,4 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           path: "src"
           name: "${{ env.PROJECT_NAME }}.${{ inputs.version }}.zip"
-          version: "$${{ inputs.version }}"
+          version: "${{ inputs.version }}"
