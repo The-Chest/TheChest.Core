@@ -22,7 +22,28 @@ env:
 
 jobs:
   Analysis:
+    name: Analysis (${{ matrix.target-framework }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - dotnet-version: '2.1.x'
+            target-framework: netcoreapp2.1
+          - dotnet-version: '3.1.x'
+            target-framework: netcoreapp3.1
+          - dotnet-version: '5.0.x'
+            target-framework: net5.0
+          - dotnet-version: '6.0.x'
+            target-framework: net6.0
+          - dotnet-version: '7.0.x'
+            target-framework: net7.0
+          - dotnet-version: '8.0.x'
+            target-framework: net8.0
+          - dotnet-version: '9.0.x'
+            target-framework: net9.0
+          - dotnet-version: '10.0.x'
+            target-framework: net10.0
 
     steps:
       - uses: actions/checkout@v6
@@ -32,7 +53,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: ${{ matrix.dotnet-version }}
 
       - name: Dotnet Build
         id: dotnet-build
@@ -42,7 +63,7 @@ jobs:
           create-build-artifact: false
       
       - name: Restore dependencies
-        run: dotnet restore 
+        run: dotnet restore -p:TargetFrameworks=${{ matrix.target-framework }}
         shell: bash
         
       - name: Set up JDK 17
@@ -85,12 +106,16 @@ jobs:
           /d:sonar.scanner.scanAll=false
       
       - name: Run unit Tests
-        uses: The-Chest/Actions/dotnet-test@v1
-        with:
-          configuration: Release
-          coverage: 'true'
-          coverage-output: "./TestResults/"
-          continue-on-error: 'true'
+        continue-on-error: true
+        run: >-
+          dotnet test tests/TheChest.Core.Tests.csproj
+          --configuration Release
+          --framework ${{ matrix.target-framework }}
+          --no-restore
+          --collect:"XPlat Code Coverage"
+          --results-directory ./TestResults/
+          -p:TargetFrameworks=${{ matrix.target-framework }}
+          -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
 
       - name: Send Coverage Report
         run: 
