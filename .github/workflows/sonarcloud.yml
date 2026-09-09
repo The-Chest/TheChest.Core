@@ -28,8 +28,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - dotnet-version: '2.1.x'
-            target-framework: netcoreapp2.1
           - dotnet-version: '3.1.x'
             target-framework: netcoreapp3.1
           - dotnet-version: '5.0.x'
