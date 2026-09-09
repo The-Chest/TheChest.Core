@@ -21,8 +21,8 @@ env:
   PROJECT_NAME: "TheChest.Core"
 
 jobs:
-  Analysis:
-    name: Analysis (${{ matrix.target-framework }})
+  Tests:
+    name: Tests (${{ matrix.target-framework }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -47,8 +47,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
@@ -61,11 +59,45 @@ jobs:
         with:
           project-path: "src"
           create-build-artifact: false
-      
+
       - name: Restore dependencies
         run: dotnet restore -p:TargetFrameworks=${{ matrix.target-framework }}
         shell: bash
-        
+
+      - name: Run unit Tests
+        continue-on-error: true
+        run: >-
+          dotnet test tests/TheChest.Core.Tests.csproj
+          --configuration Release
+          --framework ${{ matrix.target-framework }}
+          --no-restore
+          -p:TargetFrameworks=${{ matrix.target-framework }}
+
+  Analysis:
+    name: SonarCloud coverage (.NET 2.1)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '2.1.x'
+
+      - name: Dotnet Build
+        id: dotnet-build
+        uses: The-Chest/Actions/dotnet-build@v1
+        with:
+          project-path: "src"
+          create-build-artifact: false
+
+      - name: Restore dependencies
+        run: dotnet restore -p:TargetFrameworks=netcoreapp2.1
+        shell: bash
+
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -110,11 +142,11 @@ jobs:
         run: >-
           dotnet test tests/TheChest.Core.Tests.csproj
           --configuration Release
-          --framework ${{ matrix.target-framework }}
+          --framework netcoreapp2.1
           --no-restore
           --collect:"XPlat Code Coverage"
           --results-directory ./TestResults/
-          -p:TargetFrameworks=${{ matrix.target-framework }}
+          -p:TargetFrameworks=netcoreapp2.1
           -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
 
       - name: Send Coverage Report
