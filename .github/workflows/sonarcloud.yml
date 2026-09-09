@@ -74,7 +74,7 @@ jobs:
           -p:TargetFrameworks=${{ matrix.target-framework }}
 
   Analysis:
-    name: SonarCloud coverage (.NET 2.1)
+    name: SonarCloud coverage (.NET 6.0)
     runs-on: ubuntu-latest
 
     steps:
