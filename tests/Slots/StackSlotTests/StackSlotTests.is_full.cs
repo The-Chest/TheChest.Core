@@ -1,4 +1,6 @@
-﻿namespace TheChest.Core.Tests.Slots.StackSlotTests
+﻿using TheChest.Core.Tests.Common.Configurations.Attributes;
+
+namespace TheChest.Core.Tests.Slots.StackSlotTests
 {
     public partial class StackSlotTests<T>
     {
@@ -6,10 +8,27 @@
         [Description("IsFull returns false when the content is null, even if the amount is equal to the max stack size.")]
         [Category("IsFull")]
         [Category("Property")]
+        [Category("Reference Type")]
+        [IgnoreIfValueType]
         public void IsFull_CurrentItemNull_ReturnsFalse()
         {
             var maxStackSize = this.GenerateStackSize();
-            var amount = this.random.Next(1, maxStackSize - 1);
+            var amount = maxStackSize;
+            var slot = this.slotFactory.WithItem(default!, amount, maxStackSize);
+
+            Assert.That(slot.IsFull, Is.False);
+        }
+
+        [Test]
+        [Description("IsFull returns true when the content is default, even if the amount is equal to the max stack size.")]
+        [Category("IsFull")]
+        [Category("Property")]
+        [Category("Value Type")]
+        [IgnoreIfReferenceType]
+        public void IsFull_CurrentItemDefault_ReturnsTrue()
+        {
+            var maxStackSize = this.GenerateStackSize();
+            var amount = maxStackSize;
             var slot = this.slotFactory.WithItem(default!, amount, maxStackSize);
 
             Assert.That(slot.IsFull, Is.False);
@@ -22,7 +41,7 @@
         public void IsFull_CurrentItemNotAtMaxStack_ReturnsFalse()
         {
             var maxStackSize = this.GenerateStackSize();
-            var amount = this.random.Next(1, maxStackSize);
+            var amount = this.random.Next(1, maxStackSize - 1);
 
             var slot = this.slotFactory.WithItem(this.itemFactory.CreateDefault(), amount, maxStackSize);
 

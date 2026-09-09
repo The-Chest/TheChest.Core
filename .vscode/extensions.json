@@ -1,6 +1,5 @@
 {
     "recommendations": [
-        "davidanson.vscode-markdownlint",
         "github.vscode-github-actions",
         "ms-dotnettools.csdevkit"
     ]
