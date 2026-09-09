@@ -31,7 +31,7 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
             var amount = maxStackSize;
             var slot = this.slotFactory.WithItem(default!, amount, maxStackSize);
 
-            Assert.That(slot.IsFull, Is.False);
+            Assert.That(slot.IsFull, Is.True);
         }
 
         [Test]
