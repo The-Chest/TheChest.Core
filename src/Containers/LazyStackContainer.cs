@@ -3,6 +3,7 @@ using TheChest.Core.Containers.Interfaces;
 using TheChest.Core.Extensions;
 using TheChest.Core.Slots;
 using TheChest.Core.Slots.Interfaces;
+using TheChest.Core.Validators;
 
 namespace TheChest.Core.Containers
 {

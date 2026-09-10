@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TheChest.Core.Validators;
 
 namespace TheChest.Core.Extensions
 {
