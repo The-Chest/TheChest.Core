@@ -61,7 +61,7 @@ jobs:
           create-build-artifact: false
 
       - name: Restore dependencies
-        run: dotnet restore -p:TargetFrameworks=${{ matrix.target-framework }}
+        run: dotnet restore
         shell: bash
 
       - name: Run unit Tests
