@@ -13,8 +13,7 @@ namespace TheChest.Core.Extensions
         /// <returns>A new array containing only the non-null items from the input array.</returns>
         internal static T[] ToGenericArray<T>(this IEnumerable<object> array)
         {
-            if (array == null)
-                throw new ArgumentNullException(nameof(array));
+            ArgumentValidator.ThrowIfNull(array, nameof(array));
 
             return array
                 .Where(x => !x.IsNull())
@@ -29,8 +28,7 @@ namespace TheChest.Core.Extensions
         /// <exception cref="ArgumentNullException">When the input array is <see langword="null"/>.</exception>
         internal static object[] ToObjectArray<T>(this IEnumerable<T> array)
         {
-            if (array == null)
-                throw new ArgumentNullException(nameof(array));
+            ArgumentValidator.ThrowIfNull(array, nameof(array));
 
             return array
                 .Where(x => !x.IsNull())
