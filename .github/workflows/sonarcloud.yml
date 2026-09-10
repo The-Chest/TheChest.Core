@@ -23,6 +23,7 @@ env:
 jobs:
   Tests:
     name: Tests (${{ matrix.target-framework }})
+    id: unit-tests
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -74,6 +75,7 @@ jobs:
   Analysis:
     name: SonarCloud coverage (${{ matrix.target-framework }})
     runs-on: ubuntu-latest
+    depends-on: unit-tests
     strategy:
       fail-fast: false
       matrix:
