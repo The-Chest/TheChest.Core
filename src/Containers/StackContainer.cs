@@ -64,7 +64,7 @@ namespace TheChest.Core.Containers
         public StackContainer(int size, int maxStackSize)
         {
             ArgumentValidator.ThrowIfNotPositive(size, nameof(size), "Size must be greater than or equal to zero.");
-            ArgumentValidator.ThrowIfNegative(maxStackSize, nameof(maxStackSize), "Max stack size must be greater than zero.");
+            ArgumentValidator.ThrowIfNotPositive(maxStackSize, nameof(maxStackSize), "Max stack size must be greater than zero.");
 
             this.slots = new IStackSlot<T>[size];
             for (int i = 0; i < size; i++)
@@ -82,7 +82,7 @@ namespace TheChest.Core.Containers
         public StackContainer(T[] items, int maxStackSize)
         {
             ArgumentValidator.ThrowIfNull(items, nameof(items));
-            ArgumentValidator.ThrowIfNegative(maxStackSize, nameof(maxStackSize), "Max stack size must be greater than zero.");
+            ArgumentValidator.ThrowIfNotPositive(maxStackSize, nameof(maxStackSize), "Max stack size must be greater than zero.");
 
             this.slots = items.ToStackSlots(maxStackSize);
         }

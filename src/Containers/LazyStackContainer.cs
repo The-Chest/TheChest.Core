@@ -59,7 +59,7 @@ namespace TheChest.Core.Containers
         public LazyStackContainer(int size, int maxStackSize)
         {
             ArgumentValidator.ThrowIfNegative(size, nameof(size), "size cannot be negative.");
-            ArgumentValidator.ThrowIfNegative(maxStackSize, nameof(maxStackSize), "maxStackSize cannot be negative.");
+            ArgumentValidator.ThrowIfNotPositive(maxStackSize, nameof(maxStackSize), "maxStackSize cannot be negative.");
 
             this.slots = new ILazyStackSlot<T>[size];
             for (int i = 0; i < size; i++)
@@ -77,7 +77,7 @@ namespace TheChest.Core.Containers
         public LazyStackContainer((T item, int amount)[] items, int maxAmount)
         {
             ArgumentValidator.ThrowIfNull(items, nameof(items));
-            ArgumentValidator.ThrowIfNegative(maxAmount, nameof(maxAmount));
+            ArgumentValidator.ThrowIfNotPositive(maxAmount, nameof(maxAmount));
 
             var lazySlots = new ILazyStackSlot<T>[items.Length];
 
