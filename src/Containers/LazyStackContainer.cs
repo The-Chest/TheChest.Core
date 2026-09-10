@@ -124,7 +124,7 @@ namespace TheChest.Core.Containers
         public virtual bool Contains(T item, int amount)
         {
             ArgumentValidator.ThrowIfNull(item, nameof(item));
-            ArgumentValidator.ThrowIfNegative(amount, nameof(amount));
+            ArgumentValidator.ThrowIfNotPositive(amount, nameof(amount));
 
             var amountFound = 0;
             for (var i = 0; i < this.slots.Length; i++)
