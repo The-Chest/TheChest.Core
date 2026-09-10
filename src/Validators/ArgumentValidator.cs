@@ -5,11 +5,19 @@ namespace TheChest.Core.Validators
 {
     internal static class ArgumentValidator
     {
+        #region Positive Validation
         internal static void ThrowIfNotPositive(int value, string paramName)
         {
             if (value <= 0)
                 throw new ArgumentOutOfRangeException(paramName);
         }
+
+        internal static void ThrowIfNotPositive(int value, string paramName, string customMessage)
+        {
+            if (value <= 0)
+                throw new ArgumentOutOfRangeException(paramName, customMessage);
+        }
+        #endregion
 
         #region Negative Validation
         internal static void ThrowIfNegative(int value, string paramName)
