@@ -41,6 +41,10 @@ dotnet add package TheChest.Core
 
 Alternatively, you can download the DLL file and reference it directly in your project.
 
+#### Source Files
+
+You can also download only the .cs files needed to use inside your project.
+
 ### Usage
 
 #### Extending the classes
@@ -131,6 +135,20 @@ public class CustomSlot : ISlot<int>
     }
 }
 ```
+
+## Compatibility
+
+TheChest targets **.NET Standard 2.1** and is tested against supported .NET runtimes.
+
+Currently tested runtimes include:
+
+* .NET 6
+* .NET 7
+* .NET 8
+
+Compatibility with other platforms implementing .NET Standard 2.1 may vary.
+
+For the complete runtime compatibility matrix, known issues, and testing policy, see [Compatibility](docs/compatibility.md).
 
 ## Future Plans
 
