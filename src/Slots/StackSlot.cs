@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TheChest.Core.Extensions;
 using TheChest.Core.Slots.Interfaces;
+using TheChest.Core.Validators;
 
 namespace TheChest.Core.Slots
 {
@@ -123,16 +124,8 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentOutOfRangeException">When the length of <paramref name="items"/> exceeds <paramref name="maxAmount"/>.</exception>
         protected static void ValidateContent(IEnumerable<T> items, int maxAmount)
         {
-            if (items is null)
-                throw new ArgumentNullException(nameof(items));
-
-            var itemCount = items.Count();
-            if (itemCount > maxAmount)
-                throw new ArgumentOutOfRangeException(
-                    message: "The item amount cannot be bigger than max amount",
-                    actualValue: itemCount,
-                    paramName: nameof(items)
-                );
+            ArgumentValidator.ThrowIfNull(items, nameof(items));
+            ArgumentValidator.ThrowIfBigger(maxAmount, items.Count(), "The item amount cannot be bigger than max amount");
         }
         /// <summary>
         /// Validates that amount is within the allowed range.
@@ -142,32 +135,17 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> or <paramref name="maxAmount"/> is less than 0, or <paramref name="amount"/> is greater than <paramref name="maxAmount"/>.</exception>
         protected static void ValidateAmount(int amount, int maxAmount)
         {
-            if (amount < 0)
-                throw new ArgumentOutOfRangeException(
-                    paramName: nameof(amount),
-                    actualValue: amount,
-                    message: "The item amount cannot be smaller than zero"
-                );
-            if (maxAmount < 0)
-                throw new ArgumentOutOfRangeException(
-                    paramName: nameof(maxAmount),
-                    actualValue: maxAmount,
-                    message: "The max amount cannot be smaller than zero"
-                );
-            if (amount > maxAmount)
-                throw new ArgumentOutOfRangeException(
-                    paramName: nameof(amount),
-                    actualValue: amount,
-                    message: "The item amount cannot be bigger than max amount"
-                );
+            ArgumentValidator.ThrowIfNegative(amount, nameof(amount), "The item amount cannot be smaller than zero");
+            ArgumentValidator.ThrowIfNegative(maxAmount, nameof(maxAmount), "The max amount cannot be smaller than zero");
+            ArgumentValidator.ThrowIfBigger(amount, maxAmount, "The item amount cannot be bigger than max amount");
         }
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
         public virtual bool Contains(T item)
         {
-            if (item.IsNull())
-                throw new ArgumentNullException(nameof(item), "Item cannot be null");
+            ArgumentValidator.ThrowIfNull(item, nameof(item), "Item cannot be null");
+
             if (this.IsEmpty)
                 return false;
 
@@ -177,8 +155,7 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentNullException">When <paramref name="items"/> is <see langword="null"/> or contain any <see langword="null"/></exception>
         public virtual bool Contains(T[] items)
         {
-            if (items is null)
-                throw new ArgumentNullException(nameof(items), "Items cannot be null");
+            ArgumentValidator.ThrowIfNull(items, nameof(items), "Items cannot be null");
             
             if (items.Length == 0 || this.IsEmpty)
                 return false;
@@ -186,8 +163,7 @@ namespace TheChest.Core.Slots
             for (var i = 0; i < items.Length; i++)
             {
                 var item = items[i];
-                if (item.IsNull())
-                    throw new ArgumentNullException(nameof(items), "Items cannot contain null values");
+                ArgumentValidator.ThrowIfNull(items, nameof(items), "Items cannot contain null values");
                 if (!this.Content.Contains(item))
                     return false;
             }
