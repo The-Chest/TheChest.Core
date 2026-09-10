@@ -17,7 +17,6 @@ jobs:
   build:
     name: "Build Project"
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v6
   
@@ -28,7 +27,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '9.0.x'
     
       - name: Dotnet Build
         id: dotnet-build

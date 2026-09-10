@@ -1,8 +1,8 @@
 ﻿using System;
 using TheChest.Core.Containers.Interfaces;
-using TheChest.Core.Extensions;
 using TheChest.Core.Slots;
 using TheChest.Core.Slots.Interfaces;
+using TheChest.Core.Validators;
 
 namespace TheChest.Core.Containers
 {
@@ -61,8 +61,7 @@ namespace TheChest.Core.Containers
         /// <exception cref="ArgumentNullException">When <paramref name="items"/> is null</exception>
         public Container(T[] items)
         {
-            if (items == null)
-                throw new ArgumentNullException(nameof(items));
+            ArgumentValidator.ThrowIfNull(items, nameof(items));
 
             this.slots = new ISlot<T>[items.Length];
             for (var i = 0; i < items.Length; i++)
@@ -77,8 +76,7 @@ namespace TheChest.Core.Containers
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="size"/> is zero or smaller</exception>
         public Container(int size)
         {
-            if (size <= 0)
-                throw new ArgumentOutOfRangeException(nameof(size));
+            ArgumentValidator.ThrowIfNegative(size, nameof(size));
 
             this.slots = new ISlot<T>[size];
             for (var i = 0; i < size; i++)
@@ -96,10 +94,10 @@ namespace TheChest.Core.Containers
         /// <exception cref="ArgumentException">When <paramref name="items"/> length is bigger than <paramref name="size"/></exception>
         public Container(T[] items, int size)
         {
-            if (items == null)
-                throw new ArgumentNullException(nameof(items));
-            if (size <= 0)
-                throw new ArgumentOutOfRangeException(nameof(size));
+            ArgumentValidator.ThrowIfNull(items, nameof(items));
+            ArgumentValidator.ThrowIfNegative(size, nameof(size));
+            //ArgumentValidator.ThrowIfIndexOutOfRange(size, items.Length, nameof(size)); //??
+            
             if (size < items.Length)
                 throw new ArgumentException(
                     $"The provided size ({size}) cannot be smaller than the number of items ({items.Length}).",
@@ -128,8 +126,7 @@ namespace TheChest.Core.Containers
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
         public virtual bool Contains(T item)
         {
-            if (item.IsNull())
-                throw new ArgumentNullException(nameof(item));
+            ArgumentValidator.ThrowIfNull(item, nameof(item));
 
             for (var i = 0; i < this.slots.Length; i++)
             {
@@ -144,10 +141,8 @@ namespace TheChest.Core.Containers
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
         public virtual bool Contains(T item, int amount)
         {
-            if (item.IsNull())
-                throw new ArgumentNullException(nameof(item));
-            if (amount <= 0)
-                throw new ArgumentOutOfRangeException(nameof(amount));
+            ArgumentValidator.ThrowIfNull(item, nameof(item));
+            ArgumentValidator.ThrowIfNotPositive(amount, nameof(amount));
 
             var amountFound = 0;
             for (var i = 0; i < this.slots.Length; i++)

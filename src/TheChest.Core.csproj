@@ -87,5 +87,7 @@
 
 	<ItemGroup>
 		<InternalsVisibleTo Include="TheChest.Core.Tests" />
+		<!-- Experimental -->
+		<InternalsVisibleTo Include="TheChest.Inventories" />
 	</ItemGroup>
 </Project>
