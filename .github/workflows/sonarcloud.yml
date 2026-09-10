@@ -72,11 +72,14 @@ jobs:
           -p:TargetFrameworks=${{ matrix.target-framework }}
 
   Analysis:
-    name: SonarCloud coverage ($target_framework)
+    name: SonarCloud coverage (${{ matrix.target-framework }})
     runs-on: ubuntu-latest
-    env:
-      dotnet_version: '6.0.x'
-      target_framework: net6.0
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - dotnet-version: '6.0.x'
+            target-framework: net6.0
 
     steps:
       - uses: actions/checkout@v6
@@ -86,7 +89,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: $dotnet_version
+          dotnet-version: ${{ matrix.dotnet-version }}
 
       - name: Dotnet Build
         id: dotnet-build
@@ -144,8 +147,8 @@ jobs:
           --no-restore
           --collect:"XPlat Code Coverage;Format=opencover" 
           --results-directory './TestResults/'
-          --framework $target_framework
-          -p:TargetFrameworks=$target_framework
+          --framework ${{ matrix.target-framework }}
+          -p:TargetFrameworks=${{ matrix.target-framework }}
         shell: bash
 
       - name: Send Coverage Report
