@@ -14,6 +14,7 @@ Targeting .NET Standard 2.1 defines the API surface available to the library. Ho
 | .NET 6        | Tested        |                                                   |
 | .NET 7        | Tested        |                                                   |
 | .NET 8        | Tested        |                                                   |
+| .NET 9        | Tested        |                                                   |
 | .NET 10       | Known issues  | Issues with references used by internal classes   |
 
 > Other platforms implementing .NET Standard 2.1 may also work, but are not currently included in the project's CI test matrix.
