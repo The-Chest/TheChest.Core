@@ -75,7 +75,7 @@ jobs:
   Analysis:
     name: SonarCloud coverage (${{ matrix.target-framework }})
     runs-on: ubuntu-latest
-    depends-on: unit-tests
+    needs: unit-tests
     strategy:
       fail-fast: false
       matrix:
