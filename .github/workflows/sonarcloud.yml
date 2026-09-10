@@ -21,8 +21,68 @@ env:
   PROJECT_NAME: "TheChest.Core"
 
 jobs:
-  Analysis:
+  Tests:
+    name: Tests (${{ matrix.target-framework }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # - dotnet-version: '2.1.x'
+          #   target-framework: netcoreapp2.1
+          # - dotnet-version: '3.1.x'
+          #   target-framework: netcoreapp3.1
+          # - dotnet-version: '5.0.x'
+          #   target-framework: net5.0
+          - dotnet-version: '6.0.x'
+            target-framework: net6.0
+          - dotnet-version: '7.0.x'
+            target-framework: net7.0
+          - dotnet-version: '8.0.x'
+            target-framework: net8.0
+          - dotnet-version: '9.0.x'
+            target-framework: net9.0
+          # - dotnet-version: '10.0.x'
+          #   target-framework: net10.0
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Dotnet Build
+        id: dotnet-build
+        uses: The-Chest/Actions/dotnet-build@v1
+        with:
+          project-path: "src"
+          create-build-artifact: false
+
+      - name: Restore dependencies
+        run: dotnet restore
+        shell: bash
+
+      - name: Run unit Tests
+        continue-on-error: false
+        run: >-
+          dotnet test tests/TheChest.Core.Tests.csproj
+          --configuration Release
+          --framework ${{ matrix.target-framework }}
+          --no-restore
+          -p:TargetFrameworks=${{ matrix.target-framework }}
+
+  Analysis:
+    name: SonarCloud coverage (${{ matrix.target-framework }})
+    runs-on: ubuntu-latest
+    needs: Tests
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - dotnet-version: '6.0.x'
+            target-framework: net6.0
 
     steps:
       - uses: actions/checkout@v6
@@ -32,7 +92,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: ${{ matrix.dotnet-version }}
 
       - name: Dotnet Build
         id: dotnet-build
@@ -84,13 +144,15 @@ jobs:
           /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml"
           /d:sonar.scanner.scanAll=false
       
-      - name: Run unit Tests
-        uses: The-Chest/Actions/dotnet-test@v1
-        with:
-          configuration: Release
-          coverage: 'true'
-          coverage-output: "./TestResults/"
-          continue-on-error: 'true'
+      - name: Run Tests with coverage
+        continue-on-error: true
+        run: dotnet test tests/TheChest.Core.Tests.csproj
+          --no-restore
+          --collect:"XPlat Code Coverage;Format=opencover" 
+          --results-directory './TestResults/'
+          --framework ${{ matrix.target-framework }}
+          -p:TargetFrameworks=${{ matrix.target-framework }}
+        shell: bash
 
       - name: Send Coverage Report
         run: 
