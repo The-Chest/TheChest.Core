@@ -57,10 +57,8 @@ namespace TheChest.Core.Containers
         /// <param name="maxStackSize">The maximum stack size for each slot.</param>
         public LazyStackContainer(int size, int maxStackSize)
         {
-            if (size < 0)
-                throw new ArgumentOutOfRangeException(nameof(size), "Size cannot be negative.");
-            if (maxStackSize <= 0)
-                throw new ArgumentOutOfRangeException(nameof(maxStackSize));
+            ArgumentValidator.ThrowIfNegative(size, nameof(size), "size cannot be negative.");
+            ArgumentValidator.ThrowIfNegative(maxStackSize, nameof(maxStackSize), "maxStackSize cannot be negative.");
 
             this.slots = new ILazyStackSlot<T>[size];
             for (int i = 0; i < size; i++)
@@ -77,10 +75,8 @@ namespace TheChest.Core.Containers
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="maxAmount"/> is less than or equal to zero, or when an amount within <paramref name="items"/> is less than or equal to zero.</exception>
         public LazyStackContainer((T item, int amount)[] items, int maxAmount)
         {
-            if (items == null)
-                throw new ArgumentNullException(nameof(items));
-            if (maxAmount <= 0)
-                throw new ArgumentOutOfRangeException(nameof(maxAmount));
+            ArgumentValidator.ThrowIfNull(items, nameof(items));
+            ArgumentValidator.ThrowIfNegative(maxAmount, nameof(maxAmount));
 
             var lazySlots = new ILazyStackSlot<T>[items.Length];
 
@@ -111,8 +107,7 @@ namespace TheChest.Core.Containers
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
         public virtual bool Contains(T item)
         {
-            if (item.IsNull())
-                throw new ArgumentNullException(nameof(item));
+            ArgumentValidator.ThrowIfNull(item, nameof(item));
 
             for (var i = 0; i < this.slots.Length; i++)
             {
@@ -127,10 +122,8 @@ namespace TheChest.Core.Containers
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
         public virtual bool Contains(T item, int amount)
         {
-            if (item.IsNull()) 
-                throw new ArgumentNullException(nameof(item));
-            if (amount <= 0)
-                throw new ArgumentOutOfRangeException(nameof(amount));
+            ArgumentValidator.ThrowIfNull(item, nameof(item));
+            ArgumentValidator.ThrowIfNegative(amount, nameof(amount));
 
             var amountFound = 0;
             for (var i = 0; i < this.slots.Length; i++)
