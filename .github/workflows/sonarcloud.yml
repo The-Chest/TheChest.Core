@@ -72,8 +72,11 @@ jobs:
           -p:TargetFrameworks=${{ matrix.target-framework }}
 
   Analysis:
-    name: SonarCloud coverage (.NET 6.0)
+    name: SonarCloud coverage (${{ env.target-framework }})
     runs-on: ubuntu-latest
+    env:
+      dotnet-version: '6.0.x'
+      target-framework: net6.0
 
     steps:
       - uses: actions/checkout@v6
@@ -83,7 +86,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: ${{ env.dotnet-version }}
 
       - name: Dotnet Build
         id: dotnet-build
@@ -135,13 +138,15 @@ jobs:
           /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml"
           /d:sonar.scanner.scanAll=false
       
-      - name: Run unit Tests
-        uses: The-Chest/Actions/dotnet-test@v1
-        with:
-          configuration: Release
-          coverage: 'true'
-          coverage-output: "./TestResults/"
-          continue-on-error: 'true'
+      - name: Run Tests with coverage
+        continue-on-error: true
+        run: dotnet test tests/TheChest.Core.Tests.csproj
+          --no-restore
+          --collect:"XPlat Code Coverage;Format=opencover" 
+          --results-directory './TestResults/'
+          --framework ${{ env.target-framework }}
+          -p:TargetFrameworks=${{ env.target-framework }}
+        shell: bash
 
       - name: Send Coverage Report
         run: 
