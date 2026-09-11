@@ -125,7 +125,7 @@ namespace TheChest.Core.Slots
         protected static void ValidateContent(IEnumerable<T> items, int maxAmount)
         {
             ArgumentValidator.ThrowIfNull(items, nameof(items));
-            ArgumentValidator.ThrowIfBigger(maxAmount, items.Count(), "The item amount cannot be bigger than max amount");
+            ArgumentValidator.ThrowIfBigger(items.Count(), maxAmount, nameof(items), "The item amount cannot be bigger than max amount");
         }
         /// <summary>
         /// Validates that amount is within the allowed range.
@@ -137,7 +137,7 @@ namespace TheChest.Core.Slots
         {
             ArgumentValidator.ThrowIfNegative(amount, nameof(amount), "The item amount cannot be smaller than zero");
             ArgumentValidator.ThrowIfNegative(maxAmount, nameof(maxAmount), "The max amount cannot be smaller than zero");
-            ArgumentValidator.ThrowIfBigger(amount, maxAmount, "The item amount cannot be bigger than max amount");
+            ArgumentValidator.ThrowIfBigger(amount, maxAmount, nameof(amount), "The item amount cannot be bigger than max amount");
         }
 
         /// <inheritdoc/>
