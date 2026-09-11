@@ -53,10 +53,33 @@ namespace TheChest.Core.Validators
         }
         #endregion
 
+        #region IndexOutOfRange
         internal static void ThrowIfIndexOutOfRange(int index, int length, string paramName)
         {
             if (index < 0 || index >= length)
                 throw new ArgumentOutOfRangeException(paramName);
         }
+
+        internal static void ThrowIfIndexOutOfRange(int index, int length, string paramName, string customMessage)
+        {
+            if (index < 0 || index >= length)
+                throw new ArgumentOutOfRangeException(paramName, index, customMessage);
+        }
+        #endregion
+
+        
+        #region OutOfRange
+        internal static void ThrowIfBigger(int value, int range, string paramName)
+        {
+            if (value > range)
+                throw new ArgumentOutOfRangeException(paramName);
+        }
+
+        internal static void ThrowIfBigger(int value, int range, string paramName, string customMessage)
+        {
+            if (value > range)
+                throw new ArgumentOutOfRangeException(paramName, value, customMessage);
+        }
+        #endregion
     }
 }

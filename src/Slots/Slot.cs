@@ -1,6 +1,6 @@
 ﻿using System;
-using TheChest.Core.Extensions;
 using TheChest.Core.Slots.Interfaces;
+using TheChest.Core.Validators;
 
 namespace TheChest.Core.Slots
 {
@@ -58,13 +58,12 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
         public virtual bool Contains(T item)
         {
-            if (item.IsNull())
-                throw new ArgumentNullException(nameof(item));
+            ArgumentValidator.ThrowIfNull(item, nameof(item));
 
             if (this.IsEmpty)
                 return false;
 
-            return this.Content?.Equals(item) ?? false;
+            return this.Content.Equals(item);
         }
     }
 }
