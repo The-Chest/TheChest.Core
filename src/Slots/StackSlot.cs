@@ -163,7 +163,7 @@ namespace TheChest.Core.Slots
             for (var i = 0; i < items.Length; i++)
             {
                 var item = items[i];
-                ArgumentValidator.ThrowIfNull(items, nameof(items), "Items cannot contain null values");
+                ArgumentValidator.ThrowIfNull(item, nameof(items), "Items cannot contain null values");
                 if (!this.Content.Contains(item))
                     return false;
             }
