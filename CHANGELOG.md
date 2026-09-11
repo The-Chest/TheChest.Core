@@ -2,20 +2,14 @@
 
 ## What's Added
 - `.NET 6`, `.NET 7`, `.NET 8` and `.NET 9` to the officially tested runtime matrix.
-- Internal class `ArgumentValidator` to help the classes to validate arguments passed by without code duplication
-
-## What's Changed
-* 
-
-## What's Fixed
-* 
+- Internal class `ArgumentValidator` to help the classes to validate arguments passed by without code duplication.
 
 ## What's Next
 * Improves in Container classes to implement from interfaces from `System.Collections.Generic`
 * The protected field `slots` in Container classes can be changed to an protected property.
 
 ## Known issues
-* Complexity
+* Complexity and Library size
   * The Container classes seems redundant at the moment. They might be unified in a single one or have a `BaseContainer` class created(unlikely).
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.19.0...v0.20.0
