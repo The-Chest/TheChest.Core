@@ -99,7 +99,7 @@ jobs:
         run: dotnet restore src
       
       - name: Push library to Github Packages
-        run: dotnet nuget push ${{ env.PROJECT_NAME }}.${{ steps.get-version.outputs.version }}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key "${{secrets.GH_NUGET_APIKEY}}"
+        run: dotnet nuget push ${{ env.RELEASE_OUTPUT_DIR }}/${{ env.PROJECT_NAME }}.${{ steps.get-version.outputs.version }}.nupkg --source https://nuget.pkg.github.com/The-Chest/index.json --api-key "${{secrets.GH_NUGET_APIKEY}}"
 
       - name: Upload DLL to release
         uses: The-Chest/Actions/upload-release-artifacts@v1
