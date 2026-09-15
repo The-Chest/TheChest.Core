@@ -145,8 +145,9 @@ Currently tested runtimes include:
 * .NET 6
 * .NET 7
 * .NET 8
+* .NET 9
 
-Compatibility with other platforms implementing .NET Standard 2.1 may vary.
+Compatibility with other platforms implementing .NET Standard 2.1 may (or may not) vary.
 
 For the complete runtime compatibility matrix, known issues, and testing policy, see [Compatibility](docs/compatibility.md).
 
