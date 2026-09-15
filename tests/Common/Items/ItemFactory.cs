@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Linq;
+using System.Reflection;
 using TheChest.Core.Tests.Common.Extensions;
 using TheChest.Core.Tests.Common.Items.Interfaces;
 
@@ -37,7 +39,6 @@ namespace TheChest.Core.Tests.Common.Items
                 if (instanceType.IsEnum)
                 {
                     var values = ((T[])instanceType.GetEnumValues()).Skip(1).ToArray();
-                    values.Shuffle();
                     return (T)values.GetValue(0)!;
                 }
                 return SetRandomValue<T>(instanceType);
@@ -65,6 +66,7 @@ namespace TheChest.Core.Tests.Common.Items
         {
             return type switch
             {
+                #if NET6_0_OR_GREATER
                 var t when t == typeof(int)
                     => (Y)(object)Random.Shared.Next(1, 1000),
 
@@ -88,7 +90,28 @@ namespace TheChest.Core.Tests.Common.Items
 
                 var t when t == typeof(bool)
                     => (Y)(object)(Random.Shared.Next(0, 2) == 1),
+#else
+                var t when t == typeof(int) || t == typeof(long)
+                    => (Y)(object)new Random().Next(1, 1000),
 
+                var t when t == typeof(double)
+                    => (Y)(object)(new Random().NextDouble() * 1000),
+
+                var t when t == typeof(float)
+                    => (Y)(object)(float)(new Random().NextDouble() * 1000),
+
+                var t when t == typeof(decimal)
+                    => (Y)(object)(decimal)(new Random().NextDouble() * 1000),
+
+                var t when t == typeof(byte)
+                    => (Y)(object)(byte)new Random().Next(1, 255),
+
+                var t when t == typeof(string)
+                    => (Y)(object)Guid.NewGuid().ToString(),
+
+                var t when t == typeof(bool)
+                    => (Y)(object)(new Random().Next(0, 2) == 1),
+#endif
                 _ => throw new NotImplementedException(
                     $"Random generation for type {typeof(Y).Name} is not implemented.")
             };
