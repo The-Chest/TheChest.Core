@@ -24,9 +24,17 @@ namespace TheChest.Core.Tests.Common.Items
         public T CreateDifferentFrom(T item)
         {
             var randomItem = this.CreateRandom()!;
+            var attempts = 0;
             while (randomItem.Equals(item))
             {
                 randomItem = CreateRandom()!;
+
+                if(!item.Equals(randomItem))
+                    break;
+
+                attempts++;
+                if (attempts > 100)
+                    throw new InvalidOperationException("Could not create a different item");
             }
             return randomItem;
         }
@@ -116,8 +124,7 @@ namespace TheChest.Core.Tests.Common.Items
                 var t when t == typeof(bool)
                     => (Y)(object)(new Random().Next(0, 2) == 1),
 #endif
-                _ => throw new NotImplementedException(
-                    $"Random generation for type {typeof(Y).Name} is not implemented.")
+                _ => throw new NotImplementedException($"Random generation for type {typeof(Y).Name} is not implemented.")
             };
         }
     }

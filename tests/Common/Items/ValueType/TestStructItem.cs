@@ -32,7 +32,7 @@ namespace TheChest.Core.Tests.Common.Items.ValueType
         public override bool Equals(object? obj)
         {
             if (obj == null) return false;
-            #if NET5_0_OR_GREATER
+#if NET5_0_OR_GREATER
             if (obj is not TestStructItem) return false;
 #else
             if (!(obj is TestStructItem)) return false;
