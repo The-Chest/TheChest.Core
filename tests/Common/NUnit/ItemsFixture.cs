@@ -1,4 +1,10 @@
-﻿using TheChest.Core.Tests.Common.Items.ReferenceType;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
+using TheChest.Core.Containers;
+using TheChest.Core.Slots;
+using TheChest.Core.Tests.Common.Items.ReferenceType;
 using TheChest.Core.Tests.Common.Items.ValueType;
 
 namespace TheChest.Core.Tests.Common.NUnit
@@ -7,20 +13,20 @@ namespace TheChest.Core.Tests.Common.NUnit
     {
         internal static readonly TestFixtureData[] ReferenceTypes =
         {
-            new(typeof(TestItem))
+            new TestFixtureData(typeof(TestItem))
         };
 
         internal static readonly TestFixtureData[] ValueTypes =
         {
-            new(typeof(TestStructItem)),
-            new(typeof(TestEnumItem))
+            new TestFixtureData(typeof(TestStructItem)),
+            new TestFixtureData(typeof(TestEnumItem))
         };
 
         internal static readonly TestFixtureData[] All =
         {
-            new(typeof(TestItem)),
-            new(typeof(TestStructItem)),
-            new(typeof(TestEnumItem))
+            new TestFixtureData(typeof(TestItem)),
+            new TestFixtureData(typeof(TestStructItem)),
+            new TestFixtureData(typeof(TestEnumItem))
         };
     }
 }

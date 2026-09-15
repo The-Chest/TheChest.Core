@@ -1,4 +1,10 @@
-﻿using TheChest.Core.Slots.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
+using TheChest.Core.Containers;
+using TheChest.Core.Slots;
+using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Tests.Common.Attributes;
 
 namespace TheChest.Core.Tests.Factories.Slots.Interfaces

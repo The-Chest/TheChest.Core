@@ -1,4 +1,10 @@
-﻿using TheChest.Core.Slots.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
+using TheChest.Core.Containers;
+using TheChest.Core.Slots;
+using TheChest.Core.Slots.Extensions;
 
 namespace TheChest.Core.Tests.Extensions
 {
