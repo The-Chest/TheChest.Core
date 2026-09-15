@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
-using TheChest.Core.Containers;
-using TheChest.Core.Slots;
 using System.Reflection;
 
 namespace TheChest.Core.Tests.Common.Attributes
