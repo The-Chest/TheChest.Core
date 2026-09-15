@@ -1,11 +1,7 @@
-using System.Collections.Generic;
-using NUnit.Framework;
-using TheChest.Core.Containers;
-using TheChest.Core.Slots;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using TheChest.Core.Tests.Common.Extensions;
 using TheChest.Core.Tests.Common.Items.Interfaces;
 
 namespace TheChest.Core.Tests.Common.Items
@@ -23,20 +19,33 @@ namespace TheChest.Core.Tests.Common.Items
 
         public T CreateDifferentFrom(T item)
         {
-            var randomItem = this.CreateRandom()!;
-            var attempts = 0;
-            while (randomItem.Equals(item))
+            var comparer = EqualityComparer<T>.Default;
+            var type = typeof(T);
+
+            if (type.IsEnum)
             {
-                randomItem = CreateRandom()!;
+                foreach (T value in type.GetEnumValues())
+                {
+                    if (!comparer.Equals(value, item))
+                        return value;
+                }
 
-                if(!item.Equals(randomItem))
-                    break;
-
-                attempts++;
-                if (attempts > 100)
-                    throw new InvalidOperationException("Could not create a different item");
+                throw new InvalidOperationException($"Enum type {type.FullName} has no value different from the provided item");
             }
-            return randomItem;
+
+            if (type == typeof(bool))
+                return (T)(object)!(bool)(object)item!;
+
+            const int maxAttempts = 100;
+            for (var attempts = 0; attempts < maxAttempts; attempts++)
+            {
+                var randomItem = this.CreateRandom();
+
+                if (!comparer.Equals(randomItem, item))
+                    return randomItem;
+            }
+
+            throw new InvalidOperationException($"Could not create an item different from the provided {type.FullName} value after {maxAttempts} attempts");
         }
 
         public T CreateRandom()
