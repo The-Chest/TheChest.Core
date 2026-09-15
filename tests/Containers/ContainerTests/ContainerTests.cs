@@ -1,4 +1,10 @@
-﻿using TheChest.Core.Tests.Common.Configurations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
+using TheChest.Core.Containers;
+using TheChest.Core.Slots;
+using TheChest.Core.Tests.Common.Configurations;
 using TheChest.Core.Tests.Common.Items.Interfaces;
 using TheChest.Core.Tests.Common.Items.ReferenceType;
 using TheChest.Core.Tests.Common.Items.ValueType;

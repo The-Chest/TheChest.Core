@@ -1,4 +1,10 @@
-﻿using System.Reflection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
+using TheChest.Core.Containers;
+using TheChest.Core.Slots;
+using System.Reflection;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Tests.Common.Extensions

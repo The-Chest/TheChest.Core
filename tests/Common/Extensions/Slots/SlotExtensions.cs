@@ -1,4 +1,7 @@
-﻿using System;
+using NUnit.Framework;
+using TheChest.Core.Containers;
+using TheChest.Core.Slots;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -79,7 +82,7 @@ namespace TheChest.Core.Tests.Common.Extensions.Slots
             if (array is null)
                 return Array.Empty<T>();
 
-            return array.Where(x => x is not null).Cast<T>().ToArray();
+            return array.Where(x => x != null).Cast<T>().ToArray();
         }
     }
 }

@@ -1,4 +1,10 @@
-﻿namespace TheChest.Core.Tests.Common.Configurations.Attributes
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
+using TheChest.Core.Containers;
+using TheChest.Core.Slots;
+namespace TheChest.Core.Tests.Common.Configurations.Attributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     internal sealed class IgnoreIfReferenceTypeAttribute : TypeConditionAttribute
