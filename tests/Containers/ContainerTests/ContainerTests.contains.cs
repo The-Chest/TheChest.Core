@@ -1,4 +1,6 @@
-﻿using TheChest.Core.Tests.Common.Configurations.Attributes;
+using System.Linq;
+using NUnit.Framework;
+using TheChest.Core.Tests.Common.Configurations.Attributes;
 
 namespace TheChest.Core.Tests.Containers.ContainerTests
 {

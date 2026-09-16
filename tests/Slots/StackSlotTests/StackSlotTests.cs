@@ -1,4 +1,6 @@
-﻿using TheChest.Core.Tests.Common.Configurations;
+using NUnit.Framework;
+using TheChest.Core.Slots;
+using TheChest.Core.Tests.Common.Configurations;
 using TheChest.Core.Tests.Common.Items.Interfaces;
 using TheChest.Core.Tests.Common.Items.ReferenceType;
 using TheChest.Core.Tests.Common.Items.ValueType;

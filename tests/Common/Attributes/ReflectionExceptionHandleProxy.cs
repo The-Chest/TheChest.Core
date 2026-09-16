@@ -1,10 +1,11 @@
-﻿using System.Reflection;
+using System;
+using System.Reflection;
 
 namespace TheChest.Core.Tests.Common.Attributes
 {
     internal class ReflectionExceptionHandleProxy<T> : DispatchProxy
     {
-        private T? target;
+        private T target = default!;
 
         public ReflectionExceptionHandleProxy() { }
 

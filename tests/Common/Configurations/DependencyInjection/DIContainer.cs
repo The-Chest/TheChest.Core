@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+using System;
+using System.Reflection;
 using TheChest.Core.Tests.Common.Attributes;
 using TheChest.Core.Tests.Common.Extensions;
 

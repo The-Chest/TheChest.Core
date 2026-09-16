@@ -1,4 +1,5 @@
-﻿namespace TheChest.Core.Tests.Common.Configurations.Attributes
+using System;
+namespace TheChest.Core.Tests.Common.Configurations.Attributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     internal sealed class IgnoreIfReferenceTypeAttribute : TypeConditionAttribute

@@ -1,4 +1,4 @@
-﻿namespace TheChest.Core.Tests.Common.Items.Interfaces
+namespace TheChest.Core.Tests.Common.Items.Interfaces
 {
     /// <summary>
     /// Generic item creation.

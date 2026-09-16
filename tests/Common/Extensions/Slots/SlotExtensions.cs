@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TheChest.Core.Tests.Common.Extensions.Slots
 {
@@ -79,7 +76,7 @@ namespace TheChest.Core.Tests.Common.Extensions.Slots
             if (array is null)
                 return Array.Empty<T>();
 
-            return array.Where(x => x is not null).Cast<T>().ToArray();
+            return array.Where(x => x != null).Cast<T>().ToArray();
         }
     }
 }

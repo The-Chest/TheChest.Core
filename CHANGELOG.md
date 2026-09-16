@@ -1,3 +1,14 @@
+# v0.2x.x
+
+## What's Added
+- `.NET 10` to the officially tested runtime matrix.
+
+## Known issues
+* Complexity and Library size
+  * The Container classes seems redundant at the moment. They might be unified in a single one or have a `BaseContainer` class created(unlikely).
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.20.0...v0.2x.x
+
 # v0.20.0
 
 ## What's Added

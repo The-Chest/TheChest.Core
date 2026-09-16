@@ -1,4 +1,7 @@
-﻿using TheChest.Core.Tests.Common.Configurations.Attributes;
+using System;
+using System.Linq;
+using NUnit.Framework;
+using TheChest.Core.Tests.Common.Configurations.Attributes;
 using TheChest.Core.Tests.Common.NUnit.TestCases;
 
 namespace TheChest.Core.Tests.Containers.StackContainerTests

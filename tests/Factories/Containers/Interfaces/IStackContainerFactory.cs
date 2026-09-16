@@ -1,4 +1,4 @@
-﻿using TheChest.Core.Containers.Interfaces;
+using TheChest.Core.Containers.Interfaces;
 
 namespace TheChest.Core.Tests.Factories.Containers.Interfaces
 {

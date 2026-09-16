@@ -1,4 +1,6 @@
-﻿using TheChest.Core.Tests.Common.Configurations.Attributes;
+using NUnit.Framework;
+using TheChest.Core.Slots;
+using TheChest.Core.Tests.Common.Configurations.Attributes;
 
 namespace TheChest.Core.Tests.Slots.SlotTests
 {

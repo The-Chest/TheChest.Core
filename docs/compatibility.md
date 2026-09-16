@@ -6,16 +6,16 @@ Targeting .NET Standard 2.1 defines the API surface available to the library. Ho
 
 ## Tested runtimes
 
-| Runtime       | Status        | Notes                                             |
-|---------------|---------------|---------------------------------------------------|
-| .NET Core 2.1 | Unsupported   | Does not support .NET Standard 2.1                |
-| .NET Core 3.1 | Not tested    | Test project does not support this runtime        |
-| .NET 5        | Not tested    | Test project does not support this runtime        |
-| .NET 6        | Tested        |                                                   |
-| .NET 7        | Tested        |                                                   |
-| .NET 8        | Tested        |                                                   |
-| .NET 9        | Tested        |                                                   |
-| .NET 10       | Known issues  | Issues with references used by internal classes   |
+| Runtime       | Status        | Notes															|
+|---------------|---------------|---------------------------------------------------------------|
+| .NET Core 2.1 | Unsupported   | Does not support .NET Standard 2.1							|
+| .NET Core 3.1 | Not tested    | Test project does not work with this runtime in the workflow	|
+| .NET 5        | Not tested    | Test project does not support this runtime					|
+| .NET 6        | Tested        |																|
+| .NET 7        | Tested        |																|
+| .NET 8        | Tested        |																|
+| .NET 9        | Tested        |																|
+| .NET 10       | Tested        | Issues with references used by internal classes				|
 
 > Other platforms implementing .NET Standard 2.1 may also work, but are not currently included in the project's CI test matrix.
 

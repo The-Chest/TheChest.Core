@@ -1,4 +1,7 @@
-﻿namespace TheChest.Core.Tests.Common.Configurations.DependencyInjection
+using System;
+using System.Collections.Generic;
+using System.Linq;
+namespace TheChest.Core.Tests.Common.Configurations.DependencyInjection
 {
     internal class Registration
     {

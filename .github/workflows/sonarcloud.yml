@@ -42,8 +42,8 @@ jobs:
             target-framework: net8.0
           - dotnet-version: '9.0.x'
             target-framework: net9.0
-          # - dotnet-version: '10.0.x'
-          #   target-framework: net10.0
+          - dotnet-version: '10.0.x'
+            target-framework: net10.0
 
     steps:
       - uses: actions/checkout@v6
@@ -81,8 +81,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - dotnet-version: '6.0.x'
-            target-framework: net6.0
+          - dotnet-version: '9.0.x'
+            target-framework: net9.0
 
     steps:
       - uses: actions/checkout@v6

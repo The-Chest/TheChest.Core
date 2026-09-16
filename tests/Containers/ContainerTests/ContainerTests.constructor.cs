@@ -1,4 +1,7 @@
-﻿using TheChest.Core.Tests.Common.Extensions.Containers;
+using System;
+using NUnit.Framework;
+using TheChest.Core.Containers;
+using TheChest.Core.Tests.Common.Extensions.Containers;
 
 namespace TheChest.Core.Tests.Containers.ContainerTests
 {

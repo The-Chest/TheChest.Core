@@ -1,4 +1,5 @@
-﻿namespace TheChest.Core.Tests.Common.Extensions
+using System;
+namespace TheChest.Core.Tests.Common.Extensions
 {
     internal static class ArrayExtensions
     {

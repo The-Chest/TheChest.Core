@@ -1,4 +1,7 @@
-﻿namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
+using System;
+using NUnit.Framework;
+using TheChest.Core.Containers;
+namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 {
     public partial class LazyStackContainerTests<T>
     {

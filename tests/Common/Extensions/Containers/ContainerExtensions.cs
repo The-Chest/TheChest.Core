@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+using System;
+using System.Reflection;
 
 namespace TheChest.Core.Tests.Common.Extensions.Containers
 {

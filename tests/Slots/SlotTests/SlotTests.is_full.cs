@@ -1,4 +1,5 @@
-﻿namespace TheChest.Core.Tests.Slots.SlotTests
+using NUnit.Framework;
+namespace TheChest.Core.Tests.Slots.SlotTests
 {
     public partial class SlotTests<T>
     {

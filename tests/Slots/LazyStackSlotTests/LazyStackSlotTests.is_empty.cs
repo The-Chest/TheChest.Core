@@ -1,4 +1,5 @@
-﻿namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
+using NUnit.Framework;
+namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 {
     public partial class LazyStackSlotTests<T>
     {

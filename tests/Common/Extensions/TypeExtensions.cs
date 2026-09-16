@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+using System;
+using System.Linq;
+using System.Reflection;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Tests.Common.Extensions

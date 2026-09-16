@@ -1,4 +1,5 @@
-﻿using TheChest.Core.Extensions;
+using NUnit.Framework;
+using TheChest.Core.Extensions;
 
 namespace TheChest.Core.Tests.Extensions
 {

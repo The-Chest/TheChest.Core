@@ -146,6 +146,7 @@ Currently tested runtimes include:
 * .NET 7
 * .NET 8
 * .NET 9
+* .NET 10
 
 Compatibility with other platforms implementing .NET Standard 2.1 may (or may not) vary.
 

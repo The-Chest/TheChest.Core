@@ -1,4 +1,6 @@
-﻿using TheChest.Core.Extensions;
+using System;
+using NUnit.Framework;
+using TheChest.Core.Extensions;
 using TheChest.Core.Tests.Common.Configurations.Attributes;
 
 namespace TheChest.Core.Tests.Extensions

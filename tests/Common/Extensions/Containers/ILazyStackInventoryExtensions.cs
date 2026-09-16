@@ -1,4 +1,4 @@
-﻿using TheChest.Core.Containers.Interfaces;
+using TheChest.Core.Containers.Interfaces;
 using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Tests.Common.Extensions.Slots;
 

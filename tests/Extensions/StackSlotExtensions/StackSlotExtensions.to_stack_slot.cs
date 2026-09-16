@@ -1,4 +1,6 @@
-﻿using TheChest.Core.Slots.Extensions;
+using System;
+using NUnit.Framework;
+using TheChest.Core.Slots.Extensions;
 
 namespace TheChest.Core.Tests.Extensions
 {

@@ -1,4 +1,7 @@
-﻿namespace TheChest.Core.Tests.Common.NUnit.TestCases
+using System;
+using System.Collections.Generic;
+using NUnit.Framework;
+namespace TheChest.Core.Tests.Common.NUnit.TestCases
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     internal sealed class WrongAmountAttribute : TestCaseSourceAttribute

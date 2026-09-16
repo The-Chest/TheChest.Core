@@ -1,4 +1,5 @@
-﻿namespace TheChest.Core.Tests.Common.Items.ReferenceType
+using System;
+namespace TheChest.Core.Tests.Common.Items.ReferenceType
 {
     internal class TestItem
     {
@@ -23,7 +24,7 @@
         public override bool Equals(object? obj)
         {
             if (obj == null) return false;
-            if (obj is not TestItem) return false;
+            if (!(obj is TestItem)) return false;
             var item = obj as TestItem;
             return item?.Id == this.Id;
         }

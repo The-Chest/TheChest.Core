@@ -1,4 +1,6 @@
-﻿using TheChest.Core.Tests.Common.Configurations.Attributes;
+using System;
+using NUnit.Framework;
+using TheChest.Core.Tests.Common.Configurations.Attributes;
 using TheChest.Core.Tests.Common.NUnit.TestCases;
 
 namespace TheChest.Core.Tests.Slots.LazyStackSlotTests

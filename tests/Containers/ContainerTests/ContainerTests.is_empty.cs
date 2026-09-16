@@ -1,4 +1,5 @@
-﻿namespace TheChest.Core.Tests.Containers.ContainerTests
+using NUnit.Framework;
+namespace TheChest.Core.Tests.Containers.ContainerTests
 {
     public partial class ContainerTests<T>
     {
