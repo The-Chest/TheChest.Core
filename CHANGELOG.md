@@ -1,7 +1,7 @@
 # v0.2x.x
 
 ## What's Added
-- `.NET 10`, `.NET 5` and `.NET Core 3.1` to the officially tested runtime matrix.
+- `.NET 10` to the officially tested runtime matrix.
 
 ## Known issues
 * Complexity and Library size
