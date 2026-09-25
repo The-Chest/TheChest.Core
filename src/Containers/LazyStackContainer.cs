@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using TheChest.Core.Containers.Interfaces;
 using TheChest.Core.Extensions;
 using TheChest.Core.Slots;
@@ -139,6 +141,21 @@ namespace TheChest.Core.Containers
             }
 
             return false;
+        }
+
+        /// <inheritdoc/>
+        public IEnumerator<IEnumerable<T>> GetEnumerator()
+        {
+            for (int i = 0; i < this.slots.Length; i++)
+            {
+                yield return this.slots[i];
+            }
+        }
+
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

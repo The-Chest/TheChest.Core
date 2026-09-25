@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using TheChest.Core.Extensions;
 using TheChest.Core.Slots.Interfaces;
 
@@ -170,6 +172,21 @@ namespace TheChest.Core.Slots
                 return false;
             
             return item.Equals(this.content) && amount <= this.Amount;
+        }
+
+        /// <inheritdoc/>
+        public IEnumerator<T> GetEnumerator()
+        {
+            for(int i = 0; i < this.amount; i++)
+            {
+                yield return this.Content;
+            }
+        }
+
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
     }
 }

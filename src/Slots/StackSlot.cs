@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TheChest.Core.Extensions;
@@ -169,6 +170,19 @@ namespace TheChest.Core.Slots
             }
 
             return true;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (var i = 0; i < this.amount; i++)
+            {
+                yield return (T)this.content[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
     }
 }

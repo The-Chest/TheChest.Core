@@ -1,4 +1,6 @@
-﻿namespace TheChest.Core.Slots.Interfaces
+﻿using System.Collections.Generic;
+
+namespace TheChest.Core.Slots.Interfaces
 {
     /// <summary>
     /// Represents a slot that can hold a stack of items, providing information about the current and maximum number of items, and supporting containment checks.
@@ -7,8 +9,17 @@
     /// <see cref="IStackSlot{T}"/> extends <see cref="ISlot{T}"/>
     /// </remarks>
     /// <typeparam name="T">The type of item the slot can hold</typeparam>
-    public interface IStackSlot<in T> : ISlot<T>
+    public interface IStackSlot<T> : IEnumerable<T>
     {
+        /// <summary>
+        /// Verify if the slot is full
+        /// </summary>
+        bool IsFull { get; }
+        /// <summary>
+        /// Verify if the current slot is empty
+        /// </summary>
+        bool IsEmpty { get; }
+
         /// <summary>
         /// Defines the amount of items this slot is holding
         /// </summary>
@@ -21,6 +32,13 @@
         /// Defines the amount of available item that this slot can contain.
         /// </summary>
         int AvailableAmount { get; }
+
+        /// <summary>
+        /// Checks if the slot contains the specified item.
+        /// </summary>
+        /// <param name="item">Item to be checked</param>
+        /// <returns><see langword="true"/> if the slot contains the item, otherwise <see langword="false"/></returns>
+        bool Contains(T item);
         /// <summary>
         /// Checks if the slot contains the specified items.
         /// </summary>

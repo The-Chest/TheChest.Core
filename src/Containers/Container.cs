@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using TheChest.Core.Containers.Interfaces;
 using TheChest.Core.Slots;
 using TheChest.Core.Slots.Interfaces;
@@ -96,13 +98,7 @@ namespace TheChest.Core.Containers
         {
             ArgumentValidator.ThrowIfNull(items, nameof(items));
             ArgumentValidator.ThrowIfNegative(size, nameof(size));
-            //ArgumentValidator.ThrowIfIndexOutOfRange(size, items.Length, nameof(size)); //??
-            
-            if (size < items.Length)
-                throw new ArgumentException(
-                    $"The provided size ({size}) cannot be smaller than the number of items ({items.Length}).",
-                    nameof(size)
-                );
+            ArgumentValidator.ThrowIfIndexOutOfRange(size, items.Length, nameof(size));
 
             this.slots = new ISlot<T>[size];
             for (var i = 0; i < size; i++)
@@ -156,6 +152,21 @@ namespace TheChest.Core.Containers
             }
 
             return false;
+        }
+
+        /// <inheritdoc/>
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < this.slots.Length; i++)
+            {
+                yield return this.slots[i].Current;
+            }
+        }
+
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
     }
 }

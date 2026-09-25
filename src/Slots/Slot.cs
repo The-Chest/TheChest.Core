@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Validators;
 
@@ -64,6 +66,34 @@ namespace TheChest.Core.Slots
                 return false;
 
             return this.Content.Equals(item);
+        }
+
+        private bool hasMoved;
+
+        /// <inheritdoc/>
+        public T Current => this.Content;
+        /// <inheritdoc/>
+        object IEnumerator.Current => this.Current;
+
+        /// <inheritdoc/>
+        public bool MoveNext()
+        {
+            if (this.hasMoved || this.IsEmpty)
+                return false;
+
+            this.hasMoved = true;
+            return true;
+        }
+
+        /// <inheritdoc/>
+        public void Reset()
+        {
+            this.hasMoved = false;
+        }
+
+        /// <inheritdoc/>
+        public void Dispose()
+        {
         }
     }
 }

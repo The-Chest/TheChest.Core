@@ -1,4 +1,6 @@
-﻿namespace TheChest.Core.Slots.Interfaces
+﻿using System.Collections.Generic;
+
+namespace TheChest.Core.Slots.Interfaces
 {
     /// <summary>
     /// Represents a slot that can lazily hold a stack of items of a specified type.
@@ -7,8 +9,17 @@
     /// <see cref="ILazyStackSlot{T}"/> extends <see cref="ISlot{T}"/>
     /// </remarks>
     /// <typeparam name="T">The type of item the slot can hold</typeparam>
-    public interface ILazyStackSlot<in T> : ISlot<T>
+    public interface ILazyStackSlot<T> : IEnumerable<T>
     {
+        /// <summary>
+        /// Verify if the slot is full
+        /// </summary>
+        bool IsFull { get; }
+        /// <summary>
+        /// Verify if the current slot is empty
+        /// </summary>
+        bool IsEmpty { get; }
+
         /// <summary>
         /// Defines the amount of items this slot is currently holding
         /// </summary>
@@ -21,6 +32,13 @@
         /// Defines the amount of available item that this slot can contain.
         /// </summary>
         int AvailableAmount { get; }
+
+        /// <summary>
+        /// Checks if the slot contains the specified item.
+        /// </summary>
+        /// <param name="item">Item to be checked</param>
+        /// <returns><see langword="true"/> if the slot contains the item, otherwise <see langword="false"/></returns>
+        bool Contains(T item);
         /// <summary>
         /// Checks if the slot contains the specified item with a specific amount.
         /// </summary>

@@ -1,10 +1,12 @@
-﻿namespace TheChest.Core.Containers.Interfaces
+﻿using System.Collections.Generic;
+
+namespace TheChest.Core.Containers.Interfaces
 {
     /// <summary>
     /// Defines a generic stack-like container that supports lazy evaluation and items of type <typeparamref name="T"/>.
     /// </summary>
     /// <typeparam name="T">The type of items that the container can hold.</typeparam>
-    public interface ILazyStackContainer<in T>
+    public interface ILazyStackContainer<T> : IEnumerable<IEnumerable<T>>
     {
         /// <summary>
         /// Size of the current Container
