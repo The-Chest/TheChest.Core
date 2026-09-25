@@ -125,7 +125,7 @@ jobs:
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           path: "${{ env.RELEASE_OUTPUT_DIR }}"
-          name: "${{ env.PROJECT_NAME }}.${{ steps.get-version.outputs.version }}.dll"
+          name: "${{ env.PROJECT_NAME }}.dll"
           version: "${{ steps.get-version.outputs.version }}"
           
   publish-src-files:
