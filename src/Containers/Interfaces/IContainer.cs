@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TheChest.Core.Components;
 
 namespace TheChest.Core.Containers.Interfaces
 {
@@ -6,33 +7,16 @@ namespace TheChest.Core.Containers.Interfaces
     /// Defines a generic container that holds items of type <typeparamref name="T"/>.
     /// </summary>
     /// <typeparam name="T">The type of items that the container can hold.</typeparam>
-    public interface IContainer<T> : IEnumerable<T>
+    public interface IContainer<out T> : IContainer, IEnumerable<T> { }
+
+    /// <summary>
+    /// Defines a container that holds content state and exposes its size.
+    /// </summary>
+    public interface IContainer : IContentState
     {
         /// <summary>
         /// Size of the current Container
         /// </summary>
         int Size { get; }
-        /// <summary>
-        /// Verify if the container is full
-        /// </summary>
-        bool IsFull { get; }
-        /// <summary>
-        /// Verify if the container is empty
-        /// </summary>
-        bool IsEmpty { get; }
-        
-        /// <summary>
-        /// Checks if the container contains an <paramref name="item"/>.
-        /// </summary>
-        /// <param name="item">Item to be checked</param>
-        /// <returns>Returns true when the container contains an <paramref name="item"/> in any of its slots</returns>
-        bool Contains(T item);
-        /// <summary>
-        /// Checks if the container contains an amount of <paramref name="item"/>.
-        /// </summary>
-        /// <param name="item">Item to be checked</param>
-        /// <param name="amount">The minimum amount of <paramref name="item"/> expected</param>
-        /// <returns>Returns true when the container contains an <paramref name="amount"/> of <paramref name="item"/> in any of its slots</returns>
-        bool Contains(T item, int amount);
     }
 }

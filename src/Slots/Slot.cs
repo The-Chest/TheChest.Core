@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TheChest.Core.Slots.Interfaces;
-using TheChest.Core.Validators;
 
 namespace TheChest.Core.Slots
 {
@@ -56,44 +54,15 @@ namespace TheChest.Core.Slots
             this.content = currentItem;
         }
 
-        /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
-        public virtual bool Contains(T item)
+        public IEnumerator<T> GetEnumerator()
         {
-            ArgumentValidator.ThrowIfNull(item, nameof(item));
-
-            if (this.IsEmpty)
-                return false;
-
-            return this.Content.Equals(item);
+            if (!this.IsEmpty)
+                yield return this.Content;
         }
 
-        private bool hasMoved;
-
-        /// <inheritdoc/>
-        public T Current => this.Content;
-        /// <inheritdoc/>
-        object IEnumerator.Current => this.Current;
-
-        /// <inheritdoc/>
-        public bool MoveNext()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            if (this.hasMoved || this.IsEmpty)
-                return false;
-
-            this.hasMoved = true;
-            return true;
-        }
-
-        /// <inheritdoc/>
-        public void Reset()
-        {
-            this.hasMoved = false;
-        }
-
-        /// <inheritdoc/>
-        public void Dispose()
-        {
+            return this.GetEnumerator();
         }
     }
 }

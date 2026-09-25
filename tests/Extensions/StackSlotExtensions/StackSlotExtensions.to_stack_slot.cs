@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using NUnit.Framework;
 using TheChest.Core.Slots.Extensions;
 
@@ -22,7 +23,7 @@ namespace TheChest.Core.Tests.Extensions
             var item = this.itemFactory.CreateRandom();
             var items = new[] { item, item, item };
 
-            var result = items.ToStackSlots(maxStackSize: 2);
+            var result = items.ToStackSlots(maxStackSize: 2).ToArray();
 
             Assert.That(result, Has.Length.EqualTo(2));
             Assert.Multiple(() =>

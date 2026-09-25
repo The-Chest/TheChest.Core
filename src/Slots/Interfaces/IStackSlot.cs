@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TheChest.Core.Components;
 
 namespace TheChest.Core.Slots.Interfaces
 {
@@ -9,41 +10,5 @@ namespace TheChest.Core.Slots.Interfaces
     /// <see cref="IStackSlot{T}"/> extends <see cref="ISlot{T}"/>
     /// </remarks>
     /// <typeparam name="T">The type of item the slot can hold</typeparam>
-    public interface IStackSlot<T> : IEnumerable<T>
-    {
-        /// <summary>
-        /// Verify if the slot is full
-        /// </summary>
-        bool IsFull { get; }
-        /// <summary>
-        /// Verify if the current slot is empty
-        /// </summary>
-        bool IsEmpty { get; }
-
-        /// <summary>
-        /// Defines the amount of items this slot is holding
-        /// </summary>
-        int Amount { get; }
-        /// <summary>
-        /// Defines the max amount of item that this slot can contain
-        /// </summary>
-        int MaxAmount { get; }
-        /// <summary>
-        /// Defines the amount of available item that this slot can contain.
-        /// </summary>
-        int AvailableAmount { get; }
-
-        /// <summary>
-        /// Checks if the slot contains the specified item.
-        /// </summary>
-        /// <param name="item">Item to be checked</param>
-        /// <returns><see langword="true"/> if the slot contains the item, otherwise <see langword="false"/></returns>
-        bool Contains(T item);
-        /// <summary>
-        /// Checks if the slot contains the specified items.
-        /// </summary>
-        /// <param name="items">items to be checked inside the slot</param>
-        /// <returns><see langword="true"/> if the slot contains all <paramref name="items"/>, otherwise <see langword="false"/></returns>
-        bool Contains(T[] items);
-    }
+    public interface IStackSlot<out T> : IContentState, IStackable, IEnumerable<T> { }
 }

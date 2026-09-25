@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TheChest.Core.Components;
 
 namespace TheChest.Core.Slots.Interfaces
 {
@@ -9,42 +10,5 @@ namespace TheChest.Core.Slots.Interfaces
     /// <see cref="ILazyStackSlot{T}"/> extends <see cref="ISlot{T}"/>
     /// </remarks>
     /// <typeparam name="T">The type of item the slot can hold</typeparam>
-    public interface ILazyStackSlot<T> : IEnumerable<T>
-    {
-        /// <summary>
-        /// Verify if the slot is full
-        /// </summary>
-        bool IsFull { get; }
-        /// <summary>
-        /// Verify if the current slot is empty
-        /// </summary>
-        bool IsEmpty { get; }
-
-        /// <summary>
-        /// Defines the amount of items this slot is currently holding
-        /// </summary>
-        int Amount { get; }
-        /// <summary>
-        /// Defines the max amount of item that this slot can hold
-        /// </summary>
-        int MaxAmount { get; }
-        /// <summary>
-        /// Defines the amount of available item that this slot can contain.
-        /// </summary>
-        int AvailableAmount { get; }
-
-        /// <summary>
-        /// Checks if the slot contains the specified item.
-        /// </summary>
-        /// <param name="item">Item to be checked</param>
-        /// <returns><see langword="true"/> if the slot contains the item, otherwise <see langword="false"/></returns>
-        bool Contains(T item);
-        /// <summary>
-        /// Checks if the slot contains the specified item with a specific amount.
-        /// </summary>
-        /// <param name="item">Item to be checked</param>
-        /// <param name="amount">Amount of items to be checked</param>
-        /// <returns>True if the slot contains the item with at least the specified amount</returns>
-        bool Contains(T item, int amount);
-    }
+    public interface ILazyStackSlot<out T> : IContentState, IStackable, IEnumerable<T> { }
 }

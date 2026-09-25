@@ -50,10 +50,10 @@ namespace TheChest.Core.Tests.Common.Extensions
             return slotType!;
         }
 
-        internal static Array CreateSlots<Item>(
+        internal static Array CreateSlots<Slot>(
             this Type slotType,
             int size, 
-            Func<int, ISlot<Item>> factory,
+            Func<int, Slot> factory,
             bool shuffle = false
         )
         {

@@ -144,37 +144,6 @@ namespace TheChest.Core.Slots
         }
 
         /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
-        public virtual bool Contains(T item)
-        {
-            if (item.IsNull())
-                throw new ArgumentNullException(nameof(item));
-
-            if (this.IsEmpty)
-                return false;
-
-            return item.Equals(this.content);
-        }
-        /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
-        public virtual bool Contains(T item, int amount)
-        {
-            if (item.IsNull())
-                throw new ArgumentNullException(nameof(item));
-            if (amount <= 0)
-                throw new ArgumentOutOfRangeException(
-                    paramName: nameof(amount),
-                    actualValue: amount,
-                    message: "The amount must be greater than zero"
-                );
-
-            if (this.IsEmpty)
-                return false;
-            
-            return item.Equals(this.content) && amount <= this.Amount;
-        }
-
-        /// <inheritdoc/>
         public IEnumerator<T> GetEnumerator()
         {
             for(int i = 0; i < this.amount; i++)

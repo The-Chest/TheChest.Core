@@ -44,7 +44,7 @@ namespace TheChest.Core.Tests.Factories.Containers
             var slots = slotType
                 .CreateSlots(
                     size: size,
-                    factory: _ => slotFactory.WithItem(item, stackSize, stackSize),
+                    factory: _ => this.slotFactory.WithItem(item, stackSize, stackSize),
                     shuffle: true
                 );
             var container = Activator.CreateInstance(

@@ -18,6 +18,8 @@ namespace TheChest.Core.Containers
         /// The collection of slots used to store elements of type <typeparamref name="T"/>.
         /// </summary>
         protected ISlot<T>[] slots;
+
+        #region Properties
         /// <inheritdoc/>
         public virtual int Size => this.slots.Length;
         /// <inheritdoc/>
@@ -48,7 +50,9 @@ namespace TheChest.Core.Containers
                 return true;
             }
         }
+        #endregion
 
+        #region Constructors
         /// <summary>
         /// Creates an empty Container with a default size of 0 and <see cref="Slot{T}"/> implementation
         /// </summary>
@@ -117,49 +121,18 @@ namespace TheChest.Core.Containers
         {
             this.slots = slots ?? throw new ArgumentNullException(nameof(slots));
         }
+        #endregion
 
-        /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
-        public virtual bool Contains(T item)
-        {
-            ArgumentValidator.ThrowIfNull(item, nameof(item));
-
-            for (var i = 0; i < this.slots.Length; i++)
-            {
-                if (this.slots[i].Contains(item))
-                    return true;
-            }
-
-            return false;
-        }
-        /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
-        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
-        public virtual bool Contains(T item, int amount)
-        {
-            ArgumentValidator.ThrowIfNull(item, nameof(item));
-            ArgumentValidator.ThrowIfNotPositive(amount, nameof(amount));
-
-            var amountFound = 0;
-            for (var i = 0; i < this.slots.Length; i++)
-            {
-                if (this.slots[i].Contains(item))
-                {
-                    amountFound++;
-                    if (amountFound >= amount)
-                        return true;
-                }
-            }
-
-            return false;
-        }
-
+        #region IEnumerable
         /// <inheritdoc/>
         public IEnumerator<T> GetEnumerator()
         {
             for (int i = 0; i < this.slots.Length; i++)
             {
-                yield return this.slots[i].Current;
+                foreach (var item in this.slots[i])
+                {
+                    yield return item;
+                }
             }
         }
 
@@ -168,5 +141,6 @@ namespace TheChest.Core.Containers
         {
             return this.GetEnumerator();
         }
+        #endregion
     }
 }
