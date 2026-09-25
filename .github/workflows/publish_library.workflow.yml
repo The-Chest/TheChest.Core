@@ -118,7 +118,7 @@ jobs:
         uses: actions/download-artifact@v6
         with:
           name: "${{ env.PROJECT_NAME }}.${{ steps.get-version.outputs.version }}"
-          path: "${{ ev.RELEASE_OUTPUT_DIR }}"
+          path: "${{ env.RELEASE_OUTPUT_DIR }}"
       
       - name: Upload DLL to release
         uses: The-Chest/Actions/upload-release-artifacts@v1
