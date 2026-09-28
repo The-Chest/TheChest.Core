@@ -1,8 +1,16 @@
 # v0.21.0
 
 ## What's Added
-- `.NET 10` to the officially tested runtime matrix.
-- Internal validator classes `ArgumentValidator`, `AmountValidator` and `ContentValidator` to help the classes to validate arguments passed by without code duplication.
+* `.NET 10` to the officially tested runtime matrix.
+* Internal validator classes `ArgumentValidator`, `AmountValidator` and `ContentValidator` to help the classes to validate arguments passed by without code duplication.
+
+## What's Changed
+* Container Constructor now throws `ArgumentOutOfRangeException` instead of `ArgumentException` when the `size` parameter is smaller than `content.Length`.
+
+## What's Next
+* Benchmarks for the Container classes to check how they perform in different scenarios and with different sizes of slots and items.
+* `Contain` methods might be removed from the Container classes to using the `Contains` from `System.Collections.Generic` instead. 
+    * This is due the Container classes implementing from `IEnumerable<T>`
 
 ## Known issues
 * Complexity and Library size
@@ -13,8 +21,8 @@
 # v0.20.0
 
 ## What's Added
-- `.NET 6`, `.NET 7`, `.NET 8` and `.NET 9` to the officially tested runtime matrix.
-- Internal class `ArgumentValidator` to help the classes to validate arguments passed by without code duplication.
+* `.NET 6`, `.NET 7`, `.NET 8` and `.NET 9` to the officially tested runtime matrix.
+* Internal class `ArgumentValidator` to help the classes to validate arguments passed by without code duplication.
 
 ## What's Next
 * Improves in Container classes to implement from interfaces from `System.Collections.Generic`
