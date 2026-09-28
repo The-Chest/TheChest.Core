@@ -6,11 +6,13 @@
 
 ## What's Changed
 * Container Constructor now throws `ArgumentOutOfRangeException` instead of `ArgumentException` when the `size` parameter is smaller than `content.Length`.
+* `Contains` methods are now Obsolete in the Container/Slot classes and will be removed in future versions. 
+    * This is due the Container classes implementing from `IEnumerable<T>`
 
 ## What's Next
 * Benchmarks for the Container classes to check how they perform in different scenarios and with different sizes of slots and items.
-* `Contain` methods might be removed from the Container classes to using the `Contains` from `System.Collections.Generic` instead. 
-    * This is due the Container classes implementing from `IEnumerable<T>`
+* `Contains` are going to be removed from the Container classes in future versions. 
+  * Use `Contains` from `System.Collections.Generic` instead.
 
 ## Known issues
 * Complexity and Library size

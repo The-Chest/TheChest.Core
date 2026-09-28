@@ -1,4 +1,6 @@
-﻿namespace TheChest.Core.Slots.Interfaces
+﻿using System;
+
+namespace TheChest.Core.Slots.Interfaces
 {
     /// <summary>
     /// Represents a slot that can hold item.
@@ -19,6 +21,7 @@
         /// </summary>
         /// <param name="item">Item to be checked</param>
         /// <returns><see langword="true"/> if the slot contains the item, otherwise <see langword="false"/></returns>
+        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
         bool Contains(T item);
     }
 }
