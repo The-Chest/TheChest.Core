@@ -55,8 +55,8 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
             Assert.That(
                 () => new StackSlot<T>(Enumerable.Repeat(item, maxAmount + 1).ToArray(), maxAmount),
                 Throws.TypeOf<ArgumentOutOfRangeException>()
-                    .With.Property("ParamName").EqualTo("items")
-                    .And.Message.Contains("The item amount cannot be bigger than max amount")
+                    .With.Property("ParamName").EqualTo("content")
+                    .And.Message.Contains("The content size cannot be bigger than max amount")
             );
         }
 

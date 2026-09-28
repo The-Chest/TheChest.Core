@@ -37,7 +37,7 @@ namespace TheChest.Core.Slots
             }
             protected set
             {
-                ValidateContent(value, this.maxAmount);
+                ContentValidator.ValidateContent(value, this.maxAmount);
 
                 this.content = value.ToObjectArray();
                 this.amount = this.content.Length;
@@ -57,7 +57,7 @@ namespace TheChest.Core.Slots
             }
             protected set
             {
-                ValidateAmount(value, this.maxAmount);
+                AmountValidator.ValidateAmount(value, this.maxAmount);
                 this.amount = value;
 
                 this.isCacheValid = false;
@@ -72,7 +72,7 @@ namespace TheChest.Core.Slots
             }
             protected set
             {
-                ValidateAmount(this.amount, value);
+                AmountValidator.ValidateAmount(this.amount, value);
                 Array.Resize(ref this.content, value);
                 this.maxAmount = value;
                 this.isCacheValid = false;
@@ -113,31 +113,6 @@ namespace TheChest.Core.Slots
         {
             this.MaxAmount = maxAmount;
             this.Content = items;
-        }
-
-        /// <summary>
-        /// Validates that array is not <see langword="null"/> and does not exceed the maximum allowed number of elements.
-        /// </summary>
-        /// <param name="items">The array of items to validate.</param>
-        /// <param name="maxAmount">The maximum number of elements allowed in the <paramref name="items"/> array.</param>
-        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is <see langword="null"/>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">When the length of <paramref name="items"/> exceeds <paramref name="maxAmount"/>.</exception>
-        protected static void ValidateContent(IEnumerable<T> items, int maxAmount)
-        {
-            ArgumentValidator.ThrowIfNull(items, nameof(items));
-            ArgumentValidator.ThrowIfBigger(items.Count(), maxAmount, nameof(items), "The item amount cannot be bigger than max amount");
-        }
-        /// <summary>
-        /// Validates that amount is within the allowed range.
-        /// </summary>
-        /// <param name="amount">The amount to be validated.</param>
-        /// <param name="maxAmount">The maximum allowed value for <paramref name="amount"/>.</param>
-        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> or <paramref name="maxAmount"/> is less than 0, or <paramref name="amount"/> is greater than <paramref name="maxAmount"/>.</exception>
-        protected static void ValidateAmount(int amount, int maxAmount)
-        {
-            ArgumentValidator.ThrowIfNegative(amount, nameof(amount), "The item amount cannot be smaller than zero");
-            ArgumentValidator.ThrowIfNegative(maxAmount, nameof(maxAmount), "The max amount cannot be smaller than zero");
-            ArgumentValidator.ThrowIfBigger(amount, maxAmount, nameof(amount), "The item amount cannot be bigger than max amount");
         }
 
         /// <inheritdoc/>

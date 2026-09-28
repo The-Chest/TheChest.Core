@@ -1,6 +1,7 @@
 ﻿using System;
 using TheChest.Core.Extensions;
 using TheChest.Core.Slots.Interfaces;
+using TheChest.Core.Validators;
 
 namespace TheChest.Core.Slots
 {
@@ -48,7 +49,7 @@ namespace TheChest.Core.Slots
             }
             protected set
             {
-                ValidateAmount(value, this.maxAmount);
+                AmountValidator.ValidateAmount(value, this.maxAmount);
                 this.amount = value;
             }
         }
@@ -61,7 +62,7 @@ namespace TheChest.Core.Slots
             }
             protected set
             {
-                ValidateAmount(this.amount, value);
+                AmountValidator.ValidateAmount(this.amount, value);
                 this.maxAmount = value;
             }
         }
@@ -91,7 +92,7 @@ namespace TheChest.Core.Slots
         /// <param name="maxAmount">The maximum number of items that the stack slot can hold.</param>
         public LazyStackSlot(int maxAmount)
         {
-            ValidateAmount(0, maxAmount);
+            AmountValidator.ValidateAmount(0, maxAmount);
 
             this.content = null;
             this.amount = 0;
@@ -106,39 +107,11 @@ namespace TheChest.Core.Slots
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public LazyStackSlot(T currentItem, int amount, int maxAmount)
         {
-            ValidateAmount(amount, maxAmount);
+            AmountValidator.ValidateAmount(amount, maxAmount);
 
             this.content = currentItem;
             this.amount = this.content is null ? 0 : amount;
             this.maxAmount = maxAmount;
-        }
-
-        /// <summary>
-        /// Validates that <paramref name="amount"/> is within the allowed range from zero to <paramref name="maxAmount"/>.
-        /// </summary>
-        /// <param name="amount">The amount to be validated.</param>
-        /// <param name="maxAmount">The maximum allowed amount.</param>
-        /// <exception cref="ArgumentOutOfRangeException"> When <paramref name="amount"/> is less than zero, greater than <paramref name="maxAmount"/>, or <paramref name="maxAmount"/> is less than zero.</exception>
-        protected static void ValidateAmount(int amount, int maxAmount)
-        {
-            if (amount < 0)
-                throw new ArgumentOutOfRangeException(
-                    paramName: nameof(amount),
-                    actualValue: amount,
-                    message: "The amount property cannot be smaller than zero"
-                );
-            if (maxAmount < 0)
-                throw new ArgumentOutOfRangeException(
-                    paramName: nameof(maxAmount),
-                    actualValue: maxAmount,
-                    message: "The max amount property cannot be smaller than zero"
-                );
-            if (amount > maxAmount)
-                throw new ArgumentOutOfRangeException(
-                    paramName: nameof(amount),
-                    actualValue: amount,
-                    message: "The item amount cannot be bigger than max amount"
-                );
         }
 
         /// <inheritdoc/>

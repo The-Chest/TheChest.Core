@@ -90,19 +90,12 @@ namespace TheChest.Core.Containers
         /// <param name="items">Items to be added to the slots on the container</param>
         /// <param name="size">Number with the size of the container</param>
         /// <exception cref="ArgumentNullException">When <paramref name="items"/> is null</exception>
-        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="size"/> is zero or smaller</exception>
-        /// <exception cref="ArgumentException">When <paramref name="items"/> length is bigger than <paramref name="size"/></exception>
+        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="size"/> is zero or smaller OR When <paramref name="items"/> length is bigger than <paramref name="size"/></exception>
         public Container(T[] items, int size)
         {
             ArgumentValidator.ThrowIfNull(items, nameof(items));
             ArgumentValidator.ThrowIfNegative(size, nameof(size));
-            //ArgumentValidator.ThrowIfIndexOutOfRange(size, items.Length, nameof(size)); //??
-            
-            if (size < items.Length)
-                throw new ArgumentException(
-                    $"The provided size ({size}) cannot be smaller than the number of items ({items.Length}).",
-                    nameof(size)
-                );
+            ContentValidator.ValidateContent(items, size);
 
             this.slots = new ISlot<T>[size];
             for (var i = 0; i < size; i++)

@@ -21,18 +21,18 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         }
 
         [Test]
-        [Description("The constructor throws an ArgumentException when the size parameter is smaller than the length of the items array.")]
+        [Description("The constructor throws an ArgumentOutOfRangeException when the size parameter is smaller than the length of the items array.")]
         [Category("Constructor")]
         [Category("Behavior")]
         [Category("Exception")]
-        public void Constructor_ItemsAndSize_SizeSmallerThanItemsLength_ThrowsArgumentException()
+        public void Constructor_ItemsAndSize_SizeSmallerThanItemsLength_ThrowsArgumentOutOfRangeException()
         {
             var amount = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
             var items = this.itemFactory.CreateMany(amount);
 
             Assert.That(
                 () => new Container<T>(items, amount - 1),
-                Throws.TypeOf<ArgumentException>().With.Property("ParamName").EqualTo("size")
+                Throws.TypeOf<ArgumentOutOfRangeException>().With.Property("ParamName").EqualTo("content")
             );
         }
 
