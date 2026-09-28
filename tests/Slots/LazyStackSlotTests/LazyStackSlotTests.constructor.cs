@@ -56,7 +56,7 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
                 Throws.Exception
                     .With.TypeOf<ArgumentOutOfRangeException>()
                     .And.Property("ParamName").EqualTo("amount")
-                    .And.Message.Contains("The item amount cannot be bigger than max amount")
+                    .And.Message.Contains("The amount cannot be bigger than max amount")
             );
         }
 
@@ -75,7 +75,7 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
                 Throws.Exception
                     .With.TypeOf<ArgumentOutOfRangeException>()
                     .And.Property("ParamName").EqualTo("amount")
-                    .And.Message.Contains("The amount property cannot be smaller than zero")
+                    .And.Message.Contains("The amount cannot be smaller than zero")
             );
         }
 
@@ -94,7 +94,7 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
                 Throws.Exception
                     .With.TypeOf<ArgumentOutOfRangeException>()
                     .And.Property("ParamName").EqualTo("maxAmount")
-                    .And.Message.Contains("The max amount property cannot be smaller than zero")
+                    .And.Message.Contains("The max amount cannot be smaller than zero")
             );
         }
     }

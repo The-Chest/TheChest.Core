@@ -57,7 +57,7 @@ namespace TheChest.Core.Slots
             }
             protected set
             {
-                ValidateAmount(value, this.maxAmount);
+                AmountValidator.ValidateAmount(value, this.maxAmount);
                 this.amount = value;
 
                 this.isCacheValid = false;
@@ -72,7 +72,7 @@ namespace TheChest.Core.Slots
             }
             protected set
             {
-                ValidateAmount(this.amount, value);
+                AmountValidator.ValidateAmount(this.amount, value);
                 Array.Resize(ref this.content, value);
                 this.maxAmount = value;
                 this.isCacheValid = false;
@@ -126,18 +126,6 @@ namespace TheChest.Core.Slots
         {
             ArgumentValidator.ThrowIfNull(items, nameof(items));
             ArgumentValidator.ThrowIfBigger(items.Count(), maxAmount, nameof(items), "The item amount cannot be bigger than max amount");
-        }
-        /// <summary>
-        /// Validates that amount is within the allowed range.
-        /// </summary>
-        /// <param name="amount">The amount to be validated.</param>
-        /// <param name="maxAmount">The maximum allowed value for <paramref name="amount"/>.</param>
-        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> or <paramref name="maxAmount"/> is less than 0, or <paramref name="amount"/> is greater than <paramref name="maxAmount"/>.</exception>
-        protected static void ValidateAmount(int amount, int maxAmount)
-        {
-            ArgumentValidator.ThrowIfNegative(amount, nameof(amount), "The item amount cannot be smaller than zero");
-            ArgumentValidator.ThrowIfNegative(maxAmount, nameof(maxAmount), "The max amount cannot be smaller than zero");
-            ArgumentValidator.ThrowIfBigger(amount, maxAmount, nameof(amount), "The item amount cannot be bigger than max amount");
         }
 
         /// <inheritdoc/>
