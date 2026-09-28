@@ -37,7 +37,7 @@ namespace TheChest.Core.Slots
             }
             protected set
             {
-                ValidateContent(value, this.maxAmount);
+                ContentValidator.ValidateContent(value, this.maxAmount);
 
                 this.content = value.ToObjectArray();
                 this.amount = this.content.Length;
@@ -113,19 +113,6 @@ namespace TheChest.Core.Slots
         {
             this.MaxAmount = maxAmount;
             this.Content = items;
-        }
-
-        /// <summary>
-        /// Validates that array is not <see langword="null"/> and does not exceed the maximum allowed number of elements.
-        /// </summary>
-        /// <param name="items">The array of items to validate.</param>
-        /// <param name="maxAmount">The maximum number of elements allowed in the <paramref name="items"/> array.</param>
-        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is <see langword="null"/>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">When the length of <paramref name="items"/> exceeds <paramref name="maxAmount"/>.</exception>
-        protected static void ValidateContent(IEnumerable<T> items, int maxAmount)
-        {
-            ArgumentValidator.ThrowIfNull(items, nameof(items));
-            ArgumentValidator.ThrowIfBigger(items.Count(), maxAmount, nameof(items), "The item amount cannot be bigger than max amount");
         }
 
         /// <inheritdoc/>
