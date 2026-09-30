@@ -2,15 +2,12 @@ using System;
 using System.Linq;
 using NUnit.Framework;
 using TheChest.Core.Slots;
-namespace TheChest.Core.Tests.Slots.StackSlotTests
+namespace TheChest.Core.Tests.Slots.StackSlot.Constructors
 {
-    public partial class StackSlotTests<T>
+    public class ConstructorTests<T> : StackSlotTests<T>
     {
         [Test]
         [Description("The constructor initializes the Amount and MaxAmount properties with default values when no parameters are provided.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Success")]
         public void Constructor_NoParameters_InitializesWithDefaultValues()
         {
             var slot = new StackSlot<T>();
@@ -24,9 +21,6 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
 
         [Test]
         [Description("The constructor initializes the Amount and MaxAmount properties correctly when valid items and max amount are provided.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Success")]
         public void Constructor_ItemsAndMaxAmount_SetsAmountAndMaxAmount()
         {
             var item = this.itemFactory.CreateDefault();
@@ -44,9 +38,6 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
 
         [Test]
         [Description("The constructor throws an ArgumentOutOfRangeException when the amount of items exceeds the max amount.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Exception")]
         public void Constructor_AmountGreaterThanMaxAmount_ThrowsArgumentOutOfRangeException()
         {
             var maxAmount = this.GenerateStackSize();
@@ -62,9 +53,6 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
 
         [Test]
         [Description("The constructor throws an ArgumentOutOfRangeException when the max amount is less than zero.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Exception")]
         public void Constructor_MaxAmountLessThanZero_ThrowsArgumentOutOfRangeException()
         {
             Assert.That(

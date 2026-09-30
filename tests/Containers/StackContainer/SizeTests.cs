@@ -1,12 +1,10 @@
 using NUnit.Framework;
-namespace TheChest.Core.Tests.Containers.StackContainerTests
+namespace TheChest.Core.Tests.Containers.StackContainer
 {
-    public partial class StackContainerTests<T>
+    public class SizeTests<T> : StackContainerTests<T>
     {
         [Test]
         [Description("Size should be set to the specified value when the container is created with an initial size.")]
-        [Category("Size")]
-        [Category("Property")]
         public void Size_WithInitialValue_SetsSizeToSpecifiedValue()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();

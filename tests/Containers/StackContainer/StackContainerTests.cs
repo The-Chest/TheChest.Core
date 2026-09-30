@@ -10,13 +10,12 @@ using TheChest.Core.Tests.Factories.Containers.Interfaces;
 using TheChest.Core.Tests.Factories.Slots;
 using TheChest.Core.Tests.Factories.Slots.Interfaces;
 
-namespace TheChest.Core.Tests.Containers.StackContainerTests
+namespace TheChest.Core.Tests.Containers.StackContainer
 {
-    [Category("StackContainer")]
     [TestFixture(typeof(TestItem))]
     [TestFixture(typeof(TestStructItem))]
     [TestFixture(typeof(TestEnumItem))]
-    public partial class StackContainerTests<T> : BaseTest<T>
+    public abstract class StackContainerTests<T> : BaseTest<T>
     {
         protected readonly IStackContainerFactory<T> containerFactory;
         protected readonly IItemFactory<T> itemFactory;
@@ -27,7 +26,7 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
         protected const int MIN_STACK_SIZE_TEST = 10;
         protected const int MAX_STACK_SIZE_TEST = 20;
 
-        public StackContainerTests() :
+        protected StackContainerTests() :
             base(
                 container => {
                     container.Register<IStackSlotFactory<T>, StackSlotFactory<StackSlot<T>, T>>();
@@ -39,7 +38,7 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
             this.itemFactory = this.configurations.Resolve<IItemFactory<T>>();
         }
 
-        private (int size, int stackSize) GenerateRandomSizeAndStackSize() =>
+        protected (int size, int stackSize) GenerateRandomSizeAndStackSize() =>
         (
             this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST), 
             this.random.Next(MIN_STACK_SIZE_TEST, MAX_STACK_SIZE_TEST)

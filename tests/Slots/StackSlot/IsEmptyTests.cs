@@ -1,12 +1,10 @@
 using NUnit.Framework;
-namespace TheChest.Core.Tests.Slots.StackSlotTests
+namespace TheChest.Core.Tests.Slots.StackSlot
 {
-    public partial class StackSlotTests<T>
+    public class IsEmptyTests<T> : StackSlotTests<T>
     {
         [Test]
         [Description("Tests that IsEmpty returns true when the stack amount is zero.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_StackAmountZero_ReturnsTrue()
         {
             var maxStackSize = this.GenerateStackSize();
@@ -17,8 +15,6 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
 
         [Test]
         [Description("Tests that IsEmpty returns false when the stack amount is greater than zero.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_CurrentItemNull_ReturnsTrue()
         {
             var maxStackSize = this.GenerateStackSize();
@@ -29,8 +25,6 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
 
         [Test]
         [Description("Tests that IsEmpty returns false when the stack amount is greater than zero and the current item is not null.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_CurrentItemNotNull_ReturnsFalse()
         {
             var maxStackSize = this.GenerateStackSize();

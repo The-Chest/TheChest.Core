@@ -1,12 +1,10 @@
 using NUnit.Framework;
-namespace TheChest.Core.Tests.Containers.StackContainerTests
+namespace TheChest.Core.Tests.Containers.StackContainer
 {
-    public partial class StackContainerTests<T>
+    public class IsFullTests<T> : StackContainerTests<T>
     {
         [Test]
         [Description("IsFull property returns false when the container has empty slots.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_EmptySlots_ReturnsFalse()
 		{
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -17,8 +15,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
 		[Test]
         [Description("IsFull property returns false when the container has some empty slots.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_OneEmptySlot_ReturnsFalse()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -31,8 +27,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
         [Description("IsFull property returns false when the container has some empty slots and some full slots.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_OneFullSlot_ReturnsFalse()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -45,8 +39,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
         [Description("IsFull property returns false when the container has some empty slots and some full slots.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_ContainerWithItems_ReturnsFalse()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -59,8 +51,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
         [Description("IsFull property returns true when the container has no empty slots.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_AllSlotsFull_ReturnsTrue()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();

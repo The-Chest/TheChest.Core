@@ -1,12 +1,10 @@
 using NUnit.Framework;
-namespace TheChest.Core.Tests.Slots.StackSlotTests
+namespace TheChest.Core.Tests.Slots.StackSlot
 {
-    public partial class StackSlotTests<T>
+    public class AvailableAmountTests<T> : StackSlotTests<T>
     {
         [Test]
         [Description("AvailableAmount property returns the correct value for an empty slot.")]
-        [Category("AvailableAmount")]
-        [Category("Property")]
         public void AvailableAmount_EmptySlot_ReturnsMaxAmount()
         {
             var maxAmount = this.GenerateStackSize();
@@ -17,8 +15,6 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
 
         [Test]
         [Description("AvailableAmount property returns zero for a full slot.")]
-        [Category("AvailableAmount")]
-        [Category("Property")]
         public void AvailableAmount_FullSlot_ReturnsZero()
         {
             var maxAmount = this.GenerateStackSize();
@@ -29,8 +25,6 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
 
         [Test]
         [Description("AvailableAmount property returns the correct value for a slot with an item.")]
-        [Category("AvailableAmount")]
-        [Category("Property")]
         public void AvailableAmount_SlotWithItem_ReturnsMaxAmountLessAmount()
         {
             var maxAmount = this.GenerateStackSize();
