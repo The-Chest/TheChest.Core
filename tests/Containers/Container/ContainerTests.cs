@@ -10,13 +10,12 @@ using TheChest.Core.Tests.Factories.Containers.Interfaces;
 using TheChest.Core.Tests.Factories.Slots;
 using TheChest.Core.Tests.Factories.Slots.Interfaces;
 
-namespace TheChest.Core.Tests.Containers.ContainerTests
+namespace TheChest.Core.Tests.Containers.Container
 {
-    [Category("Container")]
     [TestFixture(typeof(TestItem))]
     [TestFixture(typeof(TestStructItem))]
     [TestFixture(typeof(TestEnumItem))]
-    public partial class ContainerTests<T> : BaseTest<T>
+    public abstract class ContainerTests<T> : BaseTest<T>
     {
         protected readonly IContainerFactory<T> containerFactory;
         protected readonly IItemFactory<T> itemFactory;
@@ -24,7 +23,7 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
         protected const int MIN_SIZE_TEST = 10;
         protected const int MAX_SIZE_TEST = 20;
 
-        public ContainerTests() : base(
+        protected ContainerTests() : base(
             container => {
                 container
                     .Register<ISlotFactory<T>, SlotFactory<Slot<T>, T>>()

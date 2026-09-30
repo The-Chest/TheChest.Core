@@ -3,15 +3,12 @@ using NUnit.Framework;
 using TheChest.Core.Containers;
 using TheChest.Core.Tests.Common.Extensions.Containers;
 
-namespace TheChest.Core.Tests.Containers.ContainerTests
+namespace TheChest.Core.Tests.Containers.Container
 {
-    public partial class ContainerTests<T>
+    public class ConstructorTests<T> : ContainerTests<T>
     {
         [Test]
         [Description("The constructor throws an ArgumentOutOfRangeException when the size parameter is negative.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Exception")]
         public void Constructor_NegativeSize_ThrowsArgumentOutOfRangeException()
         {
             Assert.That(
@@ -22,9 +19,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("The constructor throws an ArgumentOutOfRangeException when the size parameter is smaller than the length of the items array.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Exception")]
         public void Constructor_ItemsAndSize_SizeSmallerThanItemsLength_ThrowsArgumentOutOfRangeException()
         {
             var amount = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -38,9 +32,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("The constructor throws an ArgumentNullException when the items parameter is null.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Exception")]
         public void Constructor_ItemsAndSize_NullItems_ThrowsArgumentNullException()
         {
             Assert.That(
@@ -51,9 +42,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("The constructor throws an ArgumentNullException when the items parameter is null.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Exception")]
         public void Constructor_Items_NullItems_ThrowsArgumentNullException()
         {
             Assert.That(
@@ -64,9 +52,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("The constructor creates an empty container when no parameters are provided.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Success")]
         public void Constructor_NoParameters_CreatesEmptyContainer()
         {
             var container = new Container<T>();
@@ -81,9 +66,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("The constructor creates an empty container with the given size.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Success")]
         public void Constructor_Size_CreatesContainerWithGivenSize()
         {
             var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -99,9 +81,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("The constructor creates an empty container when the items array is empty.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Success")]
         public void Constructor_Items_EmptyItems_CreatesEmptyContainer()
         {
             var container = new Container<T>(Array.Empty<T>());
@@ -116,9 +95,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("The constructor creates a full container with the same size and items from the items array.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Success")]
         public void Constructor_Items_CreatesFullContainerWithItems()
         {
             var amount = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -141,9 +117,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("The constructor creates a full container when the size parameter is equal to the length of the items array.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Success")]
         public void Constructor_ItemsAndSize_SizeEqualsItemsLength_CreatesFullContainer()
         {
             var amount = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -161,9 +134,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("The constructor creates a partially filled container when the size parameter is greater than the length of the items array.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Success")]
         public void Constructor_ItemsAndSize_SizeGreaterThanItemsLength_CreatesPartiallyFilledContainer()
         {
             var amount = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);

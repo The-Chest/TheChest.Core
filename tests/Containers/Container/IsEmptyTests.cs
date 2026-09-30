@@ -1,12 +1,10 @@
 using NUnit.Framework;
-namespace TheChest.Core.Tests.Containers.ContainerTests
+namespace TheChest.Core.Tests.Containers.Container
 {
-    public partial class ContainerTests<T>
+    public class IsEmptyTests<T> : ContainerTests<T>
     {
         [Test]
         [Description("IsEmpty property of the container when all slots are empty.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_EmptySlots_ReturnsTrue()
         {
             var size = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -16,8 +14,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("IsEmpty property of the container when some slots are empty.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_SomeEmptySlots_ReturnsFalse()
         {
             var size = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -30,8 +26,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("IsEmpty property of the container when all slots are full.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_AllSlotsFull_ReturnsFalse()
         {
             var size = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);

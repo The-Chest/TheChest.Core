@@ -1,12 +1,10 @@
 using NUnit.Framework;
-namespace TheChest.Core.Tests.Containers.ContainerTests
+namespace TheChest.Core.Tests.Containers.Container
 {
-    public partial class ContainerTests<T>
+    public class SizeTests<T> : ContainerTests<T>
     {
         [Test]
         [Description("Size property of the container when it has initial value.")]
-        [Category("Size")]
-        [Category("Property")]
         public void Size_WithInitialValue_SetsSizeToSpecifiedValue()
         {
             var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);

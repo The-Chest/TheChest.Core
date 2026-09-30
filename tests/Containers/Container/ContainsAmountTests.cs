@@ -4,16 +4,12 @@ using NUnit.Framework;
 using TheChest.Core.Tests.Common.Configurations.Attributes;
 using TheChest.Core.Tests.Common.NUnit.TestCases;
 
-namespace TheChest.Core.Tests.Containers.ContainerTests
+namespace TheChest.Core.Tests.Containers.Container
 {
-    public partial class ContainerTests<T>
+    public class ContainsAmountTests<T> : ContainerTests<T>
     {
         [Test]
         [Description("ContainsAmount method throws an ArgumentNullException when a null item is passed.")]
-        [Category("Contains With Amount")]
-        [Category("Behavior")]
-        [Category("Exception")]
-        [Category("Reference Type")]
         [IgnoreIfValueType]
         public void ContainsAmount_NullItem_ThrowsArgumentNullException()
         {
@@ -27,10 +23,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("ContainsAmount method returns false when the item is not present in the container.")]
-        [Category("Contains With Amount")]
-        [Category("Result")]
-        [Category("Failure")]
-        [Category("ValueType")]
         [IgnoreIfReferenceType]
         public void ContainsAmount_DefaultValue_ReturnsFalseIfEmpty()
         {
@@ -43,10 +35,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("ContainsAmount method returns true when the item is present in the container with the specified amount.")]
-        [Category("Contains With Amount")]
-        [Category("Result")]
-        [Category("Success")]
-        [Category("ValueType")]
         [IgnoreIfReferenceType]
         public void ContainsAmount_DefaultValue_ReturnsTrue()
         {
@@ -59,9 +47,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [WrongAmount]
         [Description("ContainsAmount method throws an ArgumentOutOfRangeException when a non-positive amount is passed.")]
-        [Category("Contains With Amount")]
-        [Category("Behavior")]
-        [Category("Exception")]
         public void ContainsAmount_InvalidAmount_ThrowsArgumentOutOfRangeException(int amount)
         {
             var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -76,9 +61,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("ContainsAmount method returns false when the container is empty, regardless of the item.")]
-        [Category("Contains With Amount")]
-        [Category("Behavior")]
-        [Category("Failure")]
         public void ContainsAmount_EmptyContainer_ReturnsFalse()
         {
             var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -90,9 +72,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("ContainsAmount method returns false when the item is not found in the container, regardless of the amount.")]
-        [Category("Contains With Amount")]
-        [Category("Behavior")]
-        [Category("Failure")]
         public void ContainsAmount_NotFoundItem_ReturnsFalse()
         {
             var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -106,9 +85,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("ContainsAmount method returns false when the total amount of the item in the container is smaller than the searched amount.")]
-        [Category("Contains With Amount")]
-        [Category("Result")]
-        [Category("Failure")]
         public void ContainsAmount_AmountSmallerThanSearchedAmount_ReturnsFalse()
         {
             var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -124,9 +100,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("ContainsAmount method returns true when the total amount of the item in the container is equal to the searched amount.")]
-        [Category("Contains With Amount")]
-        [Category("Result")]
-        [Category("Success")]
         public void ContainsAmount_AmountEqualThanSearchedAmount_ReturnsTrue()
         {
             var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -141,10 +114,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("ContainsAmount method returns true when the total amount of the item in the container is bigger than the searched amount.")]
-        [Category("Contains With Amount")]
-        [Category("Valid Parameters")]
-        [Category("Result")]
-        [Category("Success")]
         public void ContainsAmount_AmountBiggerThanSearchedAmount_ReturnsTrue()
         {
             var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);

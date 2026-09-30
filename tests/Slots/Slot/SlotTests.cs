@@ -7,13 +7,12 @@ using TheChest.Core.Tests.Common.Items.ValueType;
 using TheChest.Core.Tests.Factories.Slots;
 using TheChest.Core.Tests.Factories.Slots.Interfaces;
 
-namespace TheChest.Core.Tests.Slots.SlotTests
+namespace TheChest.Core.Tests.Slots.Slot
 {
-    [Category("Slot")]
     [TestFixture(typeof(TestItem))]
     [TestFixture(typeof(TestStructItem))]
     [TestFixture(typeof(TestEnumItem))]
-    public partial class SlotTests<T> : BaseTest<T>
+    public abstract class SlotTests<T> : BaseTest<T>
     {
         protected readonly ISlotFactory<T> slotFactory;
         protected readonly IItemFactory<T> itemFactory;

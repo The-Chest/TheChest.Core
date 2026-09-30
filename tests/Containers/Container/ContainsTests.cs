@@ -2,16 +2,12 @@ using System.Linq;
 using NUnit.Framework;
 using TheChest.Core.Tests.Common.Configurations.Attributes;
 
-namespace TheChest.Core.Tests.Containers.ContainerTests
+namespace TheChest.Core.Tests.Containers.Container
 {
-    public partial class ContainerTests<T>
+    public class ContainsTests<T> : ContainerTests<T>
     {
         [Test]
         [Description("Contains method throws an ArgumentNullException when a null item is passed.")]
-        [Category("Contains")]
-        [Category("Behavior")]
-        [Category("Exception")]
-        [Category("Reference Type")]
         [IgnoreIfValueType]
         public void Contains_NullItem_ThrowsArgumentNullException()
         {
@@ -24,10 +20,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("Contains method returns false when the item is not present in the container.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
-        [Category("Value Type")]
         [IgnoreIfReferenceType]
         public void Contains_DefaultValue_ReturnsFalseIfEmpty()
         {
@@ -37,10 +29,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("Contains method returns true when the item is present in the container.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Success")]
-        [Category("Value Type")]
         [IgnoreIfReferenceType]
         public void Contains_DefaultValue_ReturnsTrueIfFull()
         {
@@ -54,9 +42,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("Contains method returns false when the container is empty.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
         public void Contains_EmptyContainer_ReturnsFalse()
         {
             var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -68,9 +53,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("Contains method returns false when all items in the container are different from the parameter.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
         public void Contains_AllItemsDifferentFromParam_ReturnsFalse()
         {
             var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -83,9 +65,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("Contains method returns true when at least one item in the container is equal to the parameter.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Success")]
         public void Contains_OneItemEqualsToParam_ReturnsTrue()
         {
             var size = this.random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
