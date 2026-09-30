@@ -1,12 +1,10 @@
 using NUnit.Framework;
-namespace TheChest.Core.Tests.Containers.StackContainerTests
+namespace TheChest.Core.Tests.Containers.StackContainer
 {
-    public partial class StackContainerTests<T>
+    public class IsEmptyTests<T> : StackContainerTests<T>
     {
         [Test]
         [Description("IsEmpty property returns true when the container has empty slots.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_EmptySlots_ReturnsTrue()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -17,8 +15,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
         [Description("IsEmpty property returns false when the container has some empty slots.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_SomeEmptySlots_ReturnsFalse()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -30,8 +26,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
         [Description("IsEmpty property returns false when the container has no empty slots.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_AllSlotsFull_ReturnsFalse()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();

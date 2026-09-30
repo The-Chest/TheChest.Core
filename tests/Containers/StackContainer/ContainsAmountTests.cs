@@ -4,16 +4,12 @@ using NUnit.Framework;
 using TheChest.Core.Tests.Common.Configurations.Attributes;
 using TheChest.Core.Tests.Common.NUnit.TestCases;
 
-namespace TheChest.Core.Tests.Containers.StackContainerTests
+namespace TheChest.Core.Tests.Containers.StackContainer
 {
-    public partial class StackContainerTests<T>
+    public class ContainsAmountTests<T> : StackContainerTests<T>
     {
         [Test]
         [Description("Contains method throws an ArgumentNullException when a null item is passed.")]
-        [Category("Contains")]
-        [Category("Behavior")]
-        [Category("Exception")]
-        [Category("Reference Type")]
         [IgnoreIfValueType]
         public void ContainsAmount_NullItem_ThrowsArgumentNullException()
         {
@@ -28,9 +24,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [WrongAmount]
         [Description("Contains method throws an ArgumentOutOfRangeException when a non-positive amount is passed.")]
-        [Category("Contains")]
-        [Category("Behavior")]
-        [Category("Exception")]
         public void ContainsAmount_InvalidAmount_ThrowsArgumentOutOfRangeException(int amount)
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -45,9 +38,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
         [Description("Contains method returns false when the item is the default value and the container is empty.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
         [IgnoreIfReferenceType]
         public void ContainsAmount_DefaultValue_ReturnsFalseIfEmpty()
         {
@@ -61,9 +51,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
         [Description("Contains method returns true when the item is the default value and the container is full of that default value.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Success")]
         [IgnoreIfReferenceType]
         public void ContainsAmount_DefaultValue_ReturnsTrueIfFull()
         {
@@ -77,10 +64,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
         [Description("Contains method returns false when the container does not have enough items to meet the searched amount, even if it contains the item.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
-        [Category("Reference Type")]
         [IgnoreIfValueType]
         public void ContainsAmount_NotEnoughItems_ReturnsFalse()
         {
@@ -99,9 +82,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
         [Description("Contains method returns false when the container is empty, regardless of the item or amount.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
         public void ContainsAmount_EmptyContainer_ReturnsFalse()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -115,9 +95,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
         [Description("Contains method returns false when all items in the container are different from the parameter item, regardless of the amount.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
         public void ContainsAmount_NotFoundItem_ReturnsFalse()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -133,9 +110,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
 		[Description("Contains method returns false when the container has some items equal to the parameter item but not enough to meet the searched amount.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
         public void ContainsAmount_AmountSmallerThanSearchedAmount_ReturnsFalse()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -153,9 +127,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
         [Description("Contains method returns true when the container has exactly the amount of items equal to the parameter item as the searched amount.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Success")]
         public void ContainsAmount_AmountEqualThanSearchedAmount_ReturnsTrue()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -173,9 +144,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
         [Description("Contains method returns true when the container has more items equal to the parameter item than the searched amount.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Success")]
         public void ContainsAmount_AmountBiggerThanSearchedAmount_ReturnsTrue()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();

@@ -3,15 +3,12 @@ using NUnit.Framework;
 using TheChest.Core.Containers;
 using TheChest.Core.Tests.Common.Extensions.Containers;
 
-namespace TheChest.Core.Tests.Containers.StackContainerTests
+namespace TheChest.Core.Tests.Containers.StackContainer.Constructors
 {
-    public partial class StackContainerTests<T>
+    public class ConstructorTests<T> : StackContainerTests<T>
     {
         [Test]
 		[Description("The constructor should create an empty container with no slots when no parameters are provided.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Success")]
         public void Constructor_NoParameters_CreatesEmptyContainerWithNoSlots()
         {
             var container = new StackContainer<T>();
@@ -26,9 +23,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
 
         [Test]
 		[Description("The constructor should create an empty container with the given size and max stack size, and initialize the slots accordingly.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Success")]
         public void Constructor_SizeAndMaxStackSize_CreatesEmptyContainerWithSlots()
         {
             var (size, maxStackSize) = this.GenerateRandomSizeAndStackSize();
@@ -46,9 +40,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
         [TestCase(0)]
         [TestCase(-1)]
         [Description("The constructor should throw an ArgumentOutOfRangeException when the max stack size is less than or equal to zero.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Exception")]
         public void Constructor_MaxStackSizeLessOrEqualZero_ThrowsArgumentOutOfRangeException(int maxStackSize)
         {
             var (size, _) = this.GenerateRandomSizeAndStackSize();
@@ -61,9 +52,6 @@ namespace TheChest.Core.Tests.Containers.StackContainerTests
         [TestCase(0)]
         [TestCase(-1)]
         [Description("The constructor should throw an ArgumentOutOfRangeException when the size is less than or equal to zero.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Exception")]
         public void Constructor_SizeLessOrEqualZero_ThrowsArgumentOutOfRangeException(int size)
         {
             var (_, maxStackSize) = this.GenerateRandomSizeAndStackSize();

@@ -1,15 +1,12 @@
 using NUnit.Framework;
 using TheChest.Core.Tests.Common.Configurations.Attributes;
 
-namespace TheChest.Core.Tests.Slots.StackSlotTests
+namespace TheChest.Core.Tests.Slots.StackSlot
 {
-    public partial class StackSlotTests<T>
+    public class ContainsTests<T> : StackSlotTests<T>
     {
         [Test]
         [Description("Contains returns false when the slot is empty, regardless of the item passed.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
         public void Contains_EmptySlot_ReturnsFalse()
         {
             var maxStackSize = this.GenerateStackSize();
@@ -23,9 +20,6 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
 
         [Test]
         [Description("Contains returns false when a different item is passed than the one contained in the slot.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
         public void Contains_DifferentItem_ReturnsFalse()
         {
             var maxStackSize = this.GenerateStackSize();
@@ -40,9 +34,6 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
 
         [Test]
         [Description("Contains returns true when the same item is passed as the one contained in the slot.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Success")]
         public void Contains_ContainsItem_ReturnsTrue()
         {
             var maxStackSize = this.GenerateStackSize();
@@ -57,10 +48,6 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
 
         [Test]
         [Description("Contains throws an ArgumentNullException when a null item is passed.")]
-        [Category("Contains")]
-        [Category("Behavior")]
-        [Category("Exception")]
-        [Category("Reference Type")]
         [IgnoreIfValueType]
         public void ContainsItem_NullItem_ThrowsArgumentNullException()
         {
@@ -75,10 +62,6 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
 
         [Test]
         [Description("Contains returns false when the default value of the item type is passed to an empty slot, and true when passed to a full slot.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
-        [Category("Value Type")]
         [IgnoreIfReferenceType]
         public void Contains_DefaultValue_ReturnsFalseIfEmpty()
         {
@@ -93,10 +76,6 @@ namespace TheChest.Core.Tests.Slots.StackSlotTests
 
         [Test]
         [Description("Contains returns true when the default value of the item type is passed to a full slot that contains the default value.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Success")]
-        [Category("Value Type")]
         [IgnoreIfReferenceType]
         public void Contains_DefaultValue_ReturnsTrueIfFull()
         {
