@@ -116,6 +116,7 @@ namespace TheChest.Core.Slots
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
+        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
         public virtual bool Contains(T item)
         {
             if (item.IsNull())
@@ -128,6 +129,7 @@ namespace TheChest.Core.Slots
         }
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
+        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
         public virtual bool Contains(T item, int amount)
         {
             if (item.IsNull())
