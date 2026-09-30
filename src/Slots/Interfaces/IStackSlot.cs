@@ -1,4 +1,6 @@
-﻿namespace TheChest.Core.Slots.Interfaces
+﻿using System;
+
+namespace TheChest.Core.Slots.Interfaces
 {
     /// <summary>
     /// Represents a slot that can hold a stack of items, providing information about the current and maximum number of items, and supporting containment checks.
@@ -26,6 +28,7 @@
         /// </summary>
         /// <param name="items">items to be checked inside the slot</param>
         /// <returns><see langword="true"/> if the slot contains all <paramref name="items"/>, otherwise <see langword="false"/></returns>
+        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
         bool Contains(T[] items);
     }
 }

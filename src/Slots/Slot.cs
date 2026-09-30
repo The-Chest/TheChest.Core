@@ -56,6 +56,7 @@ namespace TheChest.Core.Slots
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
+        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
         public virtual bool Contains(T item)
         {
             ArgumentValidator.ThrowIfNull(item, nameof(item));
