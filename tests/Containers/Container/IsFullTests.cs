@@ -1,12 +1,10 @@
 using NUnit.Framework;
-namespace TheChest.Core.Tests.Containers.ContainerTests
+namespace TheChest.Core.Tests.Containers.Container
 {
-    public partial class ContainerTests<T>
+    public class IsFullTests<T> : ContainerTests<T>
     {
         [Test]
         [Description("IsFull property of the container when it has empty slots.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_EmptySlots_ReturnsFalse()
         {
             var size = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -17,8 +15,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("IsFull property of the container when it has one empty slot.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_OneEmptySlot_ReturnsFalse()
         {
             var size = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -30,8 +26,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("IsFull property of the container when it has one full slot.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_OneFullSlot_ReturnsFalse()
         {
             var item = this.itemFactory.CreateDefault();
@@ -43,8 +37,6 @@ namespace TheChest.Core.Tests.Containers.ContainerTests
 
         [Test]
         [Description("IsFull property of the container when all slots are full.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_AllSlotsFull_ReturnsTrue()
         {
             var item = this.itemFactory.CreateDefault();

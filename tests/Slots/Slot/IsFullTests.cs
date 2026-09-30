@@ -1,12 +1,10 @@
 using NUnit.Framework;
-namespace TheChest.Core.Tests.Slots.SlotTests
+namespace TheChest.Core.Tests.Slots.Slot
 {
-    public partial class SlotTests<T>
+    public class IsFullTests<T> : SlotTests<T>
     {
         [Test]
         [Description("IsFull returns true for a full slot.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_CurrentItemNotNull_ReturnsTrue()
         {
             var item = this.itemFactory.CreateDefault();
@@ -17,8 +15,6 @@ namespace TheChest.Core.Tests.Slots.SlotTests
 
         [Test]
         [Description("IsFull returns false for an empty slot.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_SlotIsEmpty_ReturnsFalse()
         {
             var slot = this.slotFactory.Empty();
