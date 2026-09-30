@@ -117,6 +117,7 @@ namespace TheChest.Core.Containers
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
+        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
         public virtual bool Contains(T item)
         {
             ArgumentValidator.ThrowIfNull(item, nameof(item));
@@ -132,6 +133,7 @@ namespace TheChest.Core.Containers
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
+        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
         public virtual bool Contains(T item, int amount)
         {
             ArgumentValidator.ThrowIfNull(item, nameof(item));

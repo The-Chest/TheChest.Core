@@ -117,6 +117,7 @@ namespace TheChest.Core.Slots
 
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
+        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
         public virtual bool Contains(T item)
         {
             ArgumentValidator.ThrowIfNull(item, nameof(item), "Item cannot be null");
@@ -128,6 +129,7 @@ namespace TheChest.Core.Slots
         }
         /// <inheritdoc/>
         /// <exception cref="ArgumentNullException">When <paramref name="items"/> is <see langword="null"/> or contain any <see langword="null"/></exception>
+        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
         public virtual bool Contains(T[] items)
         {
             ArgumentValidator.ThrowIfNull(items, nameof(items), "Items cannot be null");
