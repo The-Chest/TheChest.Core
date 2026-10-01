@@ -1,15 +1,12 @@
 using System;
 using NUnit.Framework;
 using TheChest.Core.Slots;
-namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
+namespace TheChest.Core.Tests.Slots.LazyStackSlot.Constructors
 {
-    public partial class LazyStackSlotTests<T>
+    public class ConstructorTests<T> : LazyStackSlotTests<T>
     {
         [Test]
         [Description("The constructor initializes the Amount and MaxAmount properties with default values when no parameters are provided.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Success")]
         public void Constructor_NoParameters_InitializesWithDefaultValues()
         {
             var slot = new LazyStackSlot<T>();
@@ -22,9 +19,6 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 
         [Test]
         [Description("The constructor initializes the Amount and MaxAmount properties correctly when valid parameters are provided.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Success")]
         public void Constructor_ItemAndAmountAndMaxAmount_InitializesCorrectly()
         {
             var maxAmount = this.GenerateStackSize();
@@ -42,9 +36,6 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 
         [Test]
         [Description("The constructor throws an ArgumentNullException when the item parameter is null.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Exception")]
         public void Constructor_AmountGreaterThanMaxAmount_ThrowsArgumentOutOfRangeException()
         {
             var stackSize = this.GenerateStackSize();
@@ -62,9 +53,6 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 
         [Test]
         [Description("The constructor throws an ArgumentOutOfRangeException when the amount parameter is smaller than zero.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Exception")]
         public void Constructor_AmountSmallerThanZero_ThrowsArgumentOutOfRangeException()
         {
             var stackSize = this.GenerateStackSize();
@@ -81,9 +69,6 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 
         [Test]
         [Description("The constructor throws an ArgumentOutOfRangeException when the max amount parameter is smaller than zero.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Exception")]
         public void Constructor_MaxAmountLessThanZero_ThrowsArgumentOutOfRangeException()
         {
             var stackSize = this.GenerateStackSize();

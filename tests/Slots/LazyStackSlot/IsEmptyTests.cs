@@ -1,12 +1,10 @@
 using NUnit.Framework;
-namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
+namespace TheChest.Core.Tests.Slots.LazyStackSlot
 {
-    public partial class LazyStackSlotTests<T>
+    public class IsEmptyTests<T> : LazyStackSlotTests<T>
     {
         [Test]
         [Description("IsEmpty returns false for a full slot.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_FullSlot_ReturnsFalse()
         {
             var item = this.itemFactory.CreateDefault();
@@ -18,8 +16,6 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 
         [Test]
         [Description("IsEmpty returns false for a slot with content.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_WithContent_ReturnsFalse()
         {
             var item = this.itemFactory.CreateDefault();
@@ -32,8 +28,6 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 
         [Test]
         [Description("IsEmpty returns true for an empty slot.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_NoContent_ReturnsTrue()
         {
             var maxStackSize = this.GenerateStackSize();
@@ -44,8 +38,6 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 
         [Test]
         [Description("IsEmpty returns true for a slot with zero amount.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_ZeroAmount_ReturnsTrue()
         {
             var item = this.itemFactory.CreateDefault();

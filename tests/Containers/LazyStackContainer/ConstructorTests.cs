@@ -1,15 +1,12 @@
 using System;
 using NUnit.Framework;
 using TheChest.Core.Containers;
-namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
+namespace TheChest.Core.Tests.Containers.LazyStackContainer
 {
-    public partial class LazyStackContainerTests<T>
+    public class ConstructorTests<T> : LazyStackContainerTests<T>
     {
         [Test]
 		[Description("Constructor with no parameters creates a container with the default size.")]
-        [Category("Constructor")]
-        [Category("Default")]
-        [Category("Behavior")]
         public void Constructor_NoParameters_CreatesContainerWithDefaultSize()
         {
             var container = new LazyStackContainer<T>();
@@ -24,8 +21,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("Constructor with size and max stack size parameters creates a container with the given size.")]
-        [Category("Constructor")]
-        [Category("Behavior")]
         public void Constructor_SizeAndMaxStackSize_CreatesContainerWithGivenSize()
         {
             var (size, maxStackSize) = this.GenerateRandomSizeAndStackSize();
@@ -42,9 +37,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Description("Constructor with negative size parameter throws an ArgumentOutOfRangeException.")]
         [TestCase(-1)]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Exception")]
         public void Constructor_NegativeSize_ThrowsArgumentOutOfRangeException(int multiplier)
         {
             var (size, maxStackSize) = this.GenerateRandomSizeAndStackSize();
@@ -59,9 +51,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
         [Description("Constructor with invalid max stack size parameter throws an ArgumentOutOfRangeException.")]
         [TestCase(-1)]
         [TestCase(0)]
-        [Category("Constructor")]
-        [Category("Behavior")]
-        [Category("Exception")]
         public void Constructor_InvalidMaxStackSize_ThrowsArgumentOutOfRangeException(int multiplier)
         {
             var (size, maxStackSize) = this.GenerateRandomSizeAndStackSize(); 
