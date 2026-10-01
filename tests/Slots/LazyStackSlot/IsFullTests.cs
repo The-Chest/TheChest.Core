@@ -1,14 +1,12 @@
 using NUnit.Framework;
 using TheChest.Core.Tests.Common.Configurations.Attributes;
 
-namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
+namespace TheChest.Core.Tests.Slots.LazyStackSlot
 {
-    public partial class LazyStackSlotTests<T>
+    public class IsFullTests<T> : LazyStackSlotTests<T>
     {
         [Test]
         [Description("IsFull returns false for an empty slot.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_NoContent_ReturnsFalse()
         {
             var maxStackSize = this.GenerateStackSize();
@@ -19,8 +17,6 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 
         [Test]
         [Description("IsFull returns true for a full slot.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_FullSlot_ReturnsTrue()
         {
             var maxStackSize = this.GenerateStackSize();
@@ -32,9 +28,6 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 
         [Test]
         [Description("IsFull returns false when the amount is equal to the max stack size but the content is the default value for value types.")]
-        [Category("IsFull")]
-        [Category("Property")]
-        [Category("Reference Type")]
         [IgnoreIfValueType]
         public void IsFull_FullAmountWithNoContent_ReturnsFalse()
         {
@@ -46,9 +39,6 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 
         [Test]
         [Description("IsFull returns true when the amount is equal to the max stack size and the content is the default value for reference types.")]
-        [Category("IsFull")]
-        [Category("Property")]
-        [Category("Value Type")]
         [IgnoreIfReferenceType]
         public void IsFull_FullAmountWithDefaultContent_ReturnsTrue()
         {
@@ -60,8 +50,6 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
 
         [Test]
         [Description("IsFull returns false when the amount is less than the max stack size.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_ItemNotMaxAmount_ReturnsFalse()
         {
             var item = this.itemFactory.CreateDefault();

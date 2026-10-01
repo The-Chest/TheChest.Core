@@ -1,12 +1,10 @@
 using NUnit.Framework;
-namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
+namespace TheChest.Core.Tests.Containers.LazyStackContainer
 {
-    public partial class LazyStackContainerTests<T>
+    public class IsFullTests<T> : LazyStackContainerTests<T>
     {
         [Test]
 		[Description("IsFull property returns true when all slots in the container are full.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_AllSlotsFull_ReturnsTrue()
         {
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -23,8 +21,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("IsFull property returns false when the container has empty slots.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_EmptySlots_ReturnsFalse()
 		{
 			var container = this.containerFactory.Empty();
@@ -34,8 +30,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
 		[Test]
 		[Description("IsFull property returns false when the container has one empty slot.")]
-		[Category("IsFull")]
-		[Category("Property")]
 		public void IsFull_OneEmptySlot_ReturnsFalse()
 		{
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -51,8 +45,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("IsFull property returns false when the container has one slot that is not full.")]
-        [Category("IsFull")]
-        [Category("Property")]
         public void IsFull_OneSlotFull_ReturnsFalse()
         {
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -68,8 +60,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("IsFull property returns false when the container has one full slot.")]
-        [Category("IsFull")]
-        [Category("Property")]
 		public void IsFull_OneFullSlot_ReturnsFalse()
         {
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);

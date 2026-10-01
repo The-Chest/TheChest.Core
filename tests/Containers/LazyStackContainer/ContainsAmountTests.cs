@@ -3,16 +3,12 @@ using System.Linq;
 using NUnit.Framework;
 using TheChest.Core.Tests.Common.Configurations.Attributes;
 
-namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
+namespace TheChest.Core.Tests.Containers.LazyStackContainer
 {
-    public partial class LazyStackContainerTests<T>
+    public class ContainsAmountTests<T> : LazyStackContainerTests<T>
     {
         [Test]
 		[Description("Contains method throws an ArgumentNullException when a null item is passed.")]
-        [Category("Contains")]
-        [Category("Reference Type")]
-        [Category("Behavior")]
-        [Category("Exception")]
         [IgnoreIfValueType]
         public void ContainsAmount_NullItem_ThrowsArgumentNullException()
         {
@@ -28,10 +24,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("Contains method returns false when a default value item is passed to an empty container.")]
-        [Category("Contains")]
-        [Category("Value Type")]
-        [Category("Result")]
-        [Category("Failure")]
         [IgnoreIfReferenceType]
         public void ContainsAmount_DefaultValue_ReturnsFalseIfEmpty()
         {
@@ -44,10 +36,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("Contains method returns true when a default value item is passed to a full container.")]
-        [Category("Contains")]
-        [Category("Value Type")]
-        [Category("Result")]
-        [Category("Success")]
         [IgnoreIfReferenceType]
         public void ContainsAmount_DefaultValue_ReturnsTrueIfFull()
         {
@@ -58,9 +46,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
         }
 
         [Description("Contains method throws an ArgumentOutOfRangeException when an invalid amount is passed.")]
-        [Category("Contains")]
-        [Category("Behavior")]
-        [Category("Exception")]
         [TestCase(0)]
         [TestCase(-1)]
         public void ContainsAmount_InvalidAmount_ThrowsArgumentOutOfRangeException(int amount)
@@ -77,9 +62,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("Contains method returns false when the container is empty, regardless of the item passed.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
         public void ContainsAmount_EmptyContainer_ReturnsFalse()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -92,9 +74,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("Contains method returns false when the item is not found in the container.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
         public void ContainsAmount_NotFoundItem_ReturnsFalse()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -108,9 +87,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("Contains method returns false when the total amount of the item in the container is smaller than the searched amount.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
         public void ContainsAmount_AmountSmallerThanSearchedAmount_ReturnsFalse()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -126,9 +102,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("Contains method returns true when the total amount of the item in the container is equal to the searched amount.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Success")]
         public void ContainsAmount_AmountEqualThanSearchedAmount_ReturnsTrue()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -143,9 +116,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("Contains method returns true when the total amount of the item in the container is bigger than the searched amount.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Success")]
         public void ContainsAmount_AmountBiggerThanSearchedAmount_ReturnsTrue()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -159,9 +129,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("Contains method returns true when the total amount of the item in the container is bigger than the searched amount and the items are in multiple slots.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Success")]
         public void ContainsAmount_ValidSearchedAmount_ItemsInMultipleSlots_ReturnsTrue()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();

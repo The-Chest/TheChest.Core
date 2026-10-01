@@ -2,16 +2,12 @@ using System.Linq;
 using NUnit.Framework;
 using TheChest.Core.Tests.Common.Configurations.Attributes;
 
-namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
+namespace TheChest.Core.Tests.Containers.LazyStackContainer
 {
-    public partial class LazyStackContainerTests<T>
+    public class ContainsTests<T> : LazyStackContainerTests<T>
     {
         [Test]
 		[Description("Contains method throws an exception if the item is null.")]
-        [Category("Contains")]
-        [Category("Reference Type")]
-        [Category("Behavior")]
-        [Category("Exception")]
         [IgnoreIfValueType]
         public void Contains_NullItem_ThrowsArgumentNullException()
         {
@@ -26,10 +22,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("Contains method returns false if the item is the default value and the container is empty.")]
-        [Category("Contains")]
-        [Category("Value Type")]
-        [Category("Result")]
-        [Category("Failure")]
         [IgnoreIfReferenceType]
         public void Contains_DefaultValue_ReturnsFalseIfEmpty()
         {
@@ -41,9 +33,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("Contains method returns true if the item is the default value and the container is full.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Success")]
         [IgnoreIfReferenceType]
         public void Contains_DefaultValue_ReturnsTrueIfFull()
         {
@@ -56,9 +45,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("Contains method returns false if the item is not in the container.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
         public void Contains_EmptyContainer_ReturnsFalse()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -70,9 +56,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("Contains method returns false if all items in the container are different from the parameter item.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Failure")]
         public void Contains_AllItemsDifferentFromParam_ReturnsFalse()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();
@@ -85,9 +68,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("Contains method returns true if at least one item in the container is equal to the parameter item.")]
-        [Category("Contains")]
-        [Category("Result")]
-        [Category("Success")]
         public void Contains_OneItemEqualsToParam_ReturnsTrue()
         {
             var (size, stackSize) = this.GenerateRandomSizeAndStackSize();

@@ -1,12 +1,10 @@
 using NUnit.Framework;
-namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
+namespace TheChest.Core.Tests.Containers.LazyStackContainer
 {
-    public partial class LazyStackContainerTests<T>
+    public class IsEmptyTests<T> : LazyStackContainerTests<T>
     {
         [Test]
 		[Description("IsEmpty property returns true when all slots in the container are empty.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_EmptySlots_ReturnsTrue()
         {
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -17,8 +15,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("IsEmpty property returns false when some slots in the container are empty and some are full.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_SomeEmptySlots_ReturnsFalse()
         {
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);
@@ -34,8 +30,6 @@ namespace TheChest.Core.Tests.Containers.LazyStackContainerTests
 
         [Test]
 		[Description("IsEmpty property returns false when all slots in the container are full.")]
-        [Category("IsEmpty")]
-        [Category("Property")]
         public void IsEmpty_AllSlotsFull_ReturnsFalse()
         {
             var randomSize = random.Next(MIN_SIZE_TEST, MAX_SIZE_TEST);

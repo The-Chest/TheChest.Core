@@ -7,13 +7,12 @@ using TheChest.Core.Tests.Common.Items.ValueType;
 using TheChest.Core.Tests.Factories.Slots;
 using TheChest.Core.Tests.Factories.Slots.Interfaces;
 
-namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
+namespace TheChest.Core.Tests.Slots.LazyStackSlot
 {
-    [Category("LazyStackSlot")]
     [TestFixture(typeof(TestItem))]
     [TestFixture(typeof(TestStructItem))]
     [TestFixture(typeof(TestEnumItem))]
-    public partial class LazyStackSlotTests<T> : BaseTest<T>
+    public abstract class LazyStackSlotTests<T> : BaseTest<T>
     {
         protected readonly ILazyStackSlotFactory<T> slotFactory;
         protected readonly IItemFactory<T> itemFactory;
@@ -21,9 +20,9 @@ namespace TheChest.Core.Tests.Slots.LazyStackSlotTests
         protected const int MIN_STACK_SIZE_TEST = 5;
         protected const int MAX_STACK_SIZE_TEST = 10;
 
-        public LazyStackSlotTests() : base(container => 
+        protected LazyStackSlotTests() : base(container =>
         {
-            container.Register<ILazyStackSlotFactory<T>, LazyStackSlotFactory<LazyStackSlot<T>, T>>(); 
+            container.Register<ILazyStackSlotFactory<T>, LazyStackSlotFactory<LazyStackSlot<T>, T>>();
         })
         {
             this.slotFactory = this.configurations.Resolve<ILazyStackSlotFactory<T>>();
