@@ -96,43 +96,5 @@ namespace TheChest.Core.Containers
             this.slots = slots ?? throw new ArgumentNullException(nameof(slots));
         }
 
-        /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
-        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
-        public virtual bool Contains(T item)
-        {
-            ArgumentValidator.ThrowIfNull(item, nameof(item));
-
-            for (var i = 0; i < this.slots.Length; i++)
-            {
-                if (this.slots[i].Contains(item))
-                    return true;
-            }
-
-            return false;
-        }
-        /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
-        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="amount"/> zero or smaller</exception>
-        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
-        public virtual bool Contains(T item, int amount)
-        {
-            ArgumentValidator.ThrowIfNull(item, nameof(item));
-            ArgumentValidator.ThrowIfNotPositive(amount, nameof(amount));
-
-            var amountFound = 0;
-            for (var i = 0; i < this.slots.Length; i++)
-            {
-                var slot = this.slots[i];
-                if (slot.Contains(item))
-                {
-                    amountFound += slot.Amount;
-                    if (amountFound >= amount)
-                        return true;
-                }
-            }
-
-            return false;
-        }
     }
 }
