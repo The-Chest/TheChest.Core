@@ -6,6 +6,10 @@
 * The obsolete `Contains` methods have been removed from the Slot classes and their interfaces.
 * Unit tests for the removed Slot `Contains` methods have been removed.
 
+## Known Issues
+* Container and Slot interfaces has no generic usage of T yet
+  * This will change with the `IEnumerable<T>` implementation
+
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.21.0...v0.22.0
 
 # v0.21.0
