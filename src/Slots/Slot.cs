@@ -1,6 +1,4 @@
-﻿using System;
-using TheChest.Core.Slots.Interfaces;
-using TheChest.Core.Validators;
+﻿using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots
 {
@@ -54,17 +52,5 @@ namespace TheChest.Core.Slots
             this.content = currentItem;
         }
 
-        /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is null</exception>
-        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
-        public virtual bool Contains(T item)
-        {
-            ArgumentValidator.ThrowIfNull(item, nameof(item));
-
-            if (this.IsEmpty)
-                return false;
-
-            return this.Content.Equals(item);
-        }
     }
 }

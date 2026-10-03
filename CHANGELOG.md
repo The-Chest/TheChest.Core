@@ -3,10 +3,8 @@
 ## What's Changed
 * The obsolete `Contains` methods have been removed from the Container classes and their interfaces.
 * Unit tests for the removed Container `Contains` methods have been removed.
-
-## What's Next
-* `Contains` methods are going to be removed from the Slot classes in future versions.
-  * Use `Contains` from `System.Collections.Generic` instead.
+* The obsolete `Contains` methods have been removed from the Slot classes and their interfaces.
+* Unit tests for the removed Slot `Contains` methods have been removed.
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.21.0...v0.22.0
 
