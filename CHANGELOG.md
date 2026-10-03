@@ -1,3 +1,15 @@
+# v0.22.0
+
+## What's Changed
+* The obsolete `Contains` methods have been removed from the Container classes and their interfaces.
+* Unit tests for the removed Container `Contains` methods have been removed.
+
+## What's Next
+* `Contains` methods are going to be removed from the Slot classes in future versions.
+  * Use `Contains` from `System.Collections.Generic` instead.
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.21.0...v0.22.0
+
 # v0.21.0
 
 ## What's Added
@@ -6,19 +18,19 @@
 
 ## What's Changed
 * Container Constructor now throws `ArgumentOutOfRangeException` instead of `ArgumentException` when the `size` parameter is smaller than `content.Length`.
-* `Contains` methods are now Obsolete in the Container/Slot classes and will be removed in future versions. 
+* `Contains` methods are now Obsolete in the Container/Slot classes and will be removed in future versions.
     * This is due the Container classes implementing from `IEnumerable<T>`
 
 ## What's Next
 * Benchmarks for the Container classes to check how they perform in different scenarios and with different sizes of slots and items.
-* `Contains` are going to be removed from the Container/Slot classes in future versions. 
+* `Contains` are going to be removed from the Container/Slot classes in future versions.
   * Use `Contains` from `System.Collections.Generic` instead.
 
 ## Known issues
 * Complexity and Library size
   * The Container classes seems redundant at the moment. They might be unified in a single one or have a `BaseContainer` class created(unlikely).
-* `StackContainer<T>.Contains(T, int)` has one flaky test that is failing sometimes. 
-  * This class is going to be removed in future versions so it is not a priority to fix it. 
+* `StackContainer<T>.Contains(T, int)` has one flaky test that is failing sometimes.
+  * This class is going to be removed in future versions so it is not a priority to fix it.
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.20.0...v0.21.0
 
