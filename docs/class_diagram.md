@@ -27,7 +27,6 @@ direction BT
         class ISlot~T~ {
 	        +bool IsEmpty
 	        +bool IsFull
-	        +bool Contains(T item)
         }
 	}
 	namespace TheChest.Core.Containers {
@@ -57,7 +56,6 @@ direction BT
 			+bool IsEmpty
 			+bool IsFull
 
-			+bool Contains(T item)
         }
 	}
 
@@ -94,13 +92,11 @@ direction BT
         class ISlot~T~ {
 	        +bool IsEmpty
 	        +bool IsFull
-	        +bool Contains(T item)
         }
         class IStackSlot~T~ {
             +int Amount
             +int MaxAmount
             +int AvailableAmount
-	        +bool Contains(T[] items)
         }
 	}
 	namespace TheChest.Core.Containers {
@@ -133,8 +129,6 @@ direction BT
 	        +bool IsEmpty
 	        +bool IsFull
 
-	        +bool Contains(T item)
-	        +bool Contains(T[] items)
 		}
 	}
 

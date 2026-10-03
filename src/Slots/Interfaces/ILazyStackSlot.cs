@@ -21,12 +21,5 @@
         /// Defines the amount of available item that this slot can contain.
         /// </summary>
         int AvailableAmount { get; }
-        /// <summary>
-        /// Checks if the slot contains the specified item with a specific amount.
-        /// </summary>
-        /// <param name="item">Item to be checked</param>
-        /// <param name="amount">Amount of items to be checked</param>
-        /// <returns>True if the slot contains the item with at least the specified amount</returns>
-        bool Contains(T item, int amount);
     }
 }
