@@ -21,15 +21,12 @@ direction BT
 	        +int Size
 	        +bool IsEmpty
 	        +bool IsFull
-	        +bool Contains(T item)
-			+bool Contains(T item, int amount)
         }
 	}
 	namespace TheChest.Core.Slots.Interfaces {
         class ISlot~T~ {
 	        +bool IsEmpty
 	        +bool IsFull
-	        +bool Contains(T item)
         }
 	}
 	namespace TheChest.Core.Containers {
@@ -46,8 +43,6 @@ direction BT
 			+Container(T[] items, int size)
 			+Container(ISlot~T~[] slots)
 
-	        +bool Contains(T item)
-			+bool Contains(T item, int amount)
         }
 	}
 	namespace TheChest.Core.Slots {
@@ -61,7 +56,6 @@ direction BT
 			+bool IsEmpty
 			+bool IsFull
 
-			+bool Contains(T item)
         }
 	}
 
@@ -92,21 +86,17 @@ direction BT
 	        +int Size
 	        +bool IsEmpty
 	        +bool IsFull
-	        +bool Contains(T item)
-			+bool Contains(T item, int amount)
         }
 	}
 	namespace TheChest.Core.Slots.Interfaces {
         class ISlot~T~ {
 	        +bool IsEmpty
 	        +bool IsFull
-	        +bool Contains(T item)
         }
         class IStackSlot~T~ {
             +int Amount
             +int MaxAmount
             +int AvailableAmount
-	        +bool Contains(T[] items)
         }
 	}
 	namespace TheChest.Core.Containers {
@@ -121,8 +111,6 @@ direction BT
 			+int Size
 	        +bool IsEmpty
 	        +bool IsFull
-	        +bool Contains(T item)
-			+bool Contains(T item, int amount)
         }
 	}
 
@@ -141,8 +129,6 @@ direction BT
 	        +bool IsEmpty
 	        +bool IsFull
 
-	        +bool Contains(T item)
-	        +bool Contains(T[] items)
 		}
 	}
 

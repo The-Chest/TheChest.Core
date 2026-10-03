@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using TheChest.Core.Extensions;
 using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Validators;
@@ -115,37 +114,5 @@ namespace TheChest.Core.Slots
             this.Content = items;
         }
 
-        /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
-        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
-        public virtual bool Contains(T item)
-        {
-            ArgumentValidator.ThrowIfNull(item, nameof(item), "Item cannot be null");
-
-            if (this.IsEmpty)
-                return false;
-
-            return this.Content.Contains(item);
-        }
-        /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="items"/> is <see langword="null"/> or contain any <see langword="null"/></exception>
-        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
-        public virtual bool Contains(T[] items)
-        {
-            ArgumentValidator.ThrowIfNull(items, nameof(items), "Items cannot be null");
-            
-            if (items.Length == 0 || this.IsEmpty)
-                return false;
-
-            for (var i = 0; i < items.Length; i++)
-            {
-                var item = items[i];
-                ArgumentValidator.ThrowIfNull(item, nameof(items), "Items cannot contain null values");
-                if (!this.Content.Contains(item))
-                    return false;
-            }
-
-            return true;
-        }
     }
 }

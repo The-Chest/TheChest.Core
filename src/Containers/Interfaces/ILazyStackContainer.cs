@@ -18,19 +18,5 @@
         /// Verify if the container is empty
         /// </summary>
         bool IsEmpty { get; }
-
-        /// <summary>
-        /// Checks if the container contains an item.
-        /// </summary>
-        /// <param name="item">Item to be checked</param>
-        /// <returns>Returns true when the container contains an <paramref name="item"/> in any of its slots</returns>
-        bool Contains(T item);
-        /// <summary>
-        /// Checks if the container contains an amount of <paramref name="item"/>.
-        /// </summary>
-        /// <param name="item">Item to be checked</param>
-        /// <param name="amount">The minimum amount of <paramref name="item"/> expected</param>
-        /// <returns>Returns true when the container contains an <paramref name="amount"/> of <paramref name="item"/> in any of its slots</returns>
-        bool Contains(T item, int amount);
     }
 }

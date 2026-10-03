@@ -1,5 +1,4 @@
 ﻿using System;
-using TheChest.Core.Extensions;
 using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Validators;
 
@@ -114,37 +113,5 @@ namespace TheChest.Core.Slots
             this.maxAmount = maxAmount;
         }
 
-        /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
-        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
-        public virtual bool Contains(T item)
-        {
-            if (item.IsNull())
-                throw new ArgumentNullException(nameof(item));
-
-            if (this.IsEmpty)
-                return false;
-
-            return item.Equals(this.content);
-        }
-        /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">When <paramref name="item"/> is <see langword="null"/></exception>
-        [Obsolete("This method will be changed to Contains method from System.Collections.Generic.ICollection<T> instead when IEnumerable<T> is implemented.")]
-        public virtual bool Contains(T item, int amount)
-        {
-            if (item.IsNull())
-                throw new ArgumentNullException(nameof(item));
-            if (amount <= 0)
-                throw new ArgumentOutOfRangeException(
-                    paramName: nameof(amount),
-                    actualValue: amount,
-                    message: "The amount must be greater than zero"
-                );
-
-            if (this.IsEmpty)
-                return false;
-            
-            return item.Equals(this.content) && amount <= this.Amount;
-        }
     }
 }
