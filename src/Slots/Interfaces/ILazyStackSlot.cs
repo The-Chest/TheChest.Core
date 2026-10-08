@@ -9,5 +9,5 @@ namespace TheChest.Core.Slots.Interfaces
     /// <see cref="ILazyStackSlot{T}"/> extends <see cref="ISlot{T}"/>
     /// </remarks>
     /// <typeparam name="T">The type of item the slot can hold</typeparam>
-    public interface ILazyStackSlot<in T> : ISlot<T>, IStackable { }
+    public interface ILazyStackSlot<in T> : IContentState, IStackable { }
 }
