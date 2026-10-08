@@ -1,22 +1,21 @@
-﻿namespace TheChest.Core.Containers.Interfaces
+﻿using TheChest.Core.Components;
+
+namespace TheChest.Core.Containers.Interfaces
 {
     /// <summary>
     /// Defines a generic container that holds items of type <typeparamref name="T"/>.
     /// </summary>
     /// <typeparam name="T">The type of items that the container can hold.</typeparam>
-    public interface IContainer<in T>
+    public interface IContainer<in T> : IContainer, IContentState { }
+
+    /// <summary>
+    /// Defines a generic container that holds items 
+    /// </summary>
+    public interface IContainer
     {
         /// <summary>
-        /// Size of the current Container
+        /// Gets the size of the container.
         /// </summary>
-        int Size { get; }
-        /// <summary>
-        /// Verify if the container is full
-        /// </summary>
-        bool IsFull { get; }
-        /// <summary>
-        /// Verify if the container is empty
-        /// </summary>
-        bool IsEmpty { get; }
+        int Size { get; } 
     }
 }

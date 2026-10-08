@@ -98,7 +98,7 @@ namespace TheChest.Core.Slots
         /// <summary>
         /// Creates a basic <see cref="StackSlot{T}"/> with the max size defined by the array
         /// </summary>
-        /// <param name="items">The amount of items to be added to the created slot and also sets the <see cref="IStackSlot{T}.MaxAmount"/></param>
+        /// <param name="items">The amount of items to be added to the created slot and also sets the <see cref="MaxAmount"/></param>
         /// <exception cref="ArgumentNullException">When <paramref name="items"/> is <see langword="null"/></exception>
         public StackSlot(T[] items) : this(items, items?.Length ?? 0) { }
         /// <summary>

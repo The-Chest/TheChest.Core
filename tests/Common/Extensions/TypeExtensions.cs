@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using TheChest.Core.Components;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Tests.Common.Extensions
@@ -50,10 +51,10 @@ namespace TheChest.Core.Tests.Common.Extensions
             return slotType!;
         }
 
-        internal static Array CreateSlots<Item>(
+        internal static Array CreateSlots(
             this Type slotType,
             int size, 
-            Func<int, ISlot<Item>> factory,
+            Func<int, IContentState> factory,
             bool shuffle = false
         )
         {
