@@ -5,9 +5,14 @@
     * `Amount` - The current amount of the item in the stack.
     * `MaxAmount` - The maximum amount of the item that can be in a single stack.
     * `AvailableAmount` - The amount of items that can be added to the stack until it reaches its max amount.
+* `IContentState` interface to represent the state of the content in a slot with the properties 
+    * `IsEmpty` - Indicates whether the slot is empty (i.e., contains no items).
+    * `IsFull` - Indicates whether the slot is full (i.e., contains the maximum number of items).
 
 ## What's Changed
 * `IStackSlot<T>` and `ILazyStackSlot<T>` now implement the `IStackable` interface.
+* `ISlot<T>`, `IStackSlot<T>` and `ILazyStackSlot<T>` now implements the `IContentState` interface.
+* `IContainer<T>`, `IStackContainer<T>` and `ILazyStackContainer<T>` now implements the `IContentState` interface.
 
 ## Known Issues
 * Container and Slot interfaces has no generic usage of T yet
