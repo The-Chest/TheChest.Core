@@ -1,3 +1,24 @@
+# v0.23.0
+
+## What's Added
+* `IStackable` interface to represent stackable items with the properties 
+    * `Amount` - The current amount of the item in the stack.
+    * `MaxAmount` - The maximum amount of the item that can be in a single stack.
+    * `AvailableAmount` - The amount of items that can be added to the stack until it reaches its max amount.
+
+## What's Changed
+* `IStackSlot<T>` and `ILazyStackSlot<T>` now implement the `IStackable` interface.
+
+## Known Issues
+* Container and Slot interfaces has no generic usage of T yet
+  * This will change with the `IEnumerable<T>` implementation
+
+## What's Next
+* Benchmarks for the Container classes to check how they perform in different scenarios and with different sizes of slots and items.
+* The `System.Collections.Generic` instead.
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.22.0...v0.23.0
+
 # v0.22.0
 
 ## What's Changed
