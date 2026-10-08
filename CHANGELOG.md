@@ -8,6 +8,8 @@
 * `IContentState` interface to represent the state of the content in a slot with the properties 
     * `IsEmpty` - Indicates whether the slot is empty (i.e., contains no items).
     * `IsFull` - Indicates whether the slot is full (i.e., contains the maximum number of items).
+* `IContainer` - Non-generic Interface to represent a container that holds slots with the properties
+    * `Size` - The total number of slots in the container.
 
 ## What's Changed
 * `IStackSlot<T>` and `ILazyStackSlot<T>` now implement the `IStackable` interface.
