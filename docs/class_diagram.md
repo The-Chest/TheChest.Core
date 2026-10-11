@@ -16,7 +16,7 @@ config:
 ---
 classDiagram
 direction BT
-    namespace TheChest.Core.Components {
+    namespace TheChest.Core.Abstractions {
         class IContentState {
             <<interface>>
             +bool IsFull
@@ -69,7 +69,7 @@ config:
 ---
 classDiagram
 direction BT
-    namespace TheChest.Core.Components {
+    namespace TheChest.Core.Abstractions {
         class IContentState {
             <<interface>>
             +bool IsFull
@@ -120,7 +120,7 @@ config:
 ---
 classDiagram
 direction BT
-    namespace TheChest.Core.Components {
+    namespace TheChest.Core.Abstractions {
         class IContentState {
             <<interface>>
             +bool IsFull
@@ -174,7 +174,7 @@ config:
 ---
 classDiagram
 direction BT
-    namespace TheChest.Core.Components {
+    namespace TheChest.Core.Abstractions {
         class IContentState {
             <<interface>>
             +bool IsFull
@@ -212,7 +212,7 @@ config:
 ---
 classDiagram
 direction BT
-    namespace TheChest.Core.Components {
+    namespace TheChest.Core.Abstractions {
         class IContentState {
             <<interface>>
             +bool IsFull
@@ -266,7 +266,7 @@ config:
 ---
 classDiagram
 direction BT
-    namespace TheChest.Core.Components {
+    namespace TheChest.Core.Abstractions {
         class IContentState {
             <<interface>>
             +bool IsFull
