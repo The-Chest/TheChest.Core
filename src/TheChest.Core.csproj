@@ -90,4 +90,10 @@
 		<!-- Experimental -->
 		<InternalsVisibleTo Include="TheChest.Inventories" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Stacks\Abstractions\" />
+	  <Folder Include="Stacks\Containers\" />
+	  <Folder Include="Stacks\Slots\" />
+	</ItemGroup>
 </Project>

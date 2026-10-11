@@ -1,4 +1,4 @@
-﻿using TheChest.Core.Components;
+﻿using TheChest.Core.Abstractions;
 
 namespace TheChest.Core.Containers.Interfaces
 {
