@@ -5,6 +5,7 @@
 
 # What's Changed
 * `Components` namespace is now `Abstractions` 
+* `IContainer` (The non-generic interface) now belongs to the `Abstractions` namespace instead of `Containers.Interfaces`
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.23.0...v0.24.0
 

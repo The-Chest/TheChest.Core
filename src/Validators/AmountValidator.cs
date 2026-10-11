@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TheChest.Core.Validators
+﻿namespace TheChest.Core.Validators
 {
     internal static class AmountValidator
     {
