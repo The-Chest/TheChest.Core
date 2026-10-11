@@ -22,13 +22,18 @@ direction BT
             +bool IsFull
             +bool IsEmpty
         }
-    }
-    namespace TheChest.Core.Containers.Interfaces {
         class IContainer {
             <<interface>>
             +int Size
         }
+    }
+    namespace TheChest.Core.Containers.Interfaces {
         class IContainer~T~ {
+            <<interface>>
+        }
+    }
+    namespace System.Collections.Generic {
+        class IEnumerable~T~ {
             <<interface>>
         }
     }
@@ -50,9 +55,11 @@ direction BT
             +Container(ISlot~T~[] slots)
         }
     }
+    IContainer ..|> IContentState
     IContainer~T~ ..|> IContainer
-    IContainer~T~ ..|> IContentState
+    IContainer~T~ ..|> IEnumerable~T~
     ISlot~T~ ..|> IContentState
+    ISlot~T~ ..|> IEnumerable~T~
     Container~T~ ..|> IContainer~T~
     Container~T~ o-- ISlot~T~ : slots
 ```
@@ -75,12 +82,12 @@ direction BT
             +bool IsFull
             +bool IsEmpty
         }
-    }
-    namespace TheChest.Core.Containers.Interfaces {
         class IContainer {
             <<interface>>
             +int Size
         }
+    }
+    namespace TheChest.Core.Containers.Interfaces {
         class IStackContainer~T~ {
             <<interface>>
         }
@@ -102,8 +109,8 @@ direction BT
             +StackContainer(IStackSlot~T~[] slots)
         }
     }
+    IContainer ..|> IContentState
     IStackContainer~T~ ..|> IContainer
-    IStackContainer~T~ ..|> IContentState
     StackContainer~T~ ..|> IStackContainer~T~
     StackContainer~T~ o-- IStackSlot~T~ : slots
 ```
@@ -126,12 +133,12 @@ direction BT
             +bool IsFull
             +bool IsEmpty
         }
-    }
-    namespace TheChest.Core.Containers.Interfaces {
         class IContainer {
             <<interface>>
             +int Size
         }
+    }
+    namespace TheChest.Core.Containers.Interfaces {
         class ILazyStackContainer~T~ {
             <<interface>>
         }
@@ -153,10 +160,11 @@ direction BT
             +LazyStackContainer(ILazyStackSlot~T~[] slots)
         }
     }
+    IContainer ..|> IContentState
     ILazyStackContainer~T~ ..|> IContainer
-    ILazyStackContainer~T~ ..|> IContentState
     LazyStackContainer~T~ ..|> ILazyStackContainer~T~
     LazyStackContainer~T~ o-- ILazyStackSlot~T~ : slots
+    note for LazyStackContainer~T~ "Default size: 20; max stack size: 1"
 ```
 
 
@@ -186,6 +194,11 @@ direction BT
             <<interface>>
         }
     }
+    namespace System.Collections.Generic {
+        class IEnumerable~T~ {
+            <<interface>>
+        }
+    }
     namespace TheChest.Core.Slots {
         class Slot~T~ {
             -object content
@@ -197,6 +210,7 @@ direction BT
         }
     }
     ISlot~T~ ..|> IContentState
+    ISlot~T~ ..|> IEnumerable~T~
     Slot~T~ ..|> ISlot~T~
 ```
 
@@ -227,6 +241,11 @@ direction BT
     }
     namespace TheChest.Core.Slots.Interfaces {
         class IStackSlot~T~ {
+            <<interface>>
+        }
+    }
+    namespace System.Collections.Generic {
+        class IEnumerable~T~ {
             <<interface>>
         }
     }
@@ -302,5 +321,4 @@ direction BT
     }
     ILazyStackSlot~T~ ..|> IContentState
     ILazyStackSlot~T~ ..|> IStackable
-    LazyStackSlot~T~ ..|> ILazyStackSlot~T~
-```
+    LazyStackSlot~T~ ..|> ILazyStackSlot~T~```

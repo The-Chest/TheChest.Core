@@ -1,4 +1,6 @@
-﻿using TheChest.Core.Slots.Interfaces;
+﻿using System.Collections;
+using System.Collections.Generic;
+using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Slots
 {
@@ -52,5 +54,16 @@ namespace TheChest.Core.Slots
             this.content = currentItem;
         }
 
+        /// <inheritdoc/>
+        public IEnumerator<T> GetEnumerator()
+        {
+            if (!this.IsEmpty)
+                yield return this.Content;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
     }
 }

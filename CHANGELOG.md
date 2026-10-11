@@ -1,7 +1,7 @@
 # v0.24.0
 
 # What's Added
-*
+* `IEnumerable<T>` implementation to `IContainer<T>`, `IStackContainer<T>` and `ILazyStackContainer<T>` interfaces
 
 # What's Changed
 * `Components` namespace is now `Abstractions` 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using TheChest.Core.Containers.Interfaces;
 using TheChest.Core.Slots;
 using TheChest.Core.Slots.Interfaces;
@@ -12,6 +14,7 @@ namespace TheChest.Core.Containers
     /// <typeparam name="T">The type of elements stored in the container.</typeparam>"
     public class Container<T> : IContainer<T>
     {
+        #region Properties
         /// <summary>
         /// The collection of slots used to store elements of type <typeparamref name="T"/>.
         /// </summary>
@@ -46,7 +49,9 @@ namespace TheChest.Core.Containers
                 return true;
             }
         }
+        #endregion
 
+        #region Constructors
         /// <summary>
         /// Creates an empty Container with a default size of 0 and <see cref="Slot{T}"/> implementation
         /// </summary>
@@ -114,6 +119,25 @@ namespace TheChest.Core.Containers
         {
             this.slots = slots ?? throw new ArgumentNullException(nameof(slots));
         }
+        #endregion
 
+        #region IEnumerable Implementation
+        /// <inheritdoc/>
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < this.slots.Length; i++)
+            {
+                foreach (var item in this.slots[i])
+                {
+                    yield return item;
+                }
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+        #endregion
     }
 }
