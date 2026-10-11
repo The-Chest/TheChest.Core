@@ -4,7 +4,7 @@
 *
 
 # What's Changed
-* 
+* `Components` namespace is now `Abstractions` 
 
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.23.0...v0.24.0
 
