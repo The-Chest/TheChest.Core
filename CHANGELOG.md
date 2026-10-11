@@ -1,3 +1,13 @@
+# v0.24.0
+
+# What's Added
+*
+
+# What's Changed
+* 
+
+**Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.23.0...v0.24.0
+
 # v0.23.0
 
 ## What's Added
