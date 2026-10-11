@@ -3,7 +3,7 @@
     /// <summary>
     /// Defines a generic container that holds items 
     /// </summary>
-    public interface IContainer
+    public interface IContainer : IContentState
     {
         /// <summary>
         /// Gets the size of the container.
