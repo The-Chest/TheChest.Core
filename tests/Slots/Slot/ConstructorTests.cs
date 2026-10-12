@@ -2,7 +2,7 @@ using NUnit.Framework;
 using TheChest.Core.Slots;
 using TheChest.Core.Tests.Common.Configurations.Attributes;
 
-namespace TheChest.Core.Tests.Slots.Slot.Constructors
+namespace TheChest.Core.Tests.Slots.Slot
 {
     public class ConstructorTests<T> : SlotTests<T>
     {
