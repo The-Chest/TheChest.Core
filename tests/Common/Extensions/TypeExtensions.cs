@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
-using TheChest.Core.Components;
+using TheChest.Core.Abstractions;
 using TheChest.Core.Slots.Interfaces;
 
 namespace TheChest.Core.Tests.Common.Extensions

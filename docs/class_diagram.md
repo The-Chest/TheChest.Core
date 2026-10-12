@@ -1,10 +1,10 @@
 # Class Diagrams
 
-This document contains class diagrams for the core components of TheChest project.
+This document contains separate class diagrams for the containers and slots in TheChest.Core.
 
-## IContainer Diagram
+## Container Diagrams
 
-The `IContainer` diagram represents a generic container interface that holds slots for items.
+### Container
 
 ```mermaid
 ---
@@ -16,60 +16,55 @@ config:
 ---
 classDiagram
 direction BT
-	namespace TheChest.Core.Containers.Interfaces {
+    namespace TheChest.Core.Abstractions {
+        class IContentState {
+            <<interface>>
+            +bool IsFull
+            +bool IsEmpty
+        }
+        class IContainer {
+            <<interface>>
+            +int Size
+        }
+    }
+    namespace TheChest.Core.Containers.Interfaces {
         class IContainer~T~ {
-	        +int Size
-	        +bool IsEmpty
-	        +bool IsFull
+            <<interface>>
         }
-	}
-	namespace TheChest.Core.Slots.Interfaces {
+    }
+    namespace System.Collections.Generic {
+        class IEnumerable~T~ {
+            <<interface>>
+        }
+    }
+    namespace TheChest.Core.Slots.Interfaces {
         class ISlot~T~ {
-	        +bool IsEmpty
-	        +bool IsFull
+            <<interface>>
         }
-	}
-	namespace TheChest.Core.Containers {
+    }
+    namespace TheChest.Core.Containers {
         class Container~T~ {
-			-ISlot~T~[] slots
-
-	        +int Size
-	        +bool IsEmpty
-	        +bool IsFull
-
-			+Container()
-			+Container(int size)
-			+Container(T[] items)
-			+Container(T[] items, int size)
-			+Container(ISlot~T~[] slots)
-
+            #ISlot~T~[] slots
+            +int Size
+            +bool IsFull
+            +bool IsEmpty
+            +Container()
+            +Container(T[] items)
+            +Container(int size)
+            +Container(T[] items, int size)
+            +Container(ISlot~T~[] slots)
         }
-	}
-	namespace TheChest.Core.Slots {
-        class Slot~T~ {
-			-object content
-			+T Content
-
-			+Slot()
-			+Slot(T currentItem)
-
-			+bool IsEmpty
-			+bool IsFull
-
-        }
-	}
-
-	<<interface>> IContainer
-	<<interface>> ISlot
-
-    Container --|> IContainer : implements
-    ISlot --* IContainer
-    Slot --|> ISlot : implements
+    }
+    IContainer ..|> IContentState
+    IContainer~T~ ..|> IContainer
+    IContainer~T~ ..|> IEnumerable~T~
+    ISlot~T~ ..|> IContentState
+    ISlot~T~ ..|> IEnumerable~T~
+    Container~T~ ..|> IContainer~T~
+    Container~T~ o-- ISlot~T~ : slots
 ```
 
-## IStackContainer Diagram
-
-The `IStackContainer` diagram represents a generic container interface that supports stackable slots, allowing multiple items from the same type to be stored in a single slot.
+### StackContainer
 
 ```mermaid
 ---
@@ -81,69 +76,204 @@ config:
 ---
 classDiagram
 direction BT
-	namespace TheChest.Core.Containers.Interfaces {
-		class IStackContainer~T~ {
-	        +int Size
-	        +bool IsEmpty
-	        +bool IsFull
+    namespace TheChest.Core.Abstractions {
+        class IContentState {
+            <<interface>>
+            +bool IsFull
+            +bool IsEmpty
         }
-	}
-	namespace TheChest.Core.Slots.Interfaces {
-        class ISlot~T~ {
-	        +bool IsEmpty
-	        +bool IsFull
+        class IContainer {
+            <<interface>>
+            +int Size
         }
+    }
+    namespace TheChest.Core.Containers.Interfaces {
+        class IStackContainer~T~ {
+            <<interface>>
+        }
+    }
+    namespace TheChest.Core.Slots.Interfaces {
         class IStackSlot~T~ {
+            <<interface>>
+        }
+    }
+    namespace TheChest.Core.Containers {
+        class StackContainer~T~ {
+            #IStackSlot~T~[] slots
+            +int Size
+            +bool IsFull
+            +bool IsEmpty
+            +StackContainer()
+            +StackContainer(int size, int maxStackSize)
+            +StackContainer(T[] items, int maxStackSize)
+            +StackContainer(IStackSlot~T~[] slots)
+        }
+    }
+    IContainer ..|> IContentState
+    IStackContainer~T~ ..|> IContainer
+    StackContainer~T~ ..|> IStackContainer~T~
+    StackContainer~T~ o-- IStackSlot~T~ : slots
+```
+
+### LazyStackContainer
+
+```mermaid
+---
+config:
+  theme: mc
+  look: classic
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+direction BT
+    namespace TheChest.Core.Abstractions {
+        class IContentState {
+            <<interface>>
+            +bool IsFull
+            +bool IsEmpty
+        }
+        class IContainer {
+            <<interface>>
+            +int Size
+        }
+    }
+    namespace TheChest.Core.Containers.Interfaces {
+        class ILazyStackContainer~T~ {
+            <<interface>>
+        }
+    }
+    namespace TheChest.Core.Slots.Interfaces {
+        class ILazyStackSlot~T~ {
+            <<interface>>
+        }
+    }
+    namespace TheChest.Core.Containers {
+        class LazyStackContainer~T~ {
+            #ILazyStackSlot~T~[] slots
+            +int Size
+            +bool IsFull
+            +bool IsEmpty
+            +LazyStackContainer()
+            +LazyStackContainer(int size, int maxStackSize)
+            +LazyStackContainer((T item, int amount)[] items, int maxAmount)
+            +LazyStackContainer(ILazyStackSlot~T~[] slots)
+        }
+    }
+    IContainer ..|> IContentState
+    ILazyStackContainer~T~ ..|> IContainer
+    LazyStackContainer~T~ ..|> ILazyStackContainer~T~
+    LazyStackContainer~T~ o-- ILazyStackSlot~T~ : slots
+    note for LazyStackContainer~T~ "Default size: 20; max stack size: 1"
+```
+
+
+## Slot Diagrams
+
+### Slot
+
+```mermaid
+---
+config:
+  theme: mc
+  look: classic
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+direction BT
+    namespace TheChest.Core.Abstractions {
+        class IContentState {
+            <<interface>>
+            +bool IsFull
+            +bool IsEmpty
+        }
+    }
+    namespace TheChest.Core.Slots.Interfaces {
+        class ISlot~T~ {
+            <<interface>>
+        }
+    }
+    namespace System.Collections.Generic {
+        class IEnumerable~T~ {
+            <<interface>>
+        }
+    }
+    namespace TheChest.Core.Slots {
+        class Slot~T~ {
+            -object content
+            +T Content
+            +bool IsFull
+            +bool IsEmpty
+            +Slot()
+            +Slot(T currentItem)
+        }
+    }
+    ISlot~T~ ..|> IContentState
+    ISlot~T~ ..|> IEnumerable~T~
+    Slot~T~ ..|> ISlot~T~
+```
+
+### StackSlot
+
+```mermaid
+---
+config:
+  theme: mc
+  look: classic
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+direction BT
+    namespace TheChest.Core.Abstractions {
+        class IContentState {
+            <<interface>>
+            +bool IsFull
+            +bool IsEmpty
+        }
+        class IStackable {
+            <<interface>>
             +int Amount
             +int MaxAmount
             +int AvailableAmount
         }
-	}
-	namespace TheChest.Core.Containers {
-		class StackContainer~T~ {
-			-IStackSlot~T~[] slots
-
-			+StackContainer()
-			+StackContainer(int size)
-			+StackContainer(T[] items, int maxStackSize)
-			+StackContainer(IStackSlot~T~[] slots)
-	        
-			+int Size
-	        +bool IsEmpty
-	        +bool IsFull
+    }
+    namespace TheChest.Core.Slots.Interfaces {
+        class IStackSlot~T~ {
+            <<interface>>
         }
-	}
-
-	namespace TheChest.Core.Slots {
-		class StackSlot~T~{
-			-object[] contents
-			+T[] Content
-
-			-int amount            
-			+int Amount
-
-			-int maxAmount
+    }
+    namespace System.Collections.Generic {
+        class IEnumerable~T~ {
+            <<interface>>
+        }
+    }
+    namespace TheChest.Core.Slots {
+        class StackSlot~T~ {
+            -object[] content
+            -int amount
+            -int maxAmount
+            -T[] cacheContent
+            -bool isCacheValid
+            +IEnumerable~T~ Content
+            +int Amount
             +int MaxAmount
-
             +int AvailableAmount
-	        +bool IsEmpty
-	        +bool IsFull
-
-		}
-	}
-
-	<<interface>> IStackContainer
-    <<interface>> IStackSlot
-
-    StackContainer --|> IStackContainer : implements
-    IStackSlot --|> ISlot : implements
-    StackSlot --|> IStackSlot : implements
-    IStackSlot --* IStackContainer
+            +bool IsFull
+            +bool IsEmpty
+            +StackSlot()
+            +StackSlot(int maxAmount)
+            +StackSlot(T[] items)
+            +StackSlot(T[] items, int maxAmount)
+        }
+    }
+    IStackSlot~T~ ..|> IContentState
+    IStackSlot~T~ ..|> IStackable
+    StackSlot~T~ ..|> IStackSlot~T~
 ```
 
-## ILazyStackContainer Diagram
-
-The `ILazyStackContainer` diagram represents a generic container interface that supports lazy loading of stackable slots, allowing multiple items from the same type to be stored in a single slot.
+### LazyStackSlot
 
 ```mermaid
 ---
@@ -155,65 +285,40 @@ config:
 ---
 classDiagram
 direction BT
-	namespace TheChest.Core.Containers.Interfaces {
-		class ILazyStackContainer~T~ {
-	        +int Size
-	        +bool IsEmpty
-	        +bool IsFull
+    namespace TheChest.Core.Abstractions {
+        class IContentState {
+            <<interface>>
+            +bool IsFull
+            +bool IsEmpty
         }
-	}
-	namespace TheChest.Core.Slots.Interfaces {
-        class ISlot~T~ {
-	        +bool IsEmpty
-	        +bool IsFull
-        }
-        class ILazyStackSlot~T~ {
-			+int Amount
+        class IStackable {
+            <<interface>>
+            +int Amount
             +int MaxAmount
             +int AvailableAmount
         }
-	}
-	namespace TheChest.Core.Containers {
-		class LazyStackContainer~T~ {
-			-ILazyStackSlot~T~[] slots
-
-			LazyStackContainer()
-			LazyStackContainer(int size)
-			LazyStackContainer((T item, int amount)[] items, int maxStackSize)
-			LazyStackContainer(ILazyStackSlot~T~[] slots)
-
-			+int Size
-			+bool IsEmpty
-			+bool IsFull
+    }
+    namespace TheChest.Core.Slots.Interfaces {
+        class ILazyStackSlot~T~ {
+            <<interface>>
         }
-	}
-
-	namespace TheChest.Core.Slots {
-		class LazyStackSlot~T~{
-			-object content
-			+T Content
-
-			-int amount            
-			+int Amount
-
-			-int maxAmount
-			+int MaxAmount
-
+    }
+    namespace TheChest.Core.Slots {
+        class LazyStackSlot~T~ {
+            -object content
+            -int amount
+            -int maxAmount
+            +T Content
+            +int Amount
+            +int MaxAmount
             +int AvailableAmount
-
-			+ LazyStackSlot()
-			+ LazyStackSlot(int maxAmount)
-			+ LazyStackSlot(T currentItem, int amount, int maxAmount)
-
-			+bool IsEmpty
-			+bool IsFull
-		}
-	}
-
-	<<interface>> ILazyStackContainer
-    <<interface>> ILazyStackSlot
-
-    LazyStackContainer --|> ILazyStackContainer : implements
-    ILazyStackSlot --|> ISlot : implements
-    ILazyStackSlot --* ILazyStackContainer
-```
+            +bool IsFull
+            +bool IsEmpty
+            +LazyStackSlot()
+            +LazyStackSlot(int maxAmount)
+            +LazyStackSlot(T currentItem, int amount, int maxAmount)
+        }
+    }
+    ILazyStackSlot~T~ ..|> IContentState
+    ILazyStackSlot~T~ ..|> IStackable
+    LazyStackSlot~T~ ..|> ILazyStackSlot~T~```

@@ -1,4 +1,4 @@
-﻿namespace TheChest.Core.Components
+﻿namespace TheChest.Core.Abstractions
 {
     /// <summary>
     /// Defines members for representing the state of content within a slot, indicating whether it is full or empty.

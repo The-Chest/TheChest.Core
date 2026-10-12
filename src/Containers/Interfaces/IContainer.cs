@@ -1,4 +1,5 @@
-﻿using TheChest.Core.Components;
+﻿using System.Collections.Generic;
+using TheChest.Core.Abstractions;
 
 namespace TheChest.Core.Containers.Interfaces
 {
@@ -6,16 +7,5 @@ namespace TheChest.Core.Containers.Interfaces
     /// Defines a generic container that holds items of type <typeparamref name="T"/>.
     /// </summary>
     /// <typeparam name="T">The type of items that the container can hold.</typeparam>
-    public interface IContainer<in T> : IContainer, IContentState { }
-
-    /// <summary>
-    /// Defines a generic container that holds items 
-    /// </summary>
-    public interface IContainer
-    {
-        /// <summary>
-        /// Gets the size of the container.
-        /// </summary>
-        int Size { get; } 
-    }
+    public interface IContainer<out T> : IContainer, IEnumerable<T> { }
 }

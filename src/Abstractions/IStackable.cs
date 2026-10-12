@@ -1,4 +1,4 @@
-﻿namespace TheChest.Core.Components
+﻿namespace TheChest.Core.Abstractions
 {
     /// <summary>
     /// Represents a stackable collection of items with defined quantity and capacity.
