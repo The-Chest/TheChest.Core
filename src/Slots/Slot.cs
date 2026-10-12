@@ -57,7 +57,8 @@ namespace TheChest.Core.Slots
         /// <inheritdoc/>
         public IEnumerator<T> GetEnumerator()
         {
-            yield return this.Content;
+            if (!this.IsEmpty)
+                yield return this.Content;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
