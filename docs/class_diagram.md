@@ -15,7 +15,7 @@ config:
     hideEmptyMembersBox: true
 ---
 classDiagram
-direction BT
+direction TD
     namespace TheChest.Core.Abstractions {
         class IContentState {
             <<interface>>
@@ -29,11 +29,6 @@ direction BT
     }
     namespace TheChest.Core.Containers.Interfaces {
         class IContainer~T~ {
-            <<interface>>
-        }
-    }
-    namespace System.Collections.Generic {
-        class "IEnumerable<IEnumerable<T>>" as IEnumerableOfEnumerableT {
             <<interface>>
         }
     }
@@ -57,12 +52,9 @@ direction BT
     }
     IContainer ..|> IContentState
     IContainer~T~ ..|> IContainer
-    IContainer~T~ ..|> IEnumerableOfEnumerableT
     ISlot~T~ ..|> IContentState
-    ISlot~T~ ..|> IEnumerableOfEnumerableT
     Container~T~ ..|> IContainer~T~
     Container~T~ o-- ISlot~T~ : slots
-    note for IContainer~T~ "T is covariant (out)"
 ```
 
 ### StackContainer
