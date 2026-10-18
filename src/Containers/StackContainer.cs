@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+
 using TheChest.Core.Containers.Interfaces;
+
 using TheChest.Core.Slots;
 using TheChest.Core.Slots.Extensions;
 using TheChest.Core.Slots.Interfaces;
+
 using TheChest.Core.Validators;
 
 namespace TheChest.Core.Containers
@@ -13,10 +18,14 @@ namespace TheChest.Core.Containers
     /// <typeparam name="T">The type of elements stored in the container.</typeparam>
     public class StackContainer<T> : IStackContainer<T>
     {
+        #region Fields
         /// <summary>
         /// The collection of slots used to store elements of type <typeparamref name="T"/>.
         /// </summary>
         protected IStackSlot<T>[] slots;
+        #endregion
+
+        #region Properties
         /// <inheritdoc/>
         public virtual int Size => this.slots.Length;
         /// <inheritdoc/>
@@ -47,7 +56,9 @@ namespace TheChest.Core.Containers
                 return true;
             }
         }
+        #endregion
 
+        #region Constructors
         /// <summary>
         /// Creates an empty Container with <see cref="IStackSlot{T}"/> implementation that can hold one item per slot.
         /// </summary>
@@ -95,6 +106,22 @@ namespace TheChest.Core.Containers
         {
             this.slots = slots ?? throw new ArgumentNullException(nameof(slots));
         }
+        #endregion
 
+        #region IEnumerable Implementation
+        /// <inheritdoc/>
+        public IEnumerator<IEnumerable<T>> GetEnumerator()
+        {
+            foreach (var slot in this.slots)
+            {
+                yield return slot;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+        #endregion
     }
 }

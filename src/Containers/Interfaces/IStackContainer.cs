@@ -1,4 +1,5 @@
-﻿using TheChest.Core.Abstractions;
+﻿using System.Collections.Generic;
+using TheChest.Core.Abstractions;
 
 namespace TheChest.Core.Containers.Interfaces
 {
@@ -6,5 +7,5 @@ namespace TheChest.Core.Containers.Interfaces
     /// Defines a generic stack-like container that can store items of type <typeparamref name="T"/>.
     /// </summary>
     /// <typeparam name="T">The type of items that the container can hold.</typeparam>
-    public interface IStackContainer<in T> : IContainer { }
+    public interface IStackContainer<T> : IContainer, IEnumerable<IEnumerable<T>> { }
 }
