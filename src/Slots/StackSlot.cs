@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TheChest.Core.Extensions;
 using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Validators;
@@ -12,13 +14,16 @@ namespace TheChest.Core.Slots
     /// <typeparam name="T">The type of item the slot can hold</typeparam>
     public class StackSlot<T> : IStackSlot<T>
     {
+        #region Fields
         private object[] content;
         private int amount;
         private int maxAmount;
 
         private T[] cacheContent;
         private bool isCacheValid;
+        #endregion
 
+        #region Properties
         /// <summary>
         /// The content inside the slot
         /// </summary>
@@ -84,7 +89,9 @@ namespace TheChest.Core.Slots
         public virtual bool IsFull => !this.IsEmpty && this.amount == this.maxAmount;
         /// <inheritdoc/>
         public virtual bool IsEmpty => this.amount == 0;
+        #endregion
 
+        #region Constructors
         /// <summary>
         /// Creates an empty <see cref="StackSlot{T}"/>
         /// </summary>
@@ -113,6 +120,24 @@ namespace TheChest.Core.Slots
             this.MaxAmount = maxAmount;
             this.Content = items;
         }
+        #endregion
 
+        #region IEnumerable Implementation
+        /// <inheritdoc/>
+        public IEnumerator<T> GetEnumerator()
+        {
+            var contentArray = this.Content.ToArray();
+            for (int i = 0; i < contentArray.Length; i++)
+            {
+                yield return contentArray[i];
+            }
+        }
+
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TheChest.Core.Slots.Interfaces;
 
@@ -10,11 +11,15 @@ namespace TheChest.Core.Slots
     /// <typeparam name="T">The type of item the slot can hold</typeparam>
     public class Slot<T> : ISlot<T>
     {
+        #region Fields
         /// <summary>
         /// The content of the slot stored as an object.
         /// <para>Use <see cref="Content"/> to se its value</para>
         /// </summary>
         private object content;
+        #endregion
+
+        #region Properties
         /// <summary>
         /// The content of the slot
         /// <para>Use this to compare</para>
@@ -37,7 +42,9 @@ namespace TheChest.Core.Slots
         public virtual bool IsFull => !this.IsEmpty;
         /// <inheritdoc/>
         public virtual bool IsEmpty => this.content is null;
+        #endregion
 
+        #region Constructors
         /// <summary>
         /// Creates an empty slot
         /// </summary>
@@ -53,17 +60,22 @@ namespace TheChest.Core.Slots
         {
             this.content = currentItem;
         }
+        #endregion
 
+        #region IEnumerable Implementation
         /// <inheritdoc/>
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator<IEnumerable<T>> GetEnumerator()
         {
             if (!this.IsEmpty)
-                yield return this.Content;
+                yield return new T[1] { this.Content };
+            else
+                yield return Array.Empty<T>();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
         }
+        #endregion
     }
 }

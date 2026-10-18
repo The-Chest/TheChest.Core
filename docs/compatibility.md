@@ -21,21 +21,12 @@ Targeting .NET Standard 2.1 defines the API surface available to the library. Ho
 
 ## Status Definitions
 
-### Tested
-
-The library is executed against this runtime as part of the project's test process. Passing the test suite indicates that this runtime is expected to work correctly with the current version of the library.
-
-### Not tested
-
-The runtime may be capable of running the library, but it is not currently included in the project's test matrix. Compatibility is therefore not guaranteed.
-
-### Unsupported
-
-The runtime does not satisfy the requirements of the library's target framework or is otherwise explicitly unsupported.
-
-### Known issues
-
-The runtime can satisfy the target framework requirements, but known problems prevent the project from considering it fully compatible.
+| Status		| Definition |
+| ------------- | ---------- |
+| Tested		| The library is executed against this runtime as part of the project's test process. Passing the test suite indicates that this runtime is expected to work correctly with the current version of the library. |
+| Not tested	| The runtime may be capable of running the library, but it is not currently included in the project's test matrix. Compatibility is therefore not guaranteed. |
+| Unsupported	| The runtime does not satisfy the requirements of the library's target framework or is otherwise explicitly unsupported. |
+| Known issues	| The runtime can satisfy the target framework requirements, but known problems prevent the project from considering it fully compatible. |
 
 ## Other .NET Standard 2.1 Implementations
 
