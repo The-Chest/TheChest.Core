@@ -8,6 +8,9 @@
 * `IContainer` (The non-generic interface) now belongs to the `Abstractions` namespace instead of `Containers.Interfaces`
 * `IContainer` now implements `IContentState` interface
 
+## What's Next
+* Benchmarks for the Container classes to check how they perform in different scenarios and with different sizes of slots and items.
+
 **Full Changelog**: https://github.com/The-Chest/TheChest.Core/compare/v0.23.0...v0.24.0
 
 # v0.23.0
