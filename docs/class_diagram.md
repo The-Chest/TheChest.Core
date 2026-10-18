@@ -68,7 +68,7 @@ config:
     hideEmptyMembersBox: true
 ---
 classDiagram
-direction BT
+direction TD
     namespace TheChest.Core.Abstractions {
         class IContentState {
             <<interface>>
@@ -82,11 +82,6 @@ direction BT
     }
     namespace TheChest.Core.Containers.Interfaces {
         class IStackContainer~T~ {
-            <<interface>>
-        }
-    }
-    namespace System.Collections.Generic {
-        class "IEnumerable<IEnumerable<T>>" as IEnumerableOfEnumerableT {
             <<interface>>
         }
     }
@@ -109,10 +104,8 @@ direction BT
     }
     IContainer ..|> IContentState
     IStackContainer~T~ ..|> IContainer
-    IStackContainer~T~ ..|> IEnumerableOfEnumerableT
     StackContainer~T~ ..|> IStackContainer~T~
     StackContainer~T~ o-- IStackSlot~T~ : slots
-    note for IStackContainer~T~ "T is covariant (out)"
 ```
 
 ### LazyStackContainer
