@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TheChest.Core.Extensions;
 using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Validators;
@@ -114,5 +116,19 @@ namespace TheChest.Core.Slots
             this.Content = items;
         }
 
+        /// <inheritdoc/>
+        public IEnumerator<T> GetEnumerator()
+        {
+            var contentArray = this.Content.ToArray();
+            for (int i = 0; i < contentArray.Length; i++)
+            {
+                yield return contentArray[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }
