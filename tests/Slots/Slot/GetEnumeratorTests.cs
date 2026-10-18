@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace TheChest.Core.Tests.Slots.Slot
@@ -10,9 +11,11 @@ namespace TheChest.Core.Tests.Slots.Slot
         [Description("GetEnumerator returns no items for an empty slot.")]
         public void GetEnumerator_EmptySlot_ReturnsNoItems()
         {
-            IEnumerable<T> slot = this.slotFactory.Empty();
+            IEnumerable<IEnumerable<T>> slot = this.slotFactory.Empty();
+            var enumeratedSlots = slot.ToArray();
 
-            CollectionAssert.IsEmpty(slot);
+            Assert.That(enumeratedSlots, Has.Length.EqualTo(1));
+            CollectionAssert.IsEmpty(enumeratedSlots[0]);
         }
 
         [Test]
@@ -20,9 +23,11 @@ namespace TheChest.Core.Tests.Slots.Slot
         public void GetEnumerator_SlotWithItem_ReturnsItem()
         {
             var item = this.itemFactory.CreateDefault();
-            IEnumerable<T> slot = this.slotFactory.Full(item);
+            IEnumerable<IEnumerable<T>> slot = this.slotFactory.Full(item);
+            var enumeratedSlots = slot.ToArray();
 
-            CollectionAssert.AreEqual(new T[] { item }, slot);
+            Assert.That(enumeratedSlots, Has.Length.EqualTo(1));
+            CollectionAssert.AreEqual(new T[] { item }, enumeratedSlots[0]);
         }
 
         [Test]
@@ -31,8 +36,10 @@ namespace TheChest.Core.Tests.Slots.Slot
         {
             var item = this.itemFactory.CreateDefault();
             IEnumerable slot = this.slotFactory.Full(item);
+            var enumeratedSlots = slot.Cast<IEnumerable<T>>().ToArray();
 
-            CollectionAssert.AreEqual(new T[] { item }, slot);
+            Assert.That(enumeratedSlots, Has.Length.EqualTo(1));
+            CollectionAssert.AreEqual(new T[] { item }, enumeratedSlots[0]);
         }
     }
 }
