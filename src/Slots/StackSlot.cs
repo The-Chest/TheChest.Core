@@ -14,13 +14,16 @@ namespace TheChest.Core.Slots
     /// <typeparam name="T">The type of item the slot can hold</typeparam>
     public class StackSlot<T> : IStackSlot<T>
     {
+        #region Fields
         private object[] content;
         private int amount;
         private int maxAmount;
 
         private T[] cacheContent;
         private bool isCacheValid;
+        #endregion
 
+        #region Properties
         /// <summary>
         /// The content inside the slot
         /// </summary>
@@ -86,7 +89,9 @@ namespace TheChest.Core.Slots
         public virtual bool IsFull => !this.IsEmpty && this.amount == this.maxAmount;
         /// <inheritdoc/>
         public virtual bool IsEmpty => this.amount == 0;
+        #endregion
 
+        #region Constructors
         /// <summary>
         /// Creates an empty <see cref="StackSlot{T}"/>
         /// </summary>
@@ -115,7 +120,9 @@ namespace TheChest.Core.Slots
             this.MaxAmount = maxAmount;
             this.Content = items;
         }
+        #endregion
 
+        #region IEnumerable Implementation
         /// <inheritdoc/>
         public IEnumerator<T> GetEnumerator()
         {
@@ -126,9 +133,11 @@ namespace TheChest.Core.Slots
             }
         }
 
+        /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
+        #endregion
     }
 }
