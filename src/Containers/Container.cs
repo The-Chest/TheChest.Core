@@ -123,13 +123,13 @@ namespace TheChest.Core.Containers
 
         #region IEnumerable Implementation
         /// <inheritdoc/>
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator<IEnumerable<T>> GetEnumerator()
         {
-            for (int i = 0; i < this.slots.Length; i++)
+            foreach (var slot in this.slots)
             {
-                foreach (var item in this.slots[i])
+                foreach (var items in slot)
                 {
-                    yield return item;
+                    yield return items;
                 }
             }
         }
