@@ -33,7 +33,7 @@ direction BT
         }
     }
     namespace System.Collections.Generic {
-        class IEnumerable~T~ {
+        class "IEnumerable<IEnumerable<T>>" as IEnumerableOfEnumerableT {
             <<interface>>
         }
     }
@@ -57,11 +57,12 @@ direction BT
     }
     IContainer ..|> IContentState
     IContainer~T~ ..|> IContainer
-    IContainer~T~ ..|> IEnumerable~T~
+    IContainer~T~ ..|> IEnumerableOfEnumerableT
     ISlot~T~ ..|> IContentState
-    ISlot~T~ ..|> IEnumerable~T~
+    ISlot~T~ ..|> IEnumerableOfEnumerableT
     Container~T~ ..|> IContainer~T~
     Container~T~ o-- ISlot~T~ : slots
+    note for IContainer~T~ "T is covariant (out)"
 ```
 
 ### StackContainer
@@ -92,6 +93,11 @@ direction BT
             <<interface>>
         }
     }
+    namespace System.Collections.Generic {
+        class "IEnumerable<IEnumerable<T>>" as IEnumerableOfEnumerableT {
+            <<interface>>
+        }
+    }
     namespace TheChest.Core.Slots.Interfaces {
         class IStackSlot~T~ {
             <<interface>>
@@ -111,8 +117,10 @@ direction BT
     }
     IContainer ..|> IContentState
     IStackContainer~T~ ..|> IContainer
+    IStackContainer~T~ ..|> IEnumerableOfEnumerableT
     StackContainer~T~ ..|> IStackContainer~T~
     StackContainer~T~ o-- IStackSlot~T~ : slots
+    note for IStackContainer~T~ "T is covariant (out)"
 ```
 
 ### LazyStackContainer
@@ -165,6 +173,7 @@ direction BT
     LazyStackContainer~T~ ..|> ILazyStackContainer~T~
     LazyStackContainer~T~ o-- ILazyStackSlot~T~ : slots
     note for LazyStackContainer~T~ "Default size: 20; max stack size: 1"
+    note for ILazyStackContainer~T~ "T is contravariant (in)"
 ```
 
 
@@ -195,7 +204,7 @@ direction BT
         }
     }
     namespace System.Collections.Generic {
-        class IEnumerable~T~ {
+        class "IEnumerable<IEnumerable<T>>" as IEnumerableOfEnumerableT {
             <<interface>>
         }
     }
@@ -210,8 +219,9 @@ direction BT
         }
     }
     ISlot~T~ ..|> IContentState
-    ISlot~T~ ..|> IEnumerable~T~
+    ISlot~T~ ..|> IEnumerableOfEnumerableT
     Slot~T~ ..|> ISlot~T~
+    note for ISlot~T~ "T is covariant (out)"
 ```
 
 ### StackSlot
@@ -270,7 +280,9 @@ direction BT
     }
     IStackSlot~T~ ..|> IContentState
     IStackSlot~T~ ..|> IStackable
+    IStackSlot~T~ ..|> IEnumerable~T~
     StackSlot~T~ ..|> IStackSlot~T~
+    note for IStackSlot~T~ "T is covariant (out)"
 ```
 
 ### LazyStackSlot
@@ -321,4 +333,6 @@ direction BT
     }
     ILazyStackSlot~T~ ..|> IContentState
     ILazyStackSlot~T~ ..|> IStackable
-    LazyStackSlot~T~ ..|> ILazyStackSlot~T~```
+    LazyStackSlot~T~ ..|> ILazyStackSlot~T~
+    note for ILazyStackSlot~T~ "T is contravariant (in)"
+```
