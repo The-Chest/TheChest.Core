@@ -1,12 +1,12 @@
 # v0.24.0
 
 # What's Added
-* `IEnumerable<T>` implementation to `IContainer<T>`, `IStackContainer<T>` and `ILazyStackContainer<T>` interfaces
+* `IEnumerable<IEnumerable<T>>` implementation on `IContainer<T>`, `IStackContainer<T>` and `ILazyStackContainer<T>` interfaces
+* `IContentState` implementation on `IContainer<T>`, `IStackContainer<T>` and `ILazyStackContainer<T>` interface
 
 # What's Changed
 * `Components` namespace is now `Abstractions` 
 * `IContainer` (The non-generic interface) now belongs to the `Abstractions` namespace instead of `Containers.Interfaces`
-* `IContainer` now implements `IContentState` interface
 
 ## What's Next
 * Benchmarks for the Container classes to check how they perform in different scenarios and with different sizes of slots and items.
