@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using TheChest.Core.Slots.Interfaces;
 using TheChest.Core.Validators;
 
@@ -14,13 +16,13 @@ namespace TheChest.Core.Slots
     /// <typeparam name="T">The type of the content stored in the slot.</typeparam>
     public class LazyStackSlot<T> : ILazyStackSlot<T>
     {
-        /// <summary>
-        /// The content inside the slot
-        /// </summary>
+        #region Fields
         private object content;
         private int amount;
         private int maxAmount;
+        #endregion
 
+        #region Properties
         /// <summary>
         /// The content inside the slot
         /// </summary>
@@ -72,7 +74,9 @@ namespace TheChest.Core.Slots
         public virtual bool IsFull => !this.IsEmpty && this.amount == this.maxAmount;
         /// <inheritdoc/>
         public virtual bool IsEmpty => this.amount == 0 || this.content is null;
+        #endregion
 
+        #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="LazyStackSlot{T}"/> class with default values.
         /// </summary>
@@ -112,6 +116,23 @@ namespace TheChest.Core.Slots
             this.amount = this.content is null ? 0 : amount;
             this.maxAmount = maxAmount;
         }
+        #endregion
 
+        #region IEnumerable Implementation
+
+        /// <inheritdoc/>
+        public IEnumerator<IEnumerable<T>> GetEnumerator()
+        {
+            for (int i = 0; i < this.amount; i++)
+            {
+                yield return new T[1] { this.Content };
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+        #endregion
     }
 }

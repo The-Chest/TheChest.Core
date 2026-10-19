@@ -92,6 +92,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Containers\Extensions\" />
 	  <Folder Include="Stacks\Abstractions\" />
 	  <Folder Include="Stacks\Containers\" />
 	  <Folder Include="Stacks\Extensions\" />
