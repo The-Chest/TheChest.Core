@@ -1,12 +1,12 @@
 using System;
 using NUnit.Framework;
+using TheChest.Core.Tests.Common.Extensions.Slots;
 using TheChest.Core.Slots.Extensions;
 
 namespace TheChest.Core.Tests.Extensions
 {
     public partial class StackSlotExtensions<T>
     {
-        // TODO: fix the commented out assertions in the tests to check its Contents.
         [Test]
         public void ToStackSlots_EmptyItems_ReturnsEmptySlotsArray()
         {
@@ -29,9 +29,9 @@ namespace TheChest.Core.Tests.Extensions
             Assert.Multiple(() =>
             {
                 Assert.That(result[0].Amount, Is.EqualTo(2));
-                //Assert.That(result[0].Content.Contains(item), Is.True);
+                Assert.That(result[0].GetContents(), Is.EqualTo(new[] { item, item }));
                 Assert.That(result[1].Amount, Is.EqualTo(1));
-               // Assert.That(result[1].Content.Contains(item), Is.True);
+                Assert.That(result[1].GetContents(), Is.EqualTo(new[] { item }));
             });
         }
 
@@ -49,11 +49,11 @@ namespace TheChest.Core.Tests.Extensions
             Assert.Multiple(() =>
             {
                 Assert.That(result[0].Amount, Is.EqualTo(1));
-                // Assert.That(result[0].Content.Contains(firstItem), Is.True);
+                Assert.That(result[0].GetContents(), Is.EqualTo(new[] { firstItem }));
                 Assert.That(result[1].Amount, Is.EqualTo(1));
-                // Assert.That(result[1].Content.Contains(secondItem), Is.True);
+                Assert.That(result[1].GetContents(), Is.EqualTo(new[] { secondItem }));
                 Assert.That(result[2].Amount, Is.EqualTo(1));
-                // Assert.That(result[2].Content.Contains(thirdItem), Is.True);
+                Assert.That(result[2].GetContents(), Is.EqualTo(new[] { thirdItem }));
             });
         }
 
@@ -79,7 +79,7 @@ namespace TheChest.Core.Tests.Extensions
             Assert.Multiple(() =>
             {
                 Assert.That(result[0].Amount, Is.EqualTo(2));
-                //Assert.That(result[0].Content.Contains(item), Is.True);
+                Assert.That(result[0].GetContents(), Is.EqualTo(new[] { item, item }));
             });
         }
     }
